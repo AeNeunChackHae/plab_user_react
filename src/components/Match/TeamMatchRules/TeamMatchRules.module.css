@@ -1,0 +1,80 @@
+/* 전체 섹션 스타일 */
+.section {
+  margin: 20px 0px;
+  padding:  15px; /* RefundPolicy와 동일한 패딩 */
+  background-color: #ffffff;
+  border-radius: 5px; /* 둥근 테두리 */
+  font-family: Arial, sans-serif; /* 동일 폰트 */
+  display: flex;
+  flex-direction: column;
+}
+
+.sectionHeader {
+  display: flex;
+  justify-content: space-between; /* 제목과 화살표를 양쪽으로 정렬 */
+  align-items: center;
+  cursor: pointer;
+  margin: 0; /* 간격 제거 */
+}
+
+.sectionTitle {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0; /* 제목 상단/하단 간격 없앰 */
+}
+
+/* 화살표 스타일 */
+.arrowDown,
+.arrowUp {
+  width: 10px;
+  height: 10px;
+  border: solid #000;
+  border-width: 0 2px 2px 0;
+  transition: transform 0.3s;
+}
+
+.arrowDown {
+  transform: rotate(45deg); /* 아래 방향 화살표 */
+}
+
+.arrowUp {
+  transform: rotate(-135deg); /* 위 방향 화살표 */
+}
+
+.sectionBody {
+  padding: 10px 0;
+  display: block; /* 내용 표시 */
+}
+
+/* 규칙 리스트 아이템 */
+.rule_item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 12px;
+  border-radius: 20px;
+  background: rgb(248, 250, 251);
+}
+
+.rule_icon {
+  margin-right: 8px;
+  width: 48px;
+  height: 48px;
+}
+
+.rule_title {
+  margin-bottom: 4px;
+  font-size: 16px;
+  line-height: 19px;
+}
+
+.rule_description {
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.sectionBody ul {
+  list-style: none; /* 기본 불릿 스타일 제거 */
+  margin: 0; /* 마진 제거 */
+  padding: 0; /* 패딩 제거 */
+}

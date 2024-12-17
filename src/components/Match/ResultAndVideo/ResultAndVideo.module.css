@@ -1,0 +1,140 @@
+/* 섹션 */
+.section {
+  margin: 20px 0;
+  padding: 15px;
+  background-color: white;
+  border-radius: 8px;
+}
+
+/* 헤더 */
+.header {
+  margin-bottom: 15px;
+}
+
+.title {
+  font-size: clamp(16px, 2vw, 18px);
+  font-weight: bold;
+  text-align: left; /* 제목 왼쪽 정렬 */
+  margin: 0;
+  padding-left: 10px; /* 제목 여백 추가 */
+}
+
+/* 본문 */
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* 각 경기 행 */
+.resultRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px ;
+}
+
+/* 팀 정보 */
+.teamInfo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 0.45; /* 좌우 공간 조정 */
+}
+
+.teamInfo:first-child {
+  justify-content: flex-start; /* 왼쪽 팀 정보는 좌측 정렬 */
+}
+
+.teamInfo:last-child {
+  justify-content: flex-end; /* 오른쪽 팀 정보는 우측 정렬 */
+}
+
+.teamEmblem {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.teamText {
+  font-size: clamp(12px, 1.5vw, 14px);
+  color: #333;
+  text-align: left;
+}
+
+/* 점수 */
+.scoreBlock {
+  flex: 0.2; /* 점수판 크기 조정 */
+  text-align: center;
+  display: flex;
+  justify-content: center; /* 중앙 정렬 */
+  align-items: center;
+}
+
+.score {
+  font-size: clamp(16px, 1.8vw, 18px);
+  font-weight: bold;
+  background-color: #f5f7fa;
+  padding: 5px 10px;
+  border-radius: 10px;
+  display: inline-block;
+}
+
+/* 아이콘 (모달 등) */
+.iconBlock {
+  display: flex;
+  gap: 10px;
+}
+
+/* 모달 */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modalContent {
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  width: 300px;
+  text-align: center;
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.modalCloseButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.modalButtons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.evaluateButton,
+.backButton {
+  background: #1570ff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+}

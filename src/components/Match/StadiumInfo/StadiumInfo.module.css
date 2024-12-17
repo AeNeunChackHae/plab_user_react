@@ -1,0 +1,61 @@
+.section {
+  margin: 20px 0px;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 5px;
+}
+
+.sectionHeader h3 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.sectionBody {
+  display: flex;
+  flex-direction: column;
+}
+
+.infoListWrapper ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.infoList {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  flex: 1 1 calc(50% - 15px);
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+}
+
+.noFeature {
+  color: #aaa; /* 회색 표시 */
+}
+
+.stadiumNotice h4 {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.stadiumNotice pre {
+  font-size: 12px;
+  line-height: 1.5;
+  color: #333;
+  white-space: pre-wrap;
+}
+
+.divider {
+  margin: 20px 0;
+  border: none;
+  border-top: 1px solid #ddd;
+}

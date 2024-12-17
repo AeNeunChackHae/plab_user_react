@@ -1,0 +1,146 @@
+/* Navbar 스타일 */
+.navbar {
+  width: 100%;
+  background-color: #fff;
+  border-bottom: 1px solid #ddd;
+  z-index: 1000;
+}
+
+.navContainer {
+  display: flex;
+  justify-content: space-between; /* 좌우 정렬 */
+  align-items: center;
+  max-width: 1024px; /* 전체 너비 확장 */
+  margin: 0 auto;
+  padding: 10px 20px;
+}
+
+/* 좌측 섹션: 햄버거 메뉴와 로고 */
+.leftSection {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.hamburgerButton {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
+
+.logo {
+  width: 54px;
+  height: auto;
+}
+
+/* 우측 섹션: 검색창과 아이콘 */
+.rightSection {
+  display: flex;
+  align-items: center;
+  gap: 20px; /* 아이콘 간격 조정 */
+}
+
+/* 검색창 스타일 */
+.searchWrapper {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.searchBar {
+  display: flex;
+  align-items: center;
+  background-color: #f8f9fa;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 8px 12px;
+  width: 300px; /* 검색창 너비 확장 */
+}
+
+.searchIcon {
+  width: 20px;
+  margin-right: 8px;
+}
+
+.searchInput {
+  border: none;
+  outline: none;
+  background: transparent;
+  flex: 1;
+  font-size: 14px;
+}
+
+/* 드롭다운 메뉴 스타일 */
+.searchDropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 300px; /* 드롭다운 너비 고정 */
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  padding: 10px;
+  max-height: 400px; /* 최대 높이 설정 */
+  overflow-y: auto; /* 내용이 넘치면 스크롤 */
+}
+
+.searchDropdown .dropdownTitle {
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.searchDropdown ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.searchDropdown li {
+  padding: 10px 0;
+  border-bottom: 1px solid #f1f1f1;
+  color: #333;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.searchDropdown li:last-child {
+  border-bottom: none; /* 마지막 항목의 border 제거 */
+}
+
+.searchDropdown li:hover {
+  background-color: #f8f9fa;
+  color: #1570ff;
+}
+
+/* 아이콘 스타일 */
+.icon {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
+
+/* 인기 키워드 버튼 스타일 */
+.keywordButtons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.keywordButtons button {
+  background-color: #f1f1f1;
+  border: none;
+  border-radius: 15px;
+  padding: 5px 10px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.keywordButtons button:hover {
+  background-color: #1570ff;
+  color: #fff;
+}

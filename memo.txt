@@ -1,0 +1,49 @@
+npm start
+
+npm install react-scripts
+
+
+
+git pull origin main
+
+
+
+-> vs깃등록 딸깍
+git add .
+git commit -m "변경한 내용에 대한 설명"
+git push origin main
+
+
+추가 모듈
+->
+npm install react-slick slick-carousel
+(이미지 슬라이더 스타일링 패키지)
+
+
+1 에서 타임별로 1 2 3 개 보여줌.
+
+당일 매치가 끝나면 일단 match/2로 작업중인 매치 결과창이 뜨며, 거기서 3개로 갈림 - 유저토큰
+
+
+https://www.plabfootball.com/match/466096/ (소셜 매치 종료 링크)
+
+
+
+카카오 지도 api (링크 및 양식들)
+https://developers.kakao.com/console/app/1173208/config/appKey
+<script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=a8eb9b1519926eb93d8437268eda9720"></script>
+a8eb9b1519926eb93d8437268eda9720
+
+위도경도 추출출
+https://velog.io/@isabel_noh/React-%EC%A2%8C%ED%91%9C%EA%B2%BD%EB%8F%84-%EC%9C%84%EB%8F%84%EB%A1%9C-%EC%A3%BC%EC%86%8C-%EC%95%8C%EC%95%84%EB%82%B4%EA%B8%B0feat.-Geolocation-%EC%B9%B4%EC%B9%B4%EC%98%A4-%EB%A7%B5-API-Geolocation-%EC%82%AC%EC%9A%A9%EC%A0%9C%ED%95%9C%EC%97%90-%EA%B4%80%ED%95%98%EC%97%AC
+
+마커표시 및 위도 경도보는곳곳
+https://oracle.tistory.com/503
+
+
+
+
+소셜 및 팀 매치는, 시간별로 detail 즉, 날짜,시간에 따라 얼리버드~마감까지 있음
+각 소셜은 18명이 되었을떄 신청이 마감, 팀은 3팀이 다 모였을 경우 마감을  해줘야함.
+
+나중에 디테일하게 컴포넌트화 해서 적용- 데이터 뽑아오기 편하게

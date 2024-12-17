@@ -1,0 +1,113 @@
+/* 전체 컨테이너 스타일 */
+.stadiumContainer {
+  padding: 0px 20px;
+  background-color: #fff;
+  font-family: Arial, sans-serif;
+}
+
+.stadiumList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.stadiumItem {
+  margin-bottom: 20px;
+  border-radius: 8px;
+  background-color: #fff;
+  overflow: hidden;
+}
+
+/* 이미지와 정보 섹션 */
+.infoWrapper {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px;
+  align-items: center;
+}
+.name{
+  font-size: 16px;
+  font-weight: bold;
+}
+.imageWrapper {
+  width: 120px;
+  height: 90px;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 시간 블록 섹션 */
+.timeBlockWrapper {
+  display: flex;
+  flex-wrap: nowrap;
+  position: relative;
+  padding: 8px 0;
+}
+
+.timeBlock {
+  flex: 1;
+  height: 5px;
+  background-color: #dddddd;
+  margin-right: 1px;
+  border-radius: 4px;
+}
+
+.timeBlock:last-child {
+  margin-right: 0;
+}
+
+.soldout {
+  background-color: #dddddd;
+}
+
+/* 시간 정보 섹션 */
+.timeInfoWrapper {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 0; /* 위아래 패딩 조정 */
+  font-size: 12px;
+  color: #dddddd;
+}
+
+.timeInfo {
+  position: relative;
+  font-weight: bold;
+  color: #dddddd;
+}
+
+/* 예약 상태 레전드 */
+.legendWrapper {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+  justify-content: flex-end;
+}
+
+.legend {
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  color: #8f8f8f;
+}
+
+.legendAvailable,
+.legendSoldout {
+  width: 16px;
+  height: 12px;
+  border-radius: 30%;
+  margin-right: 5px;
+}
+
+.legendAvailable {
+  background-color: #007bff;
+}
+
+.legendSoldout {
+  background-color: #dddddd;
+}

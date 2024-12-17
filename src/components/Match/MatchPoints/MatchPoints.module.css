@@ -1,0 +1,61 @@
+/* 매치 포인트 섹션 */
+.section {
+    margin-bottom: 20px;
+    padding: 0px 20px 20px 20px;
+    background-color: #ffffff;
+    border-radius: 5px;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+  }
+  
+  /* 매치 포인트 제목 */
+  .matchPointsTitle {
+    margin-bottom: 15px;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  /* 매치 포인트 리스트 */
+  .matchPointsInfo {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2열 배치 */
+    gap: 15px; /* 항목 간 간격 */
+    margin-bottom: 20px; /* 구분선과의 간격 */
+    padding-bottom: 15px;
+    border-bottom: 1px solid #ddd; /* 구분선 추가 */
+    box-sizing: border-box;
+  }
+  
+  /* 리스트 아이템 */
+  .infoList {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    box-sizing: border-box;
+  }
+  
+  /* 추가 정보 섹션 */
+  .matchPointsAdditional ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  
+  /* 텍스트 스타일 */
+  .infoListTxtSm {
+    font-size: 12px;
+    color: #666;
+    line-height: 1.6; /* 줄 간격 */
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* 아이콘 스타일 */
+  .icon {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0; /* 아이콘 크기 고정 */
+  }
+  
+  

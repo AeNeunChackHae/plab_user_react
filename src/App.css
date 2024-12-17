@@ -1,0 +1,28 @@
+/* 전체 페이지 */
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.pageContainer {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Flexbox로 정렬 */
+.mainContent {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+.leftContent {
+  flex: 2;
+}
+
+.rightContent {
+  flex: 1;
+}

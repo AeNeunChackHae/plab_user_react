@@ -1,0 +1,59 @@
+.standingsSection {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 10px 20px;
+  margin: 20px 0;
+}
+
+.title {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.standingsTable {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+.standingsTable th {
+  font-size: 14px;
+  font-weight: normal;
+  color: #888;
+  padding: 10px;
+}
+
+.standingsTable td {
+  padding: 10px;
+  font-size: 14px;
+}
+
+.teamColumn {
+  text-align: left;
+}
+
+.teamInfo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.teamEmblem {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.teamName {
+  font-size: 14px;
+  font-weight: normal;
+  color: #333;
+}
+
+.points {
+  font-weight: bold;
+  color: #1570ff;
+  font-size: 14px;
+}

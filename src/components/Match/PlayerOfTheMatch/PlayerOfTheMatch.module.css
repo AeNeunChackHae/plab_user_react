@@ -1,0 +1,80 @@
+.section {
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.sectionHeader {
+  margin-bottom: 15px;
+}
+
+.sectionTitle h3 {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.sectionBody {
+  background-color: #eaf4ff;
+  text-align: center;
+  border-radius: 30px;
+  padding: 10px 20px;
+}
+
+.plaberOfTheMatch {
+  padding: 10px 0;
+}
+
+.plaberIcon {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 10px;
+}
+
+.plaberTitle {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  margin-top: 0;
+}
+
+.plaberBox {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin: 0px 5rem 15px;
+}
+
+.plaberPlayer {
+  text-align: center;
+}
+
+.bibsBack {
+  width: 60px;
+  height: 80px;
+  position: relative;
+  margin: 0 auto;
+}
+
+.playerNumber {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+.playerText {
+  font-size: 14px;
+  margin-top: 10px;
+  color: #333;
+}
+
+.plaberDescription {
+  font-size: 12px;
+  color: #888;
+  line-height: 1.5;
+}

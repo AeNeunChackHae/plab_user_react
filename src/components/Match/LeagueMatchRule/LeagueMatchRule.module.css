@@ -1,0 +1,60 @@
+.section {
+  margin: 20px 0;
+  padding: 15px;
+  background-color: #ffffff;
+  border-radius: 5px;
+  font-family: Arial, sans-serif;
+}
+
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.sectionTitle {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.sectionBody {
+  padding-top: 10px;
+}
+
+.arrowDown {
+  width: 10px;
+  height: 10px;
+  border: solid #000;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+  transition: transform 0.3s;
+}
+
+.arrowUp {
+  width: 10px;
+  height: 10px;
+  border: solid #000;
+  border-width: 0 2px 2px 0;
+  transform: rotate(-135deg);
+  transition: transform 0.3s;
+}
+
+.matchRule {
+  margin: 0;
+  padding-left: 10px;
+  list-style-type: disc;
+}
+
+.matchRule h4 {
+  margin-bottom: 10px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.matchRule li {
+  margin-left: 20px;
+  margin-bottom: 10px;
+  font-size: 14px;
+}

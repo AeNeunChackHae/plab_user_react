@@ -1,0 +1,16 @@
+/* 지도 컨테이너 */
+.mapContainer {
+    margin-top: 20px;
+    width: 100%;
+    height: 300px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+  }
+  
+  /* 지도 보기/닫기 버튼 스타일 */
+  .map {
+    cursor: pointer;
+    color: #838383;
+    text-decoration: underline;
+  }
+  

@@ -1,0 +1,101 @@
+.facilitiesContent {
+    position: relative;
+    display: flex;
+    justify-content: center; /* 수평 중앙 정렬 */
+    align-items: center; /* 수직 중앙 정렬 */
+    padding: 20px 0;
+    background-color: #fff;
+  }
+  
+  .dateContainer {
+    position: relative;
+    width: 100%;
+    max-width: 900px; /* 슬라이더 최대 너비 */
+    margin: 0 auto;
+    overflow: hidden; /* 넘치는 부분 숨김 */
+  }
+  
+  .slick-track {
+    display: flex !important;
+    align-items: center; /* 슬라이더 내부 요소 수직 중앙 정렬 */
+  }
+  
+  .slick-slide {
+    display: flex !important;
+    justify-content: center;
+    align-items: center; /* 슬라이드 내용 수직 중앙 정렬 */
+    height: 120px; /* 슬라이드의 높이를 고정 */
+  }
+  
+  .dateWrap {
+    width: 100px; /* 날짜 요소 너비 */
+    height: 50px; /* 날짜 요소 높이 */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* 수직 중앙 정렬 */
+    align-items: center; /* 수평 중앙 정렬 */
+    text-align: center;
+    font-size: 14px;
+    color: #666;
+    cursor: pointer;
+    border-radius: 25px; /* 양 끝을 둥글게 (height의 절반) */
+    transition: all 0.3s ease;
+  }
+  
+  .isActive {
+    background-color: #007bff; /* 선택된 날짜 배경색 */
+    color: #fff; /* 선택된 날짜 글자색 */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 살짝 그림자 추가 */
+    border-radius: 25px; /* 선택된 상태에서도 동일하게 유지 */
+  }
+  
+  
+  .dateWrap p {
+    margin: 0;
+    font-size: 18px;
+    line-height: 1; /* 줄 높이 제거 */
+  }
+  
+  .dateWrap span {
+    font-size: 16px;
+    margin-top: 2px;
+  }
+  
+  /* 토요일과 일요일 색상 */
+  .isSat {
+    color: #007bff !important; /* 토요일: 파란색 */
+  }
+  
+  .isSun {
+    color: #ff4d4f !important; /* 일요일: 빨간색 */
+  }
+  
+  .isSat.isActive,
+  .isSun.isActive {
+    color: #fff !important; /* 선택된 토요일과 일요일의 글자색 흰색 */
+  }
+  
+  .arrowButton {
+    position: absolute;
+    top: 40%;
+    transform: translateY(-50%); /* 수직 중앙 정렬 */
+    background: none;
+    border: none;
+    font-size: 28px;
+    color: #aaa;
+    cursor: pointer;
+    z-index: 10;
+  }
+  
+  .arrowLeft {
+    left: 10px;
+  }
+  
+  .arrowRight {
+    right: 10px;
+  }
+  
+  .arrowButton:hover {
+    color: #007bff;
+  }
+  

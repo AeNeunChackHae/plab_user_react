@@ -1,0 +1,35 @@
+/* 전체 페이지 배경 */
+.matchPage,
+.teamMatchPage {
+  background-color: #f5f7fa;
+  font-family: Arial, sans-serif;
+  box-sizing: border-box;
+}
+
+/* 메인 콘텐츠 레이아웃 */
+.mainContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 5px;
+  max-width: 1024px; /* 최대 너비를 설정 */
+  margin: 20px auto; /* 콘텐츠를 중앙에 배치 */
+  width: 100%;
+}
+
+.leftSection {
+  flex: 3;
+}
+
+.rightSection {
+  flex: 2;
+  position: sticky;
+  top: 1rem;
+}
+
+/* 이미지 크기 조정 */
+.mainImage {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+}

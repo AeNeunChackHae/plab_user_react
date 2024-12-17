@@ -1,0 +1,14 @@
+.imageContainer {
+  width: 100%;
+  max-width: 1024px; /* 기본 페이지의 최대 너비와 일치 */
+  height: auto;
+  margin: 0 auto; /* 가운데 정렬 */
+  overflow: hidden;
+}
+
+.imageContainer img {
+  width: 100%;
+  height: auto; /* 높이 비율 유지 */
+  max-height: 510px; /* 기본 페이지와 동일한 최대 높이 */
+  object-fit: cover; /* 이미지를 컨테이너에 맞게 채움 */
+}

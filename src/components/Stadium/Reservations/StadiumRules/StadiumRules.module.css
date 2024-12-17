@@ -1,0 +1,81 @@
+.stadiumSection {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  margin: 20px 0;
+  border-top: 10px solid #f7f7f7; /* 상단 보더라인 추가 */
+}
+
+.stadiumHeader {
+  margin-bottom: 16px;
+}
+
+.stadiumTitle {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.infoListWrapper {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.infoList {
+  display: flex;
+  align-items: center;
+  width: calc(50% - 10px);
+  margin-bottom: 10px;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+}
+
+.infoText {
+  font-size: 14px;
+  color: #333;
+}
+
+.unavailable .infoText {
+  color: #aaa;
+  text-decoration: line-through;
+}
+
+.caution {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  font-size: 12px;
+  color: #ff9800;
+}
+
+.caution img {
+  width: 16px;
+  height: 16px;
+  margin-right: 5px;
+}
+
+.ruleSection {
+  margin-top: 20px;
+}
+
+.ruleTitle {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.ruleList {
+  list-style-type: disc; /* 점 표시 */
+  padding-left: 20px;
+  font-size: 14px;
+  color: #333;
+}
+
+.ruleList li {
+  margin-bottom: 5px;
+}
