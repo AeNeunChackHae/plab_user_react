@@ -1,5 +1,5 @@
 // 팀경기 승/패 값 계산기기
-import { teamImages, teamNames } from '../dummyData/dummyData';
+import { teamImages, teamNames } from "../dummyData/dummyData";
 
 const calculateStandings = (results) => {
   const standings = {};
@@ -11,7 +11,10 @@ const calculateStandings = (results) => {
     if (!standings[team1.name]) {
       standings[team1.name] = {
         name: team1.name,
-        emblem: teamImages[Object.keys(teamNames).find((key) => teamNames[key] === team1.name)],
+        emblem:
+          teamImages[
+            Object.keys(teamNames).find((key) => teamNames[key] === team1.name)
+          ],
         wins: 0,
         draws: 0,
         losses: 0,
@@ -23,7 +26,10 @@ const calculateStandings = (results) => {
     if (!standings[team2.name]) {
       standings[team2.name] = {
         name: team2.name,
-        emblem: teamImages[Object.keys(teamNames).find((key) => teamNames[key] === team2.name)],
+        emblem:
+          teamImages[
+            Object.keys(teamNames).find((key) => teamNames[key] === team2.name)
+          ],
         wins: 0,
         draws: 0,
         losses: 0,
@@ -59,7 +65,8 @@ const calculateStandings = (results) => {
   // 순위 정렬
   return Object.values(standings).sort((a, b) => {
     if (b.points !== a.points) return b.points - a.points; // 승점 우선
-    if (b.goalsFor - b.goalsAgainst !== a.goalsFor - a.goalsAgainst) return (b.goalsFor - b.goalsAgainst) - (a.goalsFor - a.goalsAgainst); // 득실차
+    if (b.goalsFor - b.goalsAgainst !== a.goalsFor - a.goalsAgainst)
+      return b.goalsFor - b.goalsAgainst - (a.goalsFor - a.goalsAgainst); // 득실차
     return b.goalsFor - a.goalsFor; // 다득점
   });
 };
