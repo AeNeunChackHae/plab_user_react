@@ -1,0 +1,53 @@
+.teamCard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 15px;
+    width: 150px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer; /* 카드 전체 클릭 가능 */
+    transition: background-color 0.2s;
+  }
+  
+  .teamCard:hover {
+    background-color: #f0f8ff;
+  }
+  
+  .logoWrapper {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: 10px;
+  }
+  
+  .logo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .teamInfo {
+    text-align: center;
+  }
+  
+  .teamName {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 5px 0;
+  }
+  
+  .teamRole {
+    font-size: 14px;
+    color: #666;
+  }
+  
+  .teamMembers {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #333;
+  }
+  
