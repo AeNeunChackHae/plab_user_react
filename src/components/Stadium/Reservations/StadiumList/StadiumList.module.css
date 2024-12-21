@@ -1,6 +1,6 @@
 /* 전체 컨테이너 스타일 */
 .stadiumContainer {
-  padding: 0px 20px;
+  padding: 10px;
   background-color: #fff;
   font-family: Arial, sans-serif;
 }
@@ -10,11 +10,10 @@
   padding: 0;
   margin: 0;
 }
-
+ 
 .stadiumItem {
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   border-radius: 8px;
-  background-color: #fff;
   overflow: hidden;
 }
 
@@ -22,13 +21,26 @@
 .infoWrapper {
   display: flex;
   justify-content: space-between;
-  padding: 12px;
+  padding: 10px;
   align-items: center;
 }
-.name{
+
+.name {
   font-size: 16px;
   font-weight: bold;
 }
+
+.facility {
+  font-size: 14px;
+  color: #666;
+}
+
+.price {
+  font-size: 14px;
+  color: #888;
+  margin-top: 4px;
+}
+
 .imageWrapper {
   width: 120px;
   height: 90px;
@@ -46,8 +58,7 @@
 .timeBlockWrapper {
   display: flex;
   flex-wrap: nowrap;
-  position: relative;
-  padding: 8px 0;
+  margin-top: 4px;
 }
 
 .timeBlock {
@@ -58,34 +69,40 @@
   border-radius: 4px;
 }
 
-.timeBlock:last-child {
-  margin-right: 0;
+.timeBlock.available {
+  background-color: #007bff;
 }
 
-.soldout {
+.timeBlock.soldout {
   background-color: #dddddd;
+}
+
+.timeBlock:last-child {
+  margin-right: 0;
 }
 
 /* 시간 정보 섹션 */
 .timeInfoWrapper {
   display: flex;
   justify-content: space-between;
-  padding: 5px 0; /* 위아래 패딩 조정 */
-  font-size: 12px;
-  color: #dddddd;
+  margin-top: 4px;
 }
 
 .timeInfo {
-  position: relative;
-  font-weight: bold;
-  color: #dddddd;
+  font-size: 12px;
+  color: #888;
+  text-align: center;
+}
+
+.timeInfo:last-child {
+  opacity: 0;
 }
 
 /* 예약 상태 레전드 */
 .legendWrapper {
   display: flex;
   gap: 10px;
-  margin-top: 20px;
+  margin-top: 10px;
   justify-content: flex-end;
 }
 
@@ -93,15 +110,16 @@
   display: flex;
   align-items: center;
   font-size: 12px;
-  color: #8f8f8f;
+  color: #555;
 }
 
 .legendAvailable,
 .legendSoldout {
   width: 16px;
-  height: 12px;
-  border-radius: 30%;
-  margin-right: 5px;
+  height: 16px;
+  border-radius: 4px;
+  display: inline-block;
+  margin-right: 8px;
 }
 
 .legendAvailable {

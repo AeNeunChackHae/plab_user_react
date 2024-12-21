@@ -1,0 +1,66 @@
+/* 전체 컨테이너 스타일 */
+.reviewContainer {
+    background-color: #fff;
+    font-family: Arial, sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    padding: 10px 20px; /* 전체 여백 추가 */
+  }
+  
+  .reviewTitle {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 16px;
+    color: #333;
+    text-align: left; /* 제목 왼쪽 정렬 */
+    padding-left: 10px; /* 제목과 좌측 테두리 간격 조정 */
+  }
+  
+  /* 테이블 래퍼 (테두리 적용) */
+  .tableWrapper {
+    border: 2px solid #c0c0c0; /* 전체 테두리 */
+    border-radius: 8px; /* 둥근 테두리 */
+    overflow: hidden; /* 둥근 테두리 적용 */
+    margin: 0; /* 좌우 여백 제거 */
+    background-color: #fff; /* 테이블 배경 */
+  }
+  
+  /* 테이블 스타일 */
+  .reviewTable {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    text-align: left; /* 전체 왼쪽 정렬 */
+  }
+  
+  /* 셀 스타일 */
+  .reviewTable th,
+  .reviewTable td {
+    padding: 12px;
+    color: #000; /* 검정색 폰트 */
+    font-weight: normal;
+    border: 1px solid #c0c0c0; /* 세로 구분선 추가 */
+  }
+  
+  .reviewTable th {
+    font-weight: bold;
+    background-color: #f9f9f9; /* 헤더 배경색 */
+    color: #333;
+    text-align: left; /* 헤더 왼쪽 정렬 */
+  }
+  
+  /* 테두리 둥글게 */
+  .reviewTable tr:first-child th:first-child {
+    border-top-left-radius: 8px;
+  }
+  .reviewTable tr:first-child th:last-child {
+    border-top-right-radius: 8px;
+  }
+  .reviewTable tr:last-child td:first-child {
+    border-bottom-left-radius: 8px;
+  }
+  .reviewTable tr:last-child td:last-child {
+    border-bottom-right-radius: 8px;
+  }
+  
