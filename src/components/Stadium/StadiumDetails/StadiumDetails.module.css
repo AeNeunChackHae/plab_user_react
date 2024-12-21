@@ -157,3 +157,9 @@
   color: #007bff;
   border-bottom: 2px solid #007bff; /* 선택된 탭 밑줄 강조 */
 }
+
+.componentWrapper {
+  margin: 20px 0;
+  border-top: 20px solid #f9fbfc;
+  padding: 10px 0;
+}
