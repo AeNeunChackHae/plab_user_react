@@ -1,0 +1,70 @@
+.container {
+  padding: 20px;
+}
+
+h2 {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+.historyItem {
+  display: flex;
+  justify-content: space-between; /* 왼쪽 정보와 버튼 사이 간격 */
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+}
+
+.menuWrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.menuButton {
+  cursor: pointer;
+  font-size: 24px;
+  color: #555;
+}
+
+.menuButton:hover {
+  color: #000;
+}
+
+/* 신청 확인 버튼 (기본 상태는 숨김) */
+.checkButton {
+  width: 110px;
+  height: 50px;
+  display: none;
+  position: absolute;
+  top: 30px;
+  left: -100px; /* 왼쪽에 고정 */
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px 10px;
+  font-size: 14px;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  white-space: nowrap;
+  transition: background-color 0.2s ease-in-out;
+  z-index: 10;
+}
+
+/* .hover 클래스 추가 시 버튼 표시 */
+.menuWrapper.hover .checkButton {
+  display: block;
+}
+
+.checkButton:hover {
+  background-color: #f8f8f8;
+}

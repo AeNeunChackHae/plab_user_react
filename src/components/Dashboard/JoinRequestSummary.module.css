@@ -1,0 +1,30 @@
+.joinRequest {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    cursor: pointer; /* 전체 영역을 클릭 가능하도록 커서 변경 */
+    transition: background-color 0.2s;
+  }
+  
+  .joinRequest:hover {
+    background-color: #f0f8ff; /* 호버 시 배경색 변경 */
+  }
+  
+  h3 {
+    margin: 0;
+    font-size: 16px;
+  }
+  
+  .viewDetails {
+    font-size: 20px;
+    color: #007bff;
+  }
+  
+  .joinRequest:hover .viewDetails {
+    color: #0056b3;
+  }
+  
