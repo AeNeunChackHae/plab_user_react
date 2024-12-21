@@ -12,15 +12,15 @@
 
 
 import React, { useState, useRef } from "react";
-import FacilitiesContent from "../Reservations/FacilitiesContent/FacilitiesContent";
-import StadiumList from "../Reservations/StadiumList/StadiumList";
-import StadiumRules from "../Reservations/StadiumRules/StadimRules";
-import MatchSchedule from "../MatchSchedule/MatchSchedule";
-import ReviewContent from "../ReviewContent/ReviewContent";
+import FacilitiesContent from "../reservations/facilitiescontent/FacilitiesContent";
+import StadiumList from "../reservations/stadiumlist/StadiumList";
+import StadiumRules from "../reservations/stadiumrules/StadimRules";
+import MatchSchedule from "../matchschedule/MatchSchedule";
+import ReviewContent from "../reviewcontent/ReviewContent";
 import styles from "./StadiumDetails.module.css";
-import MapTab from "../Reservations/MapTab/MapTab";
-import StadiumTerms from "../Reservations/StadiumTerms/StadiumTerms";
-import TeamList from "../TeamContent/TeamList";
+import MapTab from "../reservations/maptab/MapTab";
+import StadiumTerms from "../reservations/stadiuterms/StadiumTerms";
+import TeamList from "../teamContent/TeamList";
 
 // DB에서 가져오는 데이터를 가정한 더미 데이터
 const DUMMY_STADIUM_INFO = {
