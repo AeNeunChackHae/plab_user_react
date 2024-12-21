@@ -1,9 +1,14 @@
 import React from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
+import MatchPage from "../pages/match/MatchPage";
 
 function Match() {
   return (
     <>
-      <h1>매치 요청 분기 처리</h1>
+      <Routes>
+        <Route path="/:match_id" element={<MatchPage />} />
+        {/* <Route path="/" element={<Navigate to="/" />} /> */}
+      </Routes>
     </>
   );
 }

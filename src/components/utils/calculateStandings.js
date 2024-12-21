@@ -1,5 +1,5 @@
 // 팀경기 승/패 값 계산기기
-import { teamImages, teamNames } from '../dummyData/dummyData';
+import { teamImages, teamNames } from '../dummydata/dummyData';
 
 const calculateStandings = (results) => {
   const standings = {};

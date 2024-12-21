@@ -1,11 +1,15 @@
 import React from "react";
+import { Routes, Route } from "react-router-dom";
+import OrderPage from "../pages/order/OrderPage";
 
-function Team() {
+function Order() {
   return (
     <>
-      <h1>팀 요청 분기 처리</h1>
+      <Routes>
+        <Route path="/:user_id" element={<OrderPage />} />
+      </Routes>
     </>
   );
 }
 
-export default Team;
+export default Order;
