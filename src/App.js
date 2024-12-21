@@ -27,6 +27,9 @@ function App() {
         <Route path="/league/*" element={<League />} />
         <Route path="/order/*" element={<Order />} />
         <Route path="/term/*" element={<Term />} />
+
+        {/* 404 페이지 */}
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
     </Router>
