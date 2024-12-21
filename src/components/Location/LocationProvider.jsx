@@ -1,6 +1,6 @@
 // src/providers/LocationProvider.jsx
 import React, { useEffect, useState } from "react";
-import { getCoordinatesFromAddress } from "../Location/LocationService";
+import { getCoordinatesFromAddress } from "./LocationService";
 
 const LocationProvider = ({ fullAddress, children }) => {
   const [location, setLocation] = useState(null);

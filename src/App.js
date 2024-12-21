@@ -1,8 +1,23 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Navbar from "./components/header/navbar/Navbar";
+import Main from "./router/Main";
+import Cs from "./router/Cs";
+import Notice from "./router/Notice";
+import About from "./router/About";
+import Auth from "./router/Auth";
+import Mypage from "./router/Mypage";
+import Manager from "./router/Manager";
+import Stadium from "./router/Stadium";
 import Match from "./router/Match";
-import Navbar from "./components/header/Navbar/Navbar";
+import Team from "./router/Team";
+import Rental from "./router/Rental";
+import Explore from "./router/Explore";
+import League from "./router/League";
+import Order from "./router/Order";
+import Term from "./router/Term";
 import Footer from "./components/footer/Footer";
+import NotFound from "./router/NotFound";
 
 function App() {
   return (

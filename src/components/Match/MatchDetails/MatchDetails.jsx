@@ -175,8 +175,8 @@
 
 import React, { useState, useRef, useEffect, useMemo, useCallback } from "react";
 import styles from "./MatchDetails.module.css";
-import LocationProvider from "../../Location/LocationProvider"; // LocationProvider 사용
-import KakaoMap from "../../KakaoMap/KakaoMap";
+import LocationProvider from "../../location/LocationProvider"; // LocationProvider 사용
+import KakaoMap from "../../kakaomap/KakaoMap";
 import DUMMY_STADIUM_INFO from "../../dummyData/StadiumDummyData";
 
 const MatchDetails = () => {

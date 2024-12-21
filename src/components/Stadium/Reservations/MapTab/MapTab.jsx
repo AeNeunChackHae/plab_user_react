@@ -42,8 +42,8 @@
 
 // src/components/MapTab/MapTab.jsx
 import React from "react";
-import KakaoMap from "../../../KakaoMap/KakaoMap";
-import LocationProvider from "../../../Location/LocationProvider";
+import KakaoMap from "../../../kakaomap/KakaoMap";
+import LocationProvider from "../../../location/LocationProvider";
 import styles from "./MapTab.module.css";
 import DUMMY_STADIUM_INFO from "../../../dummyData/StadiumDummyData"; // 더미 데이터 가져오기
 
