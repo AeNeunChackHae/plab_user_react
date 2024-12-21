@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import NavbarMenu from "../NavbarMenu/NavbarMenu";
+import NavbarMenu from "../navbarmenu/NavbarMenu";
 import styles from "./Navbar.module.css";
 
 const Navbar = () => {

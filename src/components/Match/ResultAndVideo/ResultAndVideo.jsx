@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { matchData } from '../../dummyData/dummyData';
+import { matchData } from '../../dummydata/dummyData';
 import styles from './ResultAndVideo.module.css';
 import { FaPlay, FaDownload } from 'react-icons/fa';
 

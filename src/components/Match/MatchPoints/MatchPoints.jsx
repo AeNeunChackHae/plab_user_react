@@ -1,15 +1,29 @@
-import React from 'react';
-import styles from './MatchPoints.module.css';
+import React from "react";
+import styles from "./MatchPoints.module.css";
 
-const MatchPoints = () => {
+
+const MatchPoints = ({ managerName , allowGender , levelCriterion }) => {
+  const getLevelText = (level) => {
+    switch (level) {
+      case 0:
+        return "모든 레벨";
+      case 1:
+        return "아마추어 1 이하";
+      case 2:
+        return "아마추어 1 이상";
+      case 3:
+        return "아마추어 2 이상";
+      default:
+        return "알 수 없음";
+    }
+  };
+  
   return (
     <section className={styles.section}>
-      {/* 매치 포인트 제목 */}
       <div className={styles.matchPointsTitle}>
         <h4>매치 포인트</h4>
       </div>
 
-      {/* 매치 포인트 리스트 */}
       <div className={styles.matchPointsInfo}>
         <div className={styles.infoList}>
           <img
@@ -17,7 +31,7 @@ const MatchPoints = () => {
             className={styles.icon}
             alt="레벨"
           />
-          <p>모든 레벨</p>
+          <p>{getLevelText(levelCriterion)}</p>
         </div>
         <div className={styles.infoList}>
           <img
@@ -25,7 +39,13 @@ const MatchPoints = () => {
             className={styles.icon}
             alt="성별"
           />
-          <p>남녀 모두</p>
+          <p>
+            {allowGender === 0
+              ? "남녀 모두"
+              : allowGender === 1
+              ? "남성만"
+              : "여성만"}
+          </p>
         </div>
         <div className={styles.infoList}>
           <img
@@ -49,12 +69,10 @@ const MatchPoints = () => {
             className={styles.icon}
             alt="신발"
           />
-          <p> 풋살화/운동화</p>
+          <p>풋살화/운동화</p>
         </div>
       </div>
 
-      {/* 추가 정보 섹션 */}
-      {/* 추가 정보 섹션 */}
       <div className={styles.matchPointsAdditional}>
         <ul>
           <li className={styles.infoList}>
@@ -64,7 +82,7 @@ const MatchPoints = () => {
               alt="매니저"
             />
             <div>
-              <p>강민기 매니저가 진행해요</p>
+              <p>{managerName} 매니저가 진행해요</p>
             </div>
           </li>
         </ul>

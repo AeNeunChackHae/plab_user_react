@@ -1,10 +1,14 @@
-import React from 'react';
-import styles from './ContentHeader.module.css';
+import React from "react";
+import styles from "./ContentHeader.module.css";
 
-const ContentHeader = () => {
+const ContentHeader = ({ photoPath }) => {
   return (
     <div className={styles.imageContainer}>
-      <img src="https://d31wz4d3hgve8q.cloudfront.net/media/ydp_thef_goal.jpeg?w=1920" alt="your-image-url.jpg" />
+      {photoPath ? (
+        <img src={photoPath} alt="Stadium" className={styles.stadiumImage} />
+      ) : (
+        <div>이미지를 불러올 수 없습니다.</div>
+      )}
     </div>
   );
 };
