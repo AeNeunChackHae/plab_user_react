@@ -26,51 +26,38 @@
   padding: 10px 0;
 }
 
-.plaberIcon {
-  width: 40px;
-  height: 40px;
-  margin-bottom: 10px;
-}
-
 .plaberTitle {
   font-size: 16px;
   font-weight: bold;
   margin-bottom: 20px;
-  margin-top: 0;
 }
 
 .plaberBox {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   gap: 20px;
-  margin: 0px 5rem 15px;
+  padding: 0 20px;
 }
 
-.plaberPlayer {
+.plaberInfo {
   text-align: center;
+  display: flex;
+  flex-direction: column; /* 배치를 세로로 변경 */
+  align-items: center; /* 세로 중앙 정렬 */
 }
 
-.bibsBack {
-  width: 60px;
-  height: 80px;
-  position: relative;
-  margin: 0 auto;
-}
-
-.playerNumber {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 1.8rem;
-  font-weight: bold;
-  color: #fff;
-}
-
-.playerText {
-  font-size: 14px;
-  margin-top: 10px;
+.plaberName {
+  font-size: 18px; /* 크기 확대 */
+  font-weight: bold; /* 굵게 */
   color: #333;
+  margin-bottom: 5px; /* 이름과 레벨 사이의 간격 */
+}
+
+.plaberLevel {
+  font-size: 12px; /* 크기 축소 */
+  font-weight: normal; /* 보통 굵기 */
+  color: #666;
+  margin-bottom: 15px;
 }
 
 .plaberDescription {

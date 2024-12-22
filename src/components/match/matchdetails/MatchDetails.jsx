@@ -172,22 +172,19 @@
 
 // export default MatchDetails
 
+import React, { useState, useRef, useEffect, useMemo, useCallback } from 'react';
+import styles from './MatchDetails.module.css';
+import LocationProvider from '../../location/LocationProvider'; // LocationProvider 사용
+import KakaoMap from '../../kakaomap/KakaoMap';
 
-import React, { useState, useRef, useEffect, useMemo, useCallback } from "react";
-import styles from "./MatchDetails.module.css";
-import LocationProvider from "../../location/LocationProvider"; // LocationProvider 사용
-import KakaoMap from "../../kakaomap/KakaoMap";
-import DUMMY_STADIUM_INFO from "../../dummydata/StadiumDummyData";
-
-const MatchDetails = () => {
+const MatchDetails = ({ matchStartTime, stadiumName, fullAddress }) => {
   const stickyRef = useRef(null);
   const [isSticky, setIsSticky] = useState(false);
   const [showMap, setShowMap] = useState(false); // 지도 표시 여부
   const [status, setStatus] = useState(""); // 매치 상태
   const [currentTime, setCurrentTime] = useState(new Date()); // 현재 시간
 
-  const matchDate = useMemo(() => new Date("2024-12-11T15:00:00"), []);
-  const selectedStadium = DUMMY_STADIUM_INFO[0]; // 기본 경기장 설정
+  const matchDate = useMemo(() => new Date(matchStartTime), [matchStartTime]);
 
   const calculateStatus = useCallback(() => {
     const now = currentTime;
@@ -232,25 +229,26 @@ const MatchDetails = () => {
     setShowMap((prev) => !prev); // 지도 보이기/숨기기 토글
   };
 
+
   return (
     <div
       ref={stickyRef}
       className={`${styles.matchDetails} ${isSticky ? styles.sticky : ""}`}
     >
       {/* 경기 시간 */}
-      <div className={styles.matchTime}>12월 30일 월요일 15:00</div>
+      <div className={styles.matchTime}>{new Date(matchStartTime).toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' })}</div>
 
       {/* 경기장 정보 */}
       <div className={styles.matchPlace}>
         <h1 className={styles.title}>
-          <a href="/stadium/247/info/">{selectedStadium.name}</a>
+          <a href="/stadium/247/info/">{stadiumName}</a>
         </h1>
         <div className={styles.wtgTool}>
-          <span className={styles.address}>{selectedStadium.full_address}</span>
+          <span className={styles.address}>{fullAddress}</span>
           <span
             className={styles.copy}
             onClick={() =>
-              navigator.clipboard.writeText(selectedStadium.full_address)
+              navigator.clipboard.writeText(fullAddress)
             }
           >
             주소 복사
@@ -267,7 +265,7 @@ const MatchDetails = () => {
 
       {/* 지도 표시 */}
       {showMap && (
-        <LocationProvider fullAddress={selectedStadium.full_address}>
+        <LocationProvider fullAddress={fullAddress}>
           {(location) => (
             <div className={styles.mapContainer}>
               <KakaoMap latitude={location.latitude} longitude={location.longitude} />

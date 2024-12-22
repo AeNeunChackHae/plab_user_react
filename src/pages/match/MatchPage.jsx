@@ -12,7 +12,7 @@ import LeagueMatchRule from "../../components/match/leaguematchrule/LeagueMatchR
 import LeagueMannerGuide from "../../components/match/leaguemannerguide/LeagueMannerGuide";
 import TeamRefundPolicy from "../../components/match/teamrefundpolicy/TeamRefundPolicy";
 import MatchDetails from "../../components/match/matchdetails/MatchDetails";
-import PlayerOfTheMatch from "../../components/match/playerofthematch/PlayerOfTheMatch";
+import PlaberOfTheMatch from "../../components/match/plaberofthematch/PlaberOfTheMatch";
 import TeamStandings from "../../components/match/teamstandings/TeamStandings";
 import MatchData from "../../components/match/matchdata/MatchData";
 import styles from "./MatchPage.module.css";
@@ -23,7 +23,6 @@ const MatchPage = () => {
   const [status, setStatus] = useState("");
   const [error, setError] = useState(null);
   const [currentTime, setCurrentTime] = useState(new Date());
-
   // 데이터 가져오기
   useEffect(() => {
     const fetchMatchData = async () => {
@@ -106,7 +105,7 @@ const MatchPage = () => {
             <>
               {status === "finished" && (
                 <>
-                  <PlayerOfTheMatch />
+                  <PlaberOfTheMatch topPlayer={matchData.topPlayer} />
                   <MatchPoints 
                   managerName={matchData?.manager_name || "디폴트 매니저"}
                   allowGender={matchData?.allow_gender || 0}
@@ -122,7 +121,15 @@ const MatchPage = () => {
               {status !== "finished" && (
                 <MatchData users={matchData.users || []} />
               )}
-              <StadiumInfo />
+              <StadiumInfo 
+              width={matchData.width} 
+              height={matchData.height} 
+              shower={matchData.shower_yn === 'Y'} 
+              parking={matchData.parking_yn === 'Y'} 
+              shoesLending={matchData.lend_shoes_yn === 'Y'} 
+              drinkSelling={matchData.sell_drink_yn === 'Y'} 
+              notice={matchData.notice}
+            />
               <MatchRules />
               <RefundPolicy />
             </>
@@ -141,7 +148,15 @@ const MatchPage = () => {
                   <ResultAndVideo results={matchData.team_data?.results || []} />
                 </>
               )}
-              <StadiumInfo />
+              <StadiumInfo 
+              width={matchData.width} 
+              height={matchData.height} 
+              shower={matchData.shower_yn === 'Y'} 
+              parking={matchData.parking_yn === 'Y'} 
+              shoesLending={matchData.lend_shoes_yn === 'Y'} 
+              drinkSelling={matchData.sell_drink_yn === 'Y'} 
+              notice={matchData.notice}
+            />
               <TeamMatchRules />
               <LeagueMatchRule />
               <LeagueMannerGuide />
@@ -150,7 +165,12 @@ const MatchPage = () => {
           )}
         </div>
         <div className={styles.rightSection}>
-          <MatchDetails status={status} />
+          <MatchDetails
+            stadiumName={matchData.stadium_name}
+            fullAddress={matchData.full_address}
+            matchStartTime={matchData.match_start_time}
+            status={status}
+          />
         </div>
       </div>
     </section>
