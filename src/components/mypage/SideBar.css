@@ -1,0 +1,108 @@
+.sidebar {
+  width: 300px;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 0px;
+
+  height: 100vh;
+}
+
+.sidebar h2 {
+  font-size: 1.5em;
+  margin: 0rem;
+}
+
+.user-number {
+  font-size: 0.9em;
+  color: #888;
+  margin-top: 0px;
+  margin-bottom: 20px;
+}
+
+.info-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.manager-box,
+.level-box {
+  flex: 1;
+  padding: 10px;
+  border-radius: 15px;
+  background-color: #f0f0f0;
+  text-align: center;
+}
+
+.manager-info {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.level-info {
+  font-weight: bold;
+}
+
+.level-button:hover,
+.toggle-button:hover {
+  cursor: pointer;
+}
+
+.promotion-message {
+  width: 100%;
+  height: 80px;
+  background-color: #e8f5fe;
+  border-radius: 15px;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+#banner-small {
+  margin-left: 20px;
+  margin-bottom: 0px;
+  padding-top: 25px;
+  font-size: 0.7rem;
+}
+
+#banner-big {
+  margin-left: 20px;
+  margin-top: 0px;
+  font-size: 0.9rem;
+}
+
+.level-text {
+  font-size: 0.8rem;
+  display: flex;
+}
+
+.level-name {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.level-name.hidden {
+  visibility: hidden; /* 레벨 숨김 처리 */
+}
+
+.level-info {
+  display: flex;
+  justify-content: space-between;
+}
+
+.emoji-level {
+  font-size: 1.1em;
+  margin-top: 1.3rem;
+  text-align: center;
+}
+
+.levelname-level {
+  font-size: 1.1rem;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.level-name {
+  font-size: 1.1rem;
+}

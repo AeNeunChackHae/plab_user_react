@@ -1,0 +1,90 @@
+/* 모달 배경 */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* 모달 컨텐츠 */
+.modal-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 15px;
+  width: 500px;
+  position: relative;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: left;
+}
+
+/* X 닫기 버튼 */
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* 드롭다운 스타일 */
+.dropdowns {
+  display: grid;
+  margin: 10px 0;
+}
+
+.dropdowns select {
+  width: 100%;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.bday-dropdowns select {
+  width: 33%;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  font-size: 14px;
+}
+
+/* 저장 버튼 */
+.save-button {
+  background-color: #007bff;
+  width: 500px;
+  color: white;
+  border: none;
+  padding: 15px 12px;
+  margin-top: 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.save-button:hover {
+  background-color: #0056b3;
+}
+
+/* 텍스트 조정 */
+.Preferred-text-p {
+  font-size: 0.8rem;
+  margin-top: 0;
+}
+
+.Preferred-text-h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+.modal-class-text {
+  margin-bottom: 0.5rem;
+  margin-top: 1rem;
+  font-size: 0.8rem;
+}

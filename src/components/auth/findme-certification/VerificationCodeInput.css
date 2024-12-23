@@ -1,0 +1,67 @@
+.input-group-certify {
+  width: 100%;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+}
+
+.input-certify {
+  width: 100%;
+  display: flex;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 8px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button {
+  padding: 8px 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+#verification-code {
+  width: 100%;
+  margin-bottom: 15px;
+  display: flex;
+}
+
+.button-certify {
+  display: flex; /* 버튼들을 가로로 배치 */
+  gap: 10px; /* 버튼들 간의 간격 */
+}
+
+.btn-certify {
+  display: inline-block;
+  width: 80px;
+  height: 35px;
+}
+
+.btn-verify {
+  display: inline-block;
+  width: 80px;
+  height: 35px;
+}
+
+.info_text {
+  font-size: 10px;
+  display: inline-block;
+  text-align: left;
+}
