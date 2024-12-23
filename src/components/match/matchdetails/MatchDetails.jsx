@@ -3,6 +3,7 @@ import styles from './MatchDetails.module.css';
 import LocationProvider from '../../location/LocationProvider'; // LocationProvider 사용
 import KakaoMap from '../../kakaomap/KakaoMap';
 
+
 const MatchDetails = ({ matchStartTime, stadiumName, fullAddress, matchType }) => {
   const stickyRef = useRef(null);
   const [isSticky, setIsSticky] = useState(false);
@@ -10,7 +11,7 @@ const MatchDetails = ({ matchStartTime, stadiumName, fullAddress, matchType }) =
   const [status, setStatus] = useState("");
   const [currentTime, setCurrentTime] = useState(new Date());
 
-  const matchDate = useMemo(() => new Date(matchStartTime), [matchStartTime]);
+  const matchDate = useMemo(() => new Date(match_start_time), [match_start_time]);
 
   const calculateStatus = useCallback(() => {
     const now = currentTime;
@@ -89,6 +90,7 @@ const MatchDetails = ({ matchStartTime, stadiumName, fullAddress, matchType }) =
       {showMap && <LocationProvider fullAddress={fullAddress}>
         {(location) => <KakaoMap latitude={location.latitude} longitude={location.longitude} />}
       </LocationProvider>}
+
       <div className={styles.matchFee}>
         {status === 'earlyBird' && (
           <div className={styles.statusBlock}>

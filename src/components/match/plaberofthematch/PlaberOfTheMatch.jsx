@@ -2,8 +2,11 @@ import React from 'react';
 import { levelDescriptions } from './levelDescriptions'; 
 import styles from './PlaberOfTheMatch.module.css';
 
+
+
 const PlaberOfTheMatch = ({topPlayer}) => {
   const levelDescription = levelDescriptions[topPlayer.level_code] || '미정의 레벨';
+
 
   return (
     <section className={styles.section}>
