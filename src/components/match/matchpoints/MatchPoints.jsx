@@ -1,8 +1,8 @@
 import React from "react";
 import styles from "./MatchPoints.module.css";
 
-
-const MatchPoints = ({ managerName , allowGender , levelCriterion }) => {
+const MatchPoints = ({ manager_name, allow_gender, level_criterion }) => {
+  // 레벨 텍스트 변환 함수
   const getLevelText = (level) => {
     switch (level) {
       case 0:
@@ -17,7 +17,21 @@ const MatchPoints = ({ managerName , allowGender , levelCriterion }) => {
         return "알 수 없음";
     }
   };
-  
+
+  // 성별 텍스트 변환 함수
+  const getGenderText = (gender) => {
+    switch (gender) {
+      case 0:
+        return "남성만";
+      case 1:
+        return "여성만";
+      case 2:
+        return "남녀 모두";
+      default:
+        return "알 수 없음";
+    }
+  };
+
   return (
     <section className={styles.section}>
       <div className={styles.matchPointsTitle}>
@@ -31,7 +45,7 @@ const MatchPoints = ({ managerName , allowGender , levelCriterion }) => {
             className={styles.icon}
             alt="레벨"
           />
-          <p>{getLevelText(levelCriterion)}</p>
+          <p>{getLevelText(level_criterion)}</p>
         </div>
         <div className={styles.infoList}>
           <img
@@ -39,13 +53,7 @@ const MatchPoints = ({ managerName , allowGender , levelCriterion }) => {
             className={styles.icon}
             alt="성별"
           />
-          <p>
-            {allowGender === 0
-              ? "남녀 모두"
-              : allowGender === 1
-              ? "남성만"
-              : "여성만"}
-          </p>
+          <p>{getGenderText(allow_gender)}</p>
         </div>
         <div className={styles.infoList}>
           <img
@@ -82,7 +90,7 @@ const MatchPoints = ({ managerName , allowGender , levelCriterion }) => {
               alt="매니저"
             />
             <div>
-              <p>{managerName} 매니저가 진행해요</p>
+              <p>{manager_name} 매니저가 진행해요</p>
             </div>
           </li>
         </ul>

@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './PlaberOfTheMatch.module.css';
 
-const PlaberOfTheMatch = () => {
+const PlaberOfTheMatch = ({username, level_code, max_feedback}) => {
   const topPlaber = {
     name: '박재현',
     level: '상급'
@@ -24,8 +24,8 @@ const PlaberOfTheMatch = () => {
           <p className={styles.plaberTitle}>Plaber Of The Match</p>
           <div className={styles.plaberBox}>
             <div className={styles.plaberInfo}>
-              <span className={styles.plaberName}>{topPlaber.name}</span>
-              <span className={styles.plaberLevel}>{topPlaber.level}</span>
+              <span className={styles.plaberName}>{username}</span>
+              <span className={styles.plaberLevel}>{level_code}</span>
             </div>
           </div>
           <span className={styles.plaberDescription}>

@@ -38,8 +38,14 @@
   height: 24px;
 }
 
+.unavailable {
+  text-decoration: line-through; /* 줄 긋기 */
+  color: #ccc; /* 회색 표시 */
+  opacity: 0.6; /* 투명도 추가 */
+}
+
 .noFeature {
-  color: #aaa; /* 회색 표시 */
+  color: #aaa;
 }
 
 .stadiumNotice h4 {

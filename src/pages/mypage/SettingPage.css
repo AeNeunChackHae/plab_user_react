@@ -1,11 +1,8 @@
 /* 설정 항목 공통 스타일 */
-#root {
-  width: 800px;
-}
 .setting-item {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start; /* 위쪽 정렬 */
+  align-items: flex-start;
   padding: 10px 0;
 }
 
