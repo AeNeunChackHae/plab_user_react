@@ -3,12 +3,16 @@ import styles from './MatchDetails.module.css';
 import LocationProvider from '../../location/LocationProvider'; // LocationProvider 사용
 import KakaoMap from '../../kakaomap/KakaoMap';
 
+<<<<<<< HEAD
 const MatchDetails = ({ match_start_time, stadium_name, full_address }) => {
+=======
+const MatchDetails = ({ matchStartTime, stadiumName, fullAddress, matchType }) => {
+>>>>>>> origin/jungyu
   const stickyRef = useRef(null);
   const [isSticky, setIsSticky] = useState(false);
-  const [showMap, setShowMap] = useState(false); // 지도 표시 여부
-  const [status, setStatus] = useState(""); // 매치 상태
-  const [currentTime, setCurrentTime] = useState(new Date()); // 현재 시간
+  const [showMap, setShowMap] = useState(false);
+  const [status, setStatus] = useState("");
+  const [currentTime, setCurrentTime] = useState(new Date());
 
   const matchDate = useMemo(() => new Date(match_start_time), [match_start_time]);
 
@@ -40,10 +44,9 @@ const MatchDetails = ({ match_start_time, stadium_name, full_address }) => {
     setStatus(calculateStatus());
     window.addEventListener("scroll", handleScroll);
 
-    // 1분마다 현재 시간 갱신
     const interval = setInterval(() => {
       setCurrentTime(new Date());
-    }, 60000); // 1분 = 60,000ms
+    }, 60000);
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
@@ -51,12 +54,31 @@ const MatchDetails = ({ match_start_time, stadium_name, full_address }) => {
     };
   }, [calculateStatus]);
 
-  const handleToggleMap = () => {
-    setShowMap((prev) => !prev); // 지도 보이기/숨기기 토글
-  };
+  const handleToggleMap = () => setShowMap((prev) => !prev);
 
+  const pricing = useMemo(() => {
+    if (matchType === 0) { // 소셜 매치
+      return {
+        regularPrice: 10000,
+        discountPrice: 5000,
+        discountText: '지금 신청하면 50% 할인!'
+      };
+    } else if (matchType === 1) { // 팀 매치
+      return {
+        regularPrice: 80000,
+        discountPrice: 64000,
+        discountText: '지금 신청하면 20% 할인!'
+      };
+    }
+    return {
+      regularPrice: 0,
+      discountPrice: 0,
+      discountText: ''
+    };
+  }, [matchType]);
 
   return (
+<<<<<<< HEAD
     <div
       ref={stickyRef}
       className={`${styles.matchDetails} ${isSticky ? styles.sticky : ""}`}
@@ -101,58 +123,62 @@ const MatchDetails = ({ match_start_time, stadium_name, full_address }) => {
       )}
 
       {/* 매치 상태에 따른 요금 UI */}
+=======
+    <div ref={stickyRef} className={`${styles.matchDetails} ${isSticky ? styles.sticky : ''}`}>
+      <div className={styles.matchTime}>
+        {new Date(matchStartTime).toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' })}
+      </div>
+      <div className={styles.matchPlace}>
+        <h1 className={styles.title}><a href="/stadium/247/info/">{stadiumName}</a></h1>
+        <div className={styles.wtgTool}>
+          <span className={styles.address}>{fullAddress}</span>
+          <span className={styles.copy} onClick={() => navigator.clipboard.writeText(fullAddress)}>주소 복사</span>
+          <span id="toggleMap" onClick={handleToggleMap} className={styles.map}>{showMap ? "지도 닫기" : "지도 보기"}</span>
+        </div>
+      </div>
+      {showMap && <LocationProvider fullAddress={fullAddress}>
+        {(location) => <KakaoMap latitude={location.latitude} longitude={location.longitude} />}
+      </LocationProvider>}
+>>>>>>> origin/jungyu
       <div className={styles.matchFee}>
-        {status === "earlyBird" && (
+        {status === 'earlyBird' && (
           <div className={styles.statusBlock}>
             <div className={styles.contentBlock}>
-              <span className={`${styles.money} ${styles.strikeThrough}`}>
-                10,000원
-              </span>
-              <span className={styles.money}>5,000원</span>
-              <div className={styles.discountText}>
-                지금 신청하면 50% 할인!
-              </div>
+              <span className={`${styles.money} ${styles.strikeThrough}`}>{pricing.regularPrice.toLocaleString()}원</span>
+              <span className={styles.money}>{pricing.discountPrice.toLocaleString()}원</span>
+              <div className={styles.discountText}>{pricing.discountText}</div>
             </div>
             <button className={styles.applyButton}>신청하기</button>
           </div>
         )}
-
-        {status === "regular" && (
+        {status === 'regular' && (
           <div className={styles.statusBlock}>
             <div className={styles.contentBlock}>
-              <span className={styles.money}>10,000원</span>
+              <span className={styles.money}>{pricing.regularPrice.toLocaleString()}원</span>
               <span> / 2시간</span>
-              <div className={styles.matchend}>
-                매치 시작 10분 전까지 신청 가능
-              </div>
+              <div className={styles.matchend}>매치 시작 10분 전까지 신청 가능</div>
             </div>
             <button className={styles.applyButton}>신청하기</button>
           </div>
         )}
-
-        {status === "closed" && (
+        {status === 'closed' && (
           <div className={styles.statusBlock}>
             <div className={styles.contentBlock}>
-              <span className={styles.money}>10,000원</span>
+              <span className={styles.money}>{pricing.regularPrice.toLocaleString()}원</span>
               <span> / 2시간</span>
               <div className={styles.matchClosed}>신청이 마감되었습니다</div>
             </div>
-            <button className={styles.disabledButton} disabled>
-              마감되었습니다
-            </button>
+            <button className={styles.disabledButton} disabled>마감되었습니다</button>
           </div>
         )}
-
-        {status === "past" && (
+        {status === 'past' && (
           <div className={styles.statusBlock}>
             <div className={styles.contentBlock}>
-              <span className={styles.money}>10,000원</span>
+              <span className={styles.money}>{pricing.regularPrice.toLocaleString()}원</span>
               <span> / 2시간</span>
               <div className={styles.matchEnded}>종료된 매치입니다</div>
             </div>
-            <button className={styles.disabledButton} disabled>
-              종료된 매치
-            </button>
+            <button className={styles.disabledButton} disabled>종료된 매치</button>
           </div>
         )}
       </div>
@@ -161,4 +187,3 @@ const MatchDetails = ({ match_start_time, stadium_name, full_address }) => {
 };
 
 export default MatchDetails;
-
