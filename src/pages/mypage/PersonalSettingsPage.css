@@ -1,0 +1,24 @@
+.personal-settings-page {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* 위쪽 정렬 */
+  padding: 20px;
+  background-color: #f9f9f9;
+  height: 100vh;
+  gap: 10px; /* 사이에 공간을 추가 */
+}
+
+.sidebar {
+  width: 300px;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 20px;
+  height: 100vh;
+}
+
+.main-menu {
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 20px;
+  height: 100vh;
+}

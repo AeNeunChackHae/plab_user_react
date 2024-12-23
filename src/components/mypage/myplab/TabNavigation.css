@@ -1,0 +1,17 @@
+.tab-navigation {
+  display: flex;
+  border-bottom: 1px solid #ddd;
+  padding: 10px 0;
+}
+.tab {
+  font-size: 13px;
+  color: #555;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.tab.active {
+  font-weight: bold;
+  color: #000000;
+}

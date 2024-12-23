@@ -1,0 +1,97 @@
+/* 예약 항목 */
+.reservation-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 5px;
+  margin-top: 5px;
+}
+
+.reservation-info {
+  display: flex;
+  align-items: center;
+}
+
+.reservation-date-time {
+  font-size: 10px;
+  color: #555;
+  margin-bottom: 5px;
+}
+
+.reservation-stadium-name {
+  font-size: 15px;
+  font-weight: bold;
+  color: #222;
+  margin-top: 0;
+}
+
+/* 버튼 */
+.reservation-buttons {
+  display: flex;
+  /* flex-direction: column; 버튼 쌓기*/
+  gap: 10px;
+}
+
+.reservation-buttons button {
+  padding: 5px 10px;
+  font-size: 12px;
+  border: 1px solid #b9b9b9;
+  border-radius: 15px;
+  background-color: white;
+  color: #323232;
+  cursor: pointer;
+  min-width: 100px; /* 버튼 크기 고정 */
+  text-align: center;
+}
+
+.reservation-buttons button:hover {
+  background-color: #007bff;
+  color: white;
+}
+
+/* 모달 */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.modal-content button {
+  margin: 10px;
+  padding: 10px 15px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.modal-content button:hover {
+  background-color: #0056b3;
+}
+
+/* 동그란 이미지 (아이콘) */
+.status-circle {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
+  object-fit: cover; /* 아이콘 이미지를 동그란 영역에 맞추기 */
+}

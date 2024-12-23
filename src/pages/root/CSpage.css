@@ -1,0 +1,95 @@
+/* styles-cs.css */
+
+body {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin: 0;
+  font-family: sans-serif;
+  background-color: #ffffff;
+}
+
+h1 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+/* SearchBar styles */
+.search-bar {
+  margin: 20px 0;
+}
+
+.SearchBar-input {
+  width: 98%;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  background-color: #f2f2f2;
+}
+
+/* CategoryTabs styles */
+.category-tabs {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  margin: 10px 0;
+}
+
+.category-tabs div {
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 5px;
+  white-space: nowrap;
+}
+
+.category-tabs div.bold {
+  font-weight: bold;
+}
+
+/* FAQList styles */
+.faq-list {
+  border-top: 1px solid #ddd;
+  background-color: #fff;
+}
+
+.faq-item {
+  padding: 15px 10px;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.faq-item:hover {
+  background-color: #f9f9f9;
+}
+
+.faq-answer {
+  padding: 10px;
+  background-color: #f9f9f9;
+  border-bottom: 1px solid #eee;
+}
+
+/* Utility styles */
+.text-bold {
+  font-weight: bold;
+}
+
+.text-small {
+  font-size: 12px;
+  color: #888;
+}
+
+/* Contact button */
+.contact-button {
+  width: 100%;
+  background-color: #007bff;
+  border-radius: 12px;
+  color: white;
+  border: none;
+  padding: 13px 20px;
+  cursor: pointer;
+  margin-top: 10px;
+}

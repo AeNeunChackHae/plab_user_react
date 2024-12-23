@@ -1,0 +1,21 @@
+.my-level-page {
+  display: flex;
+  justify-content: center;
+  font-family: Arial, sans-serif;
+  gap: 20px;
+}
+
+.section-sidebar {
+  padding-top: 30px;
+}
+
+.section-mylevel {
+  width: 600px;
+  height: auto;
+  overflow-y: auto;
+  padding-top: 50px;
+}
+
+.top-section {
+  margin-bottom: 20px;
+}
