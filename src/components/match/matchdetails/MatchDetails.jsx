@@ -3,11 +3,8 @@ import styles from './MatchDetails.module.css';
 import LocationProvider from '../../location/LocationProvider'; // LocationProvider 사용
 import KakaoMap from '../../kakaomap/KakaoMap';
 
-<<<<<<< HEAD
-const MatchDetails = ({ match_start_time, stadium_name, full_address }) => {
-=======
+
 const MatchDetails = ({ matchStartTime, stadiumName, fullAddress, matchType }) => {
->>>>>>> origin/jungyu
   const stickyRef = useRef(null);
   const [isSticky, setIsSticky] = useState(false);
   const [showMap, setShowMap] = useState(false);
@@ -78,52 +75,6 @@ const MatchDetails = ({ matchStartTime, stadiumName, fullAddress, matchType }) =
   }, [matchType]);
 
   return (
-<<<<<<< HEAD
-    <div
-      ref={stickyRef}
-      className={`${styles.matchDetails} ${isSticky ? styles.sticky : ""}`}
-    >
-      {/* 경기 시간 */}
-      <div className={styles.matchTime}>{new Date(match_start_time).toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' })}</div>
-
-      {/* 경기장 정보 */}
-      <div className={styles.matchPlace}>
-        <h1 className={styles.title}>
-          <a href="/stadium/247/info/">{stadium_name}</a>
-        </h1>
-        <div className={styles.wtgTool}>
-          <span className={styles.address}>{full_address}</span>
-          <span
-            className={styles.copy}
-            onClick={() =>
-              navigator.clipboard.writeText(full_address)
-            }
-          >
-            주소 복사
-          </span>
-          <span
-            id="toggleMap"
-            onClick={handleToggleMap}
-            className={styles.map}
-          >
-            {showMap ? "지도 닫기" : "지도 보기"}
-          </span>
-        </div>
-      </div>
-
-      {/* 지도 표시 */}
-      {showMap && (
-        <LocationProvider full_address={full_address}>
-          {(location) => (
-            <div className={styles.mapContainer}>
-              <KakaoMap latitude={location.latitude} longitude={location.longitude} />
-            </div>
-          )}
-        </LocationProvider>
-      )}
-
-      {/* 매치 상태에 따른 요금 UI */}
-=======
     <div ref={stickyRef} className={`${styles.matchDetails} ${isSticky ? styles.sticky : ''}`}>
       <div className={styles.matchTime}>
         {new Date(matchStartTime).toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' })}
@@ -139,7 +90,7 @@ const MatchDetails = ({ matchStartTime, stadiumName, fullAddress, matchType }) =
       {showMap && <LocationProvider fullAddress={fullAddress}>
         {(location) => <KakaoMap latitude={location.latitude} longitude={location.longitude} />}
       </LocationProvider>}
->>>>>>> origin/jungyu
+
       <div className={styles.matchFee}>
         {status === 'earlyBird' && (
           <div className={styles.statusBlock}>

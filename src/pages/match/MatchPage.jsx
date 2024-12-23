@@ -149,9 +149,7 @@ const MatchPage = () => {
           )}
         </div>
         <div className={styles.rightSection}>
-<<<<<<< HEAD
-          <MatchDetails {...stadiumPhoto} {...matchDetails}/>
-=======
+
           <MatchDetails
             stadiumName={matchData.stadium_name}
             fullAddress={matchData.full_address}
@@ -159,7 +157,6 @@ const MatchPage = () => {
             matchType={matchData.match_type}
             status={status}
           />
->>>>>>> origin/jungyu
         </div>
       </div>
     </section>
