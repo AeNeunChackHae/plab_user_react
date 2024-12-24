@@ -1,0 +1,43 @@
+[
+    {
+      "rank": 1,
+      "team": "team1",
+      "emblem": "/images/team1.svg",
+      "gender": "남자",
+      "participants": 19,
+      "points": 467
+    },
+    {
+      "rank": 2,
+      "team": "team2",
+      "emblem": "/images/team2.svg",
+      "gender": "남자",
+      "participants": 13,
+      "points": 429
+    },
+    {
+      "rank": 3,
+      "team": "team3",
+      "emblem": "/images/team3.svg",
+      "gender": "남자",
+      "participants": 26,
+      "points": 413
+    },
+    {
+      "rank": 1,
+      "team": "team4",
+      "emblem": "/images/team4.svg",
+      "gender": "여자",
+      "participants": 24,
+      "points": 403
+    },
+    {
+      "rank": 2,
+      "team": "team5",
+      "emblem": "/images/team5.svg",
+      "gender": "여자",
+      "participants": 8,
+      "points": 402
+    }
+  ]
+  

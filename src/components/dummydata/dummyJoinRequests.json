@@ -1,0 +1,36 @@
+{
+  "teamName": "레드 드래곤 FC",
+  "teamLogo": "/images/team1.svg",
+  "requests": [
+    {
+      "id": "1",
+      "name": "김철수",
+      "profileImage": "/images/img_profile_default.png",
+      "gender": "남자",
+      "age": "25세",
+      "level": "루키",
+      "message": "가입 신청합니다.",
+      "status": "승인대기"
+    },
+    {
+      "id": "2",
+      "name": "이영희",
+      "profileImage": "/images/img_profile_default.png",
+      "gender": "여자",
+      "age": "23세",
+      "level": "아마추어",
+      "message": "팀에 꼭 들어가고 싶습니다!",
+      "status": "본인취소"
+    },
+    {
+      "id": "3",
+      "name": "박민수",
+      "profileImage": "/images/img_profile_default.png",
+      "gender": "남자",
+      "age": "27세",
+      "level": "프로",
+      "message": "함께 경기를 즐기고 싶습니다.",
+      "status": "가입거절"
+    }
+  ]
+}
