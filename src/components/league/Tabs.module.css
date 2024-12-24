@@ -1,0 +1,23 @@
+.tabs {
+  display: flex;
+  gap: 1rem;
+  margin: 0;
+}
+  
+button {
+  color: #333;
+  background: none;
+  border: none;
+  font-size: 17px;
+  cursor: pointer;
+  padding: 15px 0;
+}
+  
+.active {
+  color: black;
+  font-weight: bold;
+}
+
+.noMatches {
+  text-align: center;
+}

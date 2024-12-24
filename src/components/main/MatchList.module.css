@@ -1,0 +1,106 @@
+.matchList {
+    padding: 10px;
+    background-color: #fff;
+}
+
+.matchItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+}
+
+.time {
+    width: 6em;
+    font-weight: bold;
+    font-size: 18px;
+    color: #000;
+    margin-right: 10px;
+    text-align: center;
+}
+
+.details {
+    text-align: left;
+    flex-grow: 1;
+    line-height: 1.5;
+}
+
+.details span {
+    margin: 2px;
+}
+
+.location {
+    font-size: 18px;
+    color: black;
+}
+
+.gender {
+    font-size: 15px;
+}
+
+/* gender 앞 동그라미 점 스타일 */
+.dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+/* gender별 동그라미 점 색상 */
+.femaleDot {
+    background-color: #ff4d37;
+}
+
+.maleDot {
+    background-color: #007bff;
+}
+
+.allDot {
+    background-color: yellow;
+}
+
+/* level 스타일 */
+.level {
+    font-size: 15px;
+    padding: 2px 4px;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+/* level 별 배경색 */
+.general {
+    background-color: #f0f0f0;
+    color: #000;
+}
+
+.amateur1 {
+    background-color: #009E5C; 
+    color: #fff;
+}
+
+.amateur2 {
+    background-color: #553246; 
+    color: #FFC645;
+}
+
+.status {
+    font-size: 14px;
+    border: none;
+    border-radius: 8px;
+    width: 8em;
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+}
+
+/* 상태별 스타일 */
+.open {
+    background-color: #007bff; /* 파란색 배경 */
+    color: #fff; /* 흰색 텍스트 */
+}
+
+.closed {
+    background-color: #f0f0f0; /* 회색 배경 */
+    color: #888888a2; /* 진회색 텍스트 */
+}

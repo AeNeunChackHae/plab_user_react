@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import JoinRequestList from '../../components/team/teamJoin/JoinRequestList';
 import styles from './TeamJoinMemberPage.module.css';
-import dummyJoinRequests from '../../components/dummyData/dummyJoinRequests.json';
+import dummyJoinRequests from '../../components/dummydata/dummyJoinRequests.json';
 
 const TeamJoinMemberPage = () => {
   const [joinRequests, setJoinRequests] = useState(dummyJoinRequests.requests);

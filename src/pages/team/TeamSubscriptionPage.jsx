@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import joinRequests from '../../components/dummyData/joinRequests.json';
+import joinRequests from '../../components/dummydata/joinRequests.json';
 import teamData from '../../components/dummyData/dummyTeamData';
 import styles from './TeamSubscriptionPage.module.css';
 

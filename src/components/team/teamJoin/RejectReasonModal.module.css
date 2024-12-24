@@ -1,0 +1,107 @@
+
+/* 모달 전체 오버레이 */
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+/* 모달 컨텐츠 */
+.modalContent {
+    background: #ffffff;
+    width: 350px;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 헤더 */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+}
+
+.header h2 {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.closeButton {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* 사유 리스트 */
+.reasonList {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.reasonItem {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: #333;
+    cursor: pointer;
+}
+
+.reasonItem input {
+    width: 16px;
+    height: 16px;
+}
+
+/* 버튼 영역 */
+.actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+    padding: 12px;
+}
+
+.cancelButton {
+    flex: 1;
+    background: #f2f4f7;
+    color: #444;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 0;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.confirmButton {
+    flex: 1;
+    background: #1570ff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 0;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.cancelButton:hover {
+    background: #e0e0e0;
+}
+
+.confirmButton:hover {
+    background: #125ecf;
+}

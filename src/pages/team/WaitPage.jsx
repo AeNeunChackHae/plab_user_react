@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styles from './WaitPage.module.css';
-import joinHistory from '../../components/dummyData/joinHistory.js';
+import joinHistory from '../../components/dummydata/joinHistory.js';
 import JoinDetailModal from '../../components/team/teamJoinRequests/modals/JoinDetailModal.jsx';
 
 const JoinHistory = () => {

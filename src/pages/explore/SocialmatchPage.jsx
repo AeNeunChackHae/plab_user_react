@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import MatchList from "../../components/explore/MatchList";
 import styles from "./SocialmatchPage.module.css";
-import matchesData from "../../components/dummyData/matches.json";
+import matchesData from "../../components/dummydata/matches.json";
 
 const SocialmatchPage = () => {
   const { id } = useParams();
