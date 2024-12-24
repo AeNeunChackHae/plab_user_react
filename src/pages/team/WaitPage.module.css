@@ -1,0 +1,124 @@
+/* 전체 컨테이너 */
+.container {
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+}
+
+.title {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+/* 리스트 스타일 */
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.historyItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  transition: background-color 0.2s ease-in-out;
+  margin-bottom: 10px;
+}
+
+.historyItem:hover {
+  background-color: #f9fafc;
+}
+
+/* 로고 스타일 */
+.logoWrapper {
+  width: 35px;
+  height: 35px;
+  margin-right: 7px;
+}
+
+.logo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  margin: 0;
+  padding: 0;
+}
+
+/* 정보 섹션 */
+.info {
+  flex-grow: 1;
+  margin-bottom: 0;
+}
+
+.name {
+  font-size: 14px;
+}
+
+/* 상태 메시지 색상 */
+.statusMessage {
+  font-size: 13px;
+  color: #666;
+  margin: 0;
+}
+
+/* 대기 상태 */
+.statusMessage.pending {
+  color: #007bff;
+}
+
+/* 거절 상태 */
+.statusMessage.rejected {
+  color: #ff4d4f;
+}
+
+/* 메뉴 버튼 */
+.menuWrapper {
+  position: relative;
+  display: inline-block;
+}
+
+/* 드롭다운 메뉴 */
+.menuDropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 6px;
+  min-width: 120px;
+  white-space: nowrap;
+}
+
+.menuDropdown button {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 6px 8px;
+  font-size: 12px;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.menuDropdown button:hover {
+  background-color: #f0f0f0;
+}
+
+.checkButton {
+  padding: 4px;
+  font-size: 12px;
+  color: #333;
+  background-color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.checkButton:hover {
+  background-color: #f0f0f0;
+}
