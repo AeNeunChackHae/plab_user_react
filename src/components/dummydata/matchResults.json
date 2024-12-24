@@ -1,0 +1,63 @@
+[
+    {
+      "date": "12월 16일 월요일 21:00",
+      "location": "서울 영등포 EA SPORTS FC(더에프필드)",
+      "local":"서울",
+      "gender": "남자",
+      "level": "아마추어 2",
+      "teams": [
+        { "name": "team1", "score": 12, "winner": true, "emblem": "/images/team1.svg" },
+        { "name": "team2", "score": 7, "winner": false, "emblem": "/images/team2.svg" },
+        { "name": "team3", "score": 7, "winner": false, "emblem": "/images/team3.svg" }
+      ]
+    },
+    {
+      "date": "12월 17일 화요일 20:00",
+      "location": "서울 영등포 SKY 풋살파크",
+      "local":"서울",
+      "gender": "남자",
+      "level": "아마추어 3",
+      "teams": [
+        { "name": "team4", "score": 13, "winner": true, "emblem": "/images/team4.svg" },
+        { "name": "team5", "score": 11, "winner": false, "emblem": "/images/team5.svg" },
+        { "name": "team6", "score": 1, "winner": false, "emblem": "/images/team6.svg" }
+      ]
+    },
+    {
+      "date": "12월 18일 수요일 19:00",
+      "location": "서울 영등포 EA SPORTS FC(더에프필드)",
+      "local":"서울",
+      "gender": "여자",
+      "level": "세미프로 3",
+      "teams": [
+        { "name": "team7", "score": 10, "winner": true, "emblem": "/images/team7.svg" },
+        { "name": "team8", "score": 7, "winner": false, "emblem": "/images/team8.svg" },
+        { "name": "team9", "score": 7, "winner": false, "emblem": "/images/team1.svg" }
+      ]
+    },
+    {
+      "date": "12월 20일 금요일 19:00",
+      "location": "수원 HK 풋살파크",
+      "local":"수원",
+      "gender": "남자",
+      "level": "비기너 3",
+      "teams": [
+        { "name": "team10", "score": 10, "winner": true, "emblem": "/images/team1.svg" },
+        { "name": "team11", "score": 7, "winner": false, "emblem": "/images/team2.svg" },
+        { "name": "team12", "score": 7, "winner": false, "emblem": "/images/team3.svg" }
+      ]
+    },
+    {
+      "date": "12월 20일 금요일 20:00",
+      "location": "고양 HM풋살파크 일산점",
+      "local":"고양",
+      "gender": "여자",
+      "level": "세미프로 3",
+      "teams": [
+        { "name": "team13", "score": 10, "winner": true, "emblem": "/images/team5.svg" },
+        { "name": "team14", "score": 7, "winner": false, "emblem": "/images/team6.svg" },
+        { "name": "team15", "score": 7, "winner": false, "emblem": "/images/team7.svg" }
+      ]
+    }
+]
+  

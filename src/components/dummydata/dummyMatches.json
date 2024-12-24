@@ -1,0 +1,62 @@
+[
+    {
+      "date": "11월 30일 토요일 21:00",
+      "local":"서울",
+      "location": "서울 영등포 A구장",
+      "gender": "남자",
+      "level": "모든 레벨",
+      "closed": true,
+      "teams": [
+        {"emblem": "/images/team1.svg", "name": "team1"},
+        {"emblem": "/images/team2.svg", "name": "team2"},
+        {"emblem": "/images/team3.svg", "name": "team3"}
+      ]
+    },
+    {
+      "date": "12월 1일 일요일 10:00",
+      "local":"서울",
+      "location": "서울 송파 아디다스 D구장",
+      "gender": "남자",
+      "level": "아마추어2 이상",
+      "closed": false,
+      "teams": [
+        {"emblem": "/images/team4.svg", "name": "team4"}
+      ]
+    },
+    {
+        "date": "12월 18일 수요일 21:00",
+        "local":"수원",
+        "location": "수원 HK 풋살파크 2구장",
+        "gender": "여자",
+        "level": "아마추어2 이상",
+        "closed": true,
+        "teams": [
+        {"emblem": "/images/team5.svg", "name": "team5"},
+        {"emblem": "/images/team6.svg", "name": "team6"},
+        {"emblem": "/images/team7.svg", "name": "team7"}
+      ]
+    },
+    {
+        "date": "12월 21일 토요일 21:00",
+        "local":"고양",
+        "location": "고양 HM풋살파크 일산점 A구장",
+        "gender": "여자",
+        "level": "아마추어1 이하",
+        "closed": true,
+        "teams": [
+        {"emblem": "/images/team8.svg", "name": "team8"},
+        {"emblem": "/images/team2.svg", "name": "team9"},
+        {"emblem": "/images/team3.svg", "name": "team10"}
+      ]
+    },
+    {
+        "date": "12월 28일 토요일 12:00",
+        "local":"인천",
+        "location": "플랩 스타디움 인천 가좌1구장",
+        "gender": "남자",
+        "level": "모든 레벨",
+        "closed": false,
+        "teams": []
+    } 
+  ]
+  
