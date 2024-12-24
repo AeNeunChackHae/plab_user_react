@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./StadiumList.module.css";
-import STADIUM_DATA from "../../../dummyData/stadiumData";
+import STADIUM_DATA from "../../../dummydata/stadiumData";
 
 // 정시 기반으로 timeBlocks 생성
 const generateTimeBlocks = (availableTimes) => {

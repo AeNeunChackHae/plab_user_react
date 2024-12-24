@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./MatchSchedule.module.css";
-import DUMMY_MATCHES from "../../dummyData/DUMMY_MATCHES";
+import DUMMY_MATCHES from "../../dummydata/DUMMY_MATCHES";
 
 const MatchSchedule = () => {
   return (

@@ -1,10 +1,11 @@
 import React, { useState, useRef, useEffect, useMemo, useCallback } from 'react';
 import styles from './MatchDetails.module.css';
-import LocationProvider from '../../location/LocationProvider'; // LocationProvider 사용
+import LocationProvider from '../../location/LocationProvider'; 
 import KakaoMap from '../../kakaomap/KakaoMap';
+import { Link } from 'react-router-dom';
 
 
-const MatchDetails = ({ matchStartTime, stadiumName, fullAddress, matchType }) => {
+const MatchDetails = ({ match_start_time, stadium_name, full_address, match_type, id }) => {
   const stickyRef = useRef(null);
   const [isSticky, setIsSticky] = useState(false);
   const [showMap, setShowMap] = useState(false);
@@ -54,13 +55,13 @@ const MatchDetails = ({ matchStartTime, stadiumName, fullAddress, matchType }) =
   const handleToggleMap = () => setShowMap((prev) => !prev);
 
   const pricing = useMemo(() => {
-    if (matchType === 0) { // 소셜 매치
+    if (match_type === 0) { // 소셜 매치
       return {
         regularPrice: 10000,
         discountPrice: 5000,
         discountText: '지금 신청하면 50% 할인!'
       };
-    } else if (matchType === 1) { // 팀 매치
+    } else if (match_type === 1) { // 팀 매치
       return {
         regularPrice: 80000,
         discountPrice: 64000,
@@ -72,22 +73,22 @@ const MatchDetails = ({ matchStartTime, stadiumName, fullAddress, matchType }) =
       discountPrice: 0,
       discountText: ''
     };
-  }, [matchType]);
+  }, [match_type]);
 
   return (
     <div ref={stickyRef} className={`${styles.matchDetails} ${isSticky ? styles.sticky : ''}`}>
       <div className={styles.matchTime}>
-        {new Date(matchStartTime).toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' })}
+        {new Date(match_start_time).toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' })}
       </div>
       <div className={styles.matchPlace}>
-        <h1 className={styles.title}><a href="/stadium/247/info/">{stadiumName}</a></h1>
+        <h1 className={styles.title}><Link to={`/stadium/${id}/info/`}>{stadium_name}</Link></h1>
         <div className={styles.wtgTool}>
-          <span className={styles.address}>{fullAddress}</span>
-          <span className={styles.copy} onClick={() => navigator.clipboard.writeText(fullAddress)}>주소 복사</span>
+          <span className={styles.address}>{full_address}</span>
+          <span className={styles.copy} onClick={() => navigator.clipboard.writeText(full_address)}>주소 복사</span>
           <span id="toggleMap" onClick={handleToggleMap} className={styles.map}>{showMap ? "지도 닫기" : "지도 보기"}</span>
         </div>
       </div>
-      {showMap && <LocationProvider fullAddress={fullAddress}>
+      {showMap && <LocationProvider full_address={full_address}>
         {(location) => <KakaoMap latitude={location.latitude} longitude={location.longitude} />}
       </LocationProvider>}
 
