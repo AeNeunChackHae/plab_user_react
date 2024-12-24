@@ -1,56 +1,54 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import styles from './StadiumPage.module.css'
-import StadiumDetails from '../../components/stadium/stadiumdetails/StadiumDetails';
-import ContentHeader from '../../components/contentheader/ContentHeader';
-
+import styles from "./StadiumPage.module.css";
+import StadiumDetails from "../../components/stadium/stadiumdetails/StadiumDetails";
+import ContentHeader from "../../components/contentheader/ContentHeader";
+import { fetchStadiumPhoto } from "../../components/contentheader/fetchStadiumPhoto";
 
 const StadiumPage = () => {
   const { stadium_id } = useParams();
-  const [stadiumPhoto, setPhotoPath] = useState(null);
+  const [photoPath, setPhotoPath] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchStadiumPhoto = async () => {
+    const getStadiumPhoto = async () => {
+      // console.log("Fetching photo for stadium_id:", stadium_id); // 1. stadium_id 확인
       try {
-        const response = await fetch('http://localhost:8080/stadium', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ stadium_id }),
-        });
-
-        if (!response.ok) {
-          throw new Error('이미지를 불러오는 중 오류가 발생했습니다.');
-        }
-
-        const data = await response.json();
-        setPhotoPath(data.stadiumPhoto); // photo 데이터 설정
+        const photo = await fetchStadiumPhoto(stadium_id);
+        console.log("Fetched Photo Path:", photo); // 2. fetchStadiumPhoto 응답 확인
+        setPhotoPath(photo);
       } catch (err) {
-        setError(err.message);
-        console.error(err);
+        setError("사진을 로드할 수 없습니다. 나중에 다시 시도해주세요.");
+        console.error("Error fetching photo:", err); // 3. 에러 로그
       } finally {
         setLoading(false);
       }
     };
 
-    fetchStadiumPhoto();
+    getStadiumPhoto();
   }, [stadium_id]);
 
-  if (loading) return <div>로딩 중...</div>;
-  if (error) return <div>{error}</div>;
+  // 4. 상태 확인 디버깅
+  useEffect(() => {
+    console.log("Current State - photoPath:", photoPath, "loading:", loading, "error:", error);
+  }, [photoPath, loading, error]);
+
+  if (loading) {
+    return <div className={styles.loading}>로딩 중...</div>;
+  }
+
+  if (error) {
+    return <div className={styles.error}>{error}</div>;
+  }
 
   return (
-    <>
-      <section className={styles.stadiumpage} >
-        <ContentHeader {...stadiumPhoto}/>
-        <div className={styles.mainContent}>
-            <StadiumDetails/>
-        </div>
-      </section>
-    </>
+    <section className={styles.stadiumpage}>
+      <ContentHeader photo_path={photoPath} />
+      <div className={styles.mainContent}>
+        <StadiumDetails />
+      </div>
+    </section>
   );
 };
 
