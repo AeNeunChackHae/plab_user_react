@@ -1,4 +1,4 @@
-import teamData from '../../components/dummyData/dummyTeamData';
+import teamData from '../../components/dummydata/dummyTeamData';
 import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import Overview from '../../components/team/teamProfile/Overview';

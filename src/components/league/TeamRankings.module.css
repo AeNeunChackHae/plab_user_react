@@ -1,0 +1,111 @@
+.container {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.category {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #8a8a8a;
+  padding: 5px;
+}
+
+.genderTabs {
+  display: flex;
+  justify-content: flex-start;
+  gap: 8px;
+}
+
+.genderTabs button {
+  color: #999;
+  background: none;
+  border: none;
+  font-size: 13x;
+  cursor: pointer;
+  padding: 0;
+}
+
+.genderTabs button.active {
+  color: black;
+  font-weight: bold;
+}
+
+.teamDetailsCategory {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.teamDetailsCategory div {
+  padding-right: 0;
+  margin: 0;
+}
+
+.rankings {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.rankInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6x;
+  margin: 0
+}
+
+.teamInfo {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 12px;
+  padding: 0;
+  margin: 0;
+}
+
+.teamInfo div{
+  align-items: center;
+  padding: 0;
+  margin: 0;
+}
+
+.teamRank {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #ffcc00;
+  padding: 0;
+  margin-right: 8px;
+  align-items: center;
+}
+
+.teamEmblem {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  object-fit: cover;
+  align-items: center;
+}
+
+.teamName {
+  font-size: 1rem;
+  color: #333;
+}
+
+.teamDetail {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 12px;
+}
+
+.teamDetail div {
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  gap: 5px;
+}
+
+.teamPoint {
+  font-weight: bold;
+}

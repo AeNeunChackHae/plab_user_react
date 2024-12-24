@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import TeamCard from '../../components/team/dashboard/TeamCard';
 import CreateTeamModal from '../../components/team/dashboard/modals/CreateTeamModal';
 import JoinRequestSummary from '../../components/team/dashboard/JoinRequestSummary';
-import teamData from '../../components/dummyData/dummyTeamData';
+import teamData from '../../components/dummydata/dummyTeamData';
 import styles from './DashboardPage.module.css';
 
 const DashboardPage = () => {

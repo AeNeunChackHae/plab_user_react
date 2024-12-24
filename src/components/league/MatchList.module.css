@@ -1,0 +1,100 @@
+.list {
+    margin: 0px;
+    padding: 0; 
+    list-style: none;
+}
+
+.matchLists {
+    margin: 0;
+    padding: 15px 0;
+}
+
+.list {
+    border-bottom: 1px solid #eaeaea;
+}
+
+.matchDate {
+    font-size: 14px;
+}
+
+.matchClosed {
+    background-color: #c4cdd4;
+    border-radius: 5px;
+    margin: 0 5px;
+    padding: 3px;
+    font-size: 13px;
+    color: #fff;
+}
+
+.matchLocation {
+    font-size: 17px;
+}
+
+/* gender 앞 동그라미 점 스타일 */
+.dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.gender {
+    font-size: 12px;
+    color: #999;
+}
+
+/* gender별 동그라미 점 색상 */
+.femaleDot {
+    background-color: #ff4d37;
+}
+
+.maleDot {
+    background-color: #1570ff;
+}
+
+.level {
+    font-size: 12px;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+/* level 별 텍스트 색상 */
+.allLevels {
+    color: #999;
+}
+
+.amateur1 {
+    color: #00b894; /* 아마추어1 이하: 초록색 */
+}
+
+.amateur2 {
+    color: #553246; /* 아마추어2 이상: 보라색 */
+}
+
+/* 팀 리스트 영역 */
+.teamEmblems {
+    display: flex; /* 가로로 나열 */
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.team {
+    display: flex;
+    align-items: baseline;
+    margin: 0;
+}
+
+.teamEmblem {
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    border-radius: 50%;
+    background-color: #f1f1f1;
+    object-fit: cover;
+}
+
+.teamName {
+    font-size: 13px;
+    margin: 5px;
+    color: #555;
+}

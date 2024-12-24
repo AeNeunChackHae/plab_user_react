@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import styles from './TeamEditPage.module.css';
-import teamDummyData from '../../components/dummyData/dummyTeamEditData';
+import teamDummyData from '../../components/dummydata/dummyTeamEditData';
 
 const TeamEditPage = () => {
   const { code } = useParams();

@@ -1,0 +1,103 @@
+/* 배경 오버레이: 모달이 열릴 때 화면을 어둡게 */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+/* 모달 컨테이너 */
+.modal {
+  background: #ffffff;
+  border-radius: 12px;
+  width: 450px;
+  padding: 24px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  position: relative;
+}
+
+/* 닫기 버튼 (X 버튼) */
+.closeButton {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 24px;
+  height: 24px;
+  font-size: 24px;
+  color: #888;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 1001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.closeButton:hover {
+  color: #333;
+  transform: scale(1.1); /* 호버 시 약간 확대 */
+}
+
+/* 상단 팀 이름 */
+.teamName {
+  font-size: 13px;
+  font-weight: bold;
+  margin-top: 0;
+  color: #1a1a1a;
+}
+
+/* 제목 텍스트 */
+.title {
+  font-size: 20px;
+  color: black;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.subtitle {
+  font-size: 11px;
+  margin-bottom: 30px;
+}
+
+/* 업로드 버튼 */
+.uploadButton {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  background-color: #dddddd50;
+  color: #333;
+  border-radius: 10px;
+  font-size: 14px;
+  box-sizing: border-box;
+  text-align: center;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.fileInput {
+  width: 100%;
+  display: none;
+}
+
+/* 뒤로 버튼 스타일 */
+.backButton {
+  width: 100%;
+  padding: 12px;
+  background-color: #E8F7FF;
+  color: #0078ff;
+  border: none;
+  border-radius: 10px;
+  font-size: 13px;
+  cursor: pointer;
+  text-align: center;
+}
+
