@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./SignUp.css";
 
-function Signup() {
+function SignUp() {
   const [agreements, setAgreements] = useState({
     all: false,
     terms: false,
@@ -197,4 +197,4 @@ function Signup() {
   );
 }
 
-export default Signup;
+export default SignUp;

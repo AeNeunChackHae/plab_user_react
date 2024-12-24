@@ -1,6 +1,9 @@
 import React, { useState } from "react";
-import { InputField, Button } from "../Components/InputField";
-import "../pages/PasswordChangePage.css";
+import {
+  InputField,
+  Button,
+} from "../../components/auth/register-correctpw/InputField";
+import "./PasswordChangePage.css";
 
 const PasswordResetPage = () => {
   const [newPassword, setNewPassword] = useState("");
@@ -16,7 +19,7 @@ const PasswordResetPage = () => {
   };
 
   return (
-    <div className="container">
+    <div className="container-pwchange">
       <div className="form-box">
         <h1 className="email-display">{email}</h1>
         <InputField

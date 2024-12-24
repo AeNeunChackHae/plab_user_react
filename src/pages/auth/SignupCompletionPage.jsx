@@ -1,5 +1,5 @@
 import React from "react";
-import MainButton from "../components/MainButton";
+import MainButton from "../../components/auth/register-complete/MainButton";
 import "./SignupCompletionPage.css";
 const SignupCompletionPage = () => {
   const handleGoToMain = () => {

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import EmailInput from "../Components/EmailInput";
-import VerificationCodeInput from "../Components/VerificationCodeInput";
-import "./passwordreset.css";
+import EmailInput from "../../components/auth/findme-certification/EmailInput";
+import VerificationCodeInput from "../../components/auth/findme-certification/VerificationCodeInput";
+import "./PasswordCertification.css";
 
-const PasswordReset = () => {
+const PasswordCertification = () => {
   const [email, setEmail] = useState("");
   const [verificationCode, setVerificationCode] = useState("");
   const [isCodeSent, setIsCodeSent] = useState(false);
@@ -55,4 +55,4 @@ const PasswordReset = () => {
   );
 };
 
-export default PasswordReset;
+export default PasswordCertification;

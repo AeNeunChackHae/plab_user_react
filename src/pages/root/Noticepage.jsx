@@ -1,6 +1,6 @@
 import React from "react";
-import Notice_CategoryTabs from "../Components/Notice_CategoryTabs";
-import Notice_ContactButton from "../Components/Notice_ContactButton";
+import Notice_CategoryTabs from "../../components/root/Notice_CategoryTabs";
+import Notice_ContactButton from "../../components/root/Notice_ContactButton";
 import "./Noticepage.css";
 
 const NoticePage = () => {

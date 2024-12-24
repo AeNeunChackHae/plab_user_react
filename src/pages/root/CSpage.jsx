@@ -1,6 +1,6 @@
 import React from "react";
-import CSCategoryTabs from "../Components/CSCategoryTabs";
-import CSContactButton from "../Components/CSContactButton";
+import CSCategoryTabs from "../../components/root/CSCategoryTabs";
+import CSContactButton from "../../components/root/CSContactButton";
 import "./CSpage.css";
 
 const CSPage = () => {

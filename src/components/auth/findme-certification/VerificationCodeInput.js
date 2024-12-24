@@ -1,5 +1,5 @@
 import React from "react";
-import "../Components/VerificationCodeInput.css";
+import "./VerificationCodeInput.css";
 
 const VerificationCodeInput = ({
   code,
