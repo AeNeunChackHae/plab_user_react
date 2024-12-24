@@ -150,13 +150,7 @@ const MatchPage = () => {
         </div>
         <div className={styles.rightSection}>
 
-          <MatchDetails
-            stadiumName={matchData.stadium_name}
-            fullAddress={matchData.full_address}
-            matchStartTime={matchData.match_start_time}
-            matchType={matchData.match_type}
-            status={status}
-          />
+          <MatchDetails {...stadiumInfo} {...matchDetails} />
         </div>
       </div>
     </section>

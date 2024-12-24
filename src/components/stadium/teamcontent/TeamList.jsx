@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./TeamList.module.css";
-import TEAM_LIST from "../../dummyData/TeamList"; // 더미 데이터 가져오기
+import TEAM_LIST from "../../dummydata/TeamList"; // 더미 데이터 가져오기
 
 const TeamList = () => {
   return (
