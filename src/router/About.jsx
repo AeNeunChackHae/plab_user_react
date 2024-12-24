@@ -1,10 +1,12 @@
 import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import AboutPage from "../pages/root/About";
 
 function About() {
   return (
-    <>
-      <h1>About 요청 분기 처리</h1>
-    </>
+    <Routes>
+      <Route path="/" element={<AboutPage />} />
+    </Routes>
   );
 }
 

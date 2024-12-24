@@ -1,0 +1,132 @@
+[
+  {
+    "id": "1",
+    "type": "얼리버드 매치",
+    "banner": "earlybird_match_banner.png",
+    "description": "30~50% 할인 혜택을 놓치지 마세요. 2일 전까지 언제든 무료로 취소할 수 있어요.",
+    "matches": [
+      {
+        "date": "2024-12-16",
+        "time": "19:00",
+        "location": "플랩 스타디움 가산 디지털엠파이어 1구장",
+        "gender": "남녀 모두",
+        "level": "아마추어1 이하",
+        "status": "신청가능",
+        "teams": [
+          { "name": "레드 드래곤", "emblem": "/images/team1.png" },
+          { "name": "블루 타이거", "emblem": "/images/team2.png" }
+        ]
+      },
+      {
+        "date": "2024-12-16",
+        "time": "20:00",
+        "location": "서울 송파 천마 풋살파크 1구장",
+        "gender": "남녀 모두",
+        "level": "아마추어1 이하",
+        "status": "마감"
+      }
+    ]
+  },
+  {
+    "id": "2",
+    "type": "남녀 모두 매치",
+    "banner": "mixed_match_banner.png",
+    "description": "남자, 여자 함께 즐겁게 풋살을 즐길 수 있어요!",
+    "matches": [
+      {
+        "date": "2024-12-16",
+        "time": "16:00",
+        "location": "수원 HK 풋살파크 3구장",
+        "gender": "남녀 모두",
+        "level": "일반",
+        "status": "마감",
+        "teams": [
+          { "name": "화이트 나이츠", "emblem": "/images/team3.png" }
+        ]
+      },
+      {
+        "date": "2024-12-16",
+        "time": "17:00",
+        "location": "부산 준타스 풋살 아레나 화이트",
+        "gender": "남녀 모두",
+        "level": "아마추어2 이상",
+        "status": "마감"
+      }
+    ]
+  },
+  {
+    "id": "3",
+    "type": "여자 매치",
+    "banner": "women_match_banner.png",
+    "description": "여자끼리 풋살하고 싶을 땐 플랩풋볼!",
+    "matches": [
+      {
+        "date": "2024-12-16",
+        "time": "19:00",
+        "location": "플랩 스타디움 가산 디지털엠파이어 1구장",
+        "gender": "여자",
+        "level": "아마추어1 이하",
+        "status": "신청가능",
+        "teams": [
+          { "name": "핑크 스톰", "emblem": "/images/team4.png" }
+        ]
+      },
+      {
+        "date": "2024-12-17",
+        "time": "18:00",
+        "location": "안양 평촌 칼라힐 풋살파크",
+        "gender": "여자",
+        "level": "아마추어2 이상",
+        "status": "신청가능"
+      }
+    ]
+  },
+  {
+    "id": "4",
+    "type": "아마추어1 이하 매치",
+    "banner": "amateur1_match_banner.png",
+    "description": "비슷한 실력의 플래버가 모여 경기를 즐겨요.",
+    "matches": [
+      {
+        "date": "2024-12-16",
+        "time": "16:00",
+        "location": "수원 HK 풋살파크 3구장",
+        "gender": "남녀 모두",
+        "level": "아마추어1 이하",
+        "status": "마감"
+      },
+      {
+        "date": "2024-12-17",
+        "time": "18:00",
+        "location": "인천 청라 에이치 풋살파크 1구장",
+        "gender": "남자",
+        "level": "아마추어1 이하",
+        "status": "신청가능"
+      }
+    ]
+  },
+  {
+    "id": "5",
+    "type": "아마추어2 이상 매치",
+    "banner": "amateur2_match_banner.png",
+    "description": "빠르고 박진감 넘치는 경기를 즐길 수 있어요!",
+    "matches": [
+      {
+        "date": "2024-12-16",
+        "time": "16:00",
+        "location": "수원 HK 풋살파크 3구장",
+        "gender": "남녀 모두",
+        "level": "아마추어2 이상",
+        "status": "마감"
+      },
+      {
+        "date": "2024-12-17",
+        "time": "18:00",
+        "location": "인천 청라 에이치 풋살파크 1구장",
+        "gender": "남자",
+        "level": "아마추어2 이상",
+        "status": "신청가능"
+      }
+    ]
+  }
+]

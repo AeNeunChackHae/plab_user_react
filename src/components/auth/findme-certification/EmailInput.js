@@ -1,5 +1,5 @@
 import React from "react";
-import "../Components/EmailInput.css";
+import "./EmailInput.css";
 
 const EmailInput = ({ email, onChange, onRequestCode, onRequestReAuth }) => {
   return (

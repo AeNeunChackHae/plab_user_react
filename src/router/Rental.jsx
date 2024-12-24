@@ -1,11 +1,13 @@
-import React from "react";
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import RentalPage from '../pages/rental/RentalPage';
 
-function Rental() {
-  return (
-    <>
-      <h1>구장 대여 요청 분기 처리</h1>
-    </>
-  );
-}
+const Rental = () => {
+    return (
+      <Routes>
+        <Route path="/" element={<RentalPage />} />
+      </Routes>
+    );
+  };
 
 export default Rental;

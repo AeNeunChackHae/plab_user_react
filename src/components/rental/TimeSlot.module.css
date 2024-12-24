@@ -1,0 +1,66 @@
+.container {
+    margin-top: 10px;
+}
+
+.bar {
+    display: flex;
+    gap: 2px;
+    height: 3px;
+    overflow: hidden;
+    position: relative;
+    margin: 0;
+}
+
+.slot {
+    flex: 1; /* 모든 칸이 동일한 너비를 가지도록 설정 */
+    height: 100%;
+}
+
+.labels {
+    display: flex;
+    gap: 2px;
+    margin-top: 3px;
+    position: relative;
+}
+
+.label {
+    flex: 1;
+    text-align: left; /* 왼쪽 정렬로 변경 */
+    font-size: 11px;
+    color: #666;
+    margin-left: -5px; /* 블록과 라벨 사이 간격을 줄임 */
+    visibility: hidden; /* 기본적으로 숨김 */
+}
+
+.label:nth-child(1),
+.label:nth-child(7),
+.label:nth-child(13),
+.label:nth-child(19) {
+    visibility: visible; /* 특정 위치만 라벨 표시 */
+    position: relative;
+    margin-left: 0px; /* 블록 바로 앞에 붙도록 설정 */
+}
+
+/* 예약 가능/불가 설명 */
+.legend {
+    display: flex;
+    justify-content: flex-end; /* 오른쪽 정렬 */
+    gap: 10px;
+    margin-top: 8px;
+    font-size: 12px;
+    color: #666;
+}
+
+.legendItem {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin: 0;
+}
+
+.legendBlock {
+    width: 15px;
+    height: 15px;
+    border-radius: 3px;
+    margin: 0;
+}

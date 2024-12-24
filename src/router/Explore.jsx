@@ -1,11 +1,13 @@
-import React from "react";
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import SocialmatchPage from '../pages/explore/SocialmatchPage';
 
-function Order() {
-  return (
-    <>
-      <h1>특수 매치 요청 분기 처리</h1>
-    </>
-  );
-}
+const Explore = () => {
+    return (
+      <Routes>
+        <Route path="/:id/matches" element={<SocialmatchPage />} />
+      </Routes>
+    );
+  };
 
-export default Order;
+export default Explore;

@@ -5,7 +5,9 @@ const ExitPage = ({ username, gamesPlayed, praiseCount, onExit }) => {
   const navigate = useNavigate();
 
   return (
-    <div style={{ textAlign: "center", marginTop: "50px" }}>
+    <div
+      style={{ textAlign: "center", marginTop: "50px", marginBottom: "50px" }}
+    >
       <h1>😢</h1>
       <p>
         지금까지 {gamesPlayed} 경기에서 {praiseCount} 번의 칭찬 메시지를
@@ -20,7 +22,7 @@ const ExitPage = ({ username, gamesPlayed, praiseCount, onExit }) => {
         </li>
       </ul>
       <button
-        onClick={() => onExit(navigate)}
+        onClick={onExit}
         style={{
           backgroundColor: "#1E90FF",
           color: "white",

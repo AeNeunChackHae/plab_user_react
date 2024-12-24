@@ -1,0 +1,41 @@
+.title {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin: 15px 0;
+}
+
+.subtitle {
+  display: flex;
+  align-items: center;
+  font-size: 0.8rem;
+  margin: 2px 0;
+}
+
+.list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 0.5rem;
+}
+
+.info {
+  font-size: 0.8rem;
+  font-weight: 400;
+  margin-left: 2rem;
+  color: #000;
+}
+
+div {
+  margin-bottom: 0;
+}
+
+/* 추가 스타일 (선택적) */
+div:last-child {
+  margin-bottom: 0;
+}
+  

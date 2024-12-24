@@ -84,3 +84,15 @@
 .toggle-button:hover {
   cursor: pointer;
 }
+
+/* 동그란 이미지 (아이콘) */
+.status-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 25px;
+  object-fit: cover; /* 아이콘 이미지를 동그란 영역에 맞추기 */
+}

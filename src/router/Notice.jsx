@@ -1,10 +1,12 @@
 import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import NoticePage from "../pages/root/Noticepage";
 
 function Notice() {
   return (
-    <>
-      <h1>Notice 요청 분기 처리</h1>
-    </>
+    <Routes>
+      <Route path="/" element={<NoticePage />} />
+    </Routes>
   );
 }
 
