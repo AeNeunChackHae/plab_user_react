@@ -14,9 +14,9 @@ function Mypage() {
       <Route path="/*" element={<PersonalSettingsPage />} />
       <Route path="/change/general" element={<SettingsPage />} />
       <Route path="/change/profile" element={<ProfilePage />} />
-      <Route path="/myplab" element={<MyPlabPage />} />
+      <Route path="/myplab/*" element={<MyPlabPage />} />
       <Route path="/mylevel" element={<MyLevelPage />} />
-      <Route path="/withdrawal" element={<WithdrawerPage />} />
+      <Route path="/withdrawal/*" element={<WithdrawerPage />} />
     </Routes>
   );
 }

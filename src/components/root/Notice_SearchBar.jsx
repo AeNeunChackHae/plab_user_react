@@ -1,5 +1,5 @@
 import React from "react";
-import "../pages/Noticepage.css";
+import "../../pages/root/Noticepage.css";
 
 const Notice_SearchBar = ({ onSearch }) => {
   const handleSearch = (e) => {

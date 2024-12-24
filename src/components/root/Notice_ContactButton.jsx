@@ -1,5 +1,5 @@
 import React from "react";
-import "../pages/Noticepage.css";
+import "../../pages/root/Noticepage.css";
 
 const Notice_ContactButton = () => {
   const handleClick = () => {

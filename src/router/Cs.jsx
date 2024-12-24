@@ -1,10 +1,12 @@
 import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import CSpage from "../pages/root/CSpage";
 
 function Cs() {
   return (
-    <>
-      <h1>Cs 요청 분기 처리</h1>
-    </>
+    <Routes>
+      <Route path="/" element={<CSpage />} />
+    </Routes>
   );
 }
 

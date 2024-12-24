@@ -1,7 +1,5 @@
 /* 설정 항목 공통 스타일 */
-#root {
-  width: 800px;
-}
+
 .setting-item {
   display: flex;
   justify-content: space-between;

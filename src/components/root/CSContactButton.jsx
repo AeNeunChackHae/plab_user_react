@@ -1,5 +1,5 @@
 import React from "react";
-import "../pages/CSpage.css";
+import "../../pages/root/CSpage.css";
 
 const CSContactButton = () => {
   const handleClick = () => {

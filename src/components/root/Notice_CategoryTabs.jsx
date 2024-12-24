@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Notice_SearchBar from "./Notice_SearchBar";
-import "../pages/Noticepage.css";
+import "../../pages/root/Noticepage.css";
 
 const tabs = [
   { name: "전체", category: "all" },

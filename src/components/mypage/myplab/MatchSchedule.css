@@ -92,6 +92,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-right: 10px;
+  margin-right: 15px;
   object-fit: cover; /* 아이콘 이미지를 동그란 영역에 맞추기 */
 }
