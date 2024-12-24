@@ -15,17 +15,26 @@ import MatchDetails from "../../components/match/matchdetails/MatchDetails";
 import PlaberOfTheMatch from "../../components/match/plaberofthematch/PlaberOfTheMatch";
 import TeamStandings from "../../components/match/teamstandings/TeamStandings";
 import MatchData from "../../components/match/matchdata/MatchData";
+import { fetchStadiumPhoto } from "../../components/contentheader/fetchStadiumPhoto"; // fetchStadiumPhoto 임포트
 import styles from "./MatchPage.module.css";
 
 const MatchPage = () => {
   const { match_id } = useParams();
+  const [photoPath, setPhotoPath] = useState(null); // 경기장 사진 경로
+  const [matchDetails, setMatchDetails] = useState(null);
   const [matchData, setMatchData] = useState(null);
+  const [stadiumInfo, setStadiumInfo] = useState(null);
+  const [matchPoints, setMatchPoints] = useState(null);
+  const [topPlayer, setTopPlayer] = useState(null);
+  const [match, setMatch] = useState(null);
   const [status, setStatus] = useState("");
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [currentTime, setCurrentTime] = useState(new Date());
-  // 데이터 가져오기
+
+  // 매치 데이터 가져오기
   useEffect(() => {
-    const fetchMatchData = async () => {
+    const fetchMatchDetails = async () => {
       try {
         const response = await fetch("http://localhost:8080/match", {
           method: "POST",
@@ -37,25 +46,59 @@ const MatchPage = () => {
 
         if (response.ok) {
           const data = await response.json();
-          setMatchData(data); // 받은 데이터 저장
+
+          console.log("Fetched match details:", data);
+          setMatchDetails(data.matchDetails);
+          setMatchData(data.matchData);
+          setStadiumInfo(data.stadiumInfo);
+          setMatchPoints(data.matchPoints);
+          setTopPlayer(data.topPlayer);
+          setMatch(data.match);
         } else {
-          const errorMessage = `매치 데이터를 찾을 수 없습니다. (상태 코드: ${response.status})`;
-          setError(errorMessage);
+          throw new Error("매치 데이터를 로드할 수 없습니다.");
         }
       } catch (err) {
-        setError("데이터를 가져오는 중 오류가 발생했습니다.");
+        console.error("Error fetching match details:", err);
+        setError(err.message);
       }
     };
 
-    fetchMatchData();
+    if (match_id) {
+      console.log("Fetching match details for match_id:", match_id);
+      fetchMatchDetails();
+    }
   }, [match_id]);
+
+  // 경기장 사진 가져오기
+  useEffect(() => {
+    const getStadiumPhoto = async () => {
+      if (matchDetails?.stadium_id) {
+        try {
+          console.log("Fetching stadium photo for stadium_id:", matchDetails.stadium_id);
+          const photo = await fetchStadiumPhoto(matchDetails.stadium_id); // stadium_id로 fetch
+          console.log("Fetched stadium photo:", photo);
+          setPhotoPath(photo.photo_path); // photo_path만 저장
+        } catch (err) {
+          console.error("Error fetching stadium photo:", err);
+          setError("이미지를 가져오는 중 오류가 발생했습니다.");
+        } finally {
+          setLoading(false);
+        }
+      } else {
+        console.warn("No stadium_id found in matchDetails.");
+        setLoading(false); // stadium_id가 없을 경우 로딩 해제
+      }
+    };
+
+    getStadiumPhoto();
+  }, [matchDetails]);
 
   // 매치 상태 설정
   useEffect(() => {
-    if (matchData) {
-      const matchStartTime = new Date(matchData.match_start_time);
+    if (match) {
+      const matchStartTime = new Date(match.match_start_time);
 
-      if (matchData.match_type === 0) {
+      if (match.status_code === 0) {
         const earlyBirdEnd = new Date(matchStartTime.getTime() - 10 * 24 * 60 * 60 * 1000);
         const regularEnd = new Date(matchStartTime.getTime() - 10 * 60 * 1000);
 
@@ -68,15 +111,16 @@ const MatchPage = () => {
         } else {
           setStatus("finished");
         }
-      } else if (matchData.match_type === 1) {
+      } else if (match.status_code === 1) {
         if (currentTime < matchStartTime) {
           setStatus("preview");
         } else {
           setStatus("finished");
         }
       }
+      console.log("Updated match status:", status);
     }
-  }, [currentTime, matchData]);
+  }, [currentTime, match]);
 
   // 현재 시간 갱신
   useEffect(() => {
@@ -86,77 +130,56 @@ const MatchPage = () => {
     return () => clearInterval(interval);
   }, []);
 
-  if (!matchData && !error) {
-    return <div>Loading...</div>;
+  useEffect(() => {
+    console.log("Current state:");
+    console.log("photoPath:", photoPath);
+    console.log("matchDetails:", matchDetails);
+    console.log("stadiumInfo:", stadiumInfo);
+    console.log("matchPoints:", matchPoints);
+    console.log("topPlayer:", topPlayer);
+    console.log("match:", match);
+    console.log("error:", error);
+  }, [photoPath, matchDetails, stadiumInfo, matchPoints, topPlayer, match]);
+
+  if (loading) {
+    return <div>로딩 중...</div>;
   }
 
   if (error) {
     return <div>{error}</div>;
   }
 
-
   return (
     <section className={styles.matchPage}>
-      {/* stadium_id를 ContentHeader로 전달 */}
-      <ContentHeader  photoPath={matchData.photo_path} />
+      <ContentHeader photo_path={photoPath} /> {/* 사진 경로 전달 */}
       <div className={styles.mainContent}>
         <div className={styles.leftSection}>
-          {matchData.match_type === 0 && (
+          {match?.status_code === 0 && (
             <>
               {status === "finished" && (
                 <>
-                  <PlaberOfTheMatch topPlayer={matchData.topPlayer} />
-                  <MatchPoints 
-                  managerName={matchData?.manager_name || "디폴트 매니저"}
-                  allowGender={matchData?.allow_gender || 0}
-                  levelCriterion={matchData?.level_criterion || 0}
-                  />
+                  <PlaberOfTheMatch {...topPlayer} />
+                  <MatchPoints {...matchPoints} />
                 </>
               )}
-              {status !== "finished" && <MatchPoints
-              managerName={matchData?.manager_name || "디폴트 매니저"}
-              allowGender={matchData?.allow_gender || 0}
-              levelCriterion={matchData?.level_criterion || 0}
-               />}
-              {status !== "finished" && (
-                <MatchData users={matchData.users || []} />
-              )}
-              <StadiumInfo 
-              width={matchData.width} 
-              height={matchData.height} 
-              shower={matchData.shower_yn === 'Y'} 
-              parking={matchData.parking_yn === 'Y'} 
-              shoesLending={matchData.lend_shoes_yn === 'Y'} 
-              drinkSelling={matchData.sell_drink_yn === 'Y'} 
-              notice={matchData.notice}
-            />
+              {status !== "finished" && <MatchPoints {...matchPoints} />}
+              {status !== "finished" && <MatchData {...matchData} />}
+              <StadiumInfo {...stadiumInfo} />
               <MatchRules />
               <RefundPolicy />
             </>
           )}
-          {matchData.match_type === 1 && (
+          {match?.status_code === 1 && (
             <>
-              <MatchPoints 
-              managerName={matchData?.manager_name || "디폴트 매니저"}
-              allowGender={matchData?.allow_gender || 0}
-              levelCriterion={matchData?.level_criterion || 0}
-              />
+              <MatchPoints {...matchPoints} />
               {status === "preview" && <TeamPreview />}
               {status === "finished" && (
                 <>
-                  <TeamStandings standings={matchData.team_data?.standings || []} />
-                  <ResultAndVideo results={matchData.team_data?.results || []} />
+                  <TeamStandings standings={matchData?.team_data?.standings || []} />
+                  <ResultAndVideo results={matchData?.team_data?.results || []} />
                 </>
               )}
-              <StadiumInfo 
-              width={matchData.width} 
-              height={matchData.height} 
-              shower={matchData.shower_yn === 'Y'} 
-              parking={matchData.parking_yn === 'Y'} 
-              shoesLending={matchData.lend_shoes_yn === 'Y'} 
-              drinkSelling={matchData.sell_drink_yn === 'Y'} 
-              notice={matchData.notice}
-            />
+              <StadiumInfo {...stadiumInfo} />
               <TeamMatchRules />
               <LeagueMatchRule />
               <LeagueMannerGuide />
@@ -165,12 +188,7 @@ const MatchPage = () => {
           )}
         </div>
         <div className={styles.rightSection}>
-          <MatchDetails
-            stadiumName={matchData.stadium_name}
-            fullAddress={matchData.full_address}
-            matchStartTime={matchData.match_start_time}
-            status={status}
-          />
+          <MatchDetails {...stadiumInfo} {...matchDetails} />
         </div>
       </div>
     </section>

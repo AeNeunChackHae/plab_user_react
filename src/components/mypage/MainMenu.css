@@ -1,0 +1,52 @@
+.main-menu {
+  width: 600px;
+  background-color: #f9f9f9;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem; /* 기존 간격을 40px로 늘림 */
+  padding-top: 0px;
+}
+
+.menu-category {
+  background-color: #fff;
+  border-radius: 15px;
+  padding: 20px;
+  margin-bottom: 10px; /* 각 메뉴 카테고리 아래 여백 추가 */
+}
+
+.menu-header h3 {
+  margin: 0;
+  font-size: 0.8rem;
+  color: #333;
+  border-bottom: 2px solid #f0f0f0;
+  padding-bottom: 10px;
+}
+
+.menu-items ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu-items li {
+  margin: 10px 0;
+  gap: 3rem;
+}
+
+.menu-link {
+  text-decoration: none;
+  color: #555;
+  font-size: 0.8 rem;
+  display: flex;
+  align-items: center;
+  margin: 1rem 0;
+}
+
+.menu-link:hover {
+  cursor: pointer;
+}
+
+.menu-link .icon {
+  margin-right: 8px;
+  font-size: 0.8 rem;
+}

@@ -1,0 +1,32 @@
+{
+  "userStatus": "teamLeader",
+  "teams": [
+    {
+      "teamId": "aeneun-chakhae",
+      "name": "애는착해",
+      "role": "운영진",
+      "members": 4,
+      "code": "kdt",
+      "logo": "https://via.placeholder.com/150",
+      "schedule": {
+        "days": ["월", "수", "금"],
+        "times": ["아침 6~10시", "저녁 18~24시"]
+      },
+      "ageGender": {
+        "ageGroups": {
+          "10대": "N",
+          "20대": "Y",
+          "30대": "Y",
+          "40대": "N",
+          "50대": "N",
+          "60대 이상": "N"
+        },
+        "gender": {
+          "남자": "Y",
+          "여자": "N",
+          "남녀 모두": "N"
+        }
+      }
+    }
+  ]
+}

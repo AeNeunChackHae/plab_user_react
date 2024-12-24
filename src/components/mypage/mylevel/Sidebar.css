@@ -1,0 +1,28 @@
+.sidebar {
+  height: 100%;
+  background-color: #ffffff;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.sidebar-image-div {
+  max-width: 300px;
+  width: 100%;
+  margin: auto;
+}
+
+.sidebar-image {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.long-image-area {
+  width: 30%;
+  background-color: #e0e0e0;
+  margin-top: 10px;
+}

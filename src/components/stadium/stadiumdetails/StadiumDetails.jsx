@@ -20,7 +20,7 @@ import ReviewContent from "../reviewcontent/ReviewContent";
 import styles from "./StadiumDetails.module.css";
 import MapTab from "../reservations/maptab/MapTab";
 import StadiumTerms from "../reservations/stadiuterms/StadiumTerms";
-import TeamList from "../teamContent/TeamList";
+import TeamList from "../teamcontent/TeamList";
 
 // DB에서 가져오는 데이터를 가정한 더미 데이터
 const DUMMY_STADIUM_INFO = {

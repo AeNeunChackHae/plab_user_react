@@ -1,0 +1,11 @@
+.listContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.noRequests {
+  text-align: center;
+  font-size: 16px;
+  color: #888;
+}

@@ -1,0 +1,145 @@
+/* 배경 오버레이: 모달이 열릴 때 화면을 어둡게 */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+/* 모달 컨테이너 */
+.modal {
+  background: #ffffff;
+  border-radius: 12px;
+  width: 450px;
+  padding: 24px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  position: relative;
+}
+
+/* 닫기 버튼 (X 버튼) */
+.closeButton {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 24px;
+  height: 24px;
+  font-size: 24px;
+  color: #888;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 1001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+/* 로고, 팀 이름 감싼 div */
+.header {
+  display: flex;
+  align-items: center;
+  margin: 0;
+}
+
+/* 상단 팀 이름 */
+.teamName {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0;
+  color: #1a1a1a;
+}
+
+/* 상단 팀 로고 */
+.logo {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+/* 제목 텍스트 */
+.title {
+  margin: 5px 0;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.subtitle {
+  font-size: 11px;
+  color: #666;
+}
+
+/* 버튼 타이틀 */
+.modal label {
+  font-size: 11px;
+  margin-bottom: 4px;
+  display: block;
+  color: #666;
+}
+  
+.selectionGroup {
+  margin-bottom: 20px;
+}
+  
+.buttons {
+  display: flex;
+  justify-content: space-around;
+  gap: 2px;
+}
+  
+.selectionButton {
+  border: 1px solid #ddd;
+  padding: 12px 17px;
+  border-radius: 10px;
+  cursor: pointer;
+  background-color: white;
+  font-size: 14px;
+}
+  
+.selectionButton.selected {
+  color: #007bff;
+  border-color:  #007bff;
+}
+  
+/* 뒤로 및 등록 버튼 그룹 */
+.footer {
+  display: flex;
+  justify-content: space-between; /* 양쪽으로 버튼 배치 */
+  align-items: center;
+  margin-top: 20px;
+}
+
+/* 뒤로 버튼 스타일 */
+.backButton {
+  flex: 1;
+  padding: 12px;
+  margin-right: 8px;
+  background-color: #E8F7FF;
+  color: #0078ff;
+  border: none;
+  border-radius: 10px;
+  font-size: 13px;
+  cursor: pointer;
+  text-align: center;
+}
+
+/* 다음 버튼 스타일 */
+.nextButton {
+  flex: 1;
+  padding: 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 13px;
+  cursor: pointer;
+  text-align: center;
+}

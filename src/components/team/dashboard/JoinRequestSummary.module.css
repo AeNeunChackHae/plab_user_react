@@ -1,0 +1,20 @@
+.joinRequest {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer; 
+  transition: background-color 0.2s;
+}
+  
+.joinRequest:hover {
+  background-color: #f0f8ff; /* 호버 시 배경색 변경 */
+}
+  
+.arrowIcon {
+  width: 15px;
+  height: 15px;
+  object-fit: contain;
+}

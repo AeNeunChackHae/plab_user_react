@@ -1,0 +1,123 @@
+.recent-review {
+  background-color: #fff;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.recent-review h3 {
+  margin-top: 0;
+  font-size: 1.2rem;
+}
+
+.review-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* 버튼 줄 맞춤 */
+  padding: 5px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.review-item p {
+  font-size: 0.8rem;
+  margin: 0;
+  flex: 1; /* 동일한 공간 분배 */
+}
+
+.review-item button {
+  color: rgb(0, 0, 0);
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  margin-left: 10px; /* 버튼 간격 추가 */
+}
+
+.review-item button:hover {
+  background-color: #c2c2c2;
+}
+
+.review-item .buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px; /* 버튼 간격 */
+}
+
+/* 모달 스타일 */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 15px;
+  width: 300px;
+}
+
+.modal-content h3 {
+  margin-top: 0;
+}
+
+.modal-content label {
+  display: block;
+  margin: 10px 0;
+}
+
+.modal-content input {
+  width: 100%;
+  padding: 10px;
+  font-size: 0.8rem;
+  margin-top: 5px;
+  border-radius: 15px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  gap: 10px;
+}
+
+.modal-buttons button {
+  background-color: #1565c0;
+  color: white;
+  height: 40px;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+.modal-buttons button:last-child {
+  background-color: #d7d7d7;
+}
+
+.toggle-button {
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  padding: 10px;
+  margin: 20px auto;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+.toggle-button:hover {
+  cursor: pointer;
+}

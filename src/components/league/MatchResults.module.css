@@ -1,0 +1,67 @@
+.container {
+  margin: 0;
+}
+  
+.matchCard {
+  margin-bottom: 10px;
+  border-bottom: 1px solid #eaeaea;
+  padding: 15px;
+}
+
+.matchDate {
+  font-size: 17px;
+  font-weight: bold;
+}
+
+.matchDetails {
+  font-size: 15px;
+  color: #777777;
+}
+  
+.teamList {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+  
+.team {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
+}
+  
+.teamEmblem {
+  width: 35px;
+  height: 35px;
+  padding: 0;
+  border-radius: 50%;
+  background-color: #f0f0f0;
+}
+  
+.teamName {
+  flex-grow: 1;
+  color: #333;
+  margin: 5px;
+}
+  
+.winnerBadge {
+  color: green;
+  font-size: 12px;
+  font-weight: bold;
+  background-color: antiquewhite;
+  padding: 4px;
+  border-radius: 5px;
+
+}
+  
+.teamScore {
+  margin-left: auto; 
+  font-weight: bold;
+  font-size: 16px;
+  color: #333;
+}
+  

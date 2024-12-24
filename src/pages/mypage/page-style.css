@@ -1,0 +1,24 @@
+
+/* 전체 레이아웃  */
+.app-layout {
+  display: flex;
+  height: 100vh;
+  justify-content: center; /* 중앙 정렬 */
+  gap: 20px; /* 달력과 메인 콘텐츠 간격 */
+}
+
+/* 사이드바: 달력 */
+.sidebar {
+  width: 300px; /* 달력 너비 */
+  background-color: #fff;
+  padding: 20px;
+}
+
+/* 메인 콘텐츠 */
+.main-content {
+  width: 700px; /* 메인 콘텐츠 너비 */
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #fff;
+  overflow-y: auto; /* 콘텐츠 스크롤 */
+}

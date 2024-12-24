@@ -26,6 +26,12 @@ function LoginPage() {
               placeholder="비밀번호를 입력하세요"
             />
           </div>
+          <div className="checkbox-container">
+            <input type="checkbox" id="remember" />
+            <label htmlFor="remember" id="remember-id">
+              아이디 저장
+            </label>
+          </div>
           <button type="submit">로그인</button>
           <div className="footer-links">
             <a className="footer-links-text" href="/find-id-password">
