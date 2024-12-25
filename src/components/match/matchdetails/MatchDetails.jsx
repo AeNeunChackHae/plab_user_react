@@ -11,7 +11,7 @@ const MatchDetails = ({ matchStartTime, stadiumName, fullAddress, matchType }) =
   const [status, setStatus] = useState("");
   const [currentTime, setCurrentTime] = useState(new Date());
 
-  const matchDate = useMemo(() => new Date(match_start_time), [match_start_time]);
+  const matchDate = useMemo(() => new Date(matchStartTime), [matchStartTime]);
 
   const calculateStatus = useCallback(() => {
     const now = currentTime;
