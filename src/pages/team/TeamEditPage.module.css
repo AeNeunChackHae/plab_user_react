@@ -1,0 +1,223 @@
+/* 전체 컨테이너 */
+.container {
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+  
+/* 엠블럼 섹션 */
+.emblemWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30px;
+  position: relative; /* 파일 업로드 input을 위한 상대 위치 */
+}
+
+/* 엠블럼 */
+.emblem {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+  object-fit: cover;
+}
+
+/* 엠블럼 바꾸기 버튼 */
+.changeEmblem {
+  color: #888;
+  padding: 0;
+  font-size: 0.7rem;
+  cursor: pointer;
+  border: none;
+  background-color: #fff;
+}
+  
+/* 파일 업로드 숨기기 */
+.fileInput {
+  display: none;
+}
+  
+/* 입력 필드 그룹 */
+.inputGroup {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+/* 입력 필드 타이틀 */
+.inputGroup label {
+  font-size: 11px;
+  margin-bottom: 4px;
+  display: block;
+  color: #666;
+}
+
+/* 입력 필드 스타일 */
+.inputGroup input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 8px;
+  border: 1px solid #ddd;
+  background-color: #dddddd50;
+  border-radius: 10px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+/* 입력 필드 클릭 시 */
+.inputGroup input:focus {
+  outline: none;
+  box-shadow: 0 0 3px #0078ff;
+}
+
+/* 인풋 하단 에러 메시지 스타일 */
+.errorText {
+  margin: 0;
+  font-size: 11px;
+  color: #e74c3c;
+}
+  
+/* 팀 코드 URL 정보 */
+.codeInfo {
+  font-size: 11px;
+  color: #888;
+  margin-top: 5px;
+}
+
+/* 팀 코드 URL 미리보기 */
+.codeInfo .codeHighlight {
+  color: #007bff;
+}
+
+.section {
+  margin-bottom: 20px;
+}
+
+/* 버튼 타이틀 */
+.label {
+  font-size: 11px;
+  margin-bottom: 4px;
+  display: block;
+  color: #666;
+  text-align: left;
+}
+
+/* 활동 요일 섹션 */
+.dayButtons {
+  display: flex;
+  justify-content: space-between; /* 버튼 사이 균등 분배 */
+  align-items: center;
+  gap: 5px; /* 버튼 사이 간격 */
+  margin-top: 10px;
+}
+
+/* 활동 요일 버튼 */
+.dayButtons button {
+  flex: 1; /* 버튼이 동일한 너비를 가짐 */
+  padding: 8px 0;
+  text-align: center;
+  border: 1px solid #f2f5f7;
+  border-radius: 10px;
+  background-color: #fff;
+  color: #4b5a64;
+  cursor: pointer;
+  font-size: 12px;
+}
+  
+.dayButtons button.activeDay {
+  border-color: #007bff;
+  color: #007bff;
+}
+  
+/* 활동 시간대 섹션 */
+.timeButtons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4개의 버튼이 한 줄에 배치 */
+  gap: 10px;
+  margin-top: 10px;
+}
+
+/* 활동 시간대 버튼 */
+.timeButtons button {
+  padding: 8px 0;
+  text-align: center;
+  border: 1px solid #f2f5f7;
+  border-radius: 10px;
+  background-color: #fff;
+  color: #4b5a64;
+  cursor: pointer;
+  font-size: 12px;
+}
+  
+.timeButtons button.activeTime {
+  border-color: #007bff;
+  color: #007bff;
+}
+  
+/* 나이대 섹션 */
+.ageButtons {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 10px;
+}
+
+/* 나이대 버튼 */
+.ageButtons button {
+  padding: 8px 0;
+  text-align: center;
+  border: 1px solid #f2f5f7;
+  border-radius: 10px;
+  background-color: #fff;
+  color: #4b5a64;
+  cursor: pointer;
+  font-size: 12px;
+}
+  
+.ageButtons button.activeAge {
+  border-color: #007bff;
+  color: #007bff;
+}
+  
+/* 성별 섹션 */
+.genderButtons {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 10px;
+}
+
+/* 성별 버튼 */
+.genderButtons button {
+  padding: 8px 0;
+  text-align: center;
+  border: 1px solid #f2f5f7;
+  border-radius: 10px;
+  background-color: #fff;
+  color: #4b5a64;
+  cursor: pointer;
+  font-size: 12px;
+}
+  
+.genderButtons button.activeGender {
+  border-color: #007bff;
+  color: #007bff;
+}
+  
+/* 저장 버튼 */
+.saveButtonWrapper {
+  margin-top: 40px;
+  text-align: center;
+}
+  
+.saveButton {
+  padding: 10px 20px;
+  width: 100%;
+  font-size: 12px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}

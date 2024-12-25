@@ -1,11 +1,13 @@
-import React from "react";
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import LeaguePage from '../pages/league/LeaguePage';
 
-function League() {
-  return (
-    <>
-      <h1>리그 요청 분기 처리</h1>
-    </>
-  );
-}
+const League = () => {
+    return (
+      <Routes>
+        <Route path="/" element={<LeaguePage />} />
+      </Routes>
+    );
+  };
 
-export default League;
+  export default League;

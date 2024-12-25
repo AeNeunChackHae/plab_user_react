@@ -1,0 +1,64 @@
+.dateSelectorContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background-color: #fff;
+    margin: 0;
+}
+
+.navButton {
+    padding: 10px;
+    border: none;
+    border-radius: 50%;
+    background-color: #3540a5c9;
+    color: white;
+    cursor: pointer;
+    font-size: 1.5rem;
+    width: 10px;
+    height: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s;
+}
+
+.navButton:disabled {
+    background-color: #3540a53f;
+    cursor: not-allowed;
+}
+
+.navButton:hover:not(:disabled) {
+    background-color: #3540a5;
+}
+
+.dateSelector {
+    display: flex;
+    gap: 10px;
+    flex-wrap: nowrap;
+}
+
+.dateButton {
+    width: 7.5rem;
+    padding: 10px;
+    border: none;
+    border-radius: 100px;
+    cursor: pointer;
+    background-color: inherit;
+    color: inherit;
+    text-align: center;
+    font-size: 15px;
+}
+
+.active {
+    background-color: #1570FF;
+    color: white;
+}
+
+.saturday {
+    color: blue;
+}
+
+.sunday {
+    color: red;
+}

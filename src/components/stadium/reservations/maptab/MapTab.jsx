@@ -45,7 +45,7 @@ import React from "react";
 import KakaoMap from "../../../kakaomap/KakaoMap";
 import LocationProvider from "../../../location/LocationProvider";
 import styles from "./MapTab.module.css";
-import DUMMY_STADIUM_INFO from "../../../dummyData/StadiumDummyData"; // 더미 데이터 가져오기
+import DUMMY_STADIUM_INFO from "../../../dummydata/StadiumDummyData"; // 더미 데이터 가져오기
 
 const MapTab = () => {
   const stadium = DUMMY_STADIUM_INFO[0]; // 첫 번째 경기장 데이터 선택

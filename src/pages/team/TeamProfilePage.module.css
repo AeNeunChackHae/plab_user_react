@@ -1,0 +1,173 @@
+/* 전체 레이아웃 */
+.container {
+  width: 1024px;
+  display: flex;
+  gap: 32px;
+  margin: 0 auto;
+  max-width: 1024px;
+  padding: 20px;
+  background-color: #f9fafc;
+}
+
+/* ========================= */
+/*     왼쪽 사이드바 스타일     */
+/* ========================= */
+.sidebar {
+  width: 300px;
+  height: 100%;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* 팀 로고 이미지 */
+.sidebar img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* 팀 이름 */
+.sidebar h2 {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+/* 팀 설명 */
+.sidebar p {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+/* 버튼 그룹 */
+.buttonGroup {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  width: 100%;
+}
+
+/* 팀 설정 버튼 */
+.editButton {
+  width: 50%;
+  font-size: 14px;
+  padding: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  background-color: #f2f5f7;
+  color: #4b5a64;
+  border-radius: 10px;
+}
+
+/* 팀 삭제 버튼 */
+.deleteButton {
+  width: 50%;
+  font-size: 14px;
+  padding: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  background-color: #e11d48;
+  color: white;
+  border-radius: 10px;
+}
+
+/* 팀 탈퇴 버튼 */
+.leaveButton {
+  width: 100%;
+  font-size: 14px;
+  padding: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  background-color: #e11d48;
+  color: white;
+  border-radius: 10px;
+}
+
+/* 팀 가입 버튼 */
+.applyButton {
+  width: 100%;
+  font-size: 14px;
+  padding: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  background-color: #007bff;
+  color: white;
+  border-radius: 10px;
+}
+
+/* 신청 확인 버튼 */
+.checkButton {
+  width: 100%;
+  font-size: 14px;
+  padding: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  background-color: #f2f5f7;
+  color: #4b5a64;
+  border-radius: 10px;
+}
+
+/* ========================= */
+/*     오른쪽 콘텐츠 스타일     */
+/* ========================= */
+
+.content {
+  flex: 1;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 팀장 화면 팀 가입 신청 목록 버튼 */
+.subscription {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+  background-color: #f9f9f9;
+  border: none;
+  cursor: pointer; 
+  transition: background-color 0.2s;
+  margin: 0;
+}
+
+.arrowIcon {
+  width: 15px;
+  height: 15px;
+  object-fit: contain;
+}
+
+/* ========================= */
+/*        반응형 스타일        */
+/* ========================= */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .sidebar {
+    width: 100%;
+  }
+
+  .content {
+    width: 100%;
+  }
+}

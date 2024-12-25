@@ -1,11 +1,13 @@
-import React from "react";
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import MainPage from '../pages/main/MainPage';
 
-function Main() {
-  return (
-    <>
-      <h1>메인 요청 분기 처리</h1>
-    </>
-  );
-}
+const Main = () => {
+    return (
+      <Routes>
+        <Route path="/" element={<MainPage />} />
+      </Routes>
+    );
+  };
 
 export default Main;

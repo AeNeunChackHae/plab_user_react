@@ -1,0 +1,126 @@
+body {
+  margin: 0;
+  font-family: "Arial", sans-serif;
+  background-color: #ffffff;
+  color: #333;
+}
+
+.login-container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  background-color: #ffffff;
+  margin-top: 100px;
+}
+
+.login-box {
+  width: 100%;
+  max-width: 600px;
+  background-color: #ffffff;
+  border-radius: 8px;
+}
+
+/* 추가 css - start */
+#label-title {
+  font-size: 0.7rem;
+  font-weight: 900;
+}
+
+#label-email {
+  width: 575px;
+}
+
+#label-password {
+  width: 575px;
+}
+
+input[type="checkbox"] {
+  width: 25px;
+  height: 25px;
+  margin-right: 0.5rem;
+}
+
+#remember-id {
+  font-size: 0.7rem;
+  font-weight: 900;
+  margin-bottom: 0.2rem;
+}
+
+/* 추가 css - end */
+
+.login-box h1 {
+  font-size: 0.7rem;
+  color: #333;
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+.login-box label {
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
+  display: block;
+  color: #555;
+}
+
+.login-box input[type="text"],
+.login-box input[type="password"] {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  color: #555;
+  background-color: #f8f8f8;
+  border-radius: 12px;
+}
+
+.login-box input::placeholder {
+  color: #aaa;
+}
+
+.login-box .checkbox-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  font-size: 0.875rem;
+  color: #555;
+}
+
+.login-box .checkbox-container {
+  margin-right: 0.5rem;
+}
+
+.login-box button {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.login-box button:hover {
+  background-color: #0056b3;
+}
+
+.login-box .footer-links {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.875rem;
+  margin-top: 0.2rem;
+
+  color: #666;
+}
+
+.login-box .footer-links a {
+  font-size: 0.7rem;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  font-weight: 900;
+  text-decoration: none;
+  color: hwb(0 27% 73%);
+}

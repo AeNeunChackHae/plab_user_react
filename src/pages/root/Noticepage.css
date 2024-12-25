@@ -2,17 +2,22 @@
 
 body {
   display: flex;
-
   justify-content: center;
   margin: 0;
   font-family: sans-serif;
   background-color: #ffffff;
 }
 
-h1 {
+.main-text1 {
   font-size: 24px;
   font-weight: bold;
-  margin-bottom: 20px;
+  margin-bottom: 0px;
+}
+
+.main-text2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 5px;
 }
 
 /* SearchBar styles */
@@ -22,7 +27,7 @@ h1 {
 
 .notice-SearchBar-input {
   display: flex;
-  width: 98%;
+  width: 1024px;
   padding: 10px;
   border-radius: 10px;
   border: 1px solid #ddd;
@@ -50,7 +55,8 @@ h1 {
 
 /* FAQList styles */
 .notice-faq-list {
-  width: 57vw;
+  width: 1040px;
+  height: 300px;
   border-top: 1px solid #ddd;
   background-color: #fff;
 }
@@ -86,7 +92,10 @@ h1 {
 
 /* Contact button */
 .notice-contact-button {
-  width: 57vw;
+  width: 1050px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: #007bff;
   border-radius: 12px;
   color: white;

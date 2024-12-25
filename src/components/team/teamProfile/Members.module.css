@@ -1,0 +1,61 @@
+/* 전체 컨테이너 스타일 */
+.container {
+  margin: 20px 0;
+}
+
+/* 멤버 리스트 스타일 */
+.memberList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* 각 멤버 항목 스타일 */
+.memberItem {
+  display: flex;
+  align-items: center;
+}
+
+/* 프로필 이미지 스타일 */
+.profileImage {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 5px;
+}
+
+/* 멤버 정보 스타일 */
+.memberInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+/* 멤버 헤더 스타일 (이름 + 뱃지) */
+.memberHeader {
+  display: flex;
+  align-items: center;
+  gap: 6px; /* 이름과 뱃지 사이의 간격 */
+  margin: 0;
+}
+
+/* 멤버 이름 스타일 */
+.memberName {
+  font-size: 0.9rem;
+}
+
+/* 멤버 역할 스타일 */
+.memberLevel {
+  font-size: 0.7rem;
+  color: #666;
+}
+
+/* 운영진 뱃지 스타일 */
+.badge {
+  font-size: 0.6rem;
+  color: #fff;
+  background-color: #000;
+  padding: 2px 3px;
+  border-radius: 4px;
+  display: inline-block;
+}

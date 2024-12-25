@@ -1,4 +1,5 @@
 /* 설정 항목 공통 스타일 */
+
 .setting-item {
   display: flex;
   justify-content: space-between;

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import CSSearchBar from "./CSSearchBar";
-import "../pages/CSpage.css";
+import "../../pages/root/CSpage.css";
 
 const tabs = [
   { name: "전체", category: "all" },

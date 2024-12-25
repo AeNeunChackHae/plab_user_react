@@ -3,6 +3,7 @@ import { levelDescriptions } from './levelDescriptions';
 import styles from './PlaberOfTheMatch.module.css';
 
 
+
 const PlaberOfTheMatch = ({topPlayer}) => {
   const levelDescription = levelDescriptions[topPlayer.level_code] || '미정의 레벨';
 
@@ -24,10 +25,8 @@ const PlaberOfTheMatch = ({topPlayer}) => {
           <p className={styles.plaberTitle}>Plaber Of The Match</p>
           <div className={styles.plaberBox}>
             <div className={styles.plaberInfo}>
-
               <span className={styles.plaberName}>{topPlayer.username}</span>
               <span className={styles.plaberLevel}>{levelDescription}</span>
-
             </div>
           </div>
           <span className={styles.plaberDescription}>

@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './StadiumInfo.module.css';
 
 const StadiumInfo = ({ width, height, shower, parking, lendShoes, sellDrink, notice }) => {
-  console.log({ width, height, shower, parking, lendShoes, sellDrink, notice })
+  // console.log({ width, height, shower, parking, lendShoes, sellDrink, notice })
   const isFeatureAvailable = (feature) => feature === 'Y';
 
   return (

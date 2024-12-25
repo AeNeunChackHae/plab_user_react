@@ -69,38 +69,38 @@ const MyPlabPage = () => {
   };
 
   return (
-    <Routes>
-      <div className="app-layout">
-        {/* 왼쪽 사이드바 */}
-        <div className="sidebar">
-          <CalendarModal events={events} onDateSelect={handleDateSelect} />
-        </div>
+    <div className="app-layout">
+      {/* 왼쪽 사이드바 */}
+      <div className="sidebar">
+        <CalendarModal events={events} onDateSelect={handleDateSelect} />
       </div>
       {/* 오른쪽 메인 영역 */}
       <div className="main-content">
-        <Route
-          path="/mypage/myplab"
-          element={
-            <MatchSchedule selectedDate={selectedDate} events={events} />
-          }
-        />
-        <Route
-          path="/mypage/myplab/completed"
-          element={
-            <MatchCompleted selectedDate={selectedDate} events={events} />
-          }
-        />
-        <Route
-          path="/mypage/myplab/stadium"
-          element={
-            <StadiumReservation
-              selectedDate={selectedDate}
-              reservations={reservations}
-            />
-          }
-        />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <MatchSchedule selectedDate={selectedDate} events={events} />
+            }
+          />
+          <Route
+            path="/completed"
+            element={
+              <MatchCompleted selectedDate={selectedDate} events={events} />
+            }
+          />
+          <Route
+            path="/stadium"
+            element={
+              <StadiumReservation
+                selectedDate={selectedDate}
+                reservations={reservations}
+              />
+            }
+          />
+        </Routes>
       </div>
-    </Routes>
+    </div>
   );
 };
 
