@@ -1,7 +1,52 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./MatchPoints.module.css";
 
-const MatchPoints = ({ manager_name, allow_gender, level_criterion }) => {
+const MatchPoints = ({ match_id }) => {
+  const [matchPointsData, setMatchPointsData] = useState(null); // 매치 포인트 데이터 상태
+  const [error, setError] = useState(null); // 에러 상태
+
+  // 데이터 가져오기
+  useEffect(() => {
+    const fetchMatchPoints = async () => {
+      try {
+        const response = await fetch("http://localhost:8080/match/points", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ match_id }),
+        });
+
+        if (!response.ok) {
+          throw new Error("매치 포인트 데이터를 가져오는 데 실패했습니다.");
+        }
+
+        const data = await response.json();
+        setMatchPointsData(data);
+        // console.log('setMatchPointsData(data)',data)
+      } catch (err) {
+        console.error("매치 포인트 데이터를 로드하는 중 오류:", err);
+        setError(err.message);
+      }
+    };
+
+    if (match_id) {
+      fetchMatchPoints();
+    }
+  }, [match_id]);
+
+  if (error) {
+    return (
+      <div className={styles.error}>
+        매치 포인트 데이터를 불러올 수 없습니다: {error}
+      </div>
+    );
+  }
+
+  if (!matchPointsData) {
+    return <div className={styles.loading}>매치 포인트 데이터를 로딩 중...</div>;
+  }
+
   // 레벨 텍스트 변환 함수
   const getLevelText = (level) => {
     switch (level) {
@@ -31,6 +76,9 @@ const MatchPoints = ({ manager_name, allow_gender, level_criterion }) => {
         return "알 수 없음";
     }
   };
+
+  const { manager_name, allow_gender, level_criterion } = matchPointsData;
+
 
   return (
     <section className={styles.section}>

@@ -19,7 +19,7 @@ const VerificationCodeInput = ({
       </div>
       <div className="input-group-certify">
         <div className="input-certify">
-          <input
+          <input className="input"
             type="text"
             id="verification-code"
             value={code}

@@ -10,13 +10,14 @@ function LoginPage() {
 
   const navigate = useNavigate();
 
-  (() => {
+  useEffect(() => {
     const token = localStorage.getItem("authToken");
     console.log("token: ", token, typeof token);
     if (token) {
+      console.log(` if (token)`)
       navigate("/");
     }
-  })();
+  },[navigate]);
  
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -56,9 +57,9 @@ function LoginPage() {
 
       // 토큰과 사용자 정보 저장
       localStorage.setItem("authToken", data.token);
-      localStorage.setItem("email", data.email);
+      localStorage.setItem("id", data.id);
 
-      alert(`로그인 성공! 환영합니다, ${data.email}`);
+      alert(`로그인 성공! 환영합니다: ${data.id} `);
       navigate("/"); // 로그인 성공 시 메인 페이지로 이동
     } catch (err) {
       console.error("네트워크 오류:", err); // 네트워크 오류 디버깅

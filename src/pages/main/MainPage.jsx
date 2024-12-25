@@ -11,12 +11,12 @@ const MainPage = () => {
     useEffect(() => {
         // localStorage에서 로그인 정보 가져오기
         const token = localStorage.getItem("authToken");
-        const email = localStorage.getItem("email");
+        const id = localStorage.getItem("id");
 
-        if (token && email) {
+        if (token && id) {
             console.log("로그인 사용자 정보:");
             console.log(`토큰: ${token}`);
-            console.log(`사용자 이름: ${email}`);
+            console.log(`사용자 이름: ${id}`);
         } else {
             console.log("로그인된 사용자가 없습니다.");
         }
