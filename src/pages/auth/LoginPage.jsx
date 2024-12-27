@@ -57,9 +57,10 @@ function LoginPage() {
 
       // 토큰과 사용자 정보 저장
       localStorage.setItem("authToken", data.token);
+      // localStorage.setItem("username", data.username);
       localStorage.setItem("id", data.id);
 
-      alert(`로그인 성공! 환영합니다: ${data.id} `);
+      alert(`로그인 성공! 환영합니다: ${data.username} `);
       navigate("/"); // 로그인 성공 시 메인 페이지로 이동
     } catch (err) {
       console.error("네트워크 오류:", err); // 네트워크 오류 디버깅
@@ -104,7 +105,7 @@ function LoginPage() {
             <a className="footer-links-text" href="/find-id-password">
               아이디/비밀번호 찾기
             </a>
-            <a className="footer-links-text" href="/signup">
+            <a className="footer-links-text" href="/auth/register">
               회원 가입
             </a>
           </div>
