@@ -31,7 +31,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 10px ;
+  padding: 0 10px;
 }
 
 /* 팀 정보 */
@@ -39,7 +39,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  flex: 0.45; /* 좌우 공간 조정 */
+  flex: 1; /* 팀 정보의 좌우 균형 조정 */
 }
 
 .teamInfo:first-child {
@@ -63,9 +63,9 @@
   text-align: left;
 }
 
-/* 점수 */
+/* 시간 정보 (가운데) */
 .scoreBlock {
-  flex: 0.2; /* 점수판 크기 조정 */
+  flex: 0.4; /* 점수판 크기 조정 */
   text-align: center;
   display: flex;
   justify-content: center; /* 중앙 정렬 */
@@ -73,12 +73,13 @@
 }
 
 .score {
-  font-size: clamp(16px, 1.8vw, 18px);
+  font-size: clamp(14px, 1.8vw, 16px);
   font-weight: bold;
   background-color: #f5f7fa;
   padding: 5px 10px;
   border-radius: 10px;
   display: inline-block;
+  color: #666; /* 색상 변경 */
 }
 
 /* 아이콘 (모달 등) */
@@ -137,4 +138,18 @@
   border-radius: 5px;
   padding: 5px 10px;
   cursor: pointer;
+}
+
+/* 팀 배치 가로 정렬 */
+.teamInfoLeft {
+  justify-content: flex-start;
+}
+
+.teamInfoRight {
+  justify-content: flex-end;
+}
+
+/* 중앙 시간 블록 */
+.scoreBlock {
+  text-align: center;
 }

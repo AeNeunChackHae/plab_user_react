@@ -14,27 +14,27 @@ const StadiumTerms = () => {
         {/* 일반 규정 */}
         <div className={styles.stadiumTerms}>
           <div className={styles.stadiumTermsTitle}>일반</div>
-          <table>
+          <table className={styles.table}>
             <colgroup>
               <col width="50%" />
               <col width="50%" />
             </colgroup>
             <tbody>
-              <tr>
-                <td>10일 전</td>
-                <td>100% 환불</td>
+              <tr className={styles.tr}>
+                <td className={styles.td}>10일 전</td>
+                <td className={styles.td}>100% 환불</td>
               </tr>
-              <tr>
-                <td>5일 전</td>
-                <td>80% 환불</td>
+              <tr className={styles.tr}>
+                <td className={styles.td}>5일 전</td>
+                <td className={styles.td}>80% 환불</td>
               </tr>
-              <tr>
-                <td>3일 전</td>
-                <td>50% 환불</td>
+              <tr className={styles.tr}>
+                <td className={styles.td}>3일 전</td>
+                <td className={styles.td}>50% 환불</td>
               </tr>
-              <tr>
-                <td>2일 전 ~ 예약 당일</td>
-                <td>환불 불가</td>
+              <tr className={styles.tr}>
+                <td className={styles.td}>2일 전 ~ 예약 당일</td>
+                <td className={styles.td}>환불 불가</td>
               </tr>
             </tbody>
           </table>

@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Routes, Route } from "react-router-dom";
 import PersonalSettingsPage from "../pages/mypage/PersonalSettingsPage";
 import SettingsPage from "../pages/mypage/SettingPage";
 import ProfilePage from "../pages/mypage/ProfilePage";

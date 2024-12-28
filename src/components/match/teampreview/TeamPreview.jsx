@@ -1,52 +1,53 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./TeamPreview.module.css";
 
-const TeamPreview = () => {
-  // 팀 데이터
-  const teamData = {
-    name: "OTP FC",
-    stadium: "플랩 스타디움 수원",
-    members: 31,
-    averageAge: "30.1세",
-    record: "7승 5무 10패",
-    level: "아마추어3",
-    emblem:
-      "https://d31wz4d3hgve8q.cloudfront.net/media/emblem/154681_KakaoTalk_20221013_224023455_01.png",
-    levelAuthIcon:
-      "https://d31wz4d3hgve8q.cloudfront.net/static/img/ic_level_auth.svg",
-    details: [
-      {
-        icon: "https://d31wz4d3hgve8q.cloudfront.net/static/img/ic_club.svg",
-        title: "팀",
-        value: "OTP FC",
-      },
-      {
-        icon: "https://d31wz4d3hgve8q.cloudfront.net/static/img/ic_info_stadium.svg",
-        title: "홈 구장",
-        value: "플랩 스타디움 수원",
-      },
-      {
-        icon: "https://d31wz4d3hgve8q.cloudfront.net/static/img/ic_my.svg",
-        title: "멤버",
-        value: "31명",
-      },
-      {
-        icon: "https://d31wz4d3hgve8q.cloudfront.net/static/img/ic_age.svg",
-        title: "평균 나이",
-        value: "30.1세",
-      },
-      {
-        icon: "https://d31wz4d3hgve8q.cloudfront.net/static/img/ic_info_ball.svg",
-        title: "경기 전적",
-        value: "7승 5무 10패",
-      },
-      {
-        icon: "https://d31wz4d3hgve8q.cloudfront.net/static/img/ic_info_level.svg",
-        title: "레벨",
-        value: "아마추어3",
-      },
-    ],
-  };
+const TeamPreview = ({ match_id }) => {
+  const [teamsData, setTeamsData] = useState([]); // 기본값을 빈 배열로 설정
+  const [selectedTeam, setSelectedTeam] = useState(null);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchTeamData = async () => {
+      try {
+        const response = await fetch("http://localhost:8080/match/team-preview", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ match_id }),
+        });
+
+        if (!response.ok) {
+          throw new Error("팀 데이터를 가져오는 데 실패했습니다.");
+        }
+
+        const data = await response.json();
+
+        console.log("Fetched match data:", data);
+        if (!Array.isArray(data)) {
+          throw new Error("서버에서 반환된 데이터가 배열이 아닙니다.");
+        }
+
+        setTeamsData(data);
+        if (data.length > 0) {
+          setSelectedTeam(data[0]); // 기본 선택
+        }
+      } catch (err) {
+        console.error("팀 데이터 로드 오류:", err);
+        setError(err.message);
+      }
+    };
+
+    fetchTeamData();
+  }, [match_id]);
+
+  if (error) {
+    return <div className={styles.error}>{error}</div>;
+  }
+
+  if (!teamsData || teamsData.length === 0) {
+    return <div className={styles.loading}>로딩 중...</div>;
+  }
 
   return (
     <section className={styles.section}>
@@ -56,43 +57,81 @@ const TeamPreview = () => {
         </div>
       </div>
       <div className={styles.sectionBody}>
-        {/* 엠블럼 */}
-        <div className={styles.emblemWrapper}>
-          <img
-            src={teamData.emblem}
-            alt="팀 엠블럼"
-            className={styles.emblem}
-          />
-        </div>
-        {/* 팀 상세 정보 */}
-        <div className={styles.detailsWrapper}>
-          {teamData.details.map((detail, index) => (
-            <div key={index} className={styles.detail}>
+        {/* 엠블럼 리스트 (가로 배치) */}
+        <div className={styles.emblemList}>
+          {teamsData.map((team, index) => (
+            <div
+              key={index}
+              className={`${styles.emblemWrapper} ${
+                selectedTeam?.team_name === team.team_name ? styles.selected : ""
+              }`}
+              onClick={() => setSelectedTeam(team)}
+            >
               <img
-                src={detail.icon}
-                alt={`${detail.title} 아이콘`}
-                className={styles.detailIcon}
+                src={team.embulum_path}
+                alt={`${team.team_name} 엠블럼`}
+                className={styles.emblem}
               />
-              <span className={styles.detailTitle}>{detail.title}</span>
-              <span
-                className={`${styles.detailValue} ${
-                  detail.title === "팀" || detail.title === "홈 구장"
-                    ? styles.detailValueBlue
-                    : ""
-                }`}
-              >
-                {detail.value}
-              </span>
-              {detail.title === "레벨" && (
-                <img
-                  src={teamData.levelAuthIcon}
-                  alt="레벨 인증 아이콘"
-                  className={styles.levelAuthIcon}
-                />
-              )}
             </div>
           ))}
         </div>
+        {/* 선택된 팀 상세 정보 */}
+        {selectedTeam && (
+          <div className={styles.detailsWrapper}>
+            <div className={styles.detail}>
+              <img
+                src="https://d31wz4d3hgve8q.cloudfront.net/static/img/ic_club.svg"
+                alt="팀 아이콘"
+                className={styles.detailIcon}
+              />
+              <span className={styles.detailTitle}>팀</span>
+              <span className={`${styles.detailValue} ${styles.teamName}`}>{selectedTeam.team_name}</span>
+            </div>
+            <div className={styles.detail}>
+              <img
+                src="https://d31wz4d3hgve8q.cloudfront.net/static/img/ic_my.svg"
+                alt="멤버 아이콘"
+                className={styles.detailIcon}
+              />
+              <span className={styles.detailTitle}>멤버</span>
+              <span className={`${styles.detailValue} ${styles.teamName}`}>
+                {selectedTeam.members_count}명
+              </span>
+            </div>
+            <div className={styles.detail}>
+              <img
+                src="https://d31wz4d3hgve8q.cloudfront.net/static/img/ic_age.svg"
+                alt="평균 나이 아이콘"
+                className={styles.detailIcon}
+              />
+              <span className={styles.detailTitle}>평균 나이</span>
+              <span className={`${styles.detailValue} ${styles.teamName}`}>
+                {selectedTeam.average_age}세
+              </span>
+            </div>
+            <div className={styles.detail}>
+              <img
+                src="https://d31wz4d3hgve8q.cloudfront.net/static/img/ic_info_ball.svg"
+                alt="경기 전적 아이콘"
+                className={styles.detailIcon}
+              />
+              <span className={styles.detailTitle}>경기 전적</span>
+              <span className={`${styles.detailValue} ${styles.teamName}`}>
+                {selectedTeam.matches_played}경기 {selectedTeam.goals}승{" "}
+                {selectedTeam.points}포인트
+              </span>
+            </div>
+            <div className={styles.detail}>
+              <img
+                src="https://d31wz4d3hgve8q.cloudfront.net/static/img/ic_info_level.svg"
+                alt="레벨 아이콘"
+                className={styles.detailIcon}
+              />
+              <span className={styles.detailTitle}>레벨</span>
+              <span className={`${styles.detailValue} ${styles.teamName}`}>{selectedTeam.team_level}</span>
+            </div>
+          </div>
+        )}
       </div>
     </section>
   );

@@ -19,18 +19,37 @@
 .sectionBody {
   display: flex;
   flex-direction: column;
-  align-items: left;
+  align-items: flex-start; /* 내용 왼쪽 정렬 유지 */
+}
+
+.emblemList {
+  display: flex; /* 가로 배치 */
+  justify-content: flex-start; /* 왼쪽 정렬 */
+  gap: 10px; /* 엠블럼 간격 */
+  margin-bottom: 20px; /* 아래 간격 추가 */
+  width: 70px;
+  height: 70px;
 }
 
 .emblemWrapper {
-  margin-bottom: 20px;
+  cursor: pointer; /* 클릭 가능 */
+  transition: transform 0.2s ease;
+}
+
+.emblemWrapper:hover {
+  transform: scale(1.1); /* 호버 시 확대 효과 */
+}
+
+.selected {
+  border: 2px solid #007bff; /* 선택된 엠블럼 테두리 강조 */
+  border-radius: 50%;
 }
 
 .emblem {
-  width: 48px;
-  height: 48px;
+  width: 50px; /* 기존 크기 유지 */
+  height: 50px;
   border-radius: 50%;
-  border: 2px solid #007bff;
+  object-fit: cover; /* 이미지 비율 유지 */
 }
 
 .detailsWrapper {
@@ -40,6 +59,7 @@
 .detail {
   display: flex;
   align-items: center;
+  justify-content: space-between; /* 양쪽 정렬 */
   margin-bottom: 10px;
 }
 
@@ -51,22 +71,14 @@
 
 .detailTitle {
   font-weight: bold;
-  margin-right: 10px;
 }
 
 .detailValue {
   font-size: 14px;
   color: #333;
-  margin-left: auto;
-
+  margin-left: auto; /* 우측으로 밀어냄 */
 }
 
-.detailValueBlue {
-  color: #007bff;
-}
-
-.levelAuthIcon {
-  width: 16px;
-  height: 16px;
-  margin-left: 5px;
+.teamName {
+  text-align: right; /* 텍스트 정렬 */
 }

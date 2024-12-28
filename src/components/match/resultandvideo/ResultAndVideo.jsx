@@ -1,18 +1,68 @@
-import React, { useState } from 'react';
-import { matchData } from '../../dummydata/dummyData';
-import styles from './ResultAndVideo.module.css';
-import { FaPlay, FaDownload } from 'react-icons/fa';
+import React, { useState, useEffect } from "react";
+import styles from "./ResultAndVideo.module.css";
+import { FaPlay, FaDownload } from "react-icons/fa";
 
-const ResultAndVideo = ({ showIcons = false }) => {
+const ResultAndVideo = ({ match_id, showIcons = false }) => {
+  const [teams, setTeams] = useState([]); // 팀 데이터를 가져옴
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [error, setError] = useState(null);
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
-  const getResult = (team1Score, team2Score) => {
-    if (team1Score > team2Score) return '승';
-    if (team1Score < team2Score) return '패';
-    return '무';
+  useEffect(() => {
+    const fetchMatchResults = async () => {
+      try {
+        const response = await fetch("http://localhost:8080/match/results", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ match_id }),
+        });
+
+        if (!response.ok) {
+          throw new Error("매치 데이터를 가져오는 데 실패했습니다.");
+        }
+
+        const data = await response.json();
+        setTeams(data); // 데이터를 설정
+        console.log("Fetched match data:", data);
+      } catch (err) {
+        console.error("Error fetching match data:", err);
+        setError(err.message);
+      }
+    };
+
+    fetchMatchResults();
+  }, [match_id]);
+
+  if (error) {
+    return <div className={styles.error}>{error}</div>;
+  }
+
+  if (!teams || teams.length === 0) {
+    return <div className={styles.loading}>로딩 중...</div>;
+  }
+
+  // 고정된 라운드 배치
+  const roundSchedule = [
+    { home: "A", away: "B" },
+    { home: "A", away: "C" },
+    { home: "B", away: "C" },
+    { home: "B", away: "A" },
+    { home: "C", away: "A" },
+    { home: "C", away: "B" },
+    { home: "A", away: "B" },
+    { home: "A", away: "C" },
+    { home: "B", away: "C" },
+  ];
+
+  // A, B, C 팀으로 데이터 매칭
+  const teamMap = {
+    A: teams[0] || { team_name: "A팀", embulum_path: "/path/to/default-emblem.png" },
+    B: teams[1] || { team_name: "B팀", embulum_path: "/path/to/default-emblem.png" },
+    C: teams[2] || { team_name: "C팀", embulum_path: "/path/to/default-emblem.png" },
   };
 
   return (
@@ -21,30 +71,27 @@ const ResultAndVideo = ({ showIcons = false }) => {
         <h4 className={styles.title}>일정 및 결과</h4>
       </div>
       <div className={styles.content}>
-        {matchData.results.map((match, index) => (
+        {roundSchedule.map((match, index) => (
           <div key={index} className={styles.resultRow}>
-            <div className={`${styles.teamInfo} ${styles.teamInfoLeft}`}>
+            {/* 홈 팀 */}
+            <div className={styles.teamInfo}>
               <img
-                src={match.team1.emblem}
-                alt={`${match.team1.name} emblem`}
+                src={teamMap[match.home].embulum_path}
+                alt={`${teamMap[match.home].team_name} emblem`}
                 className={styles.teamEmblem}
               />
-              <span className={styles.teamText}>
-                {match.team1.name} ({getResult(match.team1.score, match.team2.score)})
-              </span>
+              <span className={styles.teamText}>{teamMap[match.home].team_name}</span>
             </div>
+            {/* 라운드 시간 (고정 텍스트 추가 가능) */}
             <div className={styles.scoreBlock}>
-              <span className={styles.score}>
-                {match.team1.score} : {match.team2.score}
-              </span>
+              <span className={styles.score}>{`0 : 0`}</span>
             </div>
-            <div className={`${styles.teamInfo} ${styles.teamInfoRight}`}>
-              <span className={styles.teamText}>
-                {match.team2.name} ({getResult(match.team2.score, match.team1.score)})
-              </span>
+            {/* 원정 팀 */}
+            <div className={styles.teamInfo}>
+              <span className={styles.teamText}>{teamMap[match.away].team_name}</span>
               <img
-                src={match.team2.emblem}
-                alt={`${match.team2.name} emblem`}
+                src={teamMap[match.away].embulum_path}
+                alt={`${teamMap[match.away].team_name} emblem`}
                 className={styles.teamEmblem}
               />
             </div>
