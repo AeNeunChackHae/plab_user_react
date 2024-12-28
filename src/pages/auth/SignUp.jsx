@@ -62,8 +62,10 @@ function SignUp() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // 내가 작업한 부분은 여기까지, 아래는 API 연결하는
     const submitData = { ...formData };
 
+    // API 연결 시작 리턴 전까지 (fetch, {받을 방법})
     try {
       const response = await fetch("http://localhost:8080/auth/signup", {
         method: "POST",
@@ -103,7 +105,7 @@ function SignUp() {
           <b>이메일</b>
           <input
             type="email"
-            name="email"
+            name="email" /*서버 router에서 불릴 id 값*/
             id="email"
             placeholder="이메일을 입력하세요"
             value={formData.email}
@@ -264,8 +266,7 @@ function SignUp() {
               onChange={() => handleIndividualChange("age")}
               required
             />
-            <span className="checkbox-custom"></span>
-            만 14세 이상입니다 (필수)
+            <span className="checkbox-custom"></span>만 14세 이상입니다 (필수)
           </label>
         </div>
         <button type="submit" className="signup-button">
