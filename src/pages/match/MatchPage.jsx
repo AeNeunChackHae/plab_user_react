@@ -104,8 +104,7 @@ const MatchPage = () => {
     return <div className={styles.loading}>로딩 중...</div>;
   }
 
-  // console.log("현재 match.status_code 값:", match.match_type);
-  // console.log("현재 status 값:", status);
+  // console.log("현재 match.match_type 값:", match.match_type);
 
   return (
     <section className={styles.matchPage}>

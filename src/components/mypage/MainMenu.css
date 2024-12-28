@@ -1,22 +1,24 @@
 .main-menu {
   width: 600px;
-  background-color: #f9f9f9;
+  height: 800px;
+  background-color: #fff;
   display: flex;
   flex-direction: column;
-  gap: 0.1rem; /* 기존 간격을 40px로 늘림 */
-  padding-top: 0px;
+  gap: 0.1rem; /* 전체 카테고리 간격 */
+  padding-top: 0;
+  border-radius: 15px;
 }
 
 .menu-category {
   background-color: #fff;
   border-radius: 15px;
   padding: 20px;
-  margin-bottom: 10px; /* 각 메뉴 카테고리 아래 여백 추가 */
+  margin-bottom: 10px; /* 각 메뉴 카테고리 아래 여백 */
 }
 
 .menu-header h3 {
   margin: 0;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   color: #333;
   border-bottom: 2px solid #f0f0f0;
   padding-bottom: 10px;
@@ -28,25 +30,26 @@
   margin: 0;
 }
 
+/* li 자체는 목록 구조만 담당 */
 .menu-items li {
-  margin: 10px 0;
-  gap: 3rem;
+  margin: 5px 0; /* 아이템 간격 */
 }
 
+/* Link 태그에 대한 스타일 */
 .menu-link {
-  text-decoration: none;
-  color: #555;
-  font-size: 0.8 rem;
   display: flex;
   align-items: center;
-  margin: 1rem 0;
+  text-decoration: none;
+  color: #555;
+  font-size: 0.9rem; /* 글자 크기 조정 */
+  padding: 10px 0; /* 클릭 영역 확보 */
 }
 
 .menu-link:hover {
-  cursor: pointer;
+  cursor: pointer; /* 마우스 포인터 표시 */
 }
 
 .menu-link .icon {
   margin-right: 8px;
-  font-size: 0.8 rem;
+  font-size: 0.8rem;
 }
