@@ -1,84 +1,57 @@
 .filters {
     display: flex;
     gap: 5px;
-    padding: 10px 0;
-    background-color: #fff;
-    border-bottom: 1px solid #ddd;
-    margin: 0;
 }
 
 .filterButton {
+    margin-top: 20px;
     border: 1px solid #ddd;
     border-radius: 20px;
     background-color: #fff;
     padding: 5px 15px;
-    font-size: 14px;
+    font-size: 16px;
     cursor: pointer;
     color: #333;
 }
 
-.filterButton:hover {
-    background-color: #f0f0f0;
-    color: #000;
+.filterButton.selected {
+    border-color: #007bff;
+    color: #007bff;
 }
 
-.modalContent {
-    max-height: 400px; /* 최대 높이 설정 */
-    overflow-y: auto; /* 세로 스크롤 활성화 */
-    padding: 20px;
-    border-radius: 10px;
+.scrollContainer {
+    max-height: 300px;
+    overflow-y: auto;
+    border-radius: 5px;
+    padding: 10px;
 }
 
-
-/* 체크박스 스타일 */
-ul {
-    list-style: none; /* dots 제거 */
-    margin: 0;
-    padding: 0;
+.modalList {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
-li {
+.checkboxLabel {
     display: flex;
     align-items: center;
-    gap: 10px; /* 체크박스와 텍스트 간격 */
-    padding: 15px 0;
-    border-bottom: 1px solid #ddd;
+    gap: 10px;
+    cursor: pointer;
     font-size: 18px;
-    color: #333;
+    font-weight: 100;
 }
 
-li:last-child {
-    border-bottom: none; /* 마지막 항목 구분선 제거 */
-}
-
-li:hover {
-    background-color: #f9f9f9;
-    cursor: pointer;
-}
-
-/* 체크박스 크기와 클릭 시 색상 */
-input[type="checkbox"] {
-    width: 20px;
-    height: 20px;
-    accent-color: #007bff; /* 체크박스 체크 색상 */
-    cursor: pointer;
-}
-
-/* 버튼 스타일 */
 .applyButton {
-    margin: 20px auto; /* 버튼을 가운데 정렬 */
-    display: block; /* 블록 요소로 설정 */
-    padding: 15px 25px;
-    width: 100%;
-    font-size: 18px;
-    border: none;
-    border-radius: 8px;
     background-color: #007bff;
+    width: 100%;
     color: white;
+    padding: 10px 20px; 
+    border-radius: 10px;
+    margin-top: 20px;
     cursor: pointer;
-    text-align: center;
-}
-
-.applyButton:hover {
-    background-color: #0056b3;
+    display: block; 
+    margin-left: auto; 
+    margin-right: auto; 
+    text-align: center; 
+    font-size: 16px;
 }

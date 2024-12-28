@@ -1,97 +1,166 @@
 import React, { useState } from "react";
-import styles from "./Filters.module.css";
 import Modal from "./Modal";
+import styles from "./Filters.module.css";
 
-const Filters = () => {
+// 필터 옵션
+const REGION_OPTIONS = [
+    { code: 0, name: "서울" },
+    { code: 1, name: "부산" },
+    { code: 2, name: "대구" },
+    { code: 3, name: "인천" },
+    { code: 4, name: "광주" },
+    { code: 5, name: "대전" },
+    { code: 6, name: "울산" },
+    { code: 7, name: "세종" },
+    { code: 8, name: "경기" },
+    { code: 9, name: "강원" },
+    { code: 10, name: "충북" },
+    { code: 11, name: "충남" },
+    { code: 12, name: "전북" },
+    { code: 13, name: "전남" },
+    { code: 14, name: "경북" },
+    { code: 15, name: "경남" },
+    { code: 16, name: "제주" },
+];
+
+const GENDER_OPTIONS = [
+    { code: 0, name: "남자" },
+    { code: 1, name: "여자" },
+    { code: 2, name: "남녀 모두" },
+];
+
+const LEVEL_OPTIONS = [
+    { code: 0, name: "일반" },
+    { code: 1, name: "아마추어1 이하" },
+    { code: 2, name: "아마추어2 이상" },
+];
+
+const Filters = ({ onFilterChange }) => {
     const [activeModal, setActiveModal] = useState(null);
+    const [selectedFilters, setSelectedFilters] = useState({
+        region: [],
+        gender: [],
+        level: [],
+    });
 
+    // 모달 열기 및 닫기
     const openModal = (type) => setActiveModal(type);
     const closeModal = () => setActiveModal(null);
 
+    // 체크박스 변경 핸들러
+    const handleCheckboxChange = (key, value) => {
+        setSelectedFilters((prev) => {
+            const updatedFilters = prev[key].includes(value)
+                ? prev[key].filter((item) => item !== value)
+                : [...prev[key], value];
+            return { ...prev, [key]: updatedFilters };
+        });
+    };
+
+    // 필터 적용하기
+    const applyFilters = () => {
+        onFilterChange(selectedFilters); // 숫자 코드 값 전달
+        closeModal();
+    };
+
     return (
         <div className={styles.filters}>
-            <button className={styles.filterButton} onClick={() => openModal("Local")}>
-                모든 지역
-            </button>
-            <button className={styles.filterButton} onClick={() => openModal("Gender")}>
-                성별
-            </button>
-            <button className={styles.filterButton} onClick={() => openModal("Level")}>
-                레벨
+            {/* 지역 필터 버튼 */}
+            <button
+                className={`${styles.filterButton} ${
+                    selectedFilters.region.length > 0 ? styles.selected : ""
+                }`}
+                onClick={() => openModal("region")}
+            >
+                {selectedFilters.region.length > 0
+                    ? selectedFilters.region.map((code) => REGION_OPTIONS.find((r) => r.code === code)?.name).join(", ")
+                    : "모든 지역"}
             </button>
 
-            {/* 모달 컴포넌트 */}
-            {activeModal === "Local" && (
+            {/* 성별 필터 버튼 */}
+            <button
+                className={`${styles.filterButton} ${
+                    selectedFilters.gender.length > 0 ? styles.selected : ""
+                }`}
+                onClick={() => openModal("gender")}
+            >
+                {selectedFilters.gender.length > 0
+                    ? selectedFilters.gender.map((code) => GENDER_OPTIONS.find((g) => g.code === code)?.name).join(", ")
+                    : "성별"}
+            </button>
+
+            {/* 레벨 필터 버튼 */}
+            <button
+                className={`${styles.filterButton} ${
+                    selectedFilters.level.length > 0 ? styles.selected : ""
+                }`}
+                onClick={() => openModal("level")}
+            >
+                {selectedFilters.level.length > 0
+                    ? selectedFilters.level.map((code) => LEVEL_OPTIONS.find((l) => l.code === code)?.name).join(", ")
+                    : "레벨"}
+            </button>
+
+            {/* 지역 모달 */}
+            {activeModal === "region" && (
                 <Modal title="지역" onClose={closeModal}>
-                    <div className={styles.modalContent}>
-                        <ul>
-                            <li>모든 지역</li>
-                            <li>서울</li>
-                            <li>경기</li>
-                            <li>인천</li>
-                            <li>강원</li>
-                            <li>대전/세종</li>
-                            <li>충남</li>
-                            <li>충북</li>
-                            <li>대구</li>
-                            <li>경북</li>
-                            <li>부산</li>
-                            <li>울산</li>
-                            <li>경남</li>
-                        </ul>
+                    <div className={styles.scrollContainer}>
+                        {REGION_OPTIONS.map((region) => (
+                            <label key={region.code} className={styles.checkboxLabel}>
+                                <input
+                                    type="checkbox"
+                                    checked={selectedFilters.region.includes(region.code)}
+                                    onChange={() => handleCheckboxChange("region", region.code)}
+                                />
+                                {region.name}
+                            </label>
+                        ))}
                     </div>
+                    <button className={styles.applyButton} onClick={applyFilters}>
+                        적용하기
+                    </button>
                 </Modal>
             )}
 
-
-            {activeModal === "Gender" && (
+            {/* 성별 모달 */}
+            {activeModal === "gender" && (
                 <Modal title="성별" onClose={closeModal}>
-                    <div>
-                        <ul>
-                            <label for="male">
-                                <li>
-                                    <input type="checkbox" id="male" /> 남자
-                                </li>
+                    <div className={styles.scrollContainer}>
+                        {GENDER_OPTIONS.map((gender) => (
+                            <label key={gender.code} className={styles.checkboxLabel}>
+                                <input
+                                    type="checkbox"
+                                    checked={selectedFilters.gender.includes(gender.code)}
+                                    onChange={() => handleCheckboxChange("gender", gender.code)}
+                                />
+                                {gender.name}
                             </label>
-                            <label for="female">
-                                <li>
-                                    <input type="checkbox" id="female" /> 여자
-                                </li>
-                            </label>
-                            <label id="both">
-                                <li>
-                                    <input type="checkbox" id="both" /> 남녀 모두
-                                </li>
-                            </label>
-                        </ul>
-                        <button className={styles.applyButton}>적용하기</button>
+                        ))}
                     </div>
+                    <button className={styles.applyButton} onClick={applyFilters}>
+                        적용하기
+                    </button>
                 </Modal>
             )}
 
-            {activeModal === "Level" && (
+            {/* 레벨 모달 */}
+            {activeModal === "level" && (
                 <Modal title="레벨" onClose={closeModal}>
-                    <div>
-                        <ul>
-                            <label for="amateur1">
-                                <li>
-                                    <input type="checkbox" id="amateur1" /> 아마추어1 이하
-                                </li>
+                    <div className={styles.scrollContainer}>
+                        {LEVEL_OPTIONS.map((level) => (
+                            <label key={level.code} className={styles.checkboxLabel}>
+                                <input
+                                    type="checkbox"
+                                    checked={selectedFilters.level.includes(level.code)}
+                                    onChange={() => handleCheckboxChange("level", level.code)}
+                                />
+                                {level.name}
                             </label>
-                            <label for="amateur2">
-                                <li>
-                                    <input type="checkbox" id="amateur2" /> 아마추어2 이상
-                                </li>
-                            </label>
-                            <label for="general">
-                                <li>
-                                    <input type="checkbox" id="general" /> 일반
-                                </li>
-                            </label>
-                        </ul>
-                        <button className={styles.applyButton}>적용하기</button>
-                        
+                        ))}
                     </div>
+                    <button className={styles.applyButton} onClick={applyFilters}>
+                        적용하기
+                    </button>
                 </Modal>
             )}
         </div>
