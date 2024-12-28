@@ -31,3 +31,5 @@ const ProfilePage = () => {
 };
 
 export default ProfilePage;
+
+// fetch는 components/mypage/change-profile/ProfileForm.js 에서 함
