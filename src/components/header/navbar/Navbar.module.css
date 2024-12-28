@@ -31,6 +31,7 @@
 .logo {
   width: 54px;
   height: auto;
+  cursor: pointer;
 }
 
 /* 우측 섹션: 검색창과 아이콘 */

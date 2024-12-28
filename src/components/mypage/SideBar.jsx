@@ -2,89 +2,73 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./SideBar.css";
 
-const Sidebar = ({ userName, userNumber, hideLevel, setHideLevel }) => {
-  const [mannerData, setMannerData] = useState({
-    emoji: "😊",
-    text: "좋아요",
-  });
+const Sidebar = () => {
+  const [userData, setUserData] = useState(null);
+  const [error, setError] = useState(null);
 
-  const [levelData, setLevelData] = useState({
-    level: "R",
-    levelName: "루키",
-  });
-
+  // 컴포넌트가 마운트될 때만 서버로부터 사용자 정보를 가져옴
   useEffect(() => {
-    // 서버에서 매너 데이터를 가져오는 함수
-    const fetchMannerData = async () => {
+    const fetchUserData = async () => {
       try {
-        const response = await fetch("https://example.com/api/manner"); // API URL 변경 필요
+        const response = await fetch("http://127.0.0.1:8080/mypage");
+        if (!response.ok) {
+          // 응답이 정상 범위(200~299)가 아닌 경우 에러 처리
+          throw new Error(`Network response was not ok: ${response.status}`);
+        }
         const data = await response.json();
-        setMannerData({
-          emoji: data.emoji,
-          text: data.text,
-        });
+        setUserData(data);
       } catch (error) {
-        console.error("Error fetching manner data:", error);
+        console.error("Error fetching user data:", error);
+        setError("데이터를 불러오지 못했습니다.");
       }
     };
 
-    // 서버에서 레벨 데이터를 가져오는 함수
-    const fetchLevelData = async () => {
-      try {
-        const response = await fetch("https://example.com/api/level"); // API URL 변경 필요
-        const data = await response.json();
-        setLevelData({
-          level: data.level,
-          levelName: data.levelName,
-        });
-      } catch (error) {
-        console.error("Error fetching level data:", error);
-      }
-    };
-
-    fetchMannerData();
-    fetchLevelData();
+    fetchUserData();
   }, []);
 
   return (
     <div className="sidebar">
-      <h2 className="user-name">{userName}</h2>
-      <p className="user-number">{userNumber}</p>
+      {/* 사용자명 표시 (데이터가 있으면 표시, 없으면 대체 텍스트) */}
+      <h2 className="user-name">
+        {userData ? userData.username : "사용자 이름 없음"}
+      </h2>
+      {/* 사용자 ID 표시 */}
+      <p className="user-number">{userData ? userData.id : "ID 없음"}</p>
+
       <div className="info-container">
+        {/* 예: 선호 포지션 박스 */}
         <div className="manager-box">
           <div className="manager-info">
-            <span className="level-text">매너</span>
+            <span className="level-text">선호 포지션</span>
             <div className="emoji-level">
-              <span className="emoji">{mannerData.emoji}</span>{" "}
-              {mannerData.text}
+              {userData ? userData.prefer_position : "데이터 없음"}
             </div>
           </div>
         </div>
+
+        {/* 레벨 박스 (level_code, level_name) */}
         <div className="level-box">
           <div className="level-info">
             <span className="level-text">레벨</span>
-            <span
-              className="toggle-button"
-              onClick={() => setHideLevel(!hideLevel)}
-            >
-              {hideLevel ? "🙈" : "🙉"}
-            </span>
           </div>
           <div className="levelname-level">
-            <span className="level">{hideLevel ? "" : levelData.level}</span>
             <span className="level-name">
-              {hideLevel ? "" : levelData.levelName}{" "}
-              {/* hideLevel에 따라 숨기기 */}
+              {userData ? userData.level_code : "데이터 없음"}
             </span>
           </div>
         </div>
       </div>
+
+      {/* 홍보 배너 (링크) */}
       <Link to="/promotion" className="promotion-message">
         <p id="banner-small">활동량 기록, 타인 평가를 통한</p>
         <p id="banner-big">
           <strong>개인 레벨 관리로 성장 하세요!</strong>
         </p>
       </Link>
+
+      {/* 에러 메시지 표시 */}
+      {error && <div className="error-message">{error}</div>}
     </div>
   );
 };

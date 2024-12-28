@@ -2,9 +2,8 @@
   width: 300px;
   padding: 20px;
   background-color: #ffffff;
-  border-radius: 0px;
-
-  height: 100vh;
+  border-radius: 20px;
+  height: 765px;
 }
 
 .sidebar h2 {
@@ -17,6 +16,13 @@
   color: #888;
   margin-top: 0px;
   margin-bottom: 20px;
+}
+
+/* 사용자 이름 왼쪽 정렬 */
+.user-name {
+  font-size: 1.5em;
+  margin: 0rem;
+  text-align: left; /* 왼쪽 정렬 추가 */
 }
 
 .info-container {
@@ -42,11 +48,6 @@
 
 .level-info {
   font-weight: bold;
-}
-
-.level-button:hover,
-.toggle-button:hover {
-  cursor: pointer;
 }
 
 .promotion-message {
