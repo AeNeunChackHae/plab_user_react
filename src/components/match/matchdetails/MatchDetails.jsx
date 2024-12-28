@@ -133,7 +133,7 @@ const MatchDetails = ({ match_id }) => {
   }
 
   const { match_start_time, stadium_name, full_address, stadium_id } = matchDetails;
-  console.log("렌더링에 사용될 데이터:", { match_start_time, stadium_name, full_address, stadium_id }); // 디버깅용 콘솔
+  // console.log("렌더링에 사용될 데이터:", { match_start_time, stadium_name, full_address, stadium_id }); // 디버깅용 콘솔
 
   return (
     <div ref={stickyRef} className={`${styles.matchDetails} ${isSticky ? styles.sticky : ""}`}>

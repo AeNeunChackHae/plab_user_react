@@ -39,7 +39,7 @@
     margin-bottom: 8px;
   }
   
-  table {
+  .table {
   width: 100%;
   border-collapse: separate; /* 셀 테두리를 분리 */
   border-spacing: 0; /* 셀 간격 제거 */
@@ -49,16 +49,16 @@
   font-size: 0.8rem;
 }
   
-  table tr {
+  .tr {
     border-bottom: 0.5px solid #ddd;
   }
   
-  table td {
+ .td {
     border: 0.5px solid #666;
     padding: 4px;
   }
   
-  table td:first-child {
+  .td:first-child {
     color: #333;
   }
   

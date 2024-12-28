@@ -1,4 +1,8 @@
 /* 전체 페이지 배경 */
+.section{
+  background-color: #f5f7fa;
+
+}
 .matchPage,
 .teamMatchPage {
   background-color: #f5f7fa;

@@ -1,9 +1,49 @@
-import React from 'react';
-import styles from './StadiumInfo.module.css';
+import React, { useEffect, useState } from "react";
+import styles from "./StadiumInfo.module.css";
 
-const StadiumInfo = ({ width, height, shower, parking, lendShoes, sellDrink, notice }) => {
-  // console.log({ width, height, shower, parking, lendShoes, sellDrink, notice })
-  const isFeatureAvailable = (feature) => feature === 'Y';
+const StadiumInfo = ({ match_id }) => {
+  const [stadiumData, setStadiumData] = useState(null);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchStadiumData = async () => {
+      try {
+        const response = await fetch("http://localhost:8080/match/stadium-info", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ match_id }),
+        });
+
+        if (!response.ok) {
+          throw new Error("구장 정보를 가져오는 데 실패했습니다.");
+        }
+
+        const data = await response.json();
+        setStadiumData(data);
+      } catch (err) {
+        console.error("구장 정보 로드 오류:", err);
+        setError(err.message);
+      }
+    };
+
+    if (match_id) {
+      fetchStadiumData();
+    }
+  }, [match_id]);
+
+  if (error) {
+    return <div className={styles.error}>오류: {error}</div>;
+  }
+
+  if (!stadiumData) {
+    return <div className={styles.loading}>구장 정보를 로딩 중...</div>;
+  }
+
+  const { width, height, shower, parking, lendShoes, sellDrink, notice } = stadiumData;
+
+  const isFeatureAvailable = (feature) => feature === "Y";
 
   return (
     <section className={styles.section}>
