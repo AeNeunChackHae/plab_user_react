@@ -56,11 +56,7 @@ const StadiumTerms = () => {
           <div className={styles.stadiumTermsTitle}>변경 규정</div>
           <ul className={styles.stadiumTermsList}>
             <li>
-              예약 시작 시간 2시간 전 기상청 날씨누리 해당 주소지를 기준으로 합니다 (
-              <a href="#" style={{ color: "rgb(21, 112, 255)" }}>
-                확인하기
-              </a>
-              )
+              예약 시작 시간 2시간 전 기상청 날씨누리 해당 주소지를 기준으로 합니다 
               <br />- 오전 예약의 경우 전일 21시부터 변경 요청 가능
             </li>
             <li>시간당 5mm 이상의 강수량이 예보되는 경우, 예약일 변경이 가능합니다.</li>

@@ -153,3 +153,16 @@
 .scoreBlock {
   text-align: center;
 }
+
+.placeholderText {
+  font-size: 14px;
+  color: #999;
+  display: inline-block;
+  width: 30px; /* 이미지와 동일한 크기 */
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  border: 1px dashed #ccc;
+  border-radius: 50%;
+  font-size: 9px;
+}

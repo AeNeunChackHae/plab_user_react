@@ -1,9 +1,14 @@
 import React, { useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import styles from "./OrderPage.module.css";
 
 const OrderPage = () => {
   const [isKakaoPayActive, setIsKakaoPayActive] = useState(true);
   const [isPaymentComplete, setIsPaymentComplete] = useState(false);
+
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from || "/"; // 이전 경로가 없으면 홈으로 돌아감
 
   const handlePaymentMethodClick = () => {
     setIsKakaoPayActive(true);
@@ -12,6 +17,11 @@ const OrderPage = () => {
   const handlePaymentButtonClick = () => {
     // 결제 완료 처리
     setIsPaymentComplete(true);
+
+    // 2초 후 이전 경로로 자동 이동
+    setTimeout(() => {
+      navigate(from); // 이전 페이지로 돌아가기
+    }, 1000);
   };
 
   const closeModal = () => {
@@ -50,7 +60,7 @@ const OrderPage = () => {
             <label className={styles.orderMethodLabel}>
               <span className={styles.orderMethodName}>카카오페이</span>
               <img
-                src="https://t1.kakaocdn.net/payfe_ssr/production/partner-web/c93aabbb0e9884be81f3548f9c81f4b8b3e47b27/_next/static/media/image-payment-method-1-1.0d5a0c60.png" 
+                src="https://t1.kakaocdn.net/payfe_ssr/production/partner-web/c93aabbb0e9884be81f3548f9c81f4b8b3e47b27/_next/static/media/image-payment-method-1-1.0d5a0c60.png"
                 alt="카카오페이"
                 className={styles.orderMethodIcon}
               />

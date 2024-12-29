@@ -3,12 +3,13 @@
   font-family: Arial, sans-serif;
   box-sizing: border-box;
   text-align: center; /* 부모 요소 가운데 정렬 */
+  width: 100%;
 }
 
 .mainContent {
-  display: inline-block; /* 부모 text-align의 영향을 받음 */
+  display: flex;
+  justify-content: space-between;
   max-width: 1024px;
-  width: 100%;
   box-sizing: border-box;
   margin: 20px auto;
   border-bottom: 10px solid #f7f7f7;

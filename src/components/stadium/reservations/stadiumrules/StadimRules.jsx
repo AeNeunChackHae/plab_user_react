@@ -1,24 +1,52 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './StadiumRules.module.css';
 
-const StadiumRules = () => {
-  // 시설 데이터
-  const facilities = [
-    { name: '샤워실', available: true, icon: 'ic_info_shower.svg' },
-    { name: '유료주차', available: true, icon: 'ic_info_park.svg' },
-    { name: '풋살화 대여', available: false, icon: 'ic_info_shoes.svg' },
-    { name: '조끼 대여', available: true, icon: 'ic_info_bibs.svg' },
-    { name: '음료 판매', available: true, icon: 'ic_info_beverage.svg' },
-    { name: '풋살공 대여', available: false, icon: 'ic_info_ball.svg' },
-    { name: '화장실', available: true, icon: 'ic_info_toilet.svg' },
-  ];
+const StadiumRules = ({ stadiumId }) => {
+  const [rules, setRules] = useState(null);
+  const [error, setError] = useState(null);
 
-  // "꼭 지켜주세요" 데이터
-  const rules = [
-    { id: 1, content: '화장실: 7층 화장실 이용' },
-    { id: 2, content: '풋살화 대여: 가능' },
-    { id: 3, content: '대기실 난방 사용 금지' },
-    { id: 4, content: '대기실 일반 대관, 소셜 매치 공동 사용 가능' },
+  useEffect(() => {
+    const fetchRules = async () => {
+      try {
+        const response = await fetch('http://localhost:8080/stadium/rules', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ stadium_id: stadiumId }),
+        });
+
+        if (!response.ok) {
+          throw new Error('경기장 데이터를 가져오는 데 실패했습니다.');
+        }
+
+        const data = await response.json();
+        setRules(data);
+      } catch (err) {
+        console.error('Error fetching stadium rules:', err);
+        setError(err.message);
+      }
+    };
+
+    fetchRules();
+  }, [stadiumId]);
+
+  if (error) {
+    return <div className={styles.error}>{error}</div>;
+  }
+
+  if (!rules) {
+    return <div className={styles.loading}>로딩 중...</div>;
+  }
+
+  const facilities = [
+    { name: '샤워실', available: rules.shower_yn === 'Y', icon: 'ic_info_shower.svg' },
+    { name: '유료주차', available: rules.parking_yn === 'Y', icon: 'ic_info_park.svg' },
+    { name: '풋살화 대여', available: rules.lend_shoes_yn === 'Y', icon: 'ic_info_shoes.svg' },
+    { name: '조끼 대여', available: rules.lend_vest_yn === 'Y', icon: 'ic_info_bibs.svg' },
+    { name: '음료 판매', available: rules.sell_drink_yn === 'Y', icon: 'ic_info_beverage.svg' },
+    { name: '풋살공 대여', available: rules.lend_ball_yn === 'Y', icon: 'ic_info_ball.svg' },
+    { name: '화장실', available: rules.toilet_yn === 'Y', icon: 'ic_info_toilet.svg' },
   ];
 
   return (
@@ -34,9 +62,7 @@ const StadiumRules = () => {
           {facilities.map((facility, index) => (
             <li
               key={index}
-              className={`${styles.infoList} ${
-                !facility.available ? styles.unavailable : ''
-              }`}
+              className={`${styles.infoList} ${!facility.available ? styles.unavailable : ''}`}
             >
               <img
                 src={`https://d31wz4d3hgve8q.cloudfront.net/static/img/${facility.icon}`}
@@ -48,22 +74,11 @@ const StadiumRules = () => {
           ))}
         </ul>
 
-        {/* 잘못된 정보 알림 */}
-        <div className={styles.caution}>
-          <img
-            src="https://d31wz4d3hgve8q.cloudfront.net/static/img/ic_caution.svg"
-            alt="주의"
-          />
-          <p>잘못된 정보가 있나요?</p>
-        </div>
-
         {/* 꼭 지켜주세요 */}
         <div className={styles.ruleSection}>
           <p className={styles.ruleTitle}>꼭 지켜주세요</p>
           <ul className={styles.ruleList}>
-            {rules.map((rule) => (
-              <li key={rule.id}>{rule.content}</li>
-            ))}
+            <li>{rules.notice}</li>
           </ul>
         </div>
       </div>

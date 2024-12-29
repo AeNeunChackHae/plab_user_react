@@ -1,131 +1,59 @@
-/* 전체 컨테이너 스타일 */
 .stadiumContainer {
-  padding: 10px;
+  padding: 20px;
   background-color: #fff;
   font-family: Arial, sans-serif;
 }
 
-.stadiumList {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
- 
-.stadiumItem {
-  margin-bottom: 15px;
-  border-radius: 8px;
-  overflow: hidden;
+.dateContainer {
+  margin-bottom: 20px;
+  padding: 15px 0;
+  border-top: 4px solid #ececec;
+  position: relative; /* 상대 위치 지정 */
 }
 
-/* 이미지와 정보 섹션 */
-.infoWrapper {
-  display: flex;
-  justify-content: space-between;
-  padding: 10px;
-  align-items: center;
-}
-
-.name {
+.dateWrapper {
+  position: absolute; /* 날짜 텍스트를 보더라인 위에 표시 */
+  top: -12px; /* 위치를 위로 올림 */
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #fff; /* 배경색으로 텍스트 주변을 덮음 */
+  padding: 0 10px;
   font-size: 16px;
+  color: #555;
   font-weight: bold;
 }
 
-.facility {
+.timeList {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0 0 0;
+}
+
+.timeItem {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border-radius: 4px;
+  background-color: #e7f3ff;
+  margin-bottom: 8px;
+}
+
+.timeItem:last-child {
+  margin-bottom: 0;
+}
+
+.time {
   font-size: 14px;
-  color: #666;
+  color: #333;
 }
 
 .price {
   font-size: 14px;
-  color: #888;
-  margin-top: 4px;
+  color: #007bff;
 }
-
-.imageWrapper {
-  width: 120px;
-  height: 90px;
-  overflow: hidden;
-  border-radius: 10px;
-}
-
-.image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* 시간 블록 섹션 */
-.timeBlockWrapper {
-  display: flex;
-  flex-wrap: nowrap;
-  margin-top: 4px;
-}
-
-.timeBlock {
-  flex: 1;
-  height: 5px;
-  background-color: #dddddd;
-  margin-right: 1px;
-  border-radius: 4px;
-}
-
-.timeBlock.available {
-  background-color: #007bff;
-}
-
-.timeBlock.soldout {
-  background-color: #dddddd;
-}
-
-.timeBlock:last-child {
-  margin-right: 0;
-}
-
-/* 시간 정보 섹션 */
-.timeInfoWrapper {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 4px;
-}
-
-.timeInfo {
-  font-size: 12px;
-  color: #888;
-  text-align: center;
-}
-
-.timeInfo:last-child {
-  opacity: 0;
-}
-
-/* 예약 상태 레전드 */
-.legendWrapper {
-  display: flex;
-  gap: 10px;
-  margin-top: 10px;
-  justify-content: flex-end;
-}
-
-.legend {
-  display: flex;
-  align-items: center;
-  font-size: 12px;
-  color: #555;
-}
-
-.legendAvailable,
-.legendSoldout {
-  width: 16px;
-  height: 16px;
-  border-radius: 4px;
-  display: inline-block;
-  margin-right: 8px;
-}
-
-.legendAvailable {
-  background-color: #007bff;
-}
-
-.legendSoldout {
-  background-color: #dddddd;
+.stadiumInfo {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #333;
 }
