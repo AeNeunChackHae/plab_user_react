@@ -13,6 +13,25 @@
     border-bottom: 1px solid #eaeaea;
 }
 
+.listItem {
+    user-select: none;
+    pointer-events: auto;
+}
+
+.matchLists {
+    pointer-events: none;
+}
+
+.matchLists span,
+.matchLists div,
+.matchLists img {
+    pointer-events: none;
+}
+
+.listItem:hover {
+    background-color: #f9f9f9;
+}
+
 .matchDate {
     font-size: 14px;
 }
