@@ -1,65 +1,90 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom'; 
 import styles from './MatchList.module.css';
 
 const MatchList = ({ matches }) => {
+  const navigate = useNavigate();
+
+  // 성별 표시 스타일 반환
   const getGenderDotClass = (gender) => {
     switch (gender) {
       case '여자':
         return styles.femaleDot;
       case '남자':
         return styles.maleDot;
+      case '남녀 모두':
+        return styles.allGenderDot;
       default:
         return '';
     }
   };
 
-  const getLevelClass = (level) => {
-    switch (level) {
-      case '아마추어1 이하':
-        return styles.amateur1;
-      case '아마추어2 이상':
-        return styles.amateur2;
-      case '모든 레벨':
-        return styles.allLevels;
-      default:
-        return '';
-    }
+  // 날짜 및 요일 포맷
+  const formatMatchDate = (dateString) => {
+    const date = new Date(dateString);
+    const options = {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: false,
+      weekday: 'long', // 요일 추가
+    };
+    return date.toLocaleString('ko-KR', options);
+  };
+
+  // 매치 클릭 핸들러
+  const handleMatchClick = (matchId) => {
+    navigate(`/match/${matchId}`);
   };
 
   return (
     <ul className={styles.list}>
-      {matches.map((match, index) => (
-        <li key={index} className={styles.list}>
+      {matches.map((match) => (
+        <li
+          key={match.match_id}
+          className={styles.listItem}
+          onClick={() => handleMatchClick(match.match_id)}
+        >
           <div className={styles.matchLists}>
-            {/* 매치 날짜 */}
-            <span className={styles.matchDate}>{match.date}</span>
-            <br />
-            {/* 매치 장소 */}
-            <span className={styles.matchLocation}>{match.location}</span>
-            {/* 마감 표시 */}
-            {match.closed && <span className={styles.matchClosed}>마감</span>}
-            <br />
-            {/* 성별 및 레벨 */}
-            <span className={`${styles.dot} ${getGenderDotClass(match.gender)}`}></span>
-            <span className={styles.gender}>{match.gender}</span>
-            <span> · </span>
-            <span className={`${styles.level} ${getLevelClass(match.level)}`}>
-              {match.level}
+            {/* 리그 날짜 및 시간 */}
+            <span className={styles.matchDate}>
+              {formatMatchDate(match.match_start_time)}
             </span>
             <br />
-            {/* 팀 엠블럼 */}
-            <div className={styles.teamEmblems}>
-              {match.teams.map((team, teamIndex) => (
-                <div key={teamIndex} className={styles.team}>
-                  <img
-                    src={team.emblem}
-                    alt={team.name || '팀 엠블럼'}
-                    className={styles.teamEmblem}
-                  />
-                  {team.name && <span className={styles.teamName}>{team.name}</span>}
-                </div>
-              ))}
-            </div>
+            
+            {/* 구장 이름 */}
+            <span className={styles.matchLocation}>{match.stadium_name}</span>
+            
+            {/* 리그 상태 (마감 표시) */}
+            {match.league_status === '마감' && (
+              <span className={styles.matchClosed}>마감</span>
+            )}
+            <br />
+            
+            {/* 성별 표시 */}
+            <span className={`${styles.dot} ${getGenderDotClass(match.allow_gender)}`}></span>
+            <span className={styles.gender}>{match.allow_gender}</span>
+            <br />
+            
+            {/* 가입 팀 목록 */}
+            {match.teams.length > 0 && (
+              <div className={styles.teamEmblems}>
+                {match.teams.map((team) => (
+                  <div key={team.team_id} className={styles.team}>
+                    <img
+                      src={team.team_logo}
+                      alt={team.team_name || '팀 엠블럼'}
+                      className={styles.teamEmblem}
+                    />
+                    {team.team_name && (
+                      <span className={styles.teamName}>{team.team_name}</span>
+                    )}
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         </li>
       ))}
