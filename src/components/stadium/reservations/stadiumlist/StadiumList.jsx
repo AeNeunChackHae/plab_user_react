@@ -1,87 +1,93 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom"; // React Router의 useNavigate 사용
 import styles from "./StadiumList.module.css";
-import STADIUM_DATA from "../../../dummydata/stadiumData";
 
-// 정시 기반으로 timeBlocks 생성
-const generateTimeBlocks = (availableTimes) => {
-  const blocks = Array(48).fill("soldout"); // 기본값은 "soldout"
-  const timeToIndex = (time) => {
-    const [hour, minute] = time.split(":").map(Number);
-    return hour * 2 + (minute === 30 ? 1 : 0);
-  };
-
-  availableTimes.forEach((time) => {
-    const startIndex = timeToIndex(time); // 시작 인덱스
-    for (let i = 0; i < 4; i++) {
-      if (startIndex + i < 48) {
-        blocks[startIndex + i] = "available"; // 4칸(2시간) 예약 가능
-      }
-    }
-  });
-
-  return blocks;
+// 종료 시간 계산 함수
+const calculateEndTime = (startTime, duration = 2) => {
+  const [hours, minutes] = startTime.split(":").map(Number);
+  const endHours = (hours + duration) % 24;
+  return `${endHours.toString().padStart(2, "0")}:${minutes
+    .toString()
+    .padStart(2, "0")}`;
 };
 
-const timeLabels = ["06시", "12시", "18시", "00시", "06시"]; // 표시할 시간 라벨
+const StadiumList = ({ stadiumId, selectedDate }) => {
+  const [matches, setMatches] = useState([]);
+  const [stadiumInfo, setStadiumInfo] = useState({});
+  const [error, setError] = useState(null);
+  const navigate = useNavigate(); // React Router의 네비게이션 훅
 
-const StadiumList = () => {
+  useEffect(() => {
+    const fetchMatches = async () => {
+      try {
+        const response = await fetch("http://localhost:8080/stadium/getMatches", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ stadiumId }),
+        });
+    
+        if (!response.ok) {
+          throw new Error("매치 데이터를 가져오는 데 실패했습니다.");
+        }
+    
+        const data = await response.json();
+        console.log('리스트 데이터',data)
+        if (data) {
+          // 구장 정보와 매치 데이터를 분리하여 상태 관리
+          setStadiumInfo(data.stadium); // 구장 정보 설정
+          setMatches(data.matches); // 매치 정보 설정
+        }
+      } catch (err) {
+        console.error("Error fetching matches:", err);
+        setError(err.message);
+      }
+    };
+    
+
+    fetchMatches();
+  }, [stadiumId]);
+
+  if (error) {
+    return <div className={styles.error}>{error}</div>;
+  }
+
+  const filteredMatches = matches.filter((match) => match.date === selectedDate);
+
+  const handleMatchClick = (matchId) => {
+    // 매치 상세 페이지로 이동
+    console.log('매치아이디입니당',matchId)
+    navigate(`/match/${matchId}`);
+  };
+
   return (
     <div className={styles.stadiumContainer}>
-      <ul className={styles.stadiumList}>
-        {STADIUM_DATA.map((stadium) => {
-          const timeBlocks = generateTimeBlocks(stadium.availableTimes);
-
-          return (
-            <li key={stadium.id} className={styles.stadiumItem}>
-              <div className={styles.infoWrapper}>
-                <div className={styles.facilityWrapper}>
-                  <p className={styles.name}>{stadium.name}</p>
-                  <p className={styles.facility}>{stadium.facility}</p>
-                  <p className={styles.price}>
-                    {stadium.pricePerHour.toLocaleString()}원/시간
-                  </p>
-                </div>
-                <div className={styles.imageWrapper}>
-                  <img src={stadium.image} alt={stadium.name} className={styles.image} />
-                </div>
-              </div>
-
-              {/* 시간 블록 */}
-              <div className={styles.timeBlockWrapper}>
-                {timeBlocks.map((status, index) => (
-                  <div
-                    key={index}
-                    className={`${styles.timeBlock} ${
-                      status === "available" ? styles.available : styles.soldout
-                    }`}
-                  ></div>
-                ))}
-              </div>
-
-              {/* 시간 정보 */}
-              <div className={styles.timeInfoWrapper}>
-                {timeLabels.map((label, index) => (
-                  <div key={index} className={styles.timeInfo}>
-                    {label}
-                  </div>
-                ))}
-              </div>
-            </li>
-          );
-        })}
-      </ul>
-
-      {/* 예약 상태 레전드 */}
-      <div className={styles.legendWrapper}>
-        <div className={styles.legend}>
-          <div className={styles.legendAvailable}></div>
-          예약 가능
-        </div>
-        <div className={styles.legend}>
-          <div className={styles.legendSoldout}></div>
-          예약 불가
-        </div>
+      <div className={styles.stadiumInfo}>
+        <span>
+          {`${stadiumInfo.width}x${stadiumInfo.height}m • ${stadiumInfo.ground_type_name}`}
+        </span>
       </div>
+      {filteredMatches.length === 0 ? (
+        <p className={styles.noMatches}>예약 가능한 시간이 없습니다.</p>
+      ) : (
+        filteredMatches.map((entry, index) => {
+          const endTime = calculateEndTime(entry.time);
+          return (
+            <div
+              key={index}
+              className={styles.timeItem}
+              onClick={() => handleMatchClick(entry.matchId)} // 매치 클릭 이벤트
+              style={{ cursor: "pointer" }} // 클릭 가능 표시
+            >
+              <span className={styles.time}>
+                {entry.time}~{endTime}(2시간)
+              </span>
+              <span className={styles.price}>80,000원</span>
+            </div>
+          );
+        })
+      )}
     </div>
   );
 };

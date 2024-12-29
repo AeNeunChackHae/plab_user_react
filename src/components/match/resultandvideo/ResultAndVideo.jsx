@@ -60,9 +60,9 @@ const ResultAndVideo = ({ match_id, showIcons = false }) => {
 
   // A, B, C 팀으로 데이터 매칭
   const teamMap = {
-    A: teams[0] || { team_name: "A팀", embulum_path: "/path/to/default-emblem.png" },
-    B: teams[1] || { team_name: "B팀", embulum_path: "/path/to/default-emblem.png" },
-    C: teams[2] || { team_name: "C팀", embulum_path: "/path/to/default-emblem.png" },
+    A: teams[0] || { team_name: "A팀", embulum_path: null },
+    B: teams[1] || { team_name: "B팀", embulum_path: null },
+    C: teams[2] || { team_name: "C팀", embulum_path: null },
   };
 
   return (
@@ -73,35 +73,47 @@ const ResultAndVideo = ({ match_id, showIcons = false }) => {
       <div className={styles.content}>
         {roundSchedule.map((match, index) => (
           <div key={index} className={styles.resultRow}>
-            {/* 홈 팀 */}
-            <div className={styles.teamInfo}>
+          {/* 홈 팀 */}
+          <div className={styles.teamInfo}>
+            {teamMap[match.home].embulum_path ? (
               <img
                 src={teamMap[match.home].embulum_path}
                 alt={`${teamMap[match.home].team_name} emblem`}
                 className={styles.teamEmblem}
               />
-              <span className={styles.teamText}>{teamMap[match.home].team_name}</span>
-            </div>
-            {/* 라운드 시간 (고정 텍스트 추가 가능) */}
-            <div className={styles.scoreBlock}>
-              <span className={styles.score}>{`0 : 0`}</span>
-            </div>
-            {/* 원정 팀 */}
-            <div className={styles.teamInfo}>
-              <span className={styles.teamText}>{teamMap[match.away].team_name}</span>
+            ) : (
+              <span className={styles.placeholderText}>빈자리</span>
+            )}
+            <span className={styles.teamText}>
+              {teamMap[match.home].team_name || "빈자리"}
+            </span>
+          </div>
+          {/* 라운드 시간 */}
+          <div className={styles.scoreBlock}>
+            <span className={styles.score}>{`0 : 0`}</span>
+          </div>
+          {/* 원정 팀 */}
+          <div className={styles.teamInfo}>
+            <span className={styles.teamText}>
+              {teamMap[match.away].team_name || "빈자리"}
+            </span>
+            {teamMap[match.away].embulum_path ? (
               <img
                 src={teamMap[match.away].embulum_path}
                 alt={`${teamMap[match.away].team_name} emblem`}
                 className={styles.teamEmblem}
               />
-            </div>
-            {showIcons && (
-              <div className={styles.iconBlock}>
-                <FaPlay className={styles.icon} onClick={openModal} />
-                <FaDownload className={styles.icon} onClick={openModal} />
-              </div>
+            ) : (
+              <span className={styles.placeholderText}>빈자리</span>
             )}
           </div>
+          {showIcons && (
+            <div className={styles.iconBlock}>
+              <FaPlay className={styles.icon} onClick={openModal} />
+              <FaDownload className={styles.icon} onClick={openModal} />
+            </div>
+          )}
+        </div>
         ))}
       </div>
       {isModalOpen && (

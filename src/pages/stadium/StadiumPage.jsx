@@ -6,13 +6,13 @@ import styles from "./StadiumPage.module.css";
 
 const StadiumPage = () => {
   const { stadium_id } = useParams();
-  console.log(`stadium_id ${stadium_id}`)
+  // console.log(`stadium_id ${stadium_id}`)
 
   return (
     <section className={styles.stadiumPage}>
       <ContentHeader stadiumId={stadium_id} />
       <div className={styles.mainContent}>
-        <StadiumDetails />
+        <StadiumDetails stadiumId={stadium_id}/>
       </div>
     </section>
   );
