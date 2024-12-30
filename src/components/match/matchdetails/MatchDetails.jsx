@@ -13,7 +13,7 @@ const MatchDetails = ({ match_id }) => {
   const [matchDetails, setMatchDetails] = useState(null);
   const [error, setError] = useState(null);
 
-  const navigate = useNavigate(); // useNavigate 훅 추가
+  const navigate = useNavigate();
 
   const fetchMatchDetails = useCallback(async () => {
     try {
@@ -49,7 +49,11 @@ const MatchDetails = ({ match_id }) => {
   );
 
   const calculateStatus = useCallback(() => {
-    if (!matchDate) return "";
+    if (!matchDetails) return "";
+    if (matchDetails.current_participants >= 18) {
+      return "closed";
+    }
+
     const now = currentTime;
     const diffInMilliseconds = matchDate - now;
     const diffDays = Math.ceil(diffInMilliseconds / (1000 * 60 * 60 * 24));
@@ -62,7 +66,7 @@ const MatchDetails = ({ match_id }) => {
       : diffDays >= 0 && diffMinutes > 10
       ? "regular"
       : "closed";
-  }, [matchDate, currentTime]);
+  }, [matchDate, currentTime, matchDetails]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -89,14 +93,69 @@ const MatchDetails = ({ match_id }) => {
     setShowMap((prev) => !prev);
   };
 
-  const handleApplyClick = () => {
-    const userId = localStorage.getItem("id"); // 로컬스토리지에서 유저 ID 가져오기
+  const handleApplyClick = async () => {
+    const userId = localStorage.getItem("id"); // 로컬스토리지에서 user_id 가져오기
     if (!userId) {
       console.error("User ID가 로컬스토리지에 없습니다.");
       return;
     }
-    if (status === "earlyBird" || status === "regular") {
-      navigate(`/order/${userId}`, { state: { from: `/match/${match_id}`}}); // 신청하기 클릭 시 유저 ID를 경로로 추가
+
+    try {
+      // 블랙리스트 확인 요청
+      const response = await fetch("http://localhost:8080/match/blacklist-check", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ match_id, user_id: userId }),
+      });
+
+      if (!response.ok) {
+        throw new Error("블랙리스트 확인 요청 실패");
+      }
+
+      const data = await response.json();
+
+      if (data.isBlacklisted) {
+        const proceed = window.confirm(
+          "블랙리스트에 등록된 사용자가 이 매치에 이미 신청했습니다. 그래도 신청하시겠습니까?"
+        );
+        if (!proceed) {
+          return; // "아니오" 선택 시 신청 중단
+        }
+      }
+
+      // 팀 경기일 경우 팀장 확인 로직 추가
+      if (matchDetails.match_type === 1) {
+        const teamResponse = await fetch("http://localhost:8080/match/team-check", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ match_id, user_id: userId }),
+        });
+
+        if (!teamResponse.ok) {
+          throw new Error("팀장 확인 요청 실패");
+        }
+
+        const teamData = await teamResponse.json();
+
+        if (!teamData.isTeamLeader) {
+          alert("팀장만 신청 가능합니다!");
+          return; // 팀장이 아닌 경우 신청 중단
+        }
+      }
+
+      // 블랙리스트가 없거나 팀장이면 결제 페이지로 이동
+      if (status === "earlyBird" || status === "regular") {
+        navigate(`/order/${userId}`, {
+          state: { from: `/match/${match_id}`, match_id },
+        });
+      }
+    } catch (error) {
+      console.error("신청 처리 중 오류 발생:", error);
+      alert("신청 처리 중 오류가 발생했습니다. 다시 시도해주세요.");
     }
   };
 
