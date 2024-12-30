@@ -4,11 +4,12 @@ import "./SettingPage.css";
 
 const SettingsPage = () => {
   const [userData, setUserData] = useState({
-    username: "",
+    username: "", // 기본값 설정
     id: "",
     birthdate: "",
   });
-
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [modalField, setModalField] = useState("");
 
@@ -23,9 +24,12 @@ const SettingsPage = () => {
       })
       .then((data) => {
         setUserData(data);
+        setLoading(false); // 로딩 완료
       })
       .catch((error) => {
         console.error("유저 데이터를 가져오는 중 오류 발생:", error);
+        setError("유저 데이터를 불러오는 데 실패했습니다.");
+        setLoading(false); // 로딩 상태 해제
       });
   }, []);
 
@@ -64,59 +68,77 @@ const SettingsPage = () => {
     window.location.href = "/login"; // 로그인 페이지로 이동
   };
 
+  if (loading) {
+    return <div>로딩 중...</div>; // 로딩 상태 표시
+  }
+
   return (
     <div className="settings-page">
-      {/* 기본 설정 */}
-      <section className="section">
-        <h2 className="section-title">기본 설정</h2>
-        <div className="setting-item">
-          <div>
-            <span className="setting-label">{userData.username}님의 계정</span>
-            <span className="setting-detail">{userData.accountNumber}</span>
-          </div>
-        </div>
-        <div className="setting-item">
-          <div>
-            <span className="setting-label">생년월일</span>
-            <span className="setting-detail">{userData.birthdate}</span>
-          </div>
-          <button
-            className="edit-button"
-            onClick={() => openModal("birthdate")}
-          >
-            수정
-          </button>
-        </div>
-        <div className="setting-item">
-          <div>
-            <span className="setting-label">비밀번호 바꾸기</span>
-          </div>
-          <button
-            className="edit-button"
-            onClick={() => (window.location.href = "/auth/register/correctpw")}
-          >
-            수정
-          </button>
-        </div>
-      </section>
+      {error ? (
+        <div className="error-message">{error}</div>
+      ) : (
+        <>
+          {/* 기본 설정 */}
+          <section className="section">
+            <h2 className="section-title">기본 설정</h2>
+            <div className="setting-item">
+              <div>
+                <span className="setting-label">
+                  {userData.username || "사용자 이름 없음"}님의 계정
+                </span>
+                <span className="setting-detail">
+                  {userData.accountNumber || "N/A"}
+                </span>
+              </div>
+            </div>
+            <div className="setting-item">
+              <div>
+                <span className="setting-label">생년월일</span>
+                <span className="setting-detail">
+                  {userData.birthdate || "입력되지 않음"}
+                </span>
+              </div>
+              <button
+                className="edit-button"
+                onClick={() => openModal("birthdate")}
+              >
+                수정
+              </button>
+            </div>
+            <div className="setting-item">
+              <div>
+                <span className="setting-label">비밀번호 바꾸기</span>
+              </div>
+              <button
+                className="edit-button"
+                onClick={() =>
+                  (window.location.href = "/auth/register/correctpw")
+                }
+              >
+                수정
+              </button>
+            </div>
+          </section>
 
-      {/* 계정 설정 */}
-      <section className="section">
-        <h2 className="section-title">계정</h2>
-        <div className="setting-item">
-          <button className="link-button" onClick={handleLogout}>
-            로그아웃
-          </button>
-        </div>
-        <div className="setting-item">
-          <button
-            className="link-button"
-            onClick={() => (window.location.href = "/mypage/withdrawal")}
-          >
-            탈퇴하기
-          </button>
-        </div>
-      </section>
+          {/* 계정 설정 */}
+          <section className="section">
+            <h2 className="section-title">계정</h2>
+            <div className="setting-item">
+              <button className="link-button" onClick={handleLogout}>
+                로그아웃
+              </button>
+            </div>
+            <div className="setting-item">
+              <button
+                className="link-button"
+                onClick={() => (window.location.href = "/mypage/withdrawal")}
+              >
+                탈퇴하기
+              </button>
+            </div>
+          </section>
+        </>
+      )}
 
       {/* 수정 모달 */}
       {showModal && modalField === "birthdate" && (

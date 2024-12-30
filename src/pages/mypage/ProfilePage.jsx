@@ -11,21 +11,23 @@ const ProfilePage = () => {
   };
 
   return (
-    <div className="container">
-      <div className="profile-image-container">
-        <img
-          src="https://d31wz4d3hgve8q.cloudfront.net/static/img/img_profile_default.png"
-          alt="프로필 이미지"
-          className="profile-image"
-        />
-        <button className="change-image-button" onClick={handleImageUpload}>
-          사진 바꾸기
-        </button>
+    <div className="body">
+      <div className="container">
+        <div className="profile-image-container">
+          <img
+            src="https://d31wz4d3hgve8q.cloudfront.net/static/img/img_profile_default.png"
+            alt="프로필 이미지"
+            className="profile-image"
+          />
+          <button className="change-image-button" onClick={handleImageUpload}>
+            사진 바꾸기
+          </button>
+        </div>
+        <ProfileForm />
+        {modalVisible && (
+          <ImageUploadModal onClose={() => setModalVisible(false)} />
+        )}
       </div>
-      <ProfileForm />
-      {modalVisible && (
-        <ImageUploadModal onClose={() => setModalVisible(false)} />
-      )}
     </div>
   );
 };

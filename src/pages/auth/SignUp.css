@@ -1,18 +1,14 @@
 /* Signup.css */
-
-body {
-  margin: 0;
-  padding: 0;
-  background-color: hsl(0, 0%, 100%);
+.body {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
-  box-sizing: border-box;
+  margin: 0;
 }
 
 .signup-container {
   background-color: #ffffff;
+  justify-content: center;
   width: 1000px;
   max-width: 1200px;
   padding: 40px;
@@ -153,7 +149,7 @@ body {
 }
 
 .signup-button {
-  width: 100%;
+  width: 1000px;
   padding: 10px 0;
   background-color: #007bff;
   color: #fff;

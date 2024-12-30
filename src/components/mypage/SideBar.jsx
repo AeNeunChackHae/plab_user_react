@@ -60,7 +60,7 @@ const Sidebar = () => {
       </div>
 
       {/* 홍보 배너 (링크) */}
-      <Link to="/promotion" className="promotion-message">
+      <Link to="/mypage/mylevel" className="promotion-message">
         <p id="banner-small">활동량 기록, 타인 평가를 통한</p>
         <p id="banner-big">
           <strong>개인 레벨 관리로 성장 하세요!</strong>
