@@ -6,7 +6,7 @@ const AboutPage = () => {
   const navigate = useNavigate();
 
   const handleSignupClick = () => {
-    navigate("/signup");
+    navigate("/auth/register");
   };
 
   return (
