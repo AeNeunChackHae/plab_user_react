@@ -33,7 +33,8 @@
 }
 
 .matchDate {
-    font-size: 14px;
+    font-weight: 300;
+    font-size: 19px;
 }
 
 .matchClosed {
@@ -46,7 +47,8 @@
 }
 
 .matchLocation {
-    font-size: 17px;
+    font-weight: 300;
+    font-size: 19px;
 }
 
 /* gender 앞 동그라미 점 스타일 */
@@ -77,29 +79,16 @@
     display: inline-block;
 }
 
-/* level 별 텍스트 색상 */
-.allLevels {
-    color: #999;
-}
-
-.amateur1 {
-    color: #00b894; /* 아마추어1 이하: 초록색 */
-}
-
-.amateur2 {
-    color: #553246; /* 아마추어2 이상: 보라색 */
-}
-
 /* 팀 리스트 영역 */
-.teamEmblems {
-    display: flex; /* 가로로 나열 */
+.teamList {
+    display: flex;
     gap: 10px;
     margin-top: 10px;
 }
 
 .team {
     display: flex;
-    align-items: baseline;
+    align-items: center;
     margin: 0;
 }
 
@@ -113,7 +102,7 @@
 }
 
 .teamName {
-    font-size: 13px;
+    font-size: 15px;
     margin: 5px;
     color: #555;
 }
