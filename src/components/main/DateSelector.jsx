@@ -33,10 +33,16 @@ const DateRangeDisplay = ({ onDateSelect }) => {
 
         setDateRange(range);
 
-        const todayIndex = 0;
-        setActiveIndex(todayIndex);
-        setCurrentStartIndex(0);
-        onDateSelectRef.current(range[todayIndex]?.fullDate);
+        // 현재 날짜와 일치하는 인덱스 찾기
+        const todayFullDate = today.toISOString().split('T')[0]; // YYYY-MM-DD 형식
+        const todayIndex = range.findIndex(date => date.fullDate === todayFullDate);
+
+        // 현재 날짜가 목록에 있으면 설정
+        if (todayIndex !== -1) {
+            setActiveIndex(todayIndex);
+            setCurrentStartIndex(Math.max(0, todayIndex - 3)); // 선택된 날짜가 중앙에 오도록
+            onDateSelectRef.current(range[todayIndex]?.fullDate); // 선택된 날짜 전달
+        }
     }, []);
 
     const handleClick = (index) => {
@@ -59,6 +65,7 @@ const DateRangeDisplay = ({ onDateSelect }) => {
 
     return (
         <div className={styles.dateSelectorContainer}>
+            {/* 이전 버튼 */}
             <button 
                 className={styles.navButton} 
                 onClick={handlePrev} 
@@ -66,6 +73,7 @@ const DateRangeDisplay = ({ onDateSelect }) => {
             >
                 &lt;
             </button>
+            {/* 날짜 버튼 목록 */}
             <div className={styles.dateSelector}>
                 {dateRange.slice(currentStartIndex, currentStartIndex + 7).map((date, index) => {
                     const actualIndex = currentStartIndex + index;
@@ -85,6 +93,7 @@ const DateRangeDisplay = ({ onDateSelect }) => {
                     );
                 })}
             </div>
+            {/* 다음 버튼 */}
             <button 
                 className={styles.navButton}
                 onClick={handleNext} 

@@ -6,10 +6,8 @@ import Filters from "../../components/main/Filters";
 import DateSelector from "../../components/main/DateSelector";
 import MatchList from "../../components/main/MatchList";
 import styles from './MainPage.module.css';
-import { useLocation } from "react-router-dom";
 
 const MainPage = () => {
-    const location = useLocation(); // 라우터 위치 확인
     const [selectedDate, setSelectedDate] = useState(''); // 날짜 필터
     const [filters, setFilters] = useState({
         region: [],
@@ -20,11 +18,10 @@ const MainPage = () => {
 
     // 메인 페이지로 돌아올 때 날짜 초기화
     useEffect(() => {
-        if (location.pathname === '/') {
-            const today = new Date().toISOString().split('T')[0];
-            setSelectedDate(today); // 오늘 날짜로 설정
-        }
-    }, [location]);
+        const today = new Date();
+        const formattedToday = today.toISOString().split('T')[0]; // YYYY-MM-DD 형식
+        setSelectedDate(formattedToday);
+    }, []);
 
     // 데이터 요청
     useEffect(() => {
