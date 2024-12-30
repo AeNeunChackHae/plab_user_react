@@ -4,7 +4,7 @@ import "./Sidebar.css";
 const Sidebar = ({ levelImage }) => {
   return (
     <div className="sidebar">
-      {/* levelImage 들어가야 하는 곳곳 */}
+      {/* levelImage 들어가야 하는 곳 */}
       <div className="sidebar-image-div">
         <img
           className="sidebar-image"

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   InputField,
   Button,
@@ -8,7 +8,26 @@ import "./PasswordChangePage.css";
 const PasswordResetPage = () => {
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const email = "dosmsckrgo@naver.com"; // Example email, replace with dynamic data if needed.
+  const [email, setEmail] = useState("");
+
+  useEffect(() => {
+    // 이메일 값을 서버에서 가져오는 비동기 함수
+    const fetchEmail = async () => {
+      try {
+        const response = await fetch("/api/get-user-email"); // API 엔드포인트
+        if (response.ok) {
+          const data = await response.json();
+          setEmail(data.email); // 서버에서 받은 이메일 값을 상태에 저장
+        } else {
+          console.error("fetch에 실패했습니다");
+        }
+      } catch (error) {
+        console.error("이메일을 가져오는데 실패했습니다:", error);
+      }
+    };
+
+    fetchEmail();
+  }, []);
 
   const handleSave = () => {
     if (newPassword === confirmPassword) {
@@ -21,7 +40,7 @@ const PasswordResetPage = () => {
   return (
     <div className="container-pwchange">
       <div className="form-box">
-        <h1 className="email-display">{email}</h1>
+        <h1 className="email-display">{email || "로딩 중..."}</h1>
         <InputField
           label="새 비밀번호"
           type="password"

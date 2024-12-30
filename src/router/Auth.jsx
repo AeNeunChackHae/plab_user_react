@@ -4,7 +4,7 @@ import LoginPage from "../pages/auth/LoginPage";
 import SignUp from "../pages/auth/SignUp";
 import SignUpComplete from "../pages/auth/SignupCompletionPage";
 import PasswordReset from "../pages/auth/PasswordChangePage";
-import PasswordCertification from "../pages/auth/PasswordCertification";
+import EmailCertification from "../pages/auth/EmailCertification";
 
 function Auth() {
   return (
@@ -13,7 +13,7 @@ function Auth() {
       <Route path="/register" element={<SignUp />} />
       <Route path="/register/complete" element={<SignUpComplete />} />
       <Route path="/register/correctpw" element={<PasswordReset />} />
-      <Route path="/findme/certification" element={<PasswordCertification />} />
+      <Route path="/findme/certification" element={<EmailCertification />} />
     </Routes>
   );
 }

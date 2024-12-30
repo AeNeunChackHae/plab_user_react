@@ -27,14 +27,6 @@ body {
   font-weight: 900;
 }
 
-#label-email {
-  width: 575px;
-}
-
-#label-password {
-  width: 575px;
-}
-
 input[type="checkbox"] {
   width: 25px;
   height: 25px;
@@ -63,9 +55,9 @@ input[type="checkbox"] {
   color: #555;
 }
 
-.login-box input[type="text"],
+.login-box input[type="email"],
 .login-box input[type="password"] {
-  width: 100%;
+  width: 570px;
   padding: 0.75rem;
   margin-bottom: 1rem;
   border: 1px solid #ddd;
@@ -95,6 +87,7 @@ input[type="checkbox"] {
 .login-box button {
   width: 100%;
   padding: 0.75rem;
+  margin-top: 20px;
   font-size: 1rem;
   color: #fff;
   background-color: #007bff;
@@ -120,7 +113,7 @@ input[type="checkbox"] {
   font-size: 0.7rem;
   margin-left: 0.5rem;
   margin-right: 0.5rem;
-  font-weight: 900;
+  font-weight: 600;
   text-decoration: none;
-  color: hwb(0 27% 73%);
+  color: #666;
 }

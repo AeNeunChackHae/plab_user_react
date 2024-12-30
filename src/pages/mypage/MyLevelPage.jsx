@@ -1,5 +1,5 @@
 import React from "react";
-import Sidebar from "../../components/mypage/SideBar";
+import Sidebar from "../../components/mypage/mylevel/Sidebar";
 import FeedbackCard from "../../components/mypage/mylevel/FeedbackCard";
 import Feedback from "../../components/mypage/mylevel/Feedback";
 import ActivityInfo from "../../components/mypage/mylevel/ActivityInfo";
@@ -10,10 +10,19 @@ const MyLevelPage = () => {
   const mockData = {
     levelImage: "path/to/image.png",
     pom: 24,
-    smileCard: 19,
     yellowCard: 1,
     redCard: 2,
-    compliments: ["좋은 패스!", "최고의 수비!", "매너가 좋았어요!"],
+    compliments: [
+      { text: "슈팅이 좋아요", vote: "1" },
+      { text: "드리블이 좋아요", vote: "2" },
+      { text: "스피드가 빨라요", vote: "4" },
+      { text: "패스를 잘해요", vote: "1" },
+      { text: "게임 운영을 잘해요", vote: "1" },
+      { text: "패스를 빨리 주세요", vote: "2" },
+      { text: "좀 더 뛰어주세요", vote: "0" },
+      { text: "자신감 있게 해주세요", vote: "0" },
+      { text: "조급해 하지 마세요", vote: "2" },
+    ],
     avgDistance: 5.3,
     avgCalories: 450,
     recentGames: [
