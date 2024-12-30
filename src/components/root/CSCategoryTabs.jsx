@@ -76,7 +76,7 @@ const faqData = {
   match: [
     {
       question: "매치 진행 최소 인원이 궁금해요",
-      answer: "최소 인원은 6명입니다.",
+      answer: "최소 인원은 4명입니다.",
     },
   ],
   rain: [

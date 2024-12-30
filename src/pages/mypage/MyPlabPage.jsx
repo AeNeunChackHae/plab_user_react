@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import MatchSchedule from "../../components/mypage/myplab/MatchSchedule";
 import MatchCompleted from "../../components/mypage/myplab/MatchCompleted";
-import StadiumReservation from "../../components/mypage/myplab/StadiumReservation";
 import CalendarModal from "../../components/mypage/myplab/CalendarModal";
 import "./page-style.css";
 
@@ -41,29 +40,6 @@ const MyPlabPage = () => {
     },
   ];
 
-  const reservations = [
-    {
-      date: "2024-11-21",
-      stadiumName: "영등포 스타디움",
-      status: "completed",
-    },
-    {
-      date: "2024-12-23",
-      stadiumName: "고양 스타디움",
-      status: "confirmed",
-    },
-    {
-      date: "2025-01-03",
-      stadiumName: "용산 스타디움",
-      status: "cancelled",
-    },
-    {
-      date: "2025-01-03",
-      stadiumName: "잠실 스타디움",
-      status: "confirmed",
-    },
-  ];
-
   const handleDateSelect = (date) => {
     setSelectedDate(date);
   };
@@ -87,15 +63,6 @@ const MyPlabPage = () => {
             path="/completed"
             element={
               <MatchCompleted selectedDate={selectedDate} events={events} />
-            }
-          />
-          <Route
-            path="/stadium"
-            element={
-              <StadiumReservation
-                selectedDate={selectedDate}
-                reservations={reservations}
-              />
             }
           />
         </Routes>

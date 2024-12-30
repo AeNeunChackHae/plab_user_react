@@ -9,7 +9,6 @@ const TabNavigation = () => {
   const tabs = [
     { label: "매치 일정", path: "/mypage/myplab" },
     { label: "완료된 매치", path: "/mypage/myplab/completed" },
-    { label: "구장 예약", path: "/mypage/myplab/stadium" },
   ];
 
   return (

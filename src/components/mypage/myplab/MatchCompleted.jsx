@@ -31,6 +31,7 @@ const MatchCompleted = ({ selectedDate, events }) => {
   // 활동량 기입
   const handleActivityInput = (matchId) => {
     console.log(`활동량 기입 페이지로 이동: Match ID ${matchId}`);
+    alert("최근 소셜 매치 리뷰에서 활동량 기입을 해주세요!");
     navigate("/mypage/mylevel"); // '/mypage/mylevel' 페이지로 이동
   };
 
@@ -38,6 +39,7 @@ const MatchCompleted = ({ selectedDate, events }) => {
   const viewMatchResult = (matchId) => {
     console.log(`매치 결과 확인: Match ID ${matchId}`);
     alert("매치 결과 페이지로 이동합니다!");
+    navigate(`/match/completed/${matchId}`); // /match/completed/:matchId로 이동
   };
 
   // 매치 평가

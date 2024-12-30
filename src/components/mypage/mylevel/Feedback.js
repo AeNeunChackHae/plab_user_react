@@ -1,32 +1,32 @@
-import React, { useState } from "react";
+import React from "react";
 import "./Feedback.css";
 
-const Feedback = ({ compliments }) => {
-  const [showModal, setShowModal] = useState(false);
-
-  const toggleModal = () => setShowModal(!showModal);
-
+const Feedback = ({ positiveCompliments, negativeCompliments }) => {
   return (
     <div className="feedback">
-      <h3>👏 타 플래버 피드백</h3>
-      <button className="praise-button" onClick={toggleModal}>
-        피드백 내역을 보시려면 클릭하세요
-      </button>
-      {showModal && (
-        <div className="modal">
-          <div className="modal-content">
-            <h3>피드백 내역</h3>
-            <ul>
-              {compliments.map((item, index) => (
-                <li key={index}>
-                  {item.text} : <strong>{item.votes} </strong>
-                </li>
-              ))}
-            </ul>
-            <button onClick={toggleModal}>닫기</button>
-          </div>
+      <p className="feedback-title">👏 타 플래버 피드백</p>
+      <div className="feedback-sections">
+        <div className="positive-feedback">
+          <h4>잘하고 있어요!</h4>
+          <ul>
+            {positiveCompliments.map((item, index) => (
+              <li key={index}>
+                {item.text} <span>({item.vote}표)</span>
+              </li>
+            ))}
+          </ul>
         </div>
-      )}
+        <div className="negative-feedback">
+          <h4>조금 더 보완해요!</h4>
+          <ul>
+            {negativeCompliments.map((item, index) => (
+              <li key={index}>
+                {item.text} <span>({item.vote}표)</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
     </div>
   );
 };

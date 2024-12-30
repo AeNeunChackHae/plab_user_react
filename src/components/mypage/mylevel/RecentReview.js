@@ -88,14 +88,6 @@ const RecentReview = ({ recentGames }) => {
           <div className="modal-content">
             <h3>활동량 기입</h3>
             <label>
-              운동일시{" "}
-              <input
-                name="exerciseDate"
-                type="datetime-local"
-                onChange={handleChange}
-              />
-            </label>
-            <label>
               운동시간{" "}
               <input
                 name="exerciseTime"
