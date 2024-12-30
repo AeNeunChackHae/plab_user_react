@@ -26,7 +26,7 @@ const ResultAndVideo = ({ match_id, showIcons = false }) => {
         }
 
         const data = await response.json();
-        setTeams(data); // 데이터를 설정
+        setTeams(data || []); // 데이터를 설정하거나 빈 배열로 설정
         console.log("Fetched match data:", data);
       } catch (err) {
         console.error("Error fetching match data:", err);
@@ -39,10 +39,6 @@ const ResultAndVideo = ({ match_id, showIcons = false }) => {
 
   if (error) {
     return <div className={styles.error}>{error}</div>;
-  }
-
-  if (!teams || teams.length === 0) {
-    return <div className={styles.loading}>로딩 중...</div>;
   }
 
   // 고정된 라운드 배치
@@ -73,47 +69,47 @@ const ResultAndVideo = ({ match_id, showIcons = false }) => {
       <div className={styles.content}>
         {roundSchedule.map((match, index) => (
           <div key={index} className={styles.resultRow}>
-          {/* 홈 팀 */}
-          <div className={styles.teamInfo}>
-            {teamMap[match.home].embulum_path ? (
-              <img
-                src={teamMap[match.home].embulum_path}
-                alt={`${teamMap[match.home].team_name} emblem`}
-                className={styles.teamEmblem}
-              />
-            ) : (
-              <span className={styles.placeholderText}>빈자리</span>
-            )}
-            <span className={styles.teamText}>
-              {teamMap[match.home].team_name || "빈자리"}
-            </span>
-          </div>
-          {/* 라운드 시간 */}
-          <div className={styles.scoreBlock}>
-            <span className={styles.score}>{`0 : 0`}</span>
-          </div>
-          {/* 원정 팀 */}
-          <div className={styles.teamInfo}>
-            <span className={styles.teamText}>
-              {teamMap[match.away].team_name || "빈자리"}
-            </span>
-            {teamMap[match.away].embulum_path ? (
-              <img
-                src={teamMap[match.away].embulum_path}
-                alt={`${teamMap[match.away].team_name} emblem`}
-                className={styles.teamEmblem}
-              />
-            ) : (
-              <span className={styles.placeholderText}>빈자리</span>
-            )}
-          </div>
-          {showIcons && (
-            <div className={styles.iconBlock}>
-              <FaPlay className={styles.icon} onClick={openModal} />
-              <FaDownload className={styles.icon} onClick={openModal} />
+            {/* 홈 팀 */}
+            <div className={styles.teamInfo}>
+              {teamMap[match.home].embulum_path ? (
+                <img
+                  src={teamMap[match.home].embulum_path}
+                  alt={`${teamMap[match.home].team_name} emblem`}
+                  className={styles.teamEmblem}
+                />
+              ) : (
+                <span className={styles.placeholderText}>빈자리</span>
+              )}
+              <span className={styles.teamText}>
+                {teamMap[match.home].team_name || "빈자리"}
+              </span>
             </div>
-          )}
-        </div>
+            {/* 라운드 시간 */}
+            <div className={styles.scoreBlock}>
+              <span className={styles.score}>{`0 : 0`}</span>
+            </div>
+            {/* 원정 팀 */}
+            <div className={styles.teamInfo}>
+              <span className={styles.teamText}>
+                {teamMap[match.away].team_name || "빈자리"}
+              </span>
+              {teamMap[match.away].embulum_path ? (
+                <img
+                  src={teamMap[match.away].embulum_path}
+                  alt={`${teamMap[match.away].team_name} emblem`}
+                  className={styles.teamEmblem}
+                />
+              ) : (
+                <span className={styles.placeholderText}>빈자리</span>
+              )}
+            </div>
+            {showIcons && (
+              <div className={styles.iconBlock}>
+                <FaPlay className={styles.icon} onClick={openModal} />
+                <FaDownload className={styles.icon} onClick={openModal} />
+              </div>
+            )}
+          </div>
         ))}
       </div>
       {isModalOpen && (

@@ -132,10 +132,8 @@ const MatchPage = () => {
           )}
         </div>
         <div className={styles.rightSection}>
-        {/* {console.log("Match data before rendering MetchDetails:", match_id,match.stadium_id)} 디버깅 */}
-          <MatchDetails match_id={match_id} stadiumId={match.stadium_id} statusCode={match.status_code}
-          // status={match.status_code} 
-            // {...(match.matchDetails || { defaultDetails: "세부 정보 없음" })}
+        {console.log("매치스테이터스랑 타입", match.status_code,match.match_type)} 
+          <MatchDetails match_id={match_id} stadiumId={match.stadium_id} /*statusCode={match.match_type}*/
           />
         </div>
       </div>

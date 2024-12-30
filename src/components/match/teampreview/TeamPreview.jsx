@@ -24,13 +24,18 @@ const TeamPreview = ({ match_id }) => {
         const data = await response.json();
 
         console.log("Fetched match data:", data);
-        if (!Array.isArray(data)) {
-          throw new Error("서버에서 반환된 데이터가 배열이 아닙니다.");
-        }
-
-        setTeamsData(data);
-        if (data.length > 0) {
-          setSelectedTeam(data[0]); // 기본 선택
+        if (!Array.isArray(data) || data.length === 0) {
+          // 팀 데이터가 없으면 기본 값 설정
+          const defaultTeams = [
+            { team_name: "A팀", embulum_path: null, members_count: 0, average_age: 0, matches_played: 0, goals: 0, points: 0, team_level: "초보" },
+            { team_name: "B팀", embulum_path: null, members_count: 0, average_age: 0, matches_played: 0, goals: 0, points: 0, team_level: "초보" },
+            { team_name: "C팀", embulum_path: null, members_count: 0, average_age: 0, matches_played: 0, goals: 0, points: 0, team_level: "초보" },
+          ];
+          setTeamsData(defaultTeams);
+          setSelectedTeam(defaultTeams[0]); // 기본 팀 선택
+        } else {
+          setTeamsData(data);
+          setSelectedTeam(data[0]); // 첫 번째 팀 기본 선택
         }
       } catch (err) {
         console.error("팀 데이터 로드 오류:", err);
@@ -43,10 +48,6 @@ const TeamPreview = ({ match_id }) => {
 
   if (error) {
     return <div className={styles.error}>{error}</div>;
-  }
-
-  if (!teamsData || teamsData.length === 0) {
-    return <div className={styles.loading}>로딩 중...</div>;
   }
 
   return (
@@ -67,11 +68,17 @@ const TeamPreview = ({ match_id }) => {
               }`}
               onClick={() => setSelectedTeam(team)}
             >
-              <img
-                src={team.embulum_path}
-                alt={`${team.team_name} 엠블럼`}
-                className={styles.emblem}
-              />
+              {team.embulum_path ? (
+                <img
+                  src={team.embulum_path}
+                  alt={`${team.team_name} 엠블럼`}
+                  className={styles.emblem}
+                />
+              ) : (
+                <div className={styles.placeholderEmblem}>
+                  {team.team_name}
+                </div>
+              )}
             </div>
           ))}
         </div>

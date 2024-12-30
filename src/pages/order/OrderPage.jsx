@@ -1,28 +1,61 @@
 import React, { useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, useParams } from "react-router-dom";
 import styles from "./OrderPage.module.css";
 
 const OrderPage = () => {
   const [isKakaoPayActive, setIsKakaoPayActive] = useState(true);
   const [isPaymentComplete, setIsPaymentComplete] = useState(false);
-
   const navigate = useNavigate();
   const location = useLocation();
+  const { user_id } = useParams(); // URL 파라미터에서 user_id 가져오기
   const from = location.state?.from || "/"; // 이전 경로가 없으면 홈으로 돌아감
 
   const handlePaymentMethodClick = () => {
     setIsKakaoPayActive(true);
   };
 
-  const handlePaymentButtonClick = () => {
-    // 결제 완료 처리
-    setIsPaymentComplete(true);
+  const handlePaymentButtonClick = async () => {
+    console.log('location.state',location.state)
+    try {
+      const match_id = location.state?.match_id; // match_id를 이전 페이지에서 받아옴
+      console.log('오더페이지 매치아이디',match_id)
+      if (!match_id || !user_id) {
+        console.error("match_id 또는 user_id가 누락되었습니다.");
+        return;
+      }
 
-    // 2초 후 이전 경로로 자동 이동
-    setTimeout(() => {
-      navigate(from); // 이전 페이지로 돌아가기
-    }, 1000);
+      // 결제 요청
+      const response = await fetch("http://localhost:8080/match/apply", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("authToken")}`, // 인증 토큰
+        },
+        body: JSON.stringify({
+          match_id,
+          user_id,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("매치 신청에 실패했습니다.");
+      }
+
+      const result = await response.json();
+      console.log(result.message);
+
+      setIsPaymentComplete(true);
+
+      // 2초 후 이전 경로로 자동 이동
+      setTimeout(() => {
+        navigate(from); // 이전 페이지로 돌아가기
+      }, 1000);
+    } catch (err) {
+      console.error("결제 요청 중 오류:", err);
+      alert("결제 처리 중 문제가 발생했습니다.");
+    }
   };
+  
 
   const closeModal = () => {
     setIsPaymentComplete(false);
@@ -66,43 +99,6 @@ const OrderPage = () => {
               />
             </label>
           </div>
-        </div>
-
-        <div className={styles.orderRefundInfo}>
-          <h2 className={styles.orderSectionTitle}>환불 안내</h2>
-          <table className={styles.orderRefundTable}>
-            <thead>
-              <tr>
-                <th>취소 시점</th>
-                <th>환불 비율</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>10일 전</td>
-                <td>100% 환불</td>
-              </tr>
-              <tr>
-                <td>5일 전</td>
-                <td>80% 환불</td>
-              </tr>
-              <tr>
-                <td>2일 전</td>
-                <td>50% 환불</td>
-              </tr>
-              <tr>
-                <td>1일 전</td>
-                <td>환불 불가</td>
-              </tr>
-            </tbody>
-          </table>
-          <p className={styles.orderRefundNote}>
-            결제 완료 후 30분 이내에는 무료 취소가 가능합니다. (취소 수수료 없음)
-          </p>
-          <ul className={styles.orderRefundDetails}>
-            <li>예약 시간 간격 및 기상 상태에 따라 취소 수수료가 달라질 수 있습니다.</li>
-            <li>환불 기준은 별도의 공지가 없는 한 표준 환불 정책을 따릅니다.</li>
-          </ul>
         </div>
 
         <div className={styles.orderButton}>
