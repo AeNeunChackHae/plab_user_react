@@ -10,7 +10,7 @@ const Banner = () => {
     >
       <div className={styles.content}>
         <img src={bannerData.bannericon} alt="플랩팀리그" />
-        <p>
+        <p className={styles.bannerTitle}>
           {bannerData.description.split('\n').map((line, index) => (
             <span key={index}>
               {line}
@@ -18,9 +18,9 @@ const Banner = () => {
             </span>
           ))}
         </p>
-        <ol>
+        <ol className={styles.bannerOl}>
           {bannerData.points.map((point, index) => (
-            <li key={index}>{point}</li>
+            <li key={index} className={styles.bannerInfo}>{point}</li>
           ))}
         </ol>
       </div>

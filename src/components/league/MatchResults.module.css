@@ -1,67 +1,62 @@
 .container {
-  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
-  
+
 .matchCard {
-  margin-bottom: 10px;
-  border-bottom: 1px solid #eaeaea;
-  padding: 15px;
+  padding: 16px 0;
+  cursor: pointer;
+}
+
+.matchInfo {
+  margin-bottom: 12px;
 }
 
 .matchDate {
-  font-size: 17px;
-  font-weight: bold;
+  font-weight: 300;
+  font-size: 19px;
 }
 
 .matchDetails {
-  font-size: 15px;
-  color: #777777;
+  font-size: 17px;
+  color: #777;
 }
-  
+
 .teamList {
+  gap: 10px;
   list-style: none;
   padding: 0;
-  margin: 10px 0 0;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+  margin: 0;
 }
-  
+
 .team {
   display: flex;
   align-items: center;
-  gap: 10px;
-  font-size: 16px;
+  gap: 8px;
+  padding: 7px 0;
 }
-  
-.teamEmblem {
-  width: 35px;
-  height: 35px;
-  padding: 0;
-  border-radius: 50%;
-  background-color: #f0f0f0;
-}
-  
-.teamName {
-  flex-grow: 1;
-  color: #333;
-  margin: 5px;
-}
-  
-.winnerBadge {
-  color: green;
-  font-size: 12px;
-  font-weight: bold;
-  background-color: antiquewhite;
-  padding: 4px;
-  border-radius: 5px;
 
+.teamEmblem {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  object-fit: cover;
 }
-  
-.teamScore {
-  margin-left: auto; 
-  font-weight: bold;
+
+.teamName {
   font-size: 16px;
-  color: #333;
+  font-weight: 100;
 }
-  
+
+/* 완료 매치 데이터가 없을 경우 */
+.noMatches {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+  font-size: 18px;
+  color: #888;
+  font-weight: 500;
+  text-align: center;
+}

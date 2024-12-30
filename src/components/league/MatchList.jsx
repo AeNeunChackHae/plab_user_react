@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom'; 
+import { useNavigate } from 'react-router-dom';
 import styles from './MatchList.module.css';
 
 const MatchList = ({ matches }) => {
@@ -19,19 +19,18 @@ const MatchList = ({ matches }) => {
     }
   };
 
-  // 날짜 및 요일 포맷
-  const formatMatchDate = (dateString) => {
+  // 날짜 및 시간 포맷
+  const formatMatchDateTime = (dateString) => {
     const date = new Date(dateString);
-    const options = {
-      year: 'numeric',
-      month: '2-digit',
-      day: '2-digit',
+    return date.toLocaleDateString('ko-KR', {
+      month: 'long',
+      day: 'numeric',
+      weekday: 'long',
+    }) + ' ' + date.toLocaleTimeString('ko-KR', {
       hour: '2-digit',
       minute: '2-digit',
       hour12: false,
-      weekday: 'long', // 요일 추가
-    };
-    return date.toLocaleString('ko-KR', options);
+    });
   };
 
   // 매치 클릭 핸들러
@@ -50,27 +49,27 @@ const MatchList = ({ matches }) => {
           <div className={styles.matchLists}>
             {/* 리그 날짜 및 시간 */}
             <span className={styles.matchDate}>
-              {formatMatchDate(match.match_start_time)}
+              {formatMatchDateTime(match.match_start_time)}
             </span>
             <br />
-            
+
             {/* 구장 이름 */}
             <span className={styles.matchLocation}>{match.stadium_name}</span>
-            
+
             {/* 리그 상태 (마감 표시) */}
             {match.league_status === '마감' && (
               <span className={styles.matchClosed}>마감</span>
             )}
             <br />
-            
+
             {/* 성별 표시 */}
             <span className={`${styles.dot} ${getGenderDotClass(match.allow_gender)}`}></span>
-            <span className={styles.gender}>{match.allow_gender}</span>
+            <span className={styles.gender}>&nbsp;{match.allow_gender}</span>
             <br />
-            
+
             {/* 가입 팀 목록 */}
             {match.teams.length > 0 && (
-              <div className={styles.teamEmblems}>
+              <div className={styles.teamList}>
                 {match.teams.map((team) => (
                   <div key={team.team_id} className={styles.team}>
                     <img

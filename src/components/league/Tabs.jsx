@@ -1,63 +1,71 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import MatchList from './MatchList';
 import MatchResults from './MatchResults';
+import TeamRankings from './TeamRankings';
 import Filters from './Filters';
 import styles from './Tabs.module.css';
-// import matchResultsData from '../../components/dummydata/matchResults.json';
-import TeamRankings from './TeamRankings';
 
 const Tabs = () => {
-  const [activeTab, setActiveTab] = useState('일정');
-  const [matches, setMatches] = useState([]); // 모든 매치 데이터
-  const [filteredMatches, setFilteredMatches] = useState([]); // 필터링된 매치 데이터
-  const [loading, setLoading] = useState(true); // 로딩 상태
-  const [error, setError] = useState(null); // 오류 상태
+  const [activeTab, setActiveTab] = useState('일정'); 
+  const [genderFilter, setGenderFilter] = useState('남자'); 
+  const [matches, setMatches] = useState([]);
+  const [filteredMatches, setFilteredMatches] = useState([]);
+  const [rankings, setRankings] = useState([]);
+  const [error, setError] = useState(null);
 
-  // 📌 API로 매치 데이터 불러오기
-  useEffect(() => {
-    const fetchMatches = async () => {
-      setLoading(true);
-      try {
-        const response = await fetch('http://localhost:8080/league', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ main_region: null }),
-        });
+  // API 요청 함수
+  const fetchData = useCallback(async (endpoint, body = {}) => {
+    try {
+      const response = await fetch(`http://localhost:8080${endpoint}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(body),
+      });
 
-        const data = await response.json();
-        if (data.success) {
+      const data = await response.json();
+      if (data.success) {
+        if (endpoint.includes('/ranking')) {
+          setRankings(data.data);
+        } else {
           setMatches(data.data);
           setFilteredMatches(data.data);
-        } else {
-          throw new Error(data.message || 'Failed to fetch matches');
         }
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
+      } else {
+        throw new Error(data.message || 'Failed to fetch data');
       }
-    };
-
-    fetchMatches();
+    } catch (err) {
+      setError(err.message);
+    }
   }, []);
 
-  // 탭 변경 시 필터 초기화
+  // 탭 변경 시 API 호출
   useEffect(() => {
     if (activeTab === '일정') {
-      setFilteredMatches(matches);
+      fetchData('/league/upcoming');
+    } else if (activeTab === '완료') {
+      fetchData('/league/completed');
+    } else if (activeTab === '팀 순위') {
+      setGenderFilter('남자'); 
+      fetchData('/league/ranking', { gender: 0 });
     }
-  }, [activeTab, matches]);
+  }, [activeTab, fetchData]);
 
-  if (loading) return <div className={styles.loading}>데이터를 불러오는 중...</div>;
+  // 성별 필터 변경 시 API 호출
+  useEffect(() => {
+    if (activeTab === '팀 순위') {
+      fetchData('/league/ranking', { gender: genderFilter === '남자' ? 0 : 1 });
+    }
+  }, [genderFilter, activeTab, fetchData]);
+
   if (error) return <div className={styles.error}>에러: {error}</div>;
 
   return (
     <div>
-      {/* 탭 버튼 */}
+      {/* 상단 탭 버튼 */}
       <div className={styles.tabs}>
-        {['일정', '결과', '팀 순위'].map((tab) => (
+        {['일정', '완료', '팀 순위'].map((tab) => (
           <button
             key={tab}
             className={activeTab === tab ? styles.active : ''}
@@ -76,8 +84,8 @@ const Tabs = () => {
         </>
       )}
 
-      {/* 경기 결과 탭 */}
-      {activeTab === '결과' && (
+      {/* 완료 탭 */}
+      {activeTab === '완료' && (
         <>
           <Filters matches={matches} setFilteredMatches={setFilteredMatches} />
           {filteredMatches.length > 0 ? (
@@ -91,7 +99,11 @@ const Tabs = () => {
       {/* 팀 순위 탭 */}
       {activeTab === '팀 순위' && (
         <div className={styles.rankings}>
-          <TeamRankings />
+          <TeamRankings
+            rankings={rankings}
+            genderFilter={genderFilter}
+            setGenderFilter={setGenderFilter}
+          />
         </div>
       )}
     </div>

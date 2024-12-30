@@ -10,31 +10,24 @@
     max-width: 600px;
 }
 
-img {
+.bannericon {
     padding: 10px 0;
 }
 
-p {
+.bannerTitle {
     font-size: 1.1rem;
     font-weight: bold;
     margin-bottom: 20px;
 }
-  
-ol {
-    margin-top: 10px;
-    padding-left: 0;
+ 
+.bannerOl {
+    padding: 0 20px;
 }
-  
-li {
-    font-size: 15px;
+
+.bannerInfo {
+    font-size: 18px;
     margin: 0;
     border: none;
     padding: 5px 0;
     pointer-events: none;
-}
-
-li:hover {
-    background: none;
-    color: inherit;
-    cursor: default;
 }
