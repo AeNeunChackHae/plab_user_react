@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import EmailInput from "../../components/auth/findme-certification/EmailInput";
 import VerificationCodeInput from "../../components/auth/findme-certification/VerificationCodeInput";
-import "./PasswordCertification.css";
 
 const PasswordCertification = () => {
   const [email, setEmail] = useState("");
@@ -36,7 +35,7 @@ const PasswordCertification = () => {
 
   return (
     <div className="container">
-      <h2>비밀번호 찾기</h2>
+      <h2>가입 이메일 찾기</h2>
       <EmailInput
         email={email}
         onChange={(e) => setEmail(e.target.value)}

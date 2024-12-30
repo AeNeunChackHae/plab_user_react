@@ -6,6 +6,7 @@ import ProfilePage from "../pages/mypage/ProfilePage";
 import MyPlabPage from "../pages/mypage/MyPlabPage";
 import MyLevelPage from "../pages/mypage/MyLevelPage";
 import WithdrawerPage from "../pages/mypage/WithdrawerPage";
+import BlacklistManager from "../pages/mypage/BlackListPage";
 import "../pages/mypage/page-style.css";
 
 function Mypage() {
@@ -17,6 +18,7 @@ function Mypage() {
       <Route path="/myplab/*" element={<MyPlabPage />} />
       <Route path="/mylevel" element={<MyLevelPage />} />
       <Route path="/withdrawal/*" element={<WithdrawerPage />} />
+      <Route path="/blacklist" element={<BlacklistManager />} />
     </Routes>
   );
 }

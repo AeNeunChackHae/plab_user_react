@@ -1,7 +1,7 @@
 import React from "react";
 import "./FeedbackCard.css";
 
-const FeedbackCard = ({ pom, smileCard, yellowCard, redCard }) => {
+const FeedbackCard = ({ pom, yellowCard, redCard }) => {
   return (
     <div className="feedback-card">
       <h3>⚽ 나의 매너</h3>
@@ -11,11 +11,6 @@ const FeedbackCard = ({ pom, smileCard, yellowCard, redCard }) => {
           POM
           <br />
           <span>{pom}</span>
-        </div>
-        <div>
-          스마일카드
-          <br />
-          <span>{smileCard}</span>
         </div>
         <div>
           옐로카드
