@@ -43,9 +43,7 @@ const StadiumRules = ({ stadiumId }) => {
     { name: '샤워실', available: rules.shower_yn === 'Y', icon: 'ic_info_shower.svg' },
     { name: '유료주차', available: rules.parking_yn === 'Y', icon: 'ic_info_park.svg' },
     { name: '풋살화 대여', available: rules.lend_shoes_yn === 'Y', icon: 'ic_info_shoes.svg' },
-    { name: '조끼 대여', available: rules.lend_vest_yn === 'Y', icon: 'ic_info_bibs.svg' },
     { name: '음료 판매', available: rules.sell_drink_yn === 'Y', icon: 'ic_info_beverage.svg' },
-    { name: '풋살공 대여', available: rules.lend_ball_yn === 'Y', icon: 'ic_info_ball.svg' },
     { name: '화장실', available: rules.toilet_yn === 'Y', icon: 'ic_info_toilet.svg' },
   ];
 
