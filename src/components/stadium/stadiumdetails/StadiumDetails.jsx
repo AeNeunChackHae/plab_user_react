@@ -25,6 +25,7 @@ const StadiumDetails = ({ stadiumId }) => {
   };
 
   useEffect(() => {
+    console.log("stadium_id:; ",stadiumId)
     const fetchStadiumDetails = async () => {
       try {
         const response = await fetch("http://localhost:8080/stadium/details", {
