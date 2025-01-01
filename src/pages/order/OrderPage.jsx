@@ -5,6 +5,7 @@ import styles from "./OrderPage.module.css";
 const OrderPage = () => {
   const [isKakaoPayActive, setIsKakaoPayActive] = useState(true);
   const [isPaymentComplete, setIsPaymentComplete] = useState(false);
+  const [paymentError, setPaymentError] = useState(""); // 결제 실패 메시지
   const navigate = useNavigate();
   const location = useLocation();
   const { user_id } = useParams(); // URL 파라미터에서 user_id 가져오기
@@ -15,10 +16,10 @@ const OrderPage = () => {
   };
 
   const handlePaymentButtonClick = async () => {
-    console.log('location.state',location.state)
+    console.log('location.state', location.state);
     try {
       const match_id = location.state?.match_id; // match_id를 이전 페이지에서 받아옴
-      console.log('오더페이지 매치아이디',match_id)
+      console.log('오더페이지 매치아이디', match_id);
       if (!match_id || !user_id) {
         console.error("match_id 또는 user_id가 누락되었습니다.");
         return;
@@ -38,27 +39,34 @@ const OrderPage = () => {
       });
 
       if (!response.ok) {
-        throw new Error("매치 신청에 실패했습니다.");
+        const errorData = await response.json(); // 오류 메시지 확인
+        throw new Error(errorData.message || "매치 신청에 실패했습니다.");
       }
 
       const result = await response.json();
       console.log(result.message);
 
-      setIsPaymentComplete(true);
+      setIsPaymentComplete(true); // 결제 성공 표시
 
-      // 2초 후 이전 경로로 자동 이동
+      // 결제 성공 시 마이페이지로 이동
       setTimeout(() => {
-        navigate(from); // 이전 페이지로 돌아가기
-      }, 1000);
+        navigate("/mypage/myplab"); // 성공 시 이동 경로
+      }, 2000);
     } catch (err) {
       console.error("결제 요청 중 오류:", err);
-      alert("결제 처리 중 문제가 발생했습니다.");
+      setPaymentError(err.message); // 결제 실패 메시지 저장
     }
   };
-  
 
   const closeModal = () => {
-    setIsPaymentComplete(false);
+    if (paymentError) {
+      // 결제 실패 시 이전 페이지로 이동
+      navigate(from);
+    } else {
+      // 결제 성공 시 모달 닫기
+      setIsPaymentComplete(false);
+    }
+    setPaymentError(""); // 오류 메시지 초기화
   };
 
   return (
@@ -106,12 +114,25 @@ const OrderPage = () => {
         </div>
       </div>
 
-      {/* 모달 창 */}
+      {/* 결제 성공 모달 */}
       {isPaymentComplete && (
         <div className={styles.modalOverlay}>
           <div className={styles.modal}>
             <h2 className={styles.modalTitle}>결제 알림</h2>
             <p className={styles.modalMessage}>결제가 완료되었습니다.</p>
+            <button className={styles.modalCloseButton} onClick={closeModal}>
+              확인
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* 결제 실패 모달 */}
+      {paymentError && (
+        <div className={styles.modalOverlay}>
+          <div className={styles.modal}>
+            <h2 className={styles.modalTitle}>결제 실패</h2>
+            <p className={styles.modalMessage}>{paymentError}</p>
             <button className={styles.modalCloseButton} onClick={closeModal}>
               확인
             </button>

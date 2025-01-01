@@ -12,7 +12,7 @@ const MatchDetails = ({ match_id }) => {
   const [currentTime, setCurrentTime] = useState(new Date());
   const [matchDetails, setMatchDetails] = useState(null);
   const [error, setError] = useState(null);
-  const [isAlreadyApplied, setIsAlreadyApplied] = useState(false); // 신청 여부 상태 추가
+  const [isAlreadyApplied, setIsAlreadyApplied] = useState(false)
 
   const navigate = useNavigate();
 
@@ -40,28 +40,23 @@ const MatchDetails = ({ match_id }) => {
 
   const checkApplicationStatus = useCallback(async () => {
     const userId = localStorage.getItem("id");
-    if (!userId) {
-      console.error("User ID가 로컬 스토리지에 없습니다.");
-      return;
-    }
+    if (!userId) return;
 
     try {
       const response = await fetch("http://localhost:8080/match/application-check", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ match_id, user_id: userId }),
       });
 
       if (!response.ok) {
-        throw new Error("신청 상태 확인 요청 실패");
+        throw new Error("신청 여부 확인 요청 실패");
       }
 
       const data = await response.json();
       setIsAlreadyApplied(data.isApplied);
     } catch (err) {
-      console.error("신청 상태 확인 오류:", err);
+      console.error("신청 여부 확인 오류:", err);
     }
   }, [match_id]);
 
@@ -257,16 +252,44 @@ const MatchDetails = ({ match_id }) => {
         </LocationProvider>
       )}
       <div className={styles.matchFee}>
-        {isAlreadyApplied ? (
+      {isAlreadyApplied ? ( // 이미 신청한 매치 여부를 가장 우선적으로 확인
           <div className={styles.statusBlock}>
             <div className={styles.contentBlock}>
-              <span className={styles.appliedMessage}>신청한 매치입니다!</span>
+            <span className={styles.money}>
+                {pricing.regularPrice.toLocaleString()}원
+              </span>
+              <span> / 2시간</span>
             </div>
             <button className={styles.disabledButton} disabled>
-              신청 완료
+              이미 신청한 매치입니다!
             </button>
           </div>
-        ) : status === "earlyBird" || status === "regular" ? (
+        ) : status === "past" ? ( // 매치 종료 상태 확인
+          <div className={styles.statusBlock}>
+            <div className={styles.contentBlock}>
+            <span className={styles.money}>
+                {pricing.regularPrice.toLocaleString()}원
+              </span>
+              <span> / 2시간</span>
+            </div>
+            <button className={styles.disabledButton} disabled>
+              종료된 매치
+            </button>
+          </div>
+        ) : status === "closed" ? ( // 신청 마감 상태 확인
+          <div className={styles.statusBlock}>
+            <div className={styles.contentBlock}>
+              <span className={styles.money}>
+                {pricing.regularPrice.toLocaleString()}원
+              </span>
+              <span> / 2시간</span>
+              <div className={styles.matchClosed}>신청이 마감되었습니다</div>
+            </div>
+            <button className={styles.disabledButton} disabled>
+              마감되었습니다
+            </button>
+          </div>
+        ) : status === "earlyBird" ? ( // 얼리버드 상태 확인
           <div className={styles.statusBlock}>
             <div className={styles.contentBlock}>
               <span className={`${styles.money} ${styles.strikeThrough}`}>
@@ -281,9 +304,29 @@ const MatchDetails = ({ match_id }) => {
               신청하기
             </button>
           </div>
+        ) : status === "regular" ? ( // 일반 신청 가능 상태 확인
+          <div className={styles.statusBlock}>
+            <div className={styles.contentBlock}>
+              <span className={styles.money}>
+                {pricing.regularPrice.toLocaleString()}원
+              </span>
+              <span> / 2시간</span>
+              <div className={styles.matchend}>
+                매치 시작 10분 전까지 신청 가능
+              </div>
+            </div>
+            <button className={styles.applyButton} onClick={handleApplyClick}>
+              신청하기
+            </button>
+          </div>
         ) : (
           <div className={styles.statusBlock}>
-            <span>매치 상태: {status}</span>
+            <div className={styles.contentBlock}>
+              <span className={styles.money}>상태를 확인할 수 없습니다</span>
+            </div>
+            <button className={styles.disabledButton} disabled>
+              신청 불가
+            </button>
           </div>
         )}
       </div>
