@@ -11,7 +11,7 @@ const Feedback = ({ positiveCompliments, negativeCompliments }) => {
           <ul>
             {positiveCompliments.map((item, index) => (
               <li key={index}>
-                {item.text} <span>({item.vote}표)</span>
+                {item.text} <span>{item.vote}회</span>
               </li>
             ))}
           </ul>
@@ -21,7 +21,7 @@ const Feedback = ({ positiveCompliments, negativeCompliments }) => {
           <ul>
             {negativeCompliments.map((item, index) => (
               <li key={index}>
-                {item.text} <span>({item.vote}표)</span>
+                {item.text} <span>{item.vote}회</span>
               </li>
             ))}
           </ul>

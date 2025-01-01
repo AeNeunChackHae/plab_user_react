@@ -1,9 +1,9 @@
 import React from "react";
-import Calendar from "react-calendar"; // 설치 필요: npm install react-calendar
+import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import "./CalendarModal.css";
 
-const CalendarModal = ({ events, reservation, onDateSelect }) => {
+const CalendarModal = ({ events = [], onDateSelect }) => {
   const handleDateChange = (date) => {
     onDateSelect(date);
   };
@@ -19,9 +19,9 @@ const CalendarModal = ({ events, reservation, onDateSelect }) => {
           );
           return matchOnDate ? <div className="match-dot"></div> : null;
         }}
-        formatDay={(locale, date) => `${date.getDate()}`} // '18일' -> '18'
+        formatDay={(locale, date) => date.getDate()} // 숫자만 표시
       />
-    </div>
+    </div> // 찍은 값을 
   );
 };
 
