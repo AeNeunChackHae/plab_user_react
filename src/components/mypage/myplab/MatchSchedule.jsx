@@ -1,46 +1,104 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import TabNavigation from "../../mypage/myplab/TabNavigation";
 import "./MatchSchedule.css";
 
-const MatchSchedule = ({ selectedDate, events }) => {
+const MatchSchedule = ({ selectedDate }) => {
+  const [events, setEvents] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [modalMessage, setModalMessage] = useState("");
   const [selectedMatch, setSelectedMatch] = useState(null);
 
-  // 선택된 날짜 또는 현재 월과 연도 계산
-  const currentMonth = selectedDate
-    ? new Date(selectedDate).getMonth()
-    : new Date().getMonth();
-  const currentYear = selectedDate
-    ? new Date(selectedDate).getFullYear()
-    : new Date().getFullYear();
+  const userId = localStorage.getItem("id");
+  const token = localStorage.getItem("authToken");
+  //id 22로 진행
 
-  // 현재 월 컨펌, 취소 매치 필터링
+  useEffect(() => {
+    if (!userId) {
+      console.error("사용자 ID가 없습니다.");
+      return;
+    }
+
+    const fetchScheduleData = async () => {
+      try {
+        const response = await fetch(
+          "http://127.0.0.1:8080/mypage/myplabongoing",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({ user_id: userId }),
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        setEvents(data); // 데이터 상태 업데이트
+        console.log("myplabongoing에서 받은 데이터:", data);
+      } catch (error) {
+        console.error("Error fetching match schedule:", error.message);
+      }
+    };
+
+    fetchScheduleData();
+  }, [userId, token]);
+
   const filteredMatches = events.filter((event) => {
     const eventDate = new Date(event.date);
     return (
-      eventDate.getMonth() === currentMonth &&
-      eventDate.getFullYear() === currentYear &&
+      eventDate.getMonth() ===
+        (selectedDate
+          ? new Date(selectedDate).getMonth()
+          : new Date().getMonth()) &&
+      eventDate.getFullYear() ===
+        (selectedDate
+          ? new Date(selectedDate).getFullYear()
+          : new Date().getFullYear()) &&
       (event.status === "confirmed" || event.status === "cancelled")
     );
   });
 
-  // 채팅방 입장
-  const openChatRoom = (matchId) => {
-    console.log(`채팅방 입장: Match ID ${matchId}`);
-    alert("채팅방 창이 열렸습니다! (io 연결 필요)");
-  };
+  const handleCancelMatch = async (matchId) => {
+    try {
+      const response = await fetch(
+        "http://127.0.0.1:8080/mypage/myplabcancel",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({ matchId, userId }),
+        }
+      );
 
-  // 매치 취소
-  const handleCancelMatch = (matchId) => {
-    setSelectedMatch(matchId);
-    setModalMessage("정말 취소하시겠습니까?");
-    setShowModal(true);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      alert(data.message);
+
+      // 매치 취소된 이벤트 제거
+      setEvents((prevEvents) =>
+        prevEvents.filter((event) => event.id !== matchId)
+      );
+    } catch (error) {
+      console.error("매치 취소 실패:", error.message);
+      alert("매치 취소에 실패했습니다.");
+    }
   };
 
   const confirmCancel = () => {
-    console.log(`매치 취소 완료: Match ID ${selectedMatch}`);
-    setModalMessage("취소가 완료되었습니다.");
+    if (selectedMatch) {
+      handleCancelMatch(selectedMatch); // 선택된 매치 ID 전달
+    }
+    setShowModal(false);
+    setModalMessage("");
   };
 
   const closeModal = () => {
@@ -48,14 +106,13 @@ const MatchSchedule = ({ selectedDate, events }) => {
     setModalMessage("");
   };
 
-  // 아이콘 선택 로직
   const getIcon = (match) => {
     if (match.status === "cancelled") {
-      return "/icons/cancelled-icon.png"; // 매치 취소 아이콘 경로
+      return "/icons/cancelled-icon.png";
     }
     return match.type === "social"
-      ? "/icons/social-match-icon.png" // 소셜 매치 아이콘 경로
-      : "/icons/team-match-icon.png"; // 팀 매치 아이콘 경로
+      ? "/icons/social-match-icon.png"
+      : "/icons/team-match-icon.png";
   };
 
   return (
@@ -65,7 +122,6 @@ const MatchSchedule = ({ selectedDate, events }) => {
         {filteredMatches.length > 0 ? (
           filteredMatches.map((match, index) => (
             <div key={index} className="match-item">
-              {/* 동그란 이미지와 경기 정보 */}
               <div className="match-info">
                 <img
                   src={getIcon(match)}
@@ -88,16 +144,15 @@ const MatchSchedule = ({ selectedDate, events }) => {
                   </p>
                 </div>
               </div>
-
-              {/* 버튼 */}
               <div className="match-buttons">
                 {match.status === "confirmed" && (
-                  <button onClick={() => openChatRoom(match.id)}>
-                    채팅방 입장
-                  </button>
-                )}
-                {match.status === "confirmed" && (
-                  <button onClick={() => handleCancelMatch(match.id)}>
+                  <button
+                    onClick={() => {
+                      setSelectedMatch(match.id); // 선택된 매치 ID 설정
+                      setModalMessage("정말 취소하시겠습니까?");
+                      setShowModal(true);
+                    }}
+                  >
                     매치취소
                   </button>
                 )}
@@ -108,21 +163,12 @@ const MatchSchedule = ({ selectedDate, events }) => {
           <p>해당 월에 매치 일정이 없습니다.</p>
         )}
       </div>
-
-      {/* 모달 */}
       {showModal && (
         <div className="modal">
           <div className="modal-content">
             <p>{modalMessage}</p>
-            {modalMessage === "정말 취소하시겠습니까?" && (
-              <div>
-                <button onClick={confirmCancel}>확인</button>
-                <button onClick={closeModal}>취소</button>
-              </div>
-            )}
-            {modalMessage === "취소가 완료되었습니다." && (
-              <button onClick={closeModal}>확인</button>
-            )}
+            <button onClick={confirmCancel}>확인</button>
+            <button onClick={closeModal}>취소</button>
           </div>
         </div>
       )}
