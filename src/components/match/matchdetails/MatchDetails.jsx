@@ -74,23 +74,33 @@ const MatchDetails = ({ match_id }) => {
 
   const calculateStatus = useCallback(() => {
     if (!matchDetails) return "";
-    if (matchDetails.current_participants >= 18) {
-      return "closed";
-    }
-
+  
     const now = currentTime;
-    const diffInMilliseconds = matchDate - now;
-    const diffDays = Math.ceil(diffInMilliseconds / (1000 * 60 * 60 * 24));
-    const diffMinutes = Math.floor(diffInMilliseconds / (1000 * 60));
-
-    return matchDate < now
-      ? "past"
-      : diffDays > 10
-      ? "earlyBird"
-      : diffDays >= 0 && diffMinutes > 10
-      ? "regular"
-      : "closed";
-  }, [matchDate, currentTime, matchDetails]);
+    const matchStartTime = new Date(matchDetails.match_start_time);
+    const matchEndTime = new Date(matchDetails.match_end_time); // end time 추가
+    const diffToStart = matchStartTime - now; // 시작 시간까지의 차이
+    const diffToEnd = matchEndTime - now; // 종료 시간까지의 차이
+    const diffDays = Math.ceil(diffToStart / (1000 * 60 * 60 * 24)); // 시작 시간까지 남은 일 수
+    const diffMinutesToStart = Math.floor(diffToStart / (1000 * 60)); // 시작 시간까지 남은 분
+    const diffMinutesToEnd = Math.floor(diffToEnd / (1000 * 60)); // 종료 시간까지 남은 분
+  
+    console.log("match_start_time:", matchDetails.match_start_time);
+    console.log("match_end_time:", matchDetails.match_end_time);
+    console.log("currentTime:", currentTime);
+    if (diffMinutesToEnd <= 0) {
+      return "past"; // 종료 시간 이후
+    } else if (now >= matchStartTime && now <= matchEndTime) {
+      return "play"; // 매치 진행 중
+    } else if (diffMinutesToStart <= 180 && diffMinutesToStart > 0) {
+      return "closed"; // 매치 시작 3시간 전 ~ 시작 시간
+    } else if (diffDays <= 10 && diffMinutesToStart > 180) {
+      return "regular"; // 시작 10일 전 ~ 시작 3시간 전
+    } else if (diffDays > 10) {
+      return "earlyBird"; // 시작 10일 전보다 이전
+    }
+  
+    return "unknown"; // 상태를 확인할 수 없는 경우
+  }, [matchDetails, currentTime]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -233,11 +243,7 @@ const MatchDetails = ({ match_id }) => {
           >
             주소 복사
           </span>
-          <span
-            id="toggleMap"
-            onClick={handleToggleMap}
-            className={styles.map}
-          >
+          <span id="toggleMap" onClick={handleToggleMap} className={styles.map}>
             {showMap ? "지도 닫기" : "지도 보기"}
           </span>
         </div>
@@ -252,86 +258,99 @@ const MatchDetails = ({ match_id }) => {
         </LocationProvider>
       )}
       <div className={styles.matchFee}>
-      {isAlreadyApplied ? ( // 이미 신청한 매치 여부를 가장 우선적으로 확인
-          <div className={styles.statusBlock}>
-            <div className={styles.contentBlock}>
-            <span className={styles.money}>
-                {pricing.regularPrice.toLocaleString()}원
-              </span>
-              <span> / 2시간</span>
-            </div>
-            <button className={styles.disabledButton} disabled>
-              이미 신청한 매치입니다!
-            </button>
-          </div>
-        ) : status === "past" ? ( // 매치 종료 상태 확인
-          <div className={styles.statusBlock}>
-            <div className={styles.contentBlock}>
-            <span className={styles.money}>
-                {pricing.regularPrice.toLocaleString()}원
-              </span>
-              <span> / 2시간</span>
-            </div>
-            <button className={styles.disabledButton} disabled>
-              종료된 매치
-            </button>
-          </div>
-        ) : status === "closed" ? ( // 신청 마감 상태 확인
-          <div className={styles.statusBlock}>
-            <div className={styles.contentBlock}>
-              <span className={styles.money}>
-                {pricing.regularPrice.toLocaleString()}원
-              </span>
-              <span> / 2시간</span>
-              <div className={styles.matchClosed}>신청이 마감되었습니다</div>
-            </div>
-            <button className={styles.disabledButton} disabled>
-              마감되었습니다
-            </button>
-          </div>
-        ) : status === "earlyBird" ? ( // 얼리버드 상태 확인
-          <div className={styles.statusBlock}>
-            <div className={styles.contentBlock}>
-              <span className={`${styles.money} ${styles.strikeThrough}`}>
-                {pricing.regularPrice.toLocaleString()}원
-              </span>
-              <span className={styles.money}>
-                {pricing.discountPrice.toLocaleString()}원
-              </span>
-              <div className={styles.discountText}>{pricing.discountText}</div>
-            </div>
-            <button className={styles.applyButton} onClick={handleApplyClick}>
-              신청하기
-            </button>
-          </div>
-        ) : status === "regular" ? ( // 일반 신청 가능 상태 확인
-          <div className={styles.statusBlock}>
-            <div className={styles.contentBlock}>
-              <span className={styles.money}>
-                {pricing.regularPrice.toLocaleString()}원
-              </span>
-              <span> / 2시간</span>
-              <div className={styles.matchend}>
-                매치 시작 10분 전까지 신청 가능
-              </div>
-            </div>
-            <button className={styles.applyButton} onClick={handleApplyClick}>
-              신청하기
-            </button>
-          </div>
-        ) : (
-          <div className={styles.statusBlock}>
-            <div className={styles.contentBlock}>
-              <span className={styles.money}>상태를 확인할 수 없습니다</span>
-            </div>
-            <button className={styles.disabledButton} disabled>
-              신청 불가
-            </button>
-          </div>
-        )}
+  {isAlreadyApplied ? ( // 이미 신청한 매치 여부를 가장 우선적으로 확인
+    <div className={styles.statusBlock}>
+      <div className={styles.contentBlock}>
+        <span className={styles.money}>
+          {pricing.regularPrice.toLocaleString()}원
+        </span>
+        <span> / 2시간</span>
       </div>
+      <button className={styles.disabledButton} disabled>
+        이미 신청한 매치입니다!
+      </button>
+    </div>
+  ) : status === "past" ? ( // 매치 종료 상태 확인
+    <div className={styles.statusBlock}>
+      <div className={styles.contentBlock}>
+        <span className={styles.money}>
+          {pricing.regularPrice.toLocaleString()}원
+        </span>
+        <span> / 2시간</span>
+        <div className={styles.matchClosed}>종료된 매치입니다</div>
+      </div>
+      <button className={styles.disabledButton} disabled>
+        종료
+      </button>
+    </div>
+  ) : status === "play" ? ( // 매치 진행 중 상태 확인
+    <div className={styles.statusBlock}>
+      <div className={styles.contentBlock}>
+        <span className={styles.money}>
+          {pricing.regularPrice.toLocaleString()}원
+        </span>
+        <span> / 2시간</span>
+        <div className={styles.matchLive}>매치가 진행 중입니다!</div>
+      </div>
+      <button className={styles.disabledButton} disabled>
+        진행 중
+      </button>
+    </div>
+  ) : status === "closed" ? ( // 신청 마감 상태 확인
+    <div className={styles.statusBlock}>
+      <div className={styles.contentBlock}>
+        <span className={styles.money}>
+          {pricing.regularPrice.toLocaleString()}원
+        </span>
+        <span> / 2시간</span>
+        <div className={styles.matchClosed}>신청이 마감되었습니다</div>
+      </div>
+      <button className={styles.disabledButton} disabled>
+        신청 불가
+      </button>
+    </div>
+  ) : status === "earlyBird" ? ( // 얼리버드 상태 확인
+    <div className={styles.statusBlock}>
+      <div className={styles.contentBlock}>
+        <span className={`${styles.money} ${styles.strikeThrough}`}>
+          {pricing.regularPrice.toLocaleString()}원
+        </span>
+        <span className={styles.money}>
+          {pricing.discountPrice.toLocaleString()}원
+        </span>
+        <div className={styles.discountText}>얼리버드 할인 적용 중</div>
+      </div>
+      <button className={styles.applyButton} onClick={handleApplyClick}>
+        신청하기
+      </button>
+    </div>
+  ) : status === "regular" ? ( // 일반 신청 가능 상태 확인
+    <div className={styles.statusBlock}>
+      <div className={styles.contentBlock}>
+        <span className={styles.money}>
+          {pricing.regularPrice.toLocaleString()}원
+        </span>
+        <span> / 2시간</span>
+        <div className={styles.discountText}>매치 시작 3시간 전까지 신청 가능</div>
+      </div>
+      <button className={styles.applyButton} onClick={handleApplyClick}>
+        신청하기
+      </button>
+    </div>
+  ) : (
+    <div className={styles.statusBlock}>
+      <div className={styles.contentBlock}>
+        <span className={styles.money}>상태를 확인할 수 없습니다</span>
+      </div>
+      <button className={styles.disabledButton} disabled>
+        신청 불가
+      </button>
+    </div>
+  )}
+</div>
     </div>
   );
+  
 };
 
 export default MatchDetails;
