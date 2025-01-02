@@ -17,7 +17,7 @@
   gap: 20px;
 }
 
-.statusBox_cancle {
+.statusCircle_cancle {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -63,13 +63,13 @@
   gap: 20px;
 }
 
-.statusBox_upcoming {
+.statusCircle_upcoming {
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
-  width: 70px;
-  height: 70px;
+  width: 65px;
+  height: 65px;
   border-radius: 50%;
   background-color: #edf797;
   align-items: center;
@@ -113,6 +113,7 @@
   font-size: 14px;
   background-color: #f8f9fa;
   color: #333;
+  transition: background-color 0.2s;
 }
 
 .matchButton:hover {
