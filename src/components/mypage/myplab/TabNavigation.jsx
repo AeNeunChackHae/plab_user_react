@@ -1,27 +1,21 @@
 import React from "react";
-import { useNavigate, useLocation } from "react-router-dom";
 import "./TabNavigation.css";
 
-const TabNavigation = () => {
-  const navigate = useNavigate();
-  const location = useLocation();
-
-  const tabs = [
-    { label: "매치 일정", path: "/mypage/myplab" },
-    { label: "완료된 매치", path: "/mypage/myplab/completed" },
-  ];
-
+const TabNavigation = ({ activeTab, onTabChange }) => {
   return (
     <div className="tab-navigation">
-      {tabs.map((tab, index) => (
-        <button
-          key={index}
-          className={location.pathname === tab.path ? "tab active" : "tab"}
-          onClick={() => navigate(tab.path)}
-        >
-          {tab.label}
-        </button>
-      ))}
+      <button
+        className={activeTab === "schedule" ? "tab active" : "tab"}
+        onClick={() => onTabChange("schedule")}
+      >
+        매치 일정
+      </button>
+      <button
+        className={activeTab === "completed" ? "tab active" : "tab"}
+        onClick={() => onTabChange("completed")}
+      >
+        완료된 매치
+      </button>
     </div>
   );
 };
