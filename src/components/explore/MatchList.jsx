@@ -7,11 +7,11 @@ const MatchList = ({ matches }) => {
 
   const getGenderDotClass = (gender) => {
     switch (gender) {
-      case "여자":
+      case "여성":
         return styles.femaleDot;
-      case "남자":
+      case "남성":
         return styles.maleDot;
-      case "남녀 모두":
+      case "혼성":
         return styles.allDot;
       default:
         return "";
@@ -20,11 +20,11 @@ const MatchList = ({ matches }) => {
 
   const getLevelClass = (level) => {
     switch (level) {
-      case "일반":
+      case "모든레벨":
         return styles.general;
-      case "아마추어1 이하":
+      case "아마추어1이하":
         return styles.amateur1;
-      case "아마추어2 이상":
+      case "아마추어2이상":
         return styles.amateur2;
       default:
         return "";
