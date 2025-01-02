@@ -156,7 +156,7 @@ const Navbar = () => {
                 src="https://d31wz4d3hgve8q.cloudfront.net/static/img/ic_mymatch.svg"
                 alt="Calendar"
                 className={styles.icon}
-                onClick={() => handleNavigation("/mypage/myplab/")} // 개인 매치 페이지 이동
+                onClick={() => handleNavigation("/mypage/myplab")} // 개인 매치 페이지 이동
               />
             </>
           )}

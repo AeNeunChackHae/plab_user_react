@@ -5,7 +5,6 @@
 
 .react-calendar {
   border: none;
-  font-family: Arial, sans-serif;
   width: 100%;
 }
 
@@ -58,23 +57,36 @@
   color: #ddd;
 }
 
-.react-calendar__tile--active {
-  background: #007bff;
-  color: white;
-  border-radius: 50%;
-}
-
+/* 오늘 날짜 (기본 상태) */
 .react-calendar__tile--now {
   background: #e6f7ff;
   border-radius: 50%;
   color: #007bff;
 }
 
-.match-dot {
-  width: 6px;
-  height: 6px;
-  background-color: #007bff;
+/* 선택된 날짜 (우선순위 높이기) */
+.react-calendar__tile--active.tile-saturday {
+  background: #007bff;
+  color: #ffffff;
+}
+
+.react-calendar__tile--active.tile-sunday {
+  background: #007bff;
+  color: #ffffff;
+}
+
+.react-calendar__tile--active {
+  background: #007bff;
+  color: white;
   border-radius: 50%;
-  margin: 0 auto;
-  margin-top: 5px;
+}
+
+/* 토요일 스타일 (파란색) */
+.tile-saturday {
+  color: #007bff;
+}
+
+/* 일요일 스타일 (빨간색) */
+.tile-sunday {
+  color: #ff4d4f;
 }

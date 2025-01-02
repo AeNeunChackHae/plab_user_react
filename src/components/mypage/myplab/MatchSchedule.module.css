@@ -1,0 +1,120 @@
+/* 공통 매치 아이템 */
+.matchItem {
+  padding: 16px;
+  margin: 8px 0;
+  border-radius: 8px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* 취소한 매치, 취소된 매치 스타일 */
+.cancelContent {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  gap: 20px;
+}
+
+.statusBox_cancle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background-color: #999;
+  align-items: center;
+  text-align: center;
+}
+
+.cancelledTitle {
+  font-size: 18px;
+  font-weight: 500;
+  color: #ff4d4f;
+  margin: 0;
+}
+
+.cancelReason {
+  font-size: 15px;
+  color: #ff4d4f;
+  margin: 0;
+}
+
+/* 날짜 및 경기장 정보 스타일 */
+.matchDate {
+  font-size: 18px;
+  color: #555;
+  margin: 0;
+}
+
+.matchStadium {
+  font-size: 18px;
+  font-weight: 500;
+  color: #000;
+  margin: 0;
+}
+
+/* 진행 예정 매치 정보 스타일 */
+.leftContainer {
+  display: flex;
+  gap: 20px;
+}
+
+.statusBox_upcoming {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background-color: #edf797;
+  align-items: center;
+  text-align: center;
+}
+
+.matchInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 0;
+}
+
+.matchContent {
+  display: flex;
+  justify-content: space-between;
+}
+
+.matchDetails {
+  margin: 0;
+  font-size: 15px;
+}
+
+/* 버튼 컨테이너 */
+.matchButtonsContainer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+/* 개별 버튼 스타일 */
+.matchButton {
+  padding: 8px;
+  width: 100px;
+  height: 50px;
+  border: none;
+  border-radius: 40px;
+  cursor: pointer;
+  font-size: 14px;
+  background-color: #f8f9fa;
+  color: #333;
+}
+
+.matchButton:hover {
+  background-color: #e6e6e6;
+}
