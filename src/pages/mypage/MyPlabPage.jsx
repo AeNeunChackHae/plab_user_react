@@ -69,6 +69,9 @@ const MyPlabPage = () => {
   const handleTabChange = (tab) => {
     setActiveTab(tab); // 탭 상태 변경
     resetCalendar(); // 캘린더 상태 초기화 및 리렌더링
+    if (tab === "completed") {
+      setSelectedMonth(new Date()); // 현재 월로 설정
+    }
   };
 
   return (
@@ -98,9 +101,8 @@ const MyPlabPage = () => {
         ) : (
           <MatchCompleted
             selectedDate={selectedDate}
-            completedSchedule={{
-              completedMatches: scheduleData.upcomingSchedule.cancelledMatches,
-            }}
+            selectedMonth={selectedMonth}
+            completedSchedule={scheduleData.completedSchedule}
           />
         )}
       </div>

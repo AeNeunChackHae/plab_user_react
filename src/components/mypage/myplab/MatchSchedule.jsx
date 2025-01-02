@@ -10,13 +10,48 @@ const MatchSchedule = ({ selectedDate, upcomingSchedule }) => {
     underCapacityCancelledMatches,
   } = upcomingSchedule;
 
-  // 기본 핸들러
+  // 채팅방 입장 핸들러
   const handleChatRoom = () => {
     alert("채팅방에 입장합니다.");
   };
 
-  const handleCancelMatch = () => {
-    alert("매치를 취소합니다.");
+  // 매치 신청 취소 핸들러
+  const handleCancelMatch = async (match_id) => {
+    // 디버깅 메시지
+    // console.log("[프론트엔드] 매치 취소 요청 - match_id:", match_id);
+  
+     // 확인 알림
+     const userConfirmed = window.confirm("신청한 매치를 취소하시겠습니까?");
+     if (!userConfirmed) {
+       // 사용자가 취소를 선택한 경우
+       return;
+     }
+
+    try {
+      const response = await fetch("http://127.0.0.1:8080/mypage/myplabcancel", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+        },
+        body: JSON.stringify({
+          matchId: match_id, // 사용자 ID는 isAuth에서 처리
+        }),
+      });
+  
+      const data = await response.json();
+      // console.log("[프론트엔드] 응답 결과:", data);
+  
+      if (response.ok && data.success) {
+        alert("매치가 성공적으로 취소되었습니다.");
+        window.location.reload();
+      } else {
+        alert(`${data.message || "매치를 취소하는 중 오류가 발생했습니다."}`);
+      }
+    } catch (error) {
+      console.error("프론트엔드 오류:", error);
+      alert("서버 오류로 인해 매치를 취소할 수 없습니다.");
+    }
   };
 
   const handleMatchClick = (match_id) => {
@@ -55,7 +90,7 @@ const MatchSchedule = ({ selectedDate, upcomingSchedule }) => {
             {/* 취소한 매치 */}
             {match.type === "cancelled" && (
               <div className={styles.cancelContent}>
-                <div className={styles.statusBox_cancle}>
+                <div className={styles.statusCircle_cancle}>
                   <p>취소</p>
                 </div>
                 <div className={styles.matchInfo}>
@@ -78,7 +113,7 @@ const MatchSchedule = ({ selectedDate, upcomingSchedule }) => {
             {/* 취소된 매치 */}
             {match.type === "underCapacityCancelled" && (
               <div className={styles.cancelContent}>
-                <div className={styles.statusBox_cancle}>
+                <div className={styles.statusCircle_cancle}>
                   <p>취소</p>
                 </div>
                 <div className={styles.matchInfo}>
@@ -103,7 +138,7 @@ const MatchSchedule = ({ selectedDate, upcomingSchedule }) => {
             {match.type === "upcoming" && (
               <div className={styles.matchContent}>
                 <div className={styles.leftContainer}>
-                  <div className={styles.statusBox_upcoming}>
+                  <div className={styles.statusCircle_upcoming}>
                     <p>소셜</p>
                   </div>
                   <div className={styles.matchInfo}>
@@ -127,9 +162,16 @@ const MatchSchedule = ({ selectedDate, upcomingSchedule }) => {
                   <button onClick={handleChatRoom} className={styles.matchButton}>
                     채팅방 입장
                   </button>
-                  <button onClick={handleCancelMatch} className={styles.matchButton}>
-                    매치 취소
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleCancelMatch(match.match_id);
+                    }}
+                    className={styles.matchButton}
+                  >
+                    신청 취소
                   </button>
+
                 </div>
               </div>
             )}

@@ -1,0 +1,89 @@
+/* 컨테이너 */
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+/* 개별 매치 항목 */
+.matchItem {
+  padding: 16px;
+  margin: 8px 0;
+  border-radius: 8px;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* 완료 상태 아이콘 */
+.statusCircle {
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  background-color: #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+/* 매치 정보 */
+.matchInfo {
+  flex-grow: 1;
+}
+
+.matchDate {
+  font-size: 18px;
+  color: #666;
+  margin: 0;
+}
+
+.matchStadium {
+  font-size: 18px;
+  font-weight: 500;
+  margin: 4px 0 0 0;
+}
+
+/* 버튼 컨테이너 */
+.matchButtons {
+  display: flex;
+  gap: 8px;
+}
+
+/* 버튼 스타일 */
+.button {
+  padding: 8px 12px;
+  font-size: 15px;
+  border: none;
+  border-radius: 40px;
+  background-color: #f1f3f5;
+  color: #333;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.button:hover {
+  background-color: #e0e4e7;
+}
+
+/* 비활성화된 버튼 */
+.buttonDisabled {
+  padding: 8px 12px;
+  font-size: 15px;
+  border: none;
+  border-radius: 40px;
+  background-color: #e0e0e0;
+  color: #999;
+  cursor: not-allowed;
+}
+
+/* 매치 없음 메시지 */
+.noMatches {
+  font-size: 18px;
+  color: #999;
+  text-align: center;
+  margin-top: 20px;
+}
