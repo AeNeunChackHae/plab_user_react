@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import styles from "./MatchList.module.css";
 
 const MatchList = ({ matches }) => {
-  const navigate = useNavigate(); // 페이지 이동 함수
+  const navigate = useNavigate();
 
   const getGenderDotClass = (gender) => {
     switch (gender) {
@@ -31,9 +31,14 @@ const MatchList = ({ matches }) => {
     }
   };
 
-  const handleMatchClick = (id) => {
-    navigate(`/match/${id}`);
-  };
+  const handleMatchClick = (matchId) => {
+    // 디버깅 메시지
+    // console.log('매치 ID:', matchId);
+    if (!matchId) {
+        console.warn('matchId가 존재하지 않습니다.');
+    }
+    navigate(`/match/${matchId}`);
+};
 
   return (
     <div className={styles.matchList}>
@@ -44,7 +49,7 @@ const MatchList = ({ matches }) => {
           <div
             key={index}
             className={styles.matchItem}
-            onClick={() => handleMatchClick(match.id)}
+            onClick={() => handleMatchClick(match.matchId)}
           >
             {/* 매치 시작 시간 */}
             <div className={styles.time}>
