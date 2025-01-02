@@ -1,0 +1,91 @@
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5); /* 배경 투명도 조절 */
+  display: flex;
+  justify-content: center; /* 수평 가운데 정렬 */
+  align-items: center; /* 수직 가운데 정렬 */
+  z-index: 1000; /* 모달이 다른 요소 위에 표시되도록 */
+}
+
+.modalContent {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 90%;
+  max-width: 400px; /* 최대 너비 조정 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.teamsContainer {
+  display: flex;
+  flex-direction: row; /* 각 팀을 수평으로 배열 */
+  justify-content: center; /* 중앙 정렬 */
+  align-items: center; /* 수직 가운데 정렬 */
+  width: 100%; /* 컨테이너 전체 너비 사용 */
+  margin-top: 20px;
+}
+
+.team {
+  display: flex;
+  flex-direction: column; /* 세로로 요소 배열 */
+  align-items: center;
+  margin: 0 10px; /* 좌우 마진 추가 */
+}
+
+.teamImage {
+  width: 80px; /* 이미지 크기 조절 */
+  margin-bottom: 10px;
+}
+
+.playerButton {
+  background-color: #ddd; /* 기본 배경색 */
+  color: black; /* 글자색 */
+  border: none;
+  border-radius: 5px;
+  padding: 8px 16px;
+  margin-bottom: 5px; /* 버튼 간격 조절 */
+  cursor: pointer;
+  width: 100%; /* 버튼 너비 조정 */
+}
+
+.nextButton {
+  display: block;
+  width: 80%;
+  padding: 10px 20px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+.nextButton:hover {
+  background-color: #0056b3;
+}
+
+/* PlayerEvaluationModal.module.css */
+.labelContainer {
+  display: block;
+  margin-bottom: 8px; /* 각 라벨 간격 */
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  margin-left: 0; /* 왼쪽 정렬 */
+  cursor: pointer;
+  font-size: 16px; /* 글자 크기 조정 */
+}
+
+.checkboxInput {
+  margin-right: 10px; /* 체크박스와 텍스트 사이 간격 */
+}

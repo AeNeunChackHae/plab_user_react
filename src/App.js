@@ -19,6 +19,8 @@ import Term from "./router/Term";
 import Footer from "./components/footer/Footer";
 import NotFound from "./router/NotFound";
 
+import MatchFeedback from "./components/matchfeedback/MatchFeedbackPage.jsx";
+
 function App() {
   return (
     <Router>
@@ -42,6 +44,8 @@ function App() {
         <Route path="/league/*" element={<League />} />
         <Route path="/order/*" element={<Order />} />
         <Route path="/term/*" element={<Term />} />
+
+        <Route path="/feedback" element={<MatchFeedback />}/>
 
         {/* 404 페이지 */}
         <Route path="*" element={<NotFound />} />
