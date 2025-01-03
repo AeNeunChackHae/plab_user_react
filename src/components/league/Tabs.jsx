@@ -68,7 +68,7 @@ const Tabs = () => {
         {['일정', '완료', '팀 순위'].map((tab) => (
           <button
             key={tab}
-            className={activeTab === tab ? styles.active : ''}
+            className={activeTab === tab ? styles.active : styles.tabButton}
             onClick={() => setActiveTab(tab)}
           >
             {tab}

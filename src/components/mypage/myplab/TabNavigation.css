@@ -1,9 +1,11 @@
 .tab-navigation {
   display: flex;
-  gap: 10px;
+  gap: 5px;
 }
 
 .tab {
+  margin: 0;
+  padding: 10px;
   font-size: 20px;
   color: #555;
   background: none;

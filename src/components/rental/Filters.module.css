@@ -36,11 +36,11 @@
 }
 
 /* 지역 선택 스타일 */
-ul {
+/* ul {
     list-style: none;
     margin: 0;
     padding: 0;
-}
+} */
 
 .regionItem {
     padding: 10px 15px;

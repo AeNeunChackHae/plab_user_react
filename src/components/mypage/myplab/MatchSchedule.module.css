@@ -30,6 +30,11 @@
   text-align: center;
 }
 
+.statusInfo {
+  margin: 0;
+  padding: 0;
+}
+
 .cancelledTitle {
   font-size: 18px;
   font-weight: 500;
@@ -61,6 +66,7 @@
 .leftContainer {
   display: flex;
   gap: 20px;
+  align-items: center;
 }
 
 .statusCircle_upcoming {
@@ -79,6 +85,7 @@
 .matchInfo {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   gap: 4px;
   margin: 0;
 }

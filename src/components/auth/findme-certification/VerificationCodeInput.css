@@ -9,7 +9,7 @@
   width: 100%;
   display: flex;
 }
-
+/* 
 label {
   display: block;
   margin-bottom: 5px;
@@ -38,8 +38,8 @@ button:disabled {
   background-color: #ccc;
   cursor: not-allowed;
   font-size: 12px;
-}
-
+} 
+*/
 #verification-code {
   width: 100%;
   margin-bottom: 15px;

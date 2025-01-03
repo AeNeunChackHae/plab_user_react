@@ -1,9 +1,9 @@
-body {
+/* body {
   margin: 0;
   font-family: "Arial", sans-serif;
   background-color: #ffffff;
   color: #333;
-}
+} */
 
 .login-container {
   width: 100%;
@@ -27,11 +27,11 @@ body {
   font-weight: 900;
 }
 
-input[type="checkbox"] {
+/* input[type="checkbox"] {
   width: 25px;
   height: 25px;
   margin-right: 0.5rem;
-}
+} */
 
 #remember-id {
   font-size: 0.7rem;

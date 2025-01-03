@@ -91,7 +91,7 @@ const MatchSchedule = ({ selectedDate, upcomingSchedule }) => {
             {match.type === "cancelled" && (
               <div className={styles.cancelContent}>
                 <div className={styles.statusCircle_cancle}>
-                  <p>취소</p>
+                  <p className={styles.statusInfo}>취소</p>
                 </div>
                 <div className={styles.matchInfo}>
                   <p className={styles.cancelledTitle}>취소한 매치</p>
@@ -114,7 +114,7 @@ const MatchSchedule = ({ selectedDate, upcomingSchedule }) => {
             {match.type === "underCapacityCancelled" && (
               <div className={styles.cancelContent}>
                 <div className={styles.statusCircle_cancle}>
-                  <p>취소</p>
+                  <p className={styles.statusInfo}>취소</p>
                 </div>
                 <div className={styles.matchInfo}>
                   <p className={styles.cancelledTitle}>취소된 매치</p>
@@ -139,7 +139,7 @@ const MatchSchedule = ({ selectedDate, upcomingSchedule }) => {
               <div className={styles.matchContent}>
                 <div className={styles.leftContainer}>
                   <div className={styles.statusCircle_upcoming}>
-                    <p>소셜</p>
+                    <p className={styles.statusInfo}>소셜</p>
                   </div>
                   <div className={styles.matchInfo}>
                     <p className={styles.matchDate}>
