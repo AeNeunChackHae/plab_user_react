@@ -1,0 +1,105 @@
+/* 사이드바 컨테이너 */
+.sidebar {
+  width: 320px;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 20px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* 사용자 이름 */
+.userName {
+  font-size: 1.8em;
+  margin: 0.5rem 0 0.2rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* 사용자 이메일 */
+.userEmail {
+  font-size: 0.9em;
+  color: #888;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+/* 정보 컨테이너 */
+.infoContainer {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  /* flex-wrap: wrap; */
+}
+
+/* 개별 정보 박스 */
+.infoBox {
+  flex: 0 1 calc(33.33% - 10px);
+  background-color: #f9fafc;
+  border-radius: 12px;
+  width: 80px;
+  padding: 10px;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease-in-out;
+  margin: 5px;
+}
+
+.infoBox:hover {
+  transform: translateY(-3px);
+  background-color: #eef6ff;
+}
+
+/* 정보 제목 */
+.infoTitle {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 5px;
+}
+
+/* 정보 내용 */
+.infoSubs {
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: #222;
+  margin-bottom: 5px;
+}
+
+/* 홍보 배너 */
+.promotionMessage {
+  width: 90%;
+  margin-top: 20px;
+  background: linear-gradient(135deg, #4f93ff, #1e70ff);
+  border-radius: 12px;
+  text-decoration: none;
+  color: #ffffff;
+  text-align: center;
+  padding: 15px 10px;
+  font-size: 0.95rem;
+  font-weight: bold;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.promotionMessage:hover {
+  background: linear-gradient(135deg, #1e70ff, #004cbf);
+  transform: translateY(-3px);
+}
+
+/* 홍보 배너 텍스트 */
+.bannerSmall {
+  font-size: 0.8rem;
+  opacity: 0.9;
+  margin: 0;
+  color: #fff;
+}
+
+.bannerBig {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin: 0;
+  color: #fff;
+}

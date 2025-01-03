@@ -196,9 +196,9 @@
   box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
-label {
+/* label {
   display: block;
-  margin-bottom: 10px; /* 제목과 입력창 간 간격 */
+  margin-bottom: 10px;
   font-size: 14px;
   font-weight: bold;
   color: #333;
@@ -207,7 +207,7 @@ label {
 label input,
 label select {
   display: block;
-  margin-top: 8px; /* 제목 아래에 입력창 간격 */
+  margin-top: 8px;
   width: 100%;
   padding: 10px;
   font-size: 14px;
@@ -222,9 +222,9 @@ label select:focus {
   box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
   outline: none;
 }
-
+*/
 .signup-form {
   display: flex;
   flex-direction: column;
-  gap: 20px; /* 각 입력 필드 간의 간격 */
+  gap: 20px; 
 }

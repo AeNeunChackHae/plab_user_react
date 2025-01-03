@@ -13,9 +13,9 @@ function Mypage() {
   return (
     <Routes>
       {/* 완료 */}
+      <Route path="/*" element={<PersonalSettingsPage />} />
       <Route path="/myplab" element={<MyPlabPage />} />
       {/* 미완료 */}
-      <Route path="/*" element={<PersonalSettingsPage />} />
       <Route path="/change/general" element={<SettingsPage />} />
       <Route path="/change/profile" element={<ProfilePage />} />
       <Route path="/mylevel" element={<MyLevelPage />} />
