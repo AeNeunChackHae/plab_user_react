@@ -9,123 +9,89 @@ const MatchDetails = ({ match_id }) => {
   const [isSticky, setIsSticky] = useState(false);
   const [showMap, setShowMap] = useState(false);
   const [status, setStatus] = useState("");
-  const [currentTime, setCurrentTime] = useState(new Date());
   const [matchDetails, setMatchDetails] = useState(null);
+  const [matchStatusCode, setMatchStatusCode] = useState(null);
   const [error, setError] = useState(null);
   const [isAlreadyApplied, setIsAlreadyApplied] = useState(false)
 
   const navigate = useNavigate();
 
   const fetchMatchDetails = useCallback(async () => {
-    try {
-      const response = await fetch("http://localhost:8080/match/details", {
+    const response = await fetch("http://localhost:8080/match/details", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ match_id }),
-      });
+    });
+    if (!response.ok) throw new Error("매치 데이터를 가져오는 데 실패했습니다.");
+    return response.json();
+}, [match_id]);
 
-      if (!response.ok) {
-        throw new Error("매치 데이터를 가져오는 데 실패했습니다.");
-      }
+const fetchMatchStatus = useCallback(async () => {
+    const response = await fetch("http://localhost:8080/match", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ match_id }),
+    });
+    if (!response.ok) throw new Error("매치 상태 데이터를 가져오는 데 실패했습니다.");
+    return response.json();
+}, [match_id]);
 
-      const data = await response.json();
-      setMatchDetails(data);
-    } catch (err) {
-      console.error("매치 세부 정보 로드 오류:", err);
-      setError("매치 데이터를 가져오는 데 실패했습니다.");
-    }
-  }, [match_id]);
-
-  const checkApplicationStatus = useCallback(async () => {
+const checkApplicationStatus = useCallback(async () => {
     const userId = localStorage.getItem("id");
     if (!userId) return;
-
-    try {
-      const response = await fetch("http://localhost:8080/match/application-check", {
+    const response = await fetch("http://localhost:8080/match/application-check", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ match_id, user_id: userId }),
-      });
+    });
+    if (!response.ok) throw new Error("신청 여부 확인 요청 실패");
+    return response.json();
+}, [match_id]);
 
-      if (!response.ok) {
-        throw new Error("신청 여부 확인 요청 실패");
-      }
-
-      const data = await response.json();
-      setIsAlreadyApplied(data.isApplied);
-    } catch (err) {
-      console.error("신청 여부 확인 오류:", err);
-    }
-  }, [match_id]);
-
+  // Fetch and set data
   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [details, statusData, application] = await Promise.all([
+          fetchMatchDetails(),
+          fetchMatchStatus(),
+          checkApplicationStatus(),
+        ]);
+
+        // Set status based on matchStatusCode
+        switch (statusData.status_code) {
+          case 0:
+            setStatus(application.isApplied ? "closed" : "recruiting");
+            break;
+          case 1:
+          case 4:
+            setStatus("closed");
+            break;
+          case 2:
+            setStatus("play");
+            break;
+          case 3:
+            setStatus("past");
+            break;
+          default:
+            setStatus("unknown");
+            break;
+        }
+
+        setMatchDetails(details);
+        setIsAlreadyApplied(application.isApplied);
+        setMatchStatusCode(statusData.status_code);
+      } catch (error) {
+        console.error("데이터 로드 오류:", error);
+        setError("데이터를 불러오는 중 오류가 발생했습니다.");
+      }
+    };
+
     if (match_id) {
-      fetchMatchDetails();
-      checkApplicationStatus();
+      fetchData();
     }
-  }, [fetchMatchDetails, checkApplicationStatus, match_id]);
+  }, [fetchMatchDetails, fetchMatchStatus, checkApplicationStatus, match_id]);
 
-  const matchDate = useMemo(
-    () => (matchDetails ? new Date(matchDetails.match_start_time) : null),
-    [matchDetails]
-  );
-
-  const calculateStatus = useCallback(() => {
-    if (!matchDetails) return "";
-  
-    const now = currentTime;
-    const matchStartTime = new Date(matchDetails.match_start_time);
-    const matchEndTime = new Date(matchDetails.match_end_time); // end time 추가
-    const diffToStart = matchStartTime - now; // 시작 시간까지의 차이
-    const diffToEnd = matchEndTime - now; // 종료 시간까지의 차이
-    const diffDays = Math.ceil(diffToStart / (1000 * 60 * 60 * 24)); // 시작 시간까지 남은 일 수
-    const diffMinutesToStart = Math.floor(diffToStart / (1000 * 60)); // 시작 시간까지 남은 분
-    const diffMinutesToEnd = Math.floor(diffToEnd / (1000 * 60)); // 종료 시간까지 남은 분
-  
-    console.log("match_start_time:", matchDetails.match_start_time);
-    console.log("match_end_time:", matchDetails.match_end_time);
-    console.log("currentTime:", currentTime);
-    if (diffMinutesToEnd <= 0) {
-      return "past"; // 종료 시간 이후
-    } else if (now >= matchStartTime && now <= matchEndTime) {
-      return "play"; // 매치 진행 중
-    } else if (diffMinutesToStart <= 180 && diffMinutesToStart > 0) {
-      return "closed"; // 매치 시작 3시간 전 ~ 시작 시간
-    } else if (diffDays <= 10 && diffMinutesToStart > 180) {
-      return "regular"; // 시작 10일 전 ~ 시작 3시간 전
-    } else if (diffDays > 10) {
-      return "earlyBird"; // 시작 10일 전보다 이전
-    }
-  
-    return "unknown"; // 상태를 확인할 수 없는 경우
-  }, [matchDetails, currentTime]);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (stickyRef.current) {
-        const rect = stickyRef.current.getBoundingClientRect();
-        setIsSticky(rect.top <= 0);
-      }
-    };
-
-    setStatus(calculateStatus());
-    window.addEventListener("scroll", handleScroll);
-
-    const interval = setInterval(() => {
-      setCurrentTime(new Date());
-    }, 60000);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      clearInterval(interval);
-    };
-  }, [calculateStatus]);
-
-  const handleToggleMap = () => {
-    setShowMap((prev) => !prev);
-  };
 
   const handleApplyClick = async () => {
     const userId = localStorage.getItem("id"); // 로컬스토리지에서 user_id 가져오기
@@ -193,14 +159,34 @@ const MatchDetails = ({ match_id }) => {
     }
   };
 
+  useEffect(() => {
+    const handleScroll = () => {
+      if (stickyRef.current) {
+        const rect = stickyRef.current.getBoundingClientRect();
+        setIsSticky(rect.top <= 0);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+
+  const handleToggleMap = () => {
+    setShowMap((prev) => !prev);
+  };
+
   const pricing = useMemo(() => {
     if (!matchDetails) return {};
     const matchType = matchDetails.match_type;
     if (matchType === 0) {
       return {
         regularPrice: 10000,
-        discountPrice: 5000,
-        discountText: "지금 신청하면 50% 할인!",
+        discountPrice: 8000,
+        discountText: "지금 신청하면 20% 할인!",
       };
     } else if (matchType === 1) {
       return {
@@ -216,6 +202,7 @@ const MatchDetails = ({ match_id }) => {
     };
   }, [matchDetails]);
 
+
   if (error) {
     return <div className={styles.error}>{error}</div>;
   }
@@ -225,6 +212,8 @@ const MatchDetails = ({ match_id }) => {
   }
 
   const { match_start_time, stadium_name, full_address, stadium_id } = matchDetails;
+  console.log('matchStatusCode', matchStatusCode)
+  console.log('마지막status', status)
 
   return (
     <div ref={stickyRef} className={`${styles.matchDetails} ${isSticky ? styles.sticky : ""}`}>
@@ -258,99 +247,98 @@ const MatchDetails = ({ match_id }) => {
         </LocationProvider>
       )}
       <div className={styles.matchFee}>
-  {isAlreadyApplied ? ( // 이미 신청한 매치 여부를 가장 우선적으로 확인
-    <div className={styles.statusBlock}>
-      <div className={styles.contentBlock}>
-        <span className={styles.money}>
-          {pricing.regularPrice.toLocaleString()}원
-        </span>
-        <span> / 2시간</span>
+        {isAlreadyApplied ? ( // 이미 신청한 매치 여부를 가장 우선적으로 확인
+          <div className={styles.statusBlock}>
+            <div className={styles.contentBlock}>
+              <span className={styles.money}>
+                {pricing.regularPrice.toLocaleString()}원
+              </span>
+              <span> / 2시간</span>
+            </div>
+            <button className={styles.disabledButton} disabled>
+              이미 신청한 매치입니다!
+            </button>
+          </div>
+        ) : status === "past" ? ( // 매치 종료 상태 확인
+          <div className={styles.statusBlock}>
+            <div className={styles.contentBlock}>
+              <span className={styles.money}>
+                {pricing.regularPrice.toLocaleString()}원
+              </span>
+              <span> / 2시간</span>
+              <div className={styles.matchClosed}>종료된 매치입니다</div>
+            </div>
+            <button className={styles.disabledButton} disabled>
+              종료
+            </button>
+          </div>
+        ) : status === "play" ? ( // 매치 진행 중 상태 확인
+          <div className={styles.statusBlock}>
+            <div className={styles.contentBlock}>
+              <span className={styles.money}>
+                {pricing.regularPrice.toLocaleString()}원
+              </span>
+              <span> / 2시간</span>
+              <div className={styles.matchLive}>매치가 진행 중입니다!</div>
+            </div>
+            <button className={styles.disabledButton} disabled>
+              진행 중
+            </button>
+          </div>
+        ) : status === "closed" ? ( // 신청 마감 상태 확인
+          <div className={styles.statusBlock}>
+            <div className={styles.contentBlock}>
+              <span className={styles.money}>
+                {pricing.regularPrice.toLocaleString()}원
+              </span>
+              <span> / 2시간</span>
+              <div className={styles.matchClosed}>신청이 마감되었습니다</div>
+            </div>
+            <button className={styles.disabledButton} disabled>
+              신청 불가
+            </button>
+          </div>
+        ) : status === "earlyBird" ? ( // 얼리버드 상태 확인
+          <div className={styles.statusBlock}>
+            <div className={styles.contentBlock}>
+              <span className={`${styles.money} ${styles.strikeThrough}`}>
+                {pricing.regularPrice.toLocaleString()}원
+              </span>
+              <span className={styles.money}>
+                {pricing.discountPrice.toLocaleString()}원
+              </span>
+              <div className={styles.discountText}>얼리버드 할인 적용 중</div>
+            </div>
+            <button className={styles.applyButton} onClick={handleApplyClick}>
+              신청하기
+            </button>
+          </div>
+        ) : status === "regular" || status === "recruiting" ? ( // 일반 신청 가능 상태 + 모집 중 상태 확인
+          <div className={styles.statusBlock}>
+            <div className={styles.contentBlock}>
+              <span className={styles.money}>
+                {pricing.regularPrice.toLocaleString()}원
+              </span>
+              <span> / 2시간</span>
+              <div className={styles.discountText}>매치 시작 3시간 전까지 신청 가능</div>
+            </div>
+            <button className={styles.applyButton} onClick={handleApplyClick}>
+              신청하기
+            </button>
+          </div>
+        ) : (
+          <div className={styles.statusBlock}>
+            <div className={styles.contentBlock}>
+              <span className={styles.money}>상태를 확인할 수 없습니다</span>
+            </div>
+            <button className={styles.disabledButton} disabled>
+              신청 불가
+            </button>
+          </div>
+        )}
       </div>
-      <button className={styles.disabledButton} disabled>
-        이미 신청한 매치입니다!
-      </button>
-    </div>
-  ) : status === "past" ? ( // 매치 종료 상태 확인
-    <div className={styles.statusBlock}>
-      <div className={styles.contentBlock}>
-        <span className={styles.money}>
-          {pricing.regularPrice.toLocaleString()}원
-        </span>
-        <span> / 2시간</span>
-        <div className={styles.matchClosed}>종료된 매치입니다</div>
-      </div>
-      <button className={styles.disabledButton} disabled>
-        종료
-      </button>
-    </div>
-  ) : status === "play" ? ( // 매치 진행 중 상태 확인
-    <div className={styles.statusBlock}>
-      <div className={styles.contentBlock}>
-        <span className={styles.money}>
-          {pricing.regularPrice.toLocaleString()}원
-        </span>
-        <span> / 2시간</span>
-        <div className={styles.matchLive}>매치가 진행 중입니다!</div>
-      </div>
-      <button className={styles.disabledButton} disabled>
-        진행 중
-      </button>
-    </div>
-  ) : status === "closed" ? ( // 신청 마감 상태 확인
-    <div className={styles.statusBlock}>
-      <div className={styles.contentBlock}>
-        <span className={styles.money}>
-          {pricing.regularPrice.toLocaleString()}원
-        </span>
-        <span> / 2시간</span>
-        <div className={styles.matchClosed}>신청이 마감되었습니다</div>
-      </div>
-      <button className={styles.disabledButton} disabled>
-        신청 불가
-      </button>
-    </div>
-  ) : status === "earlyBird" ? ( // 얼리버드 상태 확인
-    <div className={styles.statusBlock}>
-      <div className={styles.contentBlock}>
-        <span className={`${styles.money} ${styles.strikeThrough}`}>
-          {pricing.regularPrice.toLocaleString()}원
-        </span>
-        <span className={styles.money}>
-          {pricing.discountPrice.toLocaleString()}원
-        </span>
-        <div className={styles.discountText}>얼리버드 할인 적용 중</div>
-      </div>
-      <button className={styles.applyButton} onClick={handleApplyClick}>
-        신청하기
-      </button>
-    </div>
-  ) : status === "regular" ? ( // 일반 신청 가능 상태 확인
-    <div className={styles.statusBlock}>
-      <div className={styles.contentBlock}>
-        <span className={styles.money}>
-          {pricing.regularPrice.toLocaleString()}원
-        </span>
-        <span> / 2시간</span>
-        <div className={styles.discountText}>매치 시작 3시간 전까지 신청 가능</div>
-      </div>
-      <button className={styles.applyButton} onClick={handleApplyClick}>
-        신청하기
-      </button>
-    </div>
-  ) : (
-    <div className={styles.statusBlock}>
-      <div className={styles.contentBlock}>
-        <span className={styles.money}>상태를 확인할 수 없습니다</span>
-      </div>
-      <button className={styles.disabledButton} disabled>
-        신청 불가
-      </button>
-    </div>
-  )}
-</div>
     </div>
   );
-  
 };
 
 export default MatchDetails;

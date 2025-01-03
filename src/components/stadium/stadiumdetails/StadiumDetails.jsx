@@ -110,7 +110,7 @@ const StadiumDetails = ({ stadiumId }) => {
             }`}
             onClick={() => setSelectedTab("facilities")}
           >
-            시설 및 예약
+            시설 정보
           </div>
           <div
             className={`${styles.navigationItem} ${
@@ -136,8 +136,8 @@ const StadiumDetails = ({ stadiumId }) => {
         {selectedTab === "facilities" && (
           <>
             <div>
-              <FacilitiesContent  onDateChange={handleDateChange}/>
-              <StadiumList stadiumId={stadiumId} selectedDate={selectedDate}/>
+              {/* <FacilitiesContent  onDateChange={handleDateChange}/>
+              <StadiumList stadiumId={stadiumId} selectedDate={selectedDate}/> */}
             </div>
             <div className={styles.componentWrapper}>
               <StadiumRules stadiumId={stadiumId} />
