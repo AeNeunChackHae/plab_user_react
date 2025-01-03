@@ -33,7 +33,7 @@ const MatchPage = () => {
           },
           body: JSON.stringify({ match_id }),
         });
-        console.log(match_id)
+        // console.log(match_id)
 
         if (!response.ok) {
           throw new Error("매치 데이터를 로드할 수 없습니다.");
@@ -41,7 +41,7 @@ const MatchPage = () => {
 
         const data = await response.json();
         setMatch(data); // 서버에서 반환된 전체 데이터를 저장
-        console.log('이거슨 가져온 데이터들이여',data)
+        // console.log('이거슨 가져온 데이터들이여',data)
 
         // console.log('데이타',data)
       } catch (err) {
@@ -58,9 +58,9 @@ const MatchPage = () => {
   useEffect(() => {
     if (match) {
       const matchStartTime = new Date(match.match_start_time || Date.now());
-      console.log("Match start time:", matchStartTime);
-      console.log("Current time:", new Date());
-      console.log("Match type:", match.match_type);
+      // console.log("Match start time:", matchStartTime);
+      // console.log("Current time:", new Date());
+      // console.log("Match type:", match.match_type);
   
       if (match.match_type === 0) {
         if (new Date() < new Date(matchStartTime.getTime() - 10 * 24 * 60 * 60 * 1000)) {
@@ -79,7 +79,7 @@ const MatchPage = () => {
           setStatus("finished");
         }
       }
-      console.log("Calculated status:", status); // 디버깅용
+      // console.log("Calculated status:", status); // 디버깅용
     }
   }, [match]);
   
@@ -96,8 +96,8 @@ const MatchPage = () => {
     return <div className={styles.loading}>로딩 중...</div>;
   }
 
-  console.log("현재 match.match_type 값:", match.match_type);
-  console.log("현재 status",status)
+  // console.log("현재 match.match_type 값:", match.match_type);
+  // console.log("현재 status",status)
 
   return (
     <section className={styles.matchPage}>
@@ -132,7 +132,7 @@ const MatchPage = () => {
           )}
         </div>
         <div className={styles.rightSection}>
-        {console.log("매치스테이터스랑 타입", match.status_code,match.match_type)} 
+        {/* {console.log("매치스테이터스랑 타입", match.status_code,match.match_type)}  */}
           <MatchDetails match_id={match_id} stadiumId={match.stadium_id} /*statusCode={match.match_type}*/
           />
         </div>

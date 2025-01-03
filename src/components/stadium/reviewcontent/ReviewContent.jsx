@@ -14,7 +14,7 @@ const ReviewContent = ({ stadiumId }) => {
           body: JSON.stringify({ stadiumId }),
         });
 
-        if (!response.ok) throw new Error("리뷰 데이터를 가져오는 데 실패했습니다.");
+        if (!response.ok) throw new Error("리뷰 데이터가 없습니다다.");
 
         const data = await response.json();
         setReviews(data);

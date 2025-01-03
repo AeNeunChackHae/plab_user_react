@@ -76,7 +76,7 @@ const StadiumRules = ({ stadiumId }) => {
         <div className={styles.ruleSection}>
           <p className={styles.ruleTitle}>꼭 지켜주세요</p>
           <ul className={styles.ruleList}>
-            <li>{rules.notice}</li>
+            <pre>{rules.notice}</pre>
           </ul>
         </div>
       </div>
