@@ -77,23 +77,27 @@ function BlacklistManager() {
   return (
     <div className={styles.userList}>
       <h3 className={styles.title}>블랙리스트</h3>
-      {users.map((user) => (
-        <div key={user.id} className={styles.user}>
-          <img
-            src={user.imageUrl}
-            className={styles.profileImage}
-            alt="Profile"
-          />
-          <span className={styles.userName}>{user.name}</span>
-          <button
-            onClick={() => handleUnblock(user.id, user.name)}
-            className={styles.unblockButton}
-            disabled={!user.isBlocked}
-          >
-            차단 해제
-          </button>
-        </div>
-      ))}
+      {users.length === 0 ? (
+        <p className={styles.emptyMessage}>블랙리스트에 등록된 사용자가 없습니다.</p>
+      ) : (
+        users.map((user) => (
+          <div key={user.id} className={styles.user}>
+            <img
+              src={user.imageUrl}
+              className={styles.profileImage}
+              alt="Profile"
+            />
+            <span className={styles.userName}>{user.name}</span>
+            <button
+              onClick={() => handleUnblock(user.id, user.name)}
+              className={styles.unblockButton}
+              disabled={!user.isBlocked}
+            >
+              차단 해제
+            </button>
+          </div>
+        ))
+      )}
     </div>
   );
 }

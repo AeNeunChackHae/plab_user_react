@@ -40,48 +40,54 @@ const MatchList = ({ matches }) => {
 
     return (
         <div className={styles.matchList}>
-            {matches.map((match, index) => (
-                <div key={index} className={styles.matchItem} onClick={() => handleMatchClick(match.matchId)}
-                style={{ cursor: "pointer" }}>
-                    {/* 매치 시간 */}
-                    <div className={styles.time}>
-                        {new Date(match.startTime).toLocaleTimeString('ko-KR', {
-                            hour: '2-digit',
-                            minute: '2-digit',
-                            hour12: false
-                        })}
+            {matches.length === 0 ? (
+                <p className={styles.emptyMessage}>매치가 존재하지 않아요!</p>
+            ) : (
+                matches.map((match, index) => (
+                    <div
+                        key={index}
+                        className={styles.matchItem}
+                        onClick={() => handleMatchClick(match.matchId)}
+                        style={{ cursor: "pointer" }}
+                    >
+                        {/* 매치 시간 */}
+                        <div className={styles.time}>
+                            {new Date(match.startTime).toLocaleTimeString('ko-KR', {
+                                hour: '2-digit',
+                                minute: '2-digit',
+                                hour12: false,
+                            })}
+                        </div>
+                        {/* 매치 세부 정보 */}
+                        <div className={styles.details}>
+                            <span className={styles.location}>{match.stadiumName}</span>
+                            <br />
+                            {/* 성별 Dot 표시 */}
+                            <span className={`${styles.dot} ${getGenderDotClass(match.gender)}`}></span>
+                            <span className={styles.gender}>{match.gender}</span>
+
+                            {/* 레벨 표시 */}
+                            {match.level && (
+                                <span className={`${styles.level} ${getLevelClass(match.level)}`}>
+                                    {match.level}
+                                </span>
+                            )}
+                        </div>
+                        {/* 상태 버튼 */}
+                        <div>
+                            <button
+                                className={`${styles.status} ${
+                                    match.status === "마감" ? styles.closed : styles.open
+                                }`}
+                            >
+                                {match.status}
+                            </button>
+                        </div>
                     </div>
-                    {/* 매치 세부 정보 */}
-                    <div className={styles.details}>
-                        <span className={styles.location}>{match.stadiumName}</span>
-                        <br />
-                        {/* 성별 Dot 표시 */}
-                        <span className={`${styles.dot} ${getGenderDotClass(match.gender)}`}></span>
-                        <span className={styles.gender}>{match.gender}</span>
-                        
-                        {/* 레벨 표시 */}
-                        {match.level && (
-                            <span className={`${styles.level} ${getLevelClass(match.level)}`}>
-                                {match.level}
-                            </span>
-                        )}
-                    </div>
-                    {/* 상태 버튼 */}
-                    <div>
-                        <button
-                            className={`${styles.status} ${
-                                match.status === "마감" ? styles.closed : styles.open
-                            }`}
-                        >
-                            {match.status}
-                        </button>
-                    </div>
-                </div>
-            ))}
+                ))
+            )}
         </div>
     );
 };
-
-
 
 export default MatchList;
