@@ -60,6 +60,65 @@ const SettingPage = () => {
     navigate('/mypage/change/pw');
   }
 
+  // 로그아웃 핸들러
+  const handleLogout = async () => {
+    try {
+      const response = await fetch('http://127.0.0.1:8080/auth/logout', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('authToken')}`,
+          'Content-Type': 'application/json'
+        }
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        alert('로그아웃 되었습니다.');
+        localStorage.removeItem('authToken'); // 토큰 삭제
+        navigate('/'); // 메인 페이지로 이동
+      } else {
+        alert(data.message || '로그아웃에 실패했습니다.');
+      }
+    } catch (error) {
+      console.error('Error during logout:', error);
+      alert('로그아웃 중 오류가 발생했습니다.');
+    }
+  };
+
+  // 탈퇴 핸들러
+  const handleDeleteAccount = async () => {
+    const confirmDelete = window.confirm('정말로 계정을 삭제하시겠습니까? 진행 예정 매치가 있을 경우 탈퇴가 불가능합니다.');
+    if (!confirmDelete) return;
+
+    try {
+      const response = await fetch('http://127.0.0.1:8080/auth/delete', {
+        method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('authToken')}`,
+          'Content-Type': 'application/json'
+        }
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        alert('계정이 성공적으로 삭제되었습니다.');
+        localStorage.removeItem('authToken');
+        navigate('/');
+      } else if (data.data) {
+        // 진행 예정 매치가 있는 경우
+        alert('진행 예정인 매치가 있습니다:\n' + 
+              data.data.map(match => `${match.match_start_time} - ${match.match_end_time}`).join('\n'));
+      } else {
+        alert(data.message || '계정 삭제에 실패했습니다.');
+      }
+    } catch (error) {
+      console.error('Error during account deletion:', error);
+      alert('계정 삭제 중 오류가 발생했습니다.');
+    }
+  };
+
   // 모달 제어
   const handleModalOpen = () => {
     setIsModalOpen(true);
@@ -118,8 +177,8 @@ const SettingPage = () => {
 
       <h2 className={styles.title}>계정 관리</h2>
       <div className={styles.section}>
-        <button className={styles.linkButton}>로그아웃</button>
-        <button className={styles.linkButton}>탈퇴하기</button>
+        <button className={styles.linkButton} onClick={handleLogout}>로그아웃</button>
+        <button className={styles.linkButton} onClick={handleDeleteAccount}>탈퇴하기</button>
       </div>
 
       {/* 생년월일 수정 모달 */}
