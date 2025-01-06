@@ -37,15 +37,24 @@ const fetchMatchStatus = useCallback(async () => {
 }, [match_id]);
 
 const checkApplicationStatus = useCallback(async () => {
-    const userId = localStorage.getItem("id");
-    if (!userId) return;
-    const response = await fetch("http://localhost:8080/match/application-check", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ match_id, user_id: userId }),
-    });
-    if (!response.ok) throw new Error("신청 여부 확인 요청 실패");
-    return response.json();
+  const userId = localStorage.getItem("id");
+
+  // 유저 ID가 없을 경우 기본값 반환
+  if (!userId) {
+      console.warn("User ID가 로컬스토리지에 없습니다. 기본값을 반환합니다.");
+      return { isApplied: false }; // 기본값
+  }
+
+  const response = await fetch("http://localhost:8080/match/application-check", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ match_id, user_id: userId }),
+  });
+
+  if (!response.ok) throw new Error("신청 여부 확인 요청 실패");
+
+  const data = await response.json();
+  return data || { isApplied: false }; // 응답이 없으면 기본값 반환
 }, [match_id]);
 
   // Fetch and set data
@@ -58,10 +67,13 @@ const checkApplicationStatus = useCallback(async () => {
           checkApplicationStatus(),
         ]);
 
+        // application 데이터가 없는 경우 기본값 설정
+        const isApplied = application?.isApplied || false;
+
         // Set status based on matchStatusCode
         switch (statusData.status_code) {
           case 0:
-            setStatus(application.isApplied ? "closed" : "recruiting");
+            setStatus(isApplied ? "closed" : "recruiting");
             break;
           case 1:
           case 4:
@@ -78,8 +90,9 @@ const checkApplicationStatus = useCallback(async () => {
             break;
         }
 
+        // 상태 값과 매치 세부 정보 설정
         setMatchDetails(details);
-        setIsAlreadyApplied(application.isApplied);
+        setIsAlreadyApplied(isApplied);
         setMatchStatusCode(statusData.status_code);
       } catch (error) {
         console.error("데이터 로드 오류:", error);
