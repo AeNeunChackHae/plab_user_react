@@ -1,18 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import "../../pages/root/CSpage.css";
 
 const CSSearchBar = ({ onSearch }) => {
-  const handleSearch = (e) => {
-    onSearch(e.target.value); // 검색어 전달
+  const [query, setQuery] = useState("");
+
+  const handleInputChange = (e) => {
+    setQuery(e.target.value);
+    onSearch(e.target.value);
   };
 
   return (
-    <div style={{ margin: "20px 0" }}>
+    <div className="SearchBar-container">  {/* 검색창 컨테이너 추가 */}
       <input
-        className="SearchBar-input"
         type="text"
-        placeholder="🔎 궁금한 것을 검색해보세요"
-        onChange={handleSearch} // 검색어 입력 이벤트 처리
+        value={query}
+        onChange={handleInputChange}
+        placeholder="🔍 궁금한 것을 검색해보세요"
+        className="SearchBar-input"
       />
     </div>
   );
