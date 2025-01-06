@@ -28,7 +28,7 @@ function App() {
       <Routes>
         {/* pages element 리턴 */}
         <Route path="/" element={<Main />} />
-        <Route path="/cs" element={<Cs />} />
+        <Route path="/cs/*" element={<Cs />} />
         <Route path="/notice" element={<Notice />} />
         <Route path="/about" element={<About />} />
 
