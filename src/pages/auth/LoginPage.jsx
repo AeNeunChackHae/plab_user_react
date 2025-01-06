@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import "./LoginPage.css";
 
 function LoginPage() {
@@ -9,29 +9,25 @@ function LoginPage() {
   });
 
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const token = localStorage.getItem("authToken");
-    console.log("token: ", token, typeof token);
     if (token) {
-      console.log(` if (token)`)
-      navigate("/");
+      navigate("/"); // ★ 로그인 상태라면 메인 페이지로 이동
     }
-  },[navigate]);
- 
+  }, [navigate]);
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
       [name]: value,
     }));
-    console.log(`입력 변경 - ${name}: ${value}`); // 입력 값 변경 로그
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    console.log("로그인 요청 데이터:", formData); // 전송 데이터 디버깅
 
     try {
       const response = await fetch("http://localhost:8080/auth/login", {
@@ -42,28 +38,24 @@ function LoginPage() {
         body: JSON.stringify(formData),
       });
 
-      console.log("응답 상태 코드:", response.status); // 응답 상태 디버깅
-      console.log("응답 헤더:", response.headers); // 응답 헤더 디버깅
-
       if (!response.ok) {
         const error = await response.json();
-        console.error("로그인 실패 JSON 응답:", error);
         alert(`로그인 실패: ${error.message}`);
         return;
       }
 
       const data = await response.json();
-      console.log("로그인 성공 데이터:", data); // 성공 응답 데이터 디버깅
 
-      // 토큰과 사용자 정보 저장
+      // 로그인 성공 시 토큰과 사용자 정보 저장
       localStorage.setItem("authToken", data.token);
-      // localStorage.setItem("username", data.username);
       localStorage.setItem("id", data.id);
 
-      alert(`로그인 성공! 환영합니다: ${data.username} `);
-      navigate("/"); // 로그인 성공 시 메인 페이지로 이동
+      alert(`로그인 성공! 환영합니다: ${data.username}`);
+
+      // 이전 경로로 이동 (state에서 가져오기)
+      const redirectPath = location.state?.from || "/"; 
+      navigate(redirectPath);
     } catch (err) {
-      console.error("네트워크 오류:", err); // 네트워크 오류 디버깅
       alert(`네트워크 오류가 발생했습니다: ${err.message}`);
     }
   };
