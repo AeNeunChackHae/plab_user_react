@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation, useParams } from "react-router-dom";
 import styles from "./OrderPage.module.css";
 
@@ -6,56 +6,94 @@ const OrderPage = () => {
   const [isKakaoPayActive, setIsKakaoPayActive] = useState(true);
   const [isPaymentComplete, setIsPaymentComplete] = useState(false);
   const [paymentError, setPaymentError] = useState(""); // 결제 실패 메시지
+  const [buyerInfo, setBuyerInfo] = useState(null); // 사용자 정보
   const navigate = useNavigate();
   const location = useLocation();
   const { user_id } = useParams(); // URL 파라미터에서 user_id 가져오기
   const from = location.state?.from || "/"; // 이전 경로가 없으면 홈으로 돌아감
+  const match_id = location.state?.match_id; // match_id는 location.state에서 가져옴
+
+  // 사용자 정보 가져오기
+  useEffect(() => {
+    const fetchBuyerInfo = async () => {
+      try {
+        const res = await fetch(`http://localhost:8080/payment/${user_id}`);
+        if (!res.ok) {
+          throw new Error("사용자 정보를 가져오는데 실패했습니다.");
+        }
+        const data = await res.json();
+        setBuyerInfo(data);
+      } catch (err) {
+        console.error(err);
+        setPaymentError("사용자 정보를 가져올 수 없습니다.");
+      }
+    };
+
+    fetchBuyerInfo();
+  }, [user_id]);
 
   const handlePaymentMethodClick = () => {
     setIsKakaoPayActive(true);
   };
 
-  const handlePaymentButtonClick = async () => {
-    console.log('location.state', location.state);
-    try {
-      const match_id = location.state?.match_id; // match_id를 이전 페이지에서 받아옴
-      console.log('오더페이지 매치아이디', match_id);
-      if (!match_id || !user_id) {
-        console.error("match_id 또는 user_id가 누락되었습니다.");
-        return;
-      }
-
-      // 결제 요청
-      const response = await fetch("http://localhost:8080/match/apply", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("authToken")}`, // 인증 토큰
-        },
-        body: JSON.stringify({
-          match_id,
-          user_id,
-        }),
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json(); // 오류 메시지 확인
-        throw new Error(errorData.message || "매치 신청에 실패했습니다.");
-      }
-
-      const result = await response.json();
-      console.log(result.message);
-
-      setIsPaymentComplete(true); // 결제 성공 표시
-
-      // 결제 성공 시 마이페이지로 이동
-      setTimeout(() => {
-        navigate("/mypage/myplab"); // 성공 시 이동 경로
-      }, 2000);
-    } catch (err) {
-      console.error("결제 요청 중 오류:", err);
-      setPaymentError(err.message); // 결제 실패 메시지 저장
+  const handlePaymentButtonClick = () => {
+    if (!buyerInfo) {
+      setPaymentError("사용자 정보를 로드하지 못했습니다.");
+      return;
     }
+
+    const { IMP } = window;
+    IMP.init("imp87372531"); // 아임포트 가맹점 코드
+
+    const data = {
+      pg: "kakaopay", // 카카오페이 사용
+      pay_method: "card", // 결제 방식 (필요시 'card', 'trans' 등 사용)
+      merchant_uid: `ORD-${new Date().getTime()}`, // 주문 고유번호
+      name: "매치 결제", // 상품명 대신 매치 결제라고 명시
+      amount: 10000, // 결제 금액
+      buyer_email: buyerInfo.email, // 구매자 이메일
+      buyer_name: buyerInfo.username, // 구매자 이름
+      buyer_tel: buyerInfo.phone_number, // 구매자 전화번호
+    };
+
+    // 결제 요청
+    IMP.request_pay(data, async (response) => {
+      if (response.success) {
+        try {
+          // 결제 성공 시 백엔드로 결제 정보 전달
+          const res = await fetch("http://localhost:8080/payment/complete", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              user_id, // 프론트에서 가져온 사용자 ID
+              match_id, // match_id
+              imp_uid: response.imp_uid, // 아임포트 결제 고유번호
+              merchant_uid: response.merchant_uid, // 주문 고유번호
+            }),
+          });
+
+          if (!res.ok) {
+            const errorData = await res.json();
+            throw new Error(errorData.msg || "결제 데이터 저장 실패");
+          }
+
+          const result = await res.json();
+          console.log("결제 성공:", result.message);
+          setIsPaymentComplete(true);
+
+          // 결제 성공 시 마이페이지로 이동
+          setTimeout(() => navigate("/mypage/myplab"), 2000);
+        } catch (err) {
+          console.error("결제 처리 중 오류:", err);
+          setPaymentError(err.message);
+        }
+      } else {
+        // 결제 실패 시
+        setPaymentError(response.error_msg || "결제가 취소되었습니다.");
+      }
+    });
   };
 
   const closeModal = () => {
