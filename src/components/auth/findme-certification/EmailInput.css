@@ -15,8 +15,8 @@
   display: flex;
 }
 
-button:disabled {
-  background-color: #ccc;
+.button:disabled {
+  background-color: #4da2fd;
   cursor: not-allowed;
 }
 

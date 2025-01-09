@@ -94,10 +94,10 @@ function LoginPage() {
           </div>
           <button type="submit">로그인</button>
           <div className="footer-links">
-            <a className="footer-links-text" href="/find-id-password">
+            <a className="footer-links-text" href="/auth/find-email">
               아이디/비밀번호 찾기
             </a>
-            <a className="footer-links-text" href="/auth/register">
+            <a className="footer-links-text" href="/auth/find-password">
               회원 가입
             </a>
           </div>

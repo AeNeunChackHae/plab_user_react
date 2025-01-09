@@ -1,15 +1,16 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import styles from "./FindEmailAndPassword.module.css"; // 회원가입 페이지와 유사한 스타일 적용
+import styles from "./FindEmailAndPassword.module.css";  // 동일한 스타일 재사용
 
-const FindEmail = () => {
+const ResetPassword = () => {
   const [formData, setFormData] = useState({
-    username: "",
+    name: "",
     phoneNumber: "",
+    email: "",
   });
-  const [email, setEmail] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalMessage, setModalMessage] = useState("");
   const [error, setError] = useState("");
-  const [isModalOpen, setIsModalOpen] = useState(false); // 모달 상태 추가
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -20,9 +21,9 @@ const FindEmail = () => {
     }));
   };
 
-  const handleFindEmail = async () => {
+  const handleResetPassword = async () => {
     try {
-      const response = await fetch("http://localhost:8080/auth/find-email", {
+      const response = await fetch("http://localhost:8080/auth/find-password", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -31,33 +32,43 @@ const FindEmail = () => {
       const data = await response.json();
 
       if (response.ok) {
-        setEmail(data.email);
+        setModalMessage(
+          <>
+            임시 비밀번호가 이메일로 전송되었습니다. <br />
+            5초 후 로그인 페이지로 이동합니다.
+          </>
+        );
         setError("");
         setIsModalOpen(true); // 모달 열기
+
+        setTimeout(() => {
+          setIsModalOpen(false); // 모달 닫기
+          navigate("/auth/login"); // 로그인 페이지로 이동
+        }, 5000);
       } else {
-        setEmail("");
-        setError(data.message || "사용자를 찾을 수 없습니다.");
+        setModalMessage("");
+        setError(data.message || "정보가 일치하지 않습니다.");
       }
     } catch (err) {
-      console.error("이메일 찾기 오류:", err);
+      console.error("비밀번호 재설정 오류:", err);
       setError("서버 오류가 발생했습니다.");
     }
   };
 
-  const closeModal = () => {
-    setIsModalOpen(false);
+  const handleNavigate = (path) => {
+    navigate(path);
   };
 
   return (
     <div className={styles.container}>
-      <div className={styles.section}>
+        <div className={styles.section}>
       <form className={styles.form} onSubmit={(e) => e.preventDefault()}>
         <div>
           <p className={styles.signupPageText}>이름</p>
           <input
             type="text"
-            name="username"
-            value={formData.username}
+            name="name"
+            value={formData.name}
             onChange={handleChange}
             required
             className={styles.input}
@@ -74,22 +85,29 @@ const FindEmail = () => {
             className={styles.input}
           />
         </div>
-        <button onClick={handleFindEmail} className={styles.button}>
-          이메일 찾기
+        <div>
+          <p className={styles.signupPageText}>이메일</p>
+          <input
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+            className={styles.input}
+          />
+        </div>
+        <button onClick={handleResetPassword} className={styles.button}>
+          비밀번호 재설정
         </button>
       </form>
-      
       {error && <p className={styles.error}>{error}</p>}
 
-      {/* 모달 컴포넌트 */}
+      {/* 모달 */}
       {isModalOpen && (
         <div className={styles.modalOverlay}>
           <div className={styles.modal}>
-            <h3>회원님의 이메일</h3>
-            <p>당신의 이메일: {email}</p>
-            <button onClick={closeModal} className={styles.modalButton}>
-              확인
-            </button>
+            <h2 className={styles.modalHeader}>이메일 전송 완료</h2>
+            <p>{modalMessage}</p>
           </div>
         </div>
       )}
@@ -98,8 +116,11 @@ const FindEmail = () => {
         로그인 페이지로
       </button>
       <div className={styles.links}>
-        <span onClick={() => navigate('/auth/find-password')} className={styles.linkButton}>
-          비밀번호 재설정
+        <span
+          className={styles.linkButton}
+          onClick={() => handleNavigate("/auth/find-email")}
+        >
+          이메일 찾기
         </span>
       </div>
       </div>
@@ -107,4 +128,4 @@ const FindEmail = () => {
   );
 };
 
-export default FindEmail;
+export default ResetPassword;
