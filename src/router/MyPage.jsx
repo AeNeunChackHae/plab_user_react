@@ -8,6 +8,7 @@ import MyLevelPage from "../pages/mypage/MyLevelPage";
 import BlacklistManager from "../pages/mypage/BlackListPage";
 import "../pages/mypage/page-style.css";
 import PasswordChange from "../pages/mypage/PasswordChangePage";
+import MatchFeedbackPage from "../pages/mypage/MatchFeedbackPage";
 
 function Mypage() {
   return (
@@ -19,6 +20,7 @@ function Mypage() {
       <Route path="/change/pw" element={<PasswordChange />} />
       <Route path="/change/general" element={<SettingsPage />} />
       <Route path="/mylevel" element={<MyLevelPage />} />
+      <Route path="/feedback/:matchId" element={<MatchFeedbackPage />} />
     </Routes>
   );
 }

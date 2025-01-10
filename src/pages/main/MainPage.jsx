@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Menubar from "../../components/menubar/Menubar";
+// import Menubar from "../../components/menubar/Menubar";
 import Tab from "../../components/main/Tab";
 import Banner from "../../components/main/Banner";
 import Filters from "../../components/main/Filters";
@@ -61,7 +61,7 @@ const MainPage = () => {
 
     return (
         <div className={styles.container}>
-            <Menubar />
+            {/* <Menubar /> */}
             <Tab />
             <Banner />
             <DateSelector onDateSelect={setSelectedDate} />

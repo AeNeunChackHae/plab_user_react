@@ -37,8 +37,8 @@ const MatchCompleted = ({ selectedDate, selectedMonth, completedSchedule }) => {
     navigate(`/match/${matchId}`);
   };
 
-  const handleEvaluation = () => {
-    navigate("/mypage/plab/estimate");
+  const handleEvaluation = (matchId) => {
+    navigate(`/mypage/feedback/${matchId}`);
   };
 
   return (
@@ -88,7 +88,7 @@ const MatchCompleted = ({ selectedDate, selectedMonth, completedSchedule }) => {
                 {!match.feedback_given ? (
                   <button
                     className={styles.button}
-                    onClick={handleEvaluation}
+                    onClick={() => handleEvaluation(match.match_id)}
                   >
                     매치 평가
                   </button>
