@@ -40,29 +40,6 @@ const OrderPage = () => {
 
   const handleApplyAndPaymentClick = async () => {
     try {
-      if (!token) {
-        throw new Error("인증 토큰이 누락되었습니다.");
-      }
-  
-      console.log("사용 중인 토큰:", token);
-  
-      // 1. Validation 요청
-      const validationResponse = await fetch("http://localhost:8080/payment/apply-validation", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({ match_id, user_id }),
-      });
-  
-      if (validationResponse.status === 401) {
-        // 401 에러 발생 시 로그인 화면으로 이동
-        alert("로그인 정보가 만료되었습니다. 다시 로그인해주세요.");
-        navigate("/auth/login"); // 로그인 페이지로 리디렉션
-        return;
-      }
-  
       // 1. 결제 처리
       if (!buyerInfo) {
         throw new Error("사용자 정보를 로드하지 못했습니다.");
