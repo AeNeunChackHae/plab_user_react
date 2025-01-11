@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation, useParams } from "react-router-dom";
 import styles from "./OrderPage.module.css";
+import fetchWithIsAuth from "../../components/utils/fetchWithIsAuth";
 
 const OrderPage = () => {
   const [isKakaoPayActive, setIsKakaoPayActive] = useState(true);
@@ -19,11 +20,7 @@ const OrderPage = () => {
   useEffect(() => {
     const fetchBuyerInfo = async () => {
       try {
-        const res = await fetch(`http://localhost:8080/payment/${user_id}`);
-        if (!res.ok) {
-          throw new Error("사용자 정보를 가져오는데 실패했습니다.");
-        }
-        const data = await res.json();
+        const data = await fetchWithIsAuth(`http://localhost:8080/payment/${user_id}`);
         setBuyerInfo(data);
       } catch (err) {
         console.error(err);
@@ -44,10 +41,10 @@ const OrderPage = () => {
       if (!buyerInfo) {
         throw new Error("사용자 정보를 로드하지 못했습니다.");
       }
-  
+
       const { IMP } = window;
       IMP.init("imp87372531"); // 아임포트 가맹점 코드
-  
+
       const paymentData = {
         pg: "kakaopay", // 카카오페이 사용
         pay_method: "card", // 결제 방식
@@ -58,72 +55,32 @@ const OrderPage = () => {
         buyer_name: buyerInfo.username, // 구매자 이름
         buyer_tel: buyerInfo.phone_number, // 구매자 전화번호
       };
-  
+
       // 카카오페이 결제 요청
       IMP.request_pay(paymentData, async (response) => {
         if (response.success) {
           try {
             // 결제 성공 시 백엔드에 결제 정보 전달
-            const paymentResponse = await fetch(
-              "http://localhost:8080/payment/complete",
-              {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                  user_id,
-                  match_id,
-                  imp_uid: response.imp_uid, // 아임포트 결제 고유번호
-                  merchant_uid: response.merchant_uid, // 주문 고유번호
-                }),
-              }
-            );
-  
-            if (!paymentResponse.ok) {
-              const errorData = await paymentResponse.json();
-              throw new Error(errorData.message || "결제 데이터 저장 실패");
-            }
-  
-            const result = await paymentResponse.json();
-            console.log("결제 성공:", result.message);
-  
+            await fetchWithIsAuth("http://localhost:8080/payment/complete", {
+              method: "POST",
+              body: JSON.stringify({
+                user_id,
+                match_id,
+                imp_uid: response.imp_uid, // 아임포트 결제 고유번호
+                merchant_uid: response.merchant_uid, // 주문 고유번호
+              }),
+            });
+
+            console.log("결제 성공");
+
             // 2. apply-validation 호출
-            const validationResponse = await fetch(
-              "http://localhost:8080/payment/apply-validation",
-              {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json",
-                  authorization: `Bearer ${token}`,
-                },
-                body: JSON.stringify({ match_id, user_id }),
-              }
-            );
-  
-            if (!validationResponse.ok) {
-              const errorData = await validationResponse.json();
-              throw new Error(errorData.message || "Validation 매치 신청 실패");
-            }
+            await fetchWithIsAuth("http://localhost:8080/payment/apply-validation", {
+              method: "POST",
+              body: JSON.stringify({ match_id, user_id }),
+            });
+
             console.log("Validation 매치 신청 성공");
-  
-            // 3. apply-simple 호출
-            // const simpleResponse = await fetch(
-            //   "http://localhost:8080/payment/apply-simple",
-            //   {
-            //     method: "POST",
-            //     headers: {
-            //       "Content-Type": "application/json",
-            //       authorization: `Bearer ${token}`,
-            //     },
-            //     body: JSON.stringify({ match_id, user_id }),
-            //   }
-            // );
-  
-            // if (!simpleResponse.ok) {
-            //   const errorData = await simpleResponse.json();
-            //   throw new Error(errorData.message || "Simple 매치 신청 실패");
-            // }
-            // console.log("Simple 매치 신청 성공");
-  
+
             // 결제 및 신청 완료 상태 업데이트
             setIsPaymentComplete(true);
             setTimeout(() => navigate("/mypage/myplab"), 2000);
@@ -131,7 +88,7 @@ const OrderPage = () => {
             throw new Error("결제 및 매치 신청 처리 중 오류 발생");
           }
         } else {
-          throw new Error(response.error_msg || "결제가 취소되었습니다.");
+          alert("[결제 취소] 사용자가 결제를 취소하셨습니다.");
         }
       });
     } catch (err) {
