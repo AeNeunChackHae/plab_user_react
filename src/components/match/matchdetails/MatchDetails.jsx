@@ -68,25 +68,34 @@ const checkApplicationStatus = useCallback(async () => {
           fetchMatchStatus(),
           userId ? checkApplicationStatus() : { isApplied: false }, // 로그인 여부에 따라 호출
         ]);
-  
-        switch (statusData.status_code) {
-          case 0:
-            setStatus(userId && application.isApplied ? "closed" : "recruiting");
-            break;
-          case 1:
-          case 4:
-            setStatus("closed");
-            break;
-          case 2:
-            setStatus("play");
-            break;
-          case 3:
-            setStatus("past");
-            break;
-          default:
-            setStatus("unknown");
-            break;
+
+        const now = new Date(); 
+        const endTime = new Date(details.end_time); 
+
+        if (now > endTime) {
+          console.log('now와 endTime',now,endTime)
+          setStatus("past"); // 종료된 매치로 상태 설정
+        } else {
+          switch (statusData.status_code) {
+            case 0:
+              setStatus(userId && application.isApplied ? "closed" : "recruiting");
+              break;
+            case 1:
+            case 4:
+              setStatus("closed");
+              break;
+            case 2:
+              setStatus("play");
+              break;
+            case 3:
+              setStatus("past");
+              break;
+            default:
+              setStatus("unknown");
+              break;
+          }
         }
+  
   
         setMatchDetails(details);
         setIsAlreadyApplied(userId ? application.isApplied : false);
@@ -114,11 +123,11 @@ const checkApplicationStatus = useCallback(async () => {
   };
 
   const handleApplyClick = async () => {
-    console.log("신청 버튼 클릭됨!"); // ★ 클릭 이벤트 확인
+    console.log("신청 버튼 클릭됨!"); 
     if (!checkLoginAndRedirect()) return;
   
     const userId = localStorage.getItem("id");
-    console.log("로그인된 사용자 ID:", userId); // ★ 사용자 ID 확인
+    console.log("로그인된 사용자 ID:", userId); 
   
     try {
       // 블랙리스트 확인 요청
@@ -272,110 +281,111 @@ const checkApplicationStatus = useCallback(async () => {
         </LocationProvider>
       )}
       <div className={styles.matchFee}>
-        {localStorage.getItem("id") ? ( // 로그인 여부 확인
-          isAlreadyApplied ? ( // 이미 신청한 매치 여부 확인
-            <div className={styles.statusBlock}>
-              <div className={styles.contentBlock}>
-                <span className={styles.money}>
-                  {pricing.regularPrice.toLocaleString()}원
-                </span>
-                <span> / 2시간</span>
-              </div>
-              <button className={styles.disabledButton} disabled>
-                이미 신청한 매치입니다!
-              </button>
-            </div>
-          ) : status === "past" ? ( // 매치 종료 상태 확인
-            <div className={styles.statusBlock}>
-              <div className={styles.contentBlock}>
-                <span className={styles.money}>
-                  {pricing.regularPrice.toLocaleString()}원
-                </span>
-                <span> / 2시간</span>
-                <div className={styles.matchClosed}>종료된 매치입니다</div>
-              </div>
-              <button className={styles.disabledButton} disabled>
-                종료
-              </button>
-            </div>
-          ) : status === "play" ? ( // 매치 진행 중 상태 확인
-            <div className={styles.statusBlock}>
-              <div className={styles.contentBlock}>
-                <span className={styles.money}>
-                  {pricing.regularPrice.toLocaleString()}원
-                </span>
-                <span> / 2시간</span>
-                <div className={styles.matchLive}>매치가 진행 중입니다!</div>
-              </div>
-              <button className={styles.disabledButton} disabled>
-                진행 중
-              </button>
-            </div>
-          ) : status === "closed" ? ( // 신청 마감 상태 확인
-            <div className={styles.statusBlock}>
-              <div className={styles.contentBlock}>
-                <span className={styles.money}>
-                  {pricing.regularPrice.toLocaleString()}원
-                </span>
-                <span> / 2시간</span>
-                <div className={styles.matchClosed}>신청이 마감되었습니다</div>
-              </div>
-              <button className={styles.disabledButton} disabled>
-                신청 불가
-              </button>
-            </div>
-          ) : status === "earlyBird" ? ( // 얼리버드 상태 확인
-            <div className={styles.statusBlock}>
-              <div className={styles.contentBlock}>
-                <span className={`${styles.money} ${styles.strikeThrough}`}>
-                  {pricing.regularPrice.toLocaleString()}원
-                </span>
-                <span className={styles.money}>
-                  {pricing.discountPrice.toLocaleString()}원
-                </span>
-                <div className={styles.discountText}>얼리버드 할인 적용 중</div>
-              </div>
-              <button className={styles.applyButton} onClick={handleApplyClick}>
-                신청하기
-              </button>
-            </div>
-          ) : status === "regular" || status === "recruiting" ? ( // 일반 신청 가능 상태 + 모집 중 상태 확인
-            <div className={styles.statusBlock}>
-              <div className={styles.contentBlock}>
-                <span className={styles.money}>
-                  {pricing.regularPrice.toLocaleString()}원
-                </span>
-                <span> / 2시간</span>
-                <div className={styles.discountText}>매치 시작 3시간 전까지 신청 가능</div>
-              </div>
-              <button className={styles.applyButton} onClick={handleApplyClick}>
-                신청하기
-              </button>
-            </div>
-          ) : (
-            <div className={styles.statusBlock}>
-              <div className={styles.contentBlock}>
-                <span className={styles.money}>상태를 확인할 수 없습니다</span>
-              </div>
-              <button className={styles.disabledButton} disabled>
-                신청 불가
-              </button>
-            </div>
-          )
-        ) : ( // 로그인하지 않은 경우 처리
-          <div className={styles.statusBlock}>
-            <button
-              className={styles.applyButton}
-              onClick={() => {
-                alert("로그인해야 신청이 가능합니다!");
-                navigate("/auth/login", { state: { from: location.pathname } });
-              }}
-            >
-              로그인 후 신청 가능
-            </button>
-          </div>
-        )}
+  {localStorage.getItem("id") ? ( // 로그인 여부 확인
+    status === "past" ? ( // 종료된 매치
+      <div className={styles.statusBlock}>
+        <div className={styles.contentBlock}>
+          <span className={styles.money}>
+            {pricing.regularPrice.toLocaleString()}원
+          </span>
+          <span> / 2시간</span>
+          <div className={styles.matchClosed}>종료된 매치입니다</div>
+        </div>
+        <button className={styles.disabledButton} disabled>
+          종료
+        </button>
       </div>
+    ) : isAlreadyApplied ? ( // 이미 신청한 경우
+      <div className={styles.statusBlock}>
+        <div className={styles.contentBlock}>
+          <span className={styles.money}>
+            {pricing.regularPrice.toLocaleString()}원
+          </span>
+          <span> / 2시간</span>
+        </div>
+        <button className={styles.disabledButton} disabled>
+          이미 신청한 매치입니다!
+        </button>
+      </div>
+    ) : status === "play" ? ( // 매치 진행 중
+      <div className={styles.statusBlock}>
+        <div className={styles.contentBlock}>
+          <span className={styles.money}>
+            {pricing.regularPrice.toLocaleString()}원
+          </span>
+          <span> / 2시간</span>
+          <div className={styles.matchLive}>매치가 진행 중입니다!</div>
+        </div>
+        <button className={styles.disabledButton} disabled>
+          진행 중
+        </button>
+      </div>
+    ) : status === "closed" ? ( // 신청 마감
+      <div className={styles.statusBlock}>
+        <div className={styles.contentBlock}>
+          <span className={styles.money}>
+            {pricing.regularPrice.toLocaleString()}원
+          </span>
+          <span> / 2시간</span>
+          <div className={styles.matchClosed}>신청이 마감되었습니다</div>
+        </div>
+        <button className={styles.disabledButton} disabled>
+          신청 불가
+        </button>
+      </div>
+    ) : status === "earlyBird" ? ( // 얼리버드 상태
+      <div className={styles.statusBlock}>
+        <div className={styles.contentBlock}>
+          <span className={`${styles.money} ${styles.strikeThrough}`}>
+            {pricing.regularPrice.toLocaleString()}원
+          </span>
+          <span className={styles.money}>
+            {pricing.discountPrice.toLocaleString()}원
+          </span>
+          <div className={styles.discountText}>얼리버드 할인 적용 중</div>
+        </div>
+        <button className={styles.applyButton} onClick={handleApplyClick}>
+          신청하기
+        </button>
+      </div>
+    ) : status === "regular" || status === "recruiting" ? ( // 모집 중 상태
+      <div className={styles.statusBlock}>
+        <div className={styles.contentBlock}>
+          <span className={styles.money}>
+            {pricing.regularPrice.toLocaleString()}원
+          </span>
+          <span> / 2시간</span>
+          <div className={styles.discountText}>매치 시작 3시간 전까지 신청 가능</div>
+        </div>
+        <button className={styles.applyButton} onClick={handleApplyClick}>
+          신청하기
+        </button>
+      </div>
+    ) : (
+      <div className={styles.statusBlock}>
+        <div className={styles.contentBlock}>
+          <span className={styles.money}>상태를 확인할 수 없습니다</span>
+        </div>
+        <button className={styles.disabledButton} disabled>
+          신청 불가
+        </button>
+      </div>
+    )
+  ) : ( // 로그인하지 않은 경우
+    <div className={styles.statusBlock}>
+      <button
+        className={styles.applyButton}
+        onClick={() => {
+          alert("로그인해야 신청이 가능합니다!");
+          navigate("/auth/login", { state: { from: location.pathname } });
+        }}
+      >
+        로그인 후 신청 가능
+      </button>
+    </div>
+  )}
+</div>
+
     </div>
   );
   
