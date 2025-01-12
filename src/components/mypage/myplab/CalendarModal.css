@@ -1,11 +1,12 @@
 .calendar-modal {
-  width: 100%;
+  width: 105%;
   text-align: center;
 }
 
 .react-calendar {
   border: none;
   width: 100%;
+  font-size: 10px;
 }
 
 .react-calendar__navigation {
@@ -13,12 +14,13 @@
   justify-content: space-between;
   align-items: center;
   padding: 10px 0;
+  font-size: 0.5rem;
 }
 
 .react-calendar__navigation button {
   border: none;
   background: none;
-  font-size: 16px;
+  font-size: 15px;
   cursor: pointer;
   color: #007bff;
   font-weight: bold;

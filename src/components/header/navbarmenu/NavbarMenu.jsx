@@ -93,7 +93,7 @@ const NavbarMenu = ({ closeMenu }) => {
           </div>
 
           {/* 팀 섹션 */}
-          <div className={styles.sectionService}>
+          {/* <div className={styles.sectionService}>
             <h4 className={styles.sectionTitle}>팀</h4>
             <ul className={styles.serviceList}>
               <li
@@ -108,19 +108,14 @@ const NavbarMenu = ({ closeMenu }) => {
                 <p>리그</p>
               </li>
             </ul>
-          </div>
+          </div> */}
 
           {/* 구장 예약 및 기타 */}
           <div className={styles.sectionService}>
-            <h4 className={styles.sectionTitle}>
-              <span
-                className={styles.serviceLink}
-                onClick={() => handleNavigation("/rental")}
-              >
-                구장 예약 →
-              </span>
-            </h4>
             <ul className={`${styles.serviceList} ${styles.vertical}`}>
+              <h4 className={styles.sectionTitle}>
+                <span>매니저</span>
+              </h4>
               <li>
                 <a
                   href="https://manager.plabfootball.com"
@@ -133,9 +128,12 @@ const NavbarMenu = ({ closeMenu }) => {
                     alt="매니저 지원"
                     className={styles.serviceImage}
                   />
-                  <p>매니저지원</p>
+                  <p>매니저 지원</p>
                 </a>
               </li>
+              <h4 className={styles.sectionTitle}>
+                <span>구장</span>
+              </h4>
               <li>
                 <a
                   href="https://www.notion.so/d1e51463c20441658337e9a8bde2ba8c"

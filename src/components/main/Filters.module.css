@@ -1,57 +1,57 @@
 .filters {
-    display: flex;
-    gap: 5px;
+  display: flex;
+  gap: 5px;
 }
 
 .filterButton {
-    margin-top: 20px;
-    border: 1px solid #ddd;
-    border-radius: 20px;
-    background-color: #fff;
-    padding: 5px 15px;
-    font-size: 16px;
-    cursor: pointer;
-    color: #333;
+  margin-top: 20px;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  background-color: #fff;
+  padding: 5px 15px;
+  font-size: 15px;
+  cursor: pointer;
+  color: #333;
 }
 
 .filterButton.selected {
-    border-color: #007bff;
-    color: #007bff;
+  border-color: #007bff;
+  color: #007bff;
 }
 
 .scrollContainer {
-    max-height: 300px;
-    overflow-y: auto;
-    border-radius: 5px;
-    padding: 10px;
+  max-height: 300px;
+  overflow-y: auto;
+  border-radius: 5px;
+  padding: 15px;
 }
 
 .modalList {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .checkboxLabel {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    cursor: pointer;
-    font-size: 18px;
-    font-weight: 100;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 100;
 }
 
 .applyButton {
-    background-color: #007bff;
-    width: 100%;
-    color: white;
-    padding: 10px 20px; 
-    border-radius: 10px;
-    margin-top: 20px;
-    cursor: pointer;
-    display: block; 
-    margin-left: auto; 
-    margin-right: auto; 
-    text-align: center; 
-    font-size: 16px;
+  background-color: #007bff;
+  width: 100%;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 10px;
+  margin-top: 20px;
+  cursor: pointer;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  font-size: 16px;
 }
