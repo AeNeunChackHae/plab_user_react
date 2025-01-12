@@ -66,7 +66,7 @@ const SettingPage = () => {
       const response = await fetch('http://127.0.0.1:8080/auth/logout', {
         method: 'POST',
         headers: {
-          'Authorization': `Bearer ${localStorage.getItem('authToken')}`,
+          // 'Authorization': `Bearer ${localStorage.getItem('authToken')}`,
           'Content-Type': 'application/json'
         }
       });
@@ -76,6 +76,7 @@ const SettingPage = () => {
       if (response.ok && data.success) {
         alert('로그아웃 되었습니다.');
         localStorage.removeItem('authToken'); // 토큰 삭제
+        localStorage.removeItem('id'); // 토큰 삭제
         navigate('/'); // 메인 페이지로 이동
       } else {
         alert(data.message || '로그아웃에 실패했습니다.');

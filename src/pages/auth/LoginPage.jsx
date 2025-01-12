@@ -97,7 +97,7 @@ function LoginPage() {
             <a className="footer-links-text" href="/auth/find-email">
               아이디/비밀번호 찾기
             </a>
-            <a className="footer-links-text" href="/auth/find-password">
+            <a className="footer-links-text" href="/auth/register">
               회원 가입
             </a>
           </div>
