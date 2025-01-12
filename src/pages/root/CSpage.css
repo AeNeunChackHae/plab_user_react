@@ -8,7 +8,7 @@
   padding: 20px 0;
 }
 
-.faq-list, 
+.faq-list,
 .SearchBar-container {
   width: 100%;
   max-width: 1000px;
@@ -37,28 +37,50 @@
   align-items: center;
   width: 100%;
   box-sizing: border-box;
+  cursor: pointer;
 }
 
-.faq-content,
-.faq-answer {
-  padding: 10px 20px;
-  background-color: #f1f1f1;
-  border-left: 3px solid #28a745;
-  margin: 0;
-  width: 100%;
-  box-sizing: border-box;
+.faq-status-container {
+  display: flex;
+  align-items: center;
+}
+
+.status {
+  margin-right: 5px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.status.answered {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+}
+
+.status.unanswered {
+  background-color: #f6eaea;
+  color: #c62828;
 }
 
 .faq-content {
   margin-top: 3px;
   border-radius: 5px;
+  background-color: #f1f1f1;
+  border-left: 4px solid #28a745;
+  padding: 10px 20px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .faq-answer {
-  margin-top: 3px;
+  padding: 10px 20px;
+  border-left: 4px solid #007bff;
   background-color: #f9f9f9;
-  border-left: 3px solid #007bff;
+  margin-top: 3px;
   border-radius: 5px;
+  font-size: 14px;
+  color: #333;
 }
 
 .contact-button {
@@ -89,7 +111,50 @@
 }
 
 .content_content {
-  margin: 3px 0 3px 3px;
+  margin: 3px 0;
   text-align: left;
   color: black;
+}
+
+.modal {
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -20%);
+  z-index: 1000;
+  background-color: white;
+  padding: 20px;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+.button {
+  margin: 10px;
+  padding: 10px 20px;
+  background-color: blue;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.faq-answer.waiting {
+  border-left-color: #ff5722;
+  background-color: #f6eaea;
+  color: #c62828;
+}
+
+.faq-answer.completed {
+  border-left-color: #4caf50;
+  background-color: #e8f5e9;
+  color: #2e7d32;
+}
+
+.faq-answer.waiting .waiting-text {
+  color: #757575;
+  font-weight: normal;
+}
+
+.hidden {
+  display: none;
 }
