@@ -1,0 +1,181 @@
+/* webkit 설정 : start */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+/* webkit 설정 : end */
+
+.main_container{
+  width: 800px;
+  margin: 20px auto;
+}
+
+.row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  align-items: center;
+  width: 700px;
+  margin: 30px auto;
+}
+
+.column {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+}
+
+#img_canvas{
+  width: 120px;
+  height: 120px;
+  border: 3px solid #ffffff;
+  box-shadow: 0 0.5rem 1.5rem 0.5rem rgba(0, 0, 0, 0.075);
+}
+
+.label_text{
+  flex: 0 0 25%;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  text-align: start;
+}
+
+.label_text_center{
+  flex: 0 0 25%;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  text-align: center;
+}
+
+.form_selectbox{
+  width: 100%;
+  height: calc(1.5em + 1.65rem + 2px);
+  padding: 0.825rem 1.42rem;
+  font-size: 14px;
+  line-height: 1.5;
+  border-radius: 0.42rem;
+  background-color: #F3F6F9;
+  border-color: #F3F6F9;
+  color: #3F4254;
+}
+
+.form_text{
+  width: 100%;
+  height: 20px;
+  padding: 0.825rem 1.42rem;
+  font-size: 14px;
+  line-height: 1.5;
+  border-radius: 0.42rem;
+  background-color: #F3F6F9;
+  border: 1px solid #F3F6F9;
+  color: #3F4254;
+}
+
+/* 라디오 버튼 CSS : start */
+.radio-option {
+  flex: 0 0 25%;
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 16px;
+  user-select: none;
+}
+
+.radio-option input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background-color: #eee;
+  border-radius: 50%;
+}
+
+.radio-option:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+.radio-option input:checked ~ .checkmark {
+  background-color: #2196F3;
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.radio-option input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.checkmark:after {
+  top: 7px;
+  left: 7px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: white;
+}
+/* 라디오 버튼 CSS : end */
+
+#notice{
+  width: 100%;
+  min-width: 200px;
+  min-height: 100px;
+  max-height: 300px;
+  background-color: #F3F6F9;
+  border-color: #F3F6F9;
+  color: #3F4254;
+}
+
+.flex_child_quartern{
+  flex: 0 0 25%;
+}
+
+.flex_child_one_fifth{
+  flex: 0 0 20%;
+}
+
+.flex_child_one_sixth{
+  flex: 0 0 15%;
+}
+
+.justify_center{
+  justify-content: center;
+}
+
+.justify_end{
+  justify-content: end;
+}
+
+.w_90{
+  width: 90%;
+}
+
+.w_50{
+  width: 70%;
+}
+
+.margin_x_10{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.btn_success {
+  cursor: pointer;
+  color: #ffffff;
+  background-color: #1BC5BD;
+  border-color: #1BC5BD;
+  padding: 15px 30px;
+}
