@@ -9,6 +9,7 @@ import BlacklistManager from "../pages/mypage/BlackListPage";
 import "../pages/mypage/page-style.css";
 import PasswordChange from "../pages/mypage/PasswordChangePage";
 import UserFeedbackPage from "../pages/mypage/UserFeedbackPage";
+import StadiumFeedbackPage from "../pages/mypage/StadiumFeedbackPage";
 
 function Mypage() {
   return (
@@ -21,6 +22,7 @@ function Mypage() {
       <Route path="/change/general" element={<SettingsPage />} />
       <Route path="/mylevel" element={<MyLevelPage />} />
       <Route path="/feedback/:matchId/user" element={<UserFeedbackPage />} />
+      <Route path="/feedback/:matchId/stadium" element={<StadiumFeedbackPage />} />
     </Routes>
   );
 }
