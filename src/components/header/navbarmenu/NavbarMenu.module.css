@@ -43,12 +43,12 @@
 }
 
 .sectionService {
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 }
 
 .sectionTitle {
-  font-size: 18px;
-  margin-bottom: 15px;
+  font-size: 15px;
+  margin-bottom: 0;
   font-weight: bold;
   color: #555;
 }
@@ -57,8 +57,7 @@
   list-style: none;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 15px;
+  grid-template-columns: repeat(5, 1fr);
   cursor: pointer;
 }
 
@@ -68,14 +67,18 @@
   align-items: center;
   text-decoration: none;
   color: #333;
-  font-size: 14px;
+
   cursor: pointer;
 }
 
+.serviceItem p {
+  font-size: 13px;
+}
+
 .serviceImage {
-  width: 40px;
-  height: 40px;
-  margin-bottom: 5px;
+  width: 35px;
+  height: 35px;
+  margin-bottom: 0px;
   transition: transform 0.2s ease;
 }
 
@@ -88,7 +91,7 @@
 }
 
 .serviceLink {
-  font-size: 16px;
+  font-size: 15px;
   color: #000;
   font-weight: bold;
   text-decoration: none;
@@ -102,7 +105,6 @@
   cursor: pointer;
 }
 
-
 .serviceLink:hover {
   text-decoration: underline;
 }
@@ -110,7 +112,7 @@
 .serviceList.vertical {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  /* gap: 20px; */
   align-items: flex-start;
 }
 
@@ -129,6 +131,10 @@
 .serviceList.vertical p {
   font-size: 16px;
   color: #333;
+}
+
+.serviceList p {
+  margin-bottom: 20px;
 }
 
 .serviceList.vertical .serviceItem:hover p {
