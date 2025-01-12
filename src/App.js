@@ -18,6 +18,7 @@ import Order from "./router/Order";
 import Term from "./router/Term";
 import Footer from "./components/footer/Footer";
 import NotFound from "./router/NotFound";
+import Form from './pages/form/Form.jsx'
 
 import MatchFeedback from "./components/matchfeedback/MatchFeedbackPage.jsx";
 
@@ -31,6 +32,7 @@ function App() {
         <Route path="/cs/*" element={<Cs />} />
         <Route path="/notice" element={<Notice />} />
         <Route path="/about" element={<About />} />
+        <Route path="/form" element={<Form />} />
 
         {/* router element 리턴 */}
         <Route path="/auth/*" element={<Auth />} />
