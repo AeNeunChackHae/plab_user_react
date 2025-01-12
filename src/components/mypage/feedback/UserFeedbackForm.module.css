@@ -1,0 +1,175 @@
+.container {
+  padding: 20px;
+  max-width: 600px;
+  margin: 0 auto;
+  align-items: center;
+}
+
+.feedbackSection {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.toggleSection {
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.toggleButton {
+  padding: 10px 15px;
+  border: 1px solid black;
+  border-radius: 8px;
+  background-color: white;
+  cursor: pointer;
+}
+
+/* 칭찬 버튼 활성화 효과 */
+.praiseActive {
+  border: 1px solid #007bff;
+  color: #007bff;
+}
+
+/* 비매너 버튼 활성화 효과 */
+.negativeActive {
+  border: 1px solid #f44336;
+  color: #f44336;
+}
+
+.submitButtonContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.submitButton {
+  padding: 15px;
+  color: #007bff;
+  font-size: 18px;
+  border-bottom: 2px solid #007bff;
+  cursor: pointer;
+}
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modalContent {
+  background-color: white;
+  padding: 30px;
+  border-radius: 12px;
+  width: 500px;
+}
+
+.modalTitle {
+  margin: 0 0 20px 0;
+  font-size: 22px;
+  font-weight: bold;
+  text-align: center;
+  color: #333;
+  border-bottom: 2px solid #f0f0f0;
+  padding-bottom: 10px;
+}
+
+.selectRow {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.select {
+  width: 100%;
+  height: 40px;
+  padding: 0 10px;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  font-size: 17px;
+  outline: none;
+}
+
+.select:focus {
+  border-color: #007bff;
+}
+
+.feedbackOptions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.feedbackButton {
+  padding: 10px 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.activeFeedback {
+  background-color: #007bff;
+  color: white;
+  border-color: #0056b3;
+}
+
+.buttonBox {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.saveButton {
+  padding: 10px 20px;
+  color: #28a745;
+  border: 1px solid #28a745;
+  border-radius: 50px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.resetButton {
+  padding: 10px 20px;
+  color: #aaa;
+  border: 1px solid #aaa;
+  border-radius: 50px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.registerButton {
+  padding: 10px 20px;
+  margin-right: 20px;
+  color: #28a745;
+  border: 1px solid #28a745;
+  border-radius: 50px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.registerButton:disabled {
+  background-color: lightgray;
+  color: #aaa;
+  cursor: not-allowed;
+}
+
+.closeButton {
+  padding: 10px 20px;
+  color: #000;
+  border: 1px solid #000;
+  border-radius: 50px;
+  font-size: 14px;
+  cursor: pointer;
+}

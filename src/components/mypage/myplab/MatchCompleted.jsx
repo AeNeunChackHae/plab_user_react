@@ -38,7 +38,7 @@ const MatchCompleted = ({ selectedDate, selectedMonth, completedSchedule }) => {
   };
 
   const handleEvaluation = (matchId) => {
-    navigate(`/mypage/feedback/${matchId}`);
+    navigate(`/mypage/feedback/${matchId}/user`);
   };
 
   return (
