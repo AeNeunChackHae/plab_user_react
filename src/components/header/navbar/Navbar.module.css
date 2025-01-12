@@ -51,11 +51,11 @@
 .searchBar {
   display: flex;
   align-items: center;
-  background-color: #f8f9fa;
-  border: 1px solid #ddd;
+  background-color: #f8f8f8;
+  /* border: 1px solid #ddd; */
   border-radius: 5px;
-  padding: 0px 10px; /* 정섭 수정 241228 */
-  width: 300px; /* 검색창 너비 확장 */
+  padding: 0px 10px 0px; /* 정섭 수정 241228 */
+  width: 280px; /* 검색창 너비 250112 */
 }
 
 .searchIcon {
@@ -69,6 +69,8 @@
   background: transparent;
   flex: 1;
   font-size: 14px;
+
+  padding: 10px 8px 8px 10px; /* 정섭 추가 250112*/
 }
 
 /* 드롭다운 메뉴 스타일 */

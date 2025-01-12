@@ -16,15 +16,17 @@
   align-items: flex-start;
   max-width: 1200px;
   margin: 0 auto;
-  gap: 40px;
+  gap: 120px; /* 250112*/
 }
 
 /* 좌측 네비게이션 섹션 */
 .footerNav {
+  font-size: 0.8rem; /*250112*/
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
-  gap: 60px;
+  gap: 50px;
+  margin-left: 100px; /*250112 메뉴 오른쪽으로 밀기*/
 }
 
 .footerNav ul {
@@ -48,7 +50,7 @@
 .footerNav li a {
   text-decoration: none;
   color: #c4c4c4;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   line-height: 1.5;
 }
 
@@ -59,24 +61,28 @@
 /* 회사 섹션 중앙 정렬 */
 .company {
   flex: 1;
-  text-align: center;
+  width: 450px;
   margin-top: 0;
 }
 
 .company h2 {
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   font-weight: bold;
   color: #ffffff;
   font-style: italic;
   text-decoration: underline;
   text-decoration-color: gold;
   margin-bottom: 15px;
+  display: flex;
 }
 
 .company p,
 .company span,
-.company a {
+.company a1 {
   color: #d3d3d3;
+  display: flex;
+  font-size: 0.8rem; /*250112*/
+  margin-bottom: 5px;
 }
 
 .company a {
