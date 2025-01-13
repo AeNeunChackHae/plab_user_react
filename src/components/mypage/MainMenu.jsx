@@ -59,7 +59,7 @@ const MainMenu = () => {
             <span className="icon">🤝</span> 매니저 지원
           </Link>
 
-          <Link to="/stadium/partnership" className="menu-link">
+          <Link to="/form" className="menu-link">
             <span className="icon">🏟️</span> 구장 제휴
           </Link>
         </div>

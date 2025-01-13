@@ -28,9 +28,9 @@ function App() {
         {/* pages element 리턴 */}
         <Route path="/" element={<Main />} />
         <Route path="/cs/*" element={<Cs />} />
-        <Route path="/notice" element={<Notice />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/form" element={<Form />} />
+        <Route path="/notice/*" element={<Notice />} />
+        <Route path="/about/*" element={<About />} />
+        <Route path="/form/*" element={<Form />} />
 
         {/* router element 리턴 */}
         <Route path="/auth/*" element={<Auth />} />
