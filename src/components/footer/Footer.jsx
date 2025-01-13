@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from 'react-router-dom';
 import styles from "./Footer.module.css";
 
 const Footer = () => {
@@ -79,7 +78,15 @@ const Footer = () => {
             {/* <li>
               <a href="/magazine/">플랩 매거진</a>
             </li> */}
-            <li><a href="https://manager.plabfootball.com/" target="_blank" rel="noopener noreferrer">매니저 지원</a></li>
+            <li>
+              <a 
+                href="http://localhost:3001/manager/plabfootball" 
+                target="_blank" 
+                rel="noopener noreferrer"
+              >
+                매니저 지원
+              </a>
+            </li>
             <li><a href="/form" target="_blank" rel="noopener noreferrer">구장 제휴</a></li>
             {/* <li>
               <a

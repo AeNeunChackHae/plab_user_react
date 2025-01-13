@@ -4,10 +4,6 @@ import "./MainMenu.css";
 
 const MainMenu = () => {
 
-  const handleRedirect = () => {
-    window.location.href = "http://localhost:3001/";
-  };
-
   return (
     <div className="main-menu">
       {/* 나의 플랩 */}
@@ -60,9 +56,14 @@ const MainMenu = () => {
             <span className="icon">ℹ️</span> 플랩포털 소개
           </Link>
 
-          <button onClick={handleRedirect} className="menu-link">
+          <a 
+            href="http://localhost:3001/manager/plabfootball" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="menu-link"
+          >
             <span className="icon">🤝</span> 매니저 지원
-          </button>
+          </a>
 
           <Link to="/form" className="menu-link">
             <span className="icon">🏟️</span> 구장 제휴
