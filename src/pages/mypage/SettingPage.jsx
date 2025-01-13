@@ -66,7 +66,6 @@ const SettingPage = () => {
       const response = await fetch('http://127.0.0.1:8080/auth/logout', {
         method: 'POST',
         headers: {
-          // 'Authorization': `Bearer ${localStorage.getItem('authToken')}`,
           'Content-Type': 'application/json'
         }
       });
