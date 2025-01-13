@@ -126,3 +126,11 @@
 .matchButton:hover {
   background-color: #e6e6e6;
 }
+
+/* 매치 없음 메시지 */
+.noMatches {
+  font-size: 18px;
+  color: #999;
+  text-align: center;
+  margin-top: 20px;
+}
