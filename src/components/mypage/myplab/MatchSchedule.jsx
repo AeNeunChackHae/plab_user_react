@@ -11,9 +11,9 @@ const MatchSchedule = ({ selectedDate, upcomingSchedule }) => {
   } = upcomingSchedule;
 
   // 채팅방 입장 핸들러
-  const handleChatRoom = () => {
-    alert("채팅방에 입장합니다.");
-  };
+  // const handleChatRoom = () => {
+  //   alert("채팅방에 입장합니다.");
+  // };
 
   // 매치 신청 취소 핸들러
   const handleCancelMatch = async (match_id) => {
@@ -159,9 +159,9 @@ const MatchSchedule = ({ selectedDate, upcomingSchedule }) => {
                   </div>
                 </div>
                 <div className={styles.matchButtonsContainer}>
-                  <button onClick={handleChatRoom} className={styles.matchButton}>
+                  {/* <button onClick={handleChatRoom} className={styles.matchButton}>
                     채팅방 입장
-                  </button>
+                  </button> */}
                   <button
                     onClick={(e) => {
                       e.stopPropagation();
