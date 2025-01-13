@@ -31,12 +31,12 @@
 }
 
 .location {
-  font-size: 18px;
+  font-size: 15px;
   color: black;
 }
 
 .gender {
-  font-size: 15px;
+  font-size: 12px;
 }
 
 /* gender 앞 동그라미 점 스타일 */
@@ -62,7 +62,7 @@
 
 /* level 스타일 */
 .level {
-  font-size: 15px;
+  font-size: 12px;
   padding: 2px 4px;
   border-radius: 5px;
   display: inline-block;
@@ -107,6 +107,6 @@
 
 .emptyMessage {
   text-align: center;
-  font-size: 20px;
+  font-size: 15px;
   color: #888;
 }

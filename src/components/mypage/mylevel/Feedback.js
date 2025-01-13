@@ -8,20 +8,20 @@ const Feedback = ({ positiveCompliments, negativeCompliments }) => {
       <div className="feedback-sections">
         <div className="positive-feedback">
           <h4>잘하고 있어요!</h4>
-          <ul>
+          <ul className="feedback-ul">
             {positiveCompliments.map((item, index) => (
               <li key={index}>
-                {item.text} <span>{item.vote}회</span>
+                {item.text} <span> &nbsp; {item.vote}회 </span>
               </li>
             ))}
           </ul>
         </div>
         <div className="negative-feedback">
           <h4>조금 더 보완해요!</h4>
-          <ul>
+          <ul className="feedback-ul">
             {negativeCompliments.map((item, index) => (
               <li key={index}>
-                {item.text} <span>{item.vote}회</span>
+                {item.text} <span> &nbsp; {item.vote}회 </span>
               </li>
             ))}
           </ul>
