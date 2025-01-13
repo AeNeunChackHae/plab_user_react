@@ -267,9 +267,8 @@ const Navbar = () => {
                 src="https://d31wz4d3hgve8q.cloudfront.net/static/img/ic_club.svg"
                 alt="Shield"
                 className={styles.icon}
-                onClick={() => handleNavigation("/team/dashboard/")} // 팀 대시보드 이동
+                onClick={() => handleNavigation("/team/dashboard/")}
               /> */}
-
               <img
                 src="https://d31wz4d3hgve8q.cloudfront.net/static/img/ic_mymatch.svg"
                 alt="Calendar"
