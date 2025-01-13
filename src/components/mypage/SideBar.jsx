@@ -50,7 +50,9 @@ const Sidebar = () => {
         {/* 선호 포지션 박스 */}
         <div className={styles.infoBox}>
           <div className={styles.infoDetail}>
-            <p className={styles.infoTitle}>선호 <br /> 포지션</p>
+            <p className={styles.infoTitle}>
+              선호 <br /> 포지션
+            </p>
             <p className={styles.infoSubs}>
               {userData ? userData.prefer_position : "데이터 없음"}
             </p>
@@ -60,7 +62,9 @@ const Sidebar = () => {
         {/* 플레이 스타일 박스 */}
         <div className={styles.infoBox}>
           <div className={styles.infoDetail}>
-            <p className={styles.infoTitle}>플레이 <br /> 스타일</p>
+            <p className={styles.infoTitle}>
+              플레이 <br /> 스타일
+            </p>
             <p className={styles.infoSubs}>
               {userData ? userData.playStyle : "데이터 없음"}
             </p>
