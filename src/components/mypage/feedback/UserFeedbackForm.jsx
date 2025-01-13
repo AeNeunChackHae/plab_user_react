@@ -250,7 +250,7 @@ const FeedbackForm = ({ players, currentUserId, matchId }) => {
           <div className={styles.toggleSection}>
             <button
               onClick={() => setIsPraiseModalOpen(true)}
-              className={`${styles.praiseButton} ${
+              className={`${styles.toggleButton} ${
                 isPraiseSaved ? styles.praiseActive : ""
               }`}
             >
@@ -262,11 +262,11 @@ const FeedbackForm = ({ players, currentUserId, matchId }) => {
           <div className={styles.toggleSection}>
             <button
               onClick={() => setIsNegativeModalOpen(true)}
-              className={`${styles.negativeButton} ${
+              className={`${styles.toggleButton} ${
                 isNegativeSaved ? styles.negativeActive : ""
               }`}
             >
-              비매너 평가하기
+              유저 다독이기
             </button>
           </div>
 
@@ -274,7 +274,7 @@ const FeedbackForm = ({ players, currentUserId, matchId }) => {
           <div className={styles.blacklistSection}>
             <button
               onClick={() => setIsBlacklistModalOpen(true)}
-              className={styles.blacklistButton}
+              className={styles.toggleButton}
               disabled={blacklistRegistered}
             >
               {blacklistRegistered ? "블랙리스트 등록 완료" : "블랙리스트 등록"}

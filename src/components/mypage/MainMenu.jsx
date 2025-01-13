@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "./MainMenu.css";
 
 const MainMenu = () => {
+
   return (
     <div className="main-menu">
       {/* 나의 플랩 */}
@@ -55,11 +56,16 @@ const MainMenu = () => {
             <span className="icon">ℹ️</span> 플랩포털 소개
           </Link>
 
-          <Link to="/manager/info" className="menu-link">
+          <a 
+            href="http://localhost:3001/manager/plabfootball" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="menu-link"
+          >
             <span className="icon">🤝</span> 매니저 지원
-          </Link>
+          </a>
 
-          <Link to="/stadium/partnership" className="menu-link">
+          <Link to="/form" className="menu-link">
             <span className="icon">🏟️</span> 구장 제휴
           </Link>
         </div>

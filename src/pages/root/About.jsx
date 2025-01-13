@@ -1,14 +1,7 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import "./About.css";
 
 const AboutPage = () => {
-  const navigate = useNavigate();
-
-  const handleSignupClick = () => {
-    navigate("/auth/register");
-  };
-
   return (
     <div className="about">
       <img
@@ -29,9 +22,6 @@ const AboutPage = () => {
       />
       <h1 className="about-heading">지금 가입하고 언제든 할 수 있어요.</h1>
       <h3 className="about-subheading"> 원데이 축구·풋살 플랩풋볼 </h3>
-      <button className="signup-button" onClick={handleSignupClick}>
-        가입하기
-      </button>
     </div>
   );
 };

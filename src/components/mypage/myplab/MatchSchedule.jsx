@@ -178,7 +178,7 @@ const MatchSchedule = ({ selectedDate, upcomingSchedule }) => {
           </div>
         ))
       ) : (
-        <p>선택한 날짜에 해당하는 매치가 없습니다.</p>
+        <p className={styles.noMatches}>선택한 날짜에 해당하는 매치가 없습니다.</p>
       )}
     </div>
   );
