@@ -169,51 +169,7 @@ const Navbar = () => {
             </div>
             {isSearchDropdownOpen && (
               <div className={styles.searchDropdown}>
-                {/* 최근 검색어 */}
-                <div>
-                  <p className={styles.dropdownTitle}>최근 검색어</p>
-                  <div className={styles.keywordButtons}>
-                    <button
-                      onClick={() =>
-                        handleKeywordClick("서울 송파 천마 풋살 파크")
-                      }
-                    >
-                      서울 송파 천마 풋살 파크
-                    </button>
-                    <button onClick={() => handleKeywordClick("경산 퍼스트")}>
-                      경산 퍼스트
-                    </button>
-                  </div>
-                </div>
-
-                {/* 인기 키워드 */}
-                <div>
-                  <p className={styles.dropdownTitle}>인기 키워드</p>
-                  <div className={styles.keywordButtons}>
-                    <button onClick={() => handleKeywordClick("수원")}>
-                      수원
-                    </button>
-                    <button onClick={() => handleKeywordClick("부천")}>
-                      부천
-                    </button>
-                    <button onClick={() => handleKeywordClick("천안")}>
-                      천안
-                    </button>
-                    <button onClick={() => handleKeywordClick("안산")}>
-                      안산
-                    </button>
-                    <button onClick={() => handleKeywordClick("김포")}>
-                      김포
-                    </button>
-                  </div>
-                </div>
-
-                {/* 새로운 구장 */}
-                <div>
-                  <p className={styles.dropdownTitle}>새로운 구장</p>
-
                 {searchValue && searchResults.length > 0 && (
-
                   <ul>
                     {searchResults.map((result) => (
                       <li
@@ -263,12 +219,6 @@ const Navbar = () => {
           </div>
           {loggedIn && (
             <>
-              {/* <img
-                src="https://d31wz4d3hgve8q.cloudfront.net/static/img/ic_club.svg"
-                alt="Shield"
-                className={styles.icon}
-                onClick={() => handleNavigation("/team/dashboard/")}
-              /> */}
               <img
                 src="https://d31wz4d3hgve8q.cloudfront.net/static/img/ic_mymatch.svg"
                 alt="Calendar"
