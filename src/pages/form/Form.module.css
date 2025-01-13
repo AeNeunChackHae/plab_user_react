@@ -40,6 +40,7 @@ input[type="number"]::-webkit-outer-spin-button {
   margin-top: 0px;
   margin-bottom: 0px;
   text-align: start;
+  padding-left: 10px;
 }
 
 .label_text_center{
@@ -176,6 +177,7 @@ input[type="number"]::-webkit-outer-spin-button {
   cursor: pointer;
   color: #ffffff;
   background-color: #1BC5BD;
-  border-color: #1BC5BD;
+  border: 1px solid #1BC5BD;
+  border-radius: 1rem;
   padding: 15px 30px;
 }

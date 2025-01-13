@@ -1,11 +1,12 @@
-import React, { useRef, useCallback } from "react";
+import React, { useRef, useCallback, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./Form.module.css";
 
 const AboutPage = () => {
   const navigate = useNavigate();
   
-  const fileInputRef = useRef(); // file input을 위한 ref 생성
+  const [fileValue, setFileValue] = useState(""); // 파일 입력 값 관리
+  const fileInputRef = useRef(null); // file input을 위한 ref 생성
 
   const formRef = useRef(); // 폼 참조 생성
 
@@ -15,7 +16,6 @@ const AboutPage = () => {
     const formData = new FormData(formRef.current);
     formData.append('requestTable', 'stadium');
 
-    console.log('Form Data Submitted:');
     for (let [key, value] of formData.entries()) {
       console.log(`${key}: ${value}`);
     }
@@ -42,6 +42,25 @@ const AboutPage = () => {
     fileInputRef.current.click(); // file input 참조를 사용하여 클릭 이벤트 트리거
   };
 
+  // 파일 입력 값 변경 감지
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+
+    // 파일이 성공적으로 읽히면 실행될 이벤트 핸들러를 정의합니다.
+    reader.onload = function(e) {
+      // e.target.result는 읽힌 파일의 데이터를 base64 문자열로 포함하고 있습니다.
+      // 이 값을 setBackgroundImage 함수에 전달하여 상태를 업데이트합니다.
+      setFileValue(e.target.result);
+    };
+
+    reader.readAsDataURL(file);
+  };
+
+  useEffect(() => {
+    console.log('fileValue: ', fileValue)
+  }, [fileValue])
+
   const match_time_arr = [
     "06:00",
     "08:00",
@@ -60,14 +79,15 @@ const AboutPage = () => {
       <form id="stadium_form" ref={formRef} onSubmit={handleSubmit}>
         <div className={styles.row}>
           <p className={styles.label_text}>구장 사진</p>
-          <div id={styles.img_canvas} onClick={handleFileClick}></div>
+          <div id={styles.img_canvas} onClick={handleFileClick} style={{backgroundImage: `url(${fileValue})`, backgroundSize: 'cover', backgroundPosition: 'center'}}></div>
           <input
             type="file"
-            name="photo"
-            id="photo"
+            name="profile_path"
+            id="profile_path"
             accept=".png, .jpg, .jpeg"
             hidden
             ref={fileInputRef}
+            onChange={handleFileChange}
           />
         </div>
         <div className={styles.row}>
@@ -182,6 +202,31 @@ const AboutPage = () => {
             className={styles.form_selectbox}
           >
             <option value="">Select</option>
+            <option value="0">강남구</option>
+            <option value="1">강동구</option>
+            <option value="2">강북구</option>
+            <option value="3">강서구</option>
+            <option value="4">관악구</option>
+            <option value="5">광진구</option>
+            <option value="6">구로구</option>
+            <option value="7">금천구</option>
+            <option value="8">노원구</option>
+            <option value="9">도봉구</option>
+            <option value="10">동대문구</option>
+            <option value="11">동작구</option>
+            <option value="12">마포구</option>
+            <option value="13">서대문구</option>
+            <option value="14">서초구</option>
+            <option value="15">성동구</option>
+            <option value="16">성북구</option>
+            <option value="17">송파구</option>
+            <option value="18">양천구</option>
+            <option value="19">영등포구</option>
+            <option value="20">용산구</option>
+            <option value="21">은평구</option>
+            <option value="22">종로구</option>
+            <option value="23">중구</option>
+            <option value="24">중랑구</option>
           </select>
         </div>
         <div className={styles.row}>
