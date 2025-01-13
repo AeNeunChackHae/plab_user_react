@@ -104,7 +104,7 @@ const MatchCompleted = ({ selectedDate, selectedMonth, completedSchedule }) => {
           </div>
         ))
       ) : (
-        <p className={styles.noMatches}>해당 월에 완료된 매치가 없습니다.</p>
+        <p className={styles.noMatches}>선택한 날짜에 완료된 매치가 없습니다.</p>
       )}
     </div>
   );

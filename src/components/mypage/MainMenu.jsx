@@ -3,6 +3,11 @@ import { Link } from "react-router-dom";
 import "./MainMenu.css";
 
 const MainMenu = () => {
+
+  const handleRedirect = () => {
+    window.location.href = "http://localhost:3001/";
+  };
+
   return (
     <div className="main-menu">
       {/* 나의 플랩 */}
@@ -55,9 +60,9 @@ const MainMenu = () => {
             <span className="icon">ℹ️</span> 플랩포털 소개
           </Link>
 
-          <Link to="/manager/info" className="menu-link">
+          <button onClick={handleRedirect} className="menu-link">
             <span className="icon">🤝</span> 매니저 지원
-          </Link>
+          </button>
 
           <Link to="/stadium/partnership" className="menu-link">
             <span className="icon">🏟️</span> 구장 제휴
