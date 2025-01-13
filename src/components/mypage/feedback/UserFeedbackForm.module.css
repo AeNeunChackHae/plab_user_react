@@ -21,9 +21,16 @@
 .toggleButton {
   padding: 10px 15px;
   border: 1px solid black;
-  border-radius: 8px;
+  border-radius: 30px;
   background-color: white;
   cursor: pointer;
+}
+
+.toggleButton:disabled {
+  background-color: lightgray;
+  color: #aaa;
+  border: 1px solid #aaa;
+  cursor: not-allowed;
 }
 
 /* 칭찬 버튼 활성화 효과 */
@@ -133,6 +140,7 @@
 
 .saveButton {
   padding: 10px 20px;
+  background-color: #fff;
   color: #28a745;
   border: 1px solid #28a745;
   border-radius: 50px;
@@ -142,6 +150,7 @@
 
 .resetButton {
   padding: 10px 20px;
+  background-color: #fff;
   color: #aaa;
   border: 1px solid #aaa;
   border-radius: 50px;
@@ -151,6 +160,7 @@
 
 .registerButton {
   padding: 10px 20px;
+  background-color: #fff;
   margin-right: 20px;
   color: #28a745;
   border: 1px solid #28a745;
@@ -159,14 +169,9 @@
   cursor: pointer;
 }
 
-.registerButton:disabled {
-  background-color: lightgray;
-  color: #aaa;
-  cursor: not-allowed;
-}
-
 .closeButton {
   padding: 10px 20px;
+  background-color: #fff;
   color: #000;
   border: 1px solid #000;
   border-radius: 50px;
