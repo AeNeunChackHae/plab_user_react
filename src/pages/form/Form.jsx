@@ -1,8 +1,10 @@
 import React, { useRef, useCallback, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./Form.module.css";
+import { config } from "../../config";
 
 const AboutPage = () => {
+  const api = config.aws.ec2_host_user
   const navigate = useNavigate();
   
   const [fileValue, setFileValue] = useState(""); // 파일 입력 값 관리
@@ -20,7 +22,7 @@ const AboutPage = () => {
       console.log(`${key}: ${value}`);
     }
 
-    fetch('http://127.0.0.1:8080/stadium/regist', {
+    fetch(`${api}/stadium/regist`, {
       method: 'POST',
       body: formData,
     })

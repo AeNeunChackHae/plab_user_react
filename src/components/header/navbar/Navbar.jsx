@@ -2,8 +2,10 @@ import React, { useState, useEffect, useCallback } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import NavbarMenu from "../navbarmenu/NavbarMenu";
 import styles from "./Navbar.module.css";
+import { config } from "../../../config";
 
 const Navbar = () => {
+  const api = config.aws.ec2_host_user
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchDropdownOpen, setIsSearchDropdownOpen] = useState(false);
   const [searchValue, setSearchValue] = useState("");
@@ -52,7 +54,7 @@ const Navbar = () => {
   const fetchSearchResults = async (value) => {
     try {
       const response = await fetch(
-        `http://localhost:8080/api/search?query=${encodeURIComponent(value)}`,
+     `${api}/api/search?query=${encodeURIComponent(value)}`,
         {
           method: "GET",
           headers: {

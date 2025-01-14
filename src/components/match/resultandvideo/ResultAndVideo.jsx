@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import styles from "./ResultAndVideo.module.css";
 import { FaPlay, FaDownload } from "react-icons/fa";
+import { config } from "../../../config";
 
 const ResultAndVideo = ({ match_id, showIcons = false }) => {
+  const api = config.aws.ec2_host_user
   const [teams, setTeams] = useState([]); // 팀 데이터를 가져옴
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [error, setError] = useState(null);
@@ -13,7 +15,7 @@ const ResultAndVideo = ({ match_id, showIcons = false }) => {
   useEffect(() => {
     const fetchMatchResults = async () => {
       try {
-        const response = await fetch("http://localhost:8080/match/results", {
+        const response = await fetch(`${api}/match/results`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

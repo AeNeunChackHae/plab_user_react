@@ -14,8 +14,11 @@ import TeamRefundPolicy from "../../components/match/teamrefundpolicy/TeamRefund
 import MatchDetails from "../../components/match/matchdetails/MatchDetails";
 import MatchData from "../../components/match/matchdata/MatchData";
 import styles from "./MatchPage.module.css";
+import { config } from "../../config";
+
 
 const MatchPage = () => {
+  const api = config.aws.ec2_host_user
   const { match_id } = useParams(); // match_id를 URL에서 추출
   const [match, setMatch] = useState(null);
   const [error, setError] = useState(null);
@@ -26,7 +29,7 @@ const MatchPage = () => {
     const fetchMatchDetails = async () => {
       // console.log(match_id)
       try {
-        const response = await fetch("http://localhost:8080/match", {
+        const response = await fetch(`${api}/match`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

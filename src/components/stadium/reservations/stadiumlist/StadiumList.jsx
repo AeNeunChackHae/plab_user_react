@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom"; // React Router의 useNavigate 사용
 import styles from "./StadiumList.module.css";
+import { config } from "../../../../config";
 
 // 종료 시간 계산 함수
 const calculateEndTime = (startTime, duration = 2) => {
@@ -12,6 +13,7 @@ const calculateEndTime = (startTime, duration = 2) => {
 };
 
 const StadiumList = ({ stadiumId, selectedDate }) => {
+  const api = config.aws.ec2_host_user
   const [matches, setMatches] = useState([]);
   const [stadiumInfo, setStadiumInfo] = useState({});
   const [error, setError] = useState(null);
@@ -20,7 +22,7 @@ const StadiumList = ({ stadiumId, selectedDate }) => {
   useEffect(() => {
     const fetchMatches = async () => {
       try {
-        const response = await fetch("http://localhost:8080/stadium/getMatches", {
+        const response = await fetch(`${api}/stadium/getMatches`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

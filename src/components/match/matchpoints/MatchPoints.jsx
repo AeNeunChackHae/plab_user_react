@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "./MatchPoints.module.css";
+import { config } from "../../../config";
+
 
 const MatchPoints = ({ match_id }) => {
   const [matchPointsData, setMatchPointsData] = useState(null); // 매치 포인트 데이터 상태
@@ -8,8 +10,9 @@ const MatchPoints = ({ match_id }) => {
   // 데이터 가져오기
   useEffect(() => {
     const fetchMatchPoints = async () => {
+      const api = config.aws.ec2_host_user
       try {
-        const response = await fetch("http://localhost:8080/match/points", {
+        const response = await fetch(`${api}/match/points`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

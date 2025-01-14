@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styles from "./StadiumInfo.module.css";
+import { config } from "../../config";
 
 const StadiumInfo = ({ match_id }) => {
   const [stadiumData, setStadiumData] = useState(null);
@@ -7,8 +8,10 @@ const StadiumInfo = ({ match_id }) => {
 
   useEffect(() => {
     const fetchStadiumData = async () => {
+      const api = config.aws.ec2_host_user
+      
       try {
-        const response = await fetch("http://localhost:8080/match/stadium-info", {
+        const response = await fetch(`${api}/match/stadium-info`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
