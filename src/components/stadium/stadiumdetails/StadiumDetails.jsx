@@ -1,14 +1,16 @@
 import React, { useState, useEffect, useRef } from "react";
 import FacilitiesContent from "../reservations/facilitiescontent/FacilitiesContent";
-import StadiumList from "../reservations/stadiumlist/StadiumList";
+// import StadiumList from "../reservations/stadiumlist/StadiumList";
 import StadiumRules from "../reservations/stadiumrules/StadimRules";
 import MatchSchedule from "../matchschedule/MatchSchedule";
 import ReviewContent from "../reviewcontent/ReviewContent";
 import styles from "./StadiumDetails.module.css";
 import MapTab from "../reservations/maptab/MapTab";
 import StadiumTerms from "../reservations/stadiuterms/StadiumTerms";
+import { config } from '../../../config';
 
 const StadiumDetails = ({ stadiumId }) => {
+  const api = config.aws.ec2_host_user
   const [stadiumInfo, setStadiumInfo] = useState(null);
   const [error, setError] = useState(null);
   const mapRef = useRef(null); // 지도 컴포넌트를 참조하기 위한 ref
@@ -28,7 +30,7 @@ const StadiumDetails = ({ stadiumId }) => {
     console.log("stadium_id:; ",stadiumId)
     const fetchStadiumDetails = async () => {
       try {
-        const response = await fetch("http://localhost:8080/stadium/details", {
+        const response = await fetch(`${api}/stadium/details`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -53,7 +55,7 @@ const StadiumDetails = ({ stadiumId }) => {
     };
 
     fetchStadiumDetails();
-  }, [stadiumId]);
+  }, [stadiumId, api]);
 
   if (error) {
     return <div className={styles.error}>{error}</div>;

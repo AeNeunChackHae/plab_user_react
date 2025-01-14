@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './PasswordChangePage.module.css';
+import { config } from '../../config';
 
 const PasswordChange = () => {
+  const api = config.aws.ec2_host_user
   const [email, setEmail] = useState('');
   const [currentPassword, setCurrentPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
@@ -13,7 +15,7 @@ const PasswordChange = () => {
   useEffect(() => {
     const fetchUserInfo = async () => {
       try {
-        const response = await fetch('http://127.0.0.1:8080/mypage/change/general', {
+        const response = await fetch(`${api}/mypage/change/general`, {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${localStorage.getItem('authToken')}`,
@@ -38,7 +40,7 @@ const PasswordChange = () => {
     }
 
     fetchUserInfo();
-  }, []);
+  }, [api]);
 
   // 비밀번호 변경
   const handleSave = async () => {
@@ -58,7 +60,7 @@ const PasswordChange = () => {
     }
   
     try {
-      const response = await fetch('http://127.0.0.1:8080/mypage/change/general/password', {
+      const response = await fetch(`${api}/mypage/change/general/password`, {
         method: 'PUT',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('authToken')}`,

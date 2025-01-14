@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import MatchList from "../../components/explore/MatchList";
 import styles from "./SocialmatchPage.module.css";
+import { config } from '../../config';
 
 const matchConfig = {
   "1": {
@@ -32,10 +33,11 @@ const matchConfig = {
 };
 
 const SocialmatchPage = () => {
+  const api = config.aws.ec2_host_user
   const { id } = useParams(); // match_code
   const [groupedMatches, setGroupedMatches] = useState({});
-  const [loading, setLoading] = useState(true); // 로딩 상태
-  const [error, setError] = useState(null); // 에러 상태
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   // match_code에 따라 페이지 데이터 설정
   const matchType = matchConfig[id]?.title || "매치";
@@ -47,7 +49,7 @@ const SocialmatchPage = () => {
       try {
         setLoading(true);
         const response = await fetch(
-          `http://localhost:8080/explore/${id}/matches`
+          `${api}/explore/${id}/matches`
         );
 
         if (!response.ok) {
@@ -82,7 +84,7 @@ const SocialmatchPage = () => {
     };
 
     fetchData();
-  }, [id]);
+  }, [id, api]);
 
   if (loading) return <div className={styles.loading}>로딩 중...</div>;
   if (error) return <div className={styles.error}>오류: {error}</div>;

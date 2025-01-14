@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./MatchSchedule.module.css";
+import { config } from '../../../config.js';
 
 const MatchSchedule = ({ stadiumId, selectedDate }) => {
+  const api = config.aws.ec2_host_user
   const [matches, setMatches] = useState([]);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
@@ -17,7 +19,7 @@ const MatchSchedule = ({ stadiumId, selectedDate }) => {
   useEffect(() => {
     const fetchMatches = async () => {
       try {
-        const response = await fetch("http://localhost:8080/stadium/match", {
+        const response = await fetch(`${api}/stadium/match`, {
           method: "POST", // POST 방식으로 요청
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ stadiumId }), // stadiumId 전달
@@ -36,7 +38,7 @@ const MatchSchedule = ({ stadiumId, selectedDate }) => {
     };
 
     fetchMatches();
-  }, [stadiumId]);
+  }, [stadiumId, api]);
 
   const handleMatchClick = (matchId) => {
     navigate(`/match/${matchId}`);

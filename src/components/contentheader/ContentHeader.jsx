@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import styles from "./ContentHeader.module.css";
+import { config } from '../../config';
 
 const ContentHeader = ({ stadiumId }) => {
+  const api = config.aws.ec2_host_user
   const [photoPath, setPhotoPath] = useState(null); // 이미지 경로 상태
   const [error, setError] = useState(null); // 에러 상태
 
@@ -17,7 +19,7 @@ const ContentHeader = ({ stadiumId }) => {
 
       try {
         // Body 값으로 stadiumId를 전달
-        const response = await fetch("http://localhost:8080/stadium/stadiumPhoto", {
+        const response = await fetch(`${api}/stadium/stadiumPhoto`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -43,7 +45,7 @@ const ContentHeader = ({ stadiumId }) => {
     };
 
     fetchPhotoPath();
-  }, [stadiumId]);
+  }, [stadiumId, api]);
 
   // 에러가 발생한 경우
   if (error) {

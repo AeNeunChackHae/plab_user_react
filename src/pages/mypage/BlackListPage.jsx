@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import styles from "./BlackListPage.module.css";
+import { config } from '../../config';
 
 function BlacklistManager() {
+  const api = config.aws.ec2_host_user
   const [users, setUsers] = useState([]); // 사용자 목록 상태
   const token = localStorage.getItem("authToken");
 
@@ -9,7 +11,7 @@ function BlacklistManager() {
     // 사용자 데이터를 API에서 가져오기
     const fetchUsers = async () => {
       try {
-        const response = await fetch("http://127.0.0.1:8080/mypage/blacklist", {
+        const response = await fetch(`${api}/mypage/blacklist`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -21,6 +23,15 @@ function BlacklistManager() {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data = await response.json();
+  
+        // 데이터가 비어 있는 경우 처리
+        if (data.length === 0 || data.message) {
+          console.log(data.message);
+          setUsers([]); // 빈 배열로 설정
+          return;
+        }
+  
+        // 데이터가 있는 경우 처리
         setUsers(
           data.map((user) => ({
             id: user.userId,
@@ -33,11 +44,11 @@ function BlacklistManager() {
         console.error("Error fetching blacklist users:", error);
       }
     };
-
+  
     if (token) {
       fetchUsers();
     }
-  }, [token]);
+  }, [token, api]);  
 
   // 사용자 차단 해제 처리 함수
   const handleUnblock = async (userId, username) => {
@@ -51,7 +62,7 @@ function BlacklistManager() {
     }
 
     try {
-      const response = await fetch("http://127.0.0.1:8080/mypage/blacklist/remove", {
+      const response = await fetch(`${api}/mypage/blacklist/remove`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

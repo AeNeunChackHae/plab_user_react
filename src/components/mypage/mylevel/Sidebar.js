@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import "./Sidebar.css";
+import { config } from '../../../config.js';
 
 const Sidebar = () => {
+  const api = config.aws.ec2_host_user
   const [levelImage, setLevelImage] = useState(null); // 사용자 레벨 이미지
   const [isLoading, setIsLoading] = useState(true); // 로딩 상태
   const [userId, setUserId] = useState(null);
   const [token, setToken] = useState(null);
-  console.log("토큰", token);
+  // console.log("토큰", token);
 
   // 이미지가 저장된 기본 경로
   const levelImageBasePath = "/images/plab_level_img";
@@ -15,8 +17,8 @@ const Sidebar = () => {
   useEffect(() => {
     const storedUserId = localStorage.getItem("id");
     const storedToken = localStorage.getItem("authToken");
-    console.log("storedUserId", storedUserId);
-    console.log("storedToken", storedToken);
+    // console.log("storedUserId", storedUserId);
+    // console.log("storedToken", storedToken);
 
     if (storedUserId && storedToken) {
       setUserId(storedUserId);
@@ -36,7 +38,7 @@ const Sidebar = () => {
     const fetchLevelCode = async () => {
       try {
         const response = await fetch(
-          "http://127.0.0.1:8080/mypage/mylevelpics",
+          `${api}/mypage/mylevelpics`,
           {
             method: "POST",
             headers: {
@@ -52,11 +54,11 @@ const Sidebar = () => {
         }
 
         const data = await response.json();
-        console.log("mylevelpics에서 받은 데이터:", data);
+        // console.log("mylevelpics에서 받은 데이터:", data);
 
         // level_code 기반 이미지 설정
         const levelCode = data[0]?.level_code;
-        console.log("levelCode", levelCode);
+        // console.log("levelCode", levelCode);
         if (levelCode !== undefined) {
           const imageUrl = `${levelImageBasePath}/level_${levelCode}.png`;
           setLevelImage(imageUrl);
@@ -72,7 +74,7 @@ const Sidebar = () => {
     };
 
     fetchLevelCode();
-  }, [userId, token]);
+  }, [userId, token, api]);
 
   return (
     <div className="sidebar">

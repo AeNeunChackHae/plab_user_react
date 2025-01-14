@@ -3,8 +3,10 @@ import { useParams } from "react-router-dom";
 import UserFeedbackForm from "../../components/mypage/feedback/UserFeedbackForm.jsx";
 import TeamDisplay from "../../components/mypage/feedback/TeamDisplay.jsx";
 import styles from "./UserFeedbackPage.module.css";
+import { config } from '../../config';
 
 const FeedbackPage = () => {
+  const api = config.aws.ec2_host_user
   const { matchId } = useParams();
   const currentUserId = Number(localStorage.getItem("id"));
   const [players, setPlayers] = useState([]);
@@ -15,7 +17,7 @@ const FeedbackPage = () => {
   const fetchPlayers = useCallback(async () => {
     try {
       const response = await fetch(
-        `http://localhost:8080/mypage/feedback/${matchId}`,
+        `${api}/mypage/feedback/${matchId}`,
         {
           method: "GET",
           headers: {
@@ -36,12 +38,12 @@ const FeedbackPage = () => {
     } catch (err) {
       setError(err.message || "An unexpected error occurred.");
     }
-  }, [matchId]);
+  }, [matchId, api]);
 
   const fetchBlacklist = useCallback(async () => {
     try {
       const response = await fetch(
-        `http://localhost:8080/mypage/feedback/${matchId}/checkblack`,
+        `${api}/mypage/feedback/${matchId}/checkblack`,
         {
           method: "GET",
           headers: {
@@ -61,7 +63,7 @@ const FeedbackPage = () => {
     } catch (error) {
       console.error("Error fetching blacklist:", error);
     }
-  }, [matchId]);
+  }, [matchId, api]);
 
   useEffect(() => {
     setIsLoading(true);

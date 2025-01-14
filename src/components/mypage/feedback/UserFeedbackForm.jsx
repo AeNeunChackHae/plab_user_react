@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./UserFeedbackForm.module.css";
+import { config } from '../../../config';
 
 const FeedbackForm = ({ players, currentUserId, matchId }) => {
+  const api = config.aws.ec2_host_user
   const navigate = useNavigate();
 
   const [positiveFeedback, setPositiveFeedback] = useState([]);
@@ -165,7 +167,7 @@ const FeedbackForm = ({ players, currentUserId, matchId }) => {
     }
 
     try {
-      await fetch(`http://localhost:8080/mypage/blacklist/add`, {
+      await fetch(`${api}/mypage/blacklist/add`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${localStorage.getItem("authToken")}`,
@@ -203,7 +205,7 @@ const FeedbackForm = ({ players, currentUserId, matchId }) => {
 
     try {
       if (isPraiseSaved && positivePlayer) {
-        await fetch(`http://localhost:8080/mypage/feedback/${matchId}/good`, {
+        await fetch(`${api}/mypage/feedback/${matchId}/good`, {
           method: "POST",
           headers: {
             Authorization: `Bearer ${localStorage.getItem("authToken")}`,
@@ -219,7 +221,7 @@ const FeedbackForm = ({ players, currentUserId, matchId }) => {
       }
 
       if (isNegativeSaved && negativePlayer) {
-        await fetch(`http://localhost:8080/mypage/feedback/${matchId}/bad`, {
+        await fetch(`${api}/mypage/feedback/${matchId}/bad`, {
           method: "POST",
           headers: {
             Authorization: `Bearer ${localStorage.getItem("authToken")}`,

@@ -1,8 +1,10 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./MatchSchedule.module.css";
+import { config } from '../../../config.js';
 
 const MatchSchedule = ({ selectedDate, upcomingSchedule }) => {
+  const api = config.aws.ec2_host_user
   const navigate = useNavigate();
   const {
     upcomingMatches,
@@ -28,7 +30,7 @@ const MatchSchedule = ({ selectedDate, upcomingSchedule }) => {
      }
 
     try {
-      const response = await fetch("http://127.0.0.1:8080/mypage/myplabcancel", {
+      const response = await fetch(`${api}/mypage/myplabcancel`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
