@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import styles from './StadiumFeedbackPage.module.css';
+import { config } from '../../config';
 
 const StadiumReviewForm = () => {
+    const api = config.aws.ec2_host_user
     const { matchId } = useParams();
     const navigate = useNavigate();
     const [stadiumInfo, setStadiumInfo] = useState({ stadiumName: '', fullAddress: '' });
@@ -36,7 +38,7 @@ const StadiumReviewForm = () => {
     useEffect(() => {
         const fetchStadiumInfo = async () => {
             try {
-                const response = await fetch(`http://localhost:8080/mypage/feedback/${matchId}/stadium`, {
+                const response = await fetch(`${api}/mypage/feedback/${matchId}/stadium`, {
                     method: 'GET',
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem("authToken")}`,
@@ -59,7 +61,7 @@ const StadiumReviewForm = () => {
         };
 
         fetchStadiumInfo();
-    }, [matchId]);
+    }, [matchId, api]);
 
     const handleCheckboxChange = (feedbackType, value) => {
         if (feedbackType === 'positive') {
@@ -83,7 +85,7 @@ const StadiumReviewForm = () => {
 
         try {
             if (positiveFeedback.length > 0) {
-                await fetch(`http://localhost:8080/mypage/feedback/${matchId}/stadium/good`, {
+                await fetch(`${api}/mypage/feedback/${matchId}/stadium/good`, {
                     method: 'POST',
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem("authToken")}`,
@@ -94,7 +96,7 @@ const StadiumReviewForm = () => {
             }
 
             if (negativeFeedback.length > 0) {
-                await fetch(`http://localhost:8080/mypage/feedback/${matchId}/stadium/bad`, {
+                await fetch(`${api}/mypage/feedback/${matchId}/stadium/bad`, {
                     method: 'POST',
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem("authToken")}`,
@@ -153,7 +155,7 @@ const StadiumReviewForm = () => {
             </div>
 
             <div className={styles.section}>
-                <h4 className={styles.sectionTitle}>🤔 이런 점이 별로예요!</h4>
+                <h4 className={styles.sectionTitle}>🤔 이런 점이 아쉬워요!</h4>
                 <div className={styles.checkboxGrid}>
                     {negativeOptions.map((option) => (
                         <div className={styles.checkboxCard} key={option.value}>

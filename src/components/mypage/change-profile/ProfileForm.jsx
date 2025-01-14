@@ -1,8 +1,11 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./ProfileForm.module.css";
+import { config } from "../../../config.js";
+
 
 const ProfileForm = () => {
+  const api = config.aws.ec2_host_user
   const navigate = useNavigate();
 
   const [profile, setProfile] = useState({
@@ -11,8 +14,7 @@ const ProfileForm = () => {
     gender: "",
     prefer_position: "",
     ability: "",
-    profile_path:
-      "https://d31wz4d3hgve8q.cloudfront.net/static/img/img_profile_default.png",
+    profile_path: config.profile.basic_profile_path,
   });
 
   const [selectedImage, setSelectedImage] = useState(null); // 이미지 파일 객체
@@ -30,7 +32,7 @@ const ProfileForm = () => {
         return;
       }
 
-      const response = await fetch("http://127.0.0.1:8080/mypage/change/profile", {
+      const response = await fetch(`${api}/mypage/change/profile`, {
         method: "GET",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -57,7 +59,7 @@ const ProfileForm = () => {
       console.error("프로필 정보 불러오기 오류:", error);
       alert("네트워크 오류가 발생했습니다.");
     }
-  }, [navigate]);
+  }, [navigate, api]);
   
   useEffect(() => {
     fetchUserProfile();
@@ -141,9 +143,7 @@ const ProfileForm = () => {
       //   console.log(`${key}:`, value);
       // }
 
-      const target_url = "http://127.0.0.1:8080/mypage/change/profile";
-
-      const response = await fetch(target_url, {
+      const response = await fetch(`${api}/mypage/change/profile`, {
         method: "PUT",
         headers: {
           Authorization: `Bearer ${token}`,

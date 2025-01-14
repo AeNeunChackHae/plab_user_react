@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./SideBar.module.css";
+import { config } from '../../config';
 
 const Sidebar = () => {
+  const api = config.aws.ec2_host_user
   const [userData, setUserData] = useState(null);
-
   const userId = localStorage.getItem("id");
   const token = localStorage.getItem("authToken");
 
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await fetch("http://127.0.0.1:8080/mypage", {
+        const response = await fetch(`${api}/mypage`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -26,14 +27,14 @@ const Sidebar = () => {
 
         const data = await response.json();
         setUserData(data);
-        console.log("User Data:", data);
+        // console.log("User Data:", data);
       } catch (error) {
         console.error("Error fetching user data:", error.message);
       }
     };
 
     fetchUserData();
-  }, [userId, token]);
+  }, [userId, token, api]);
 
   return (
     <div className={styles.sidebar}>

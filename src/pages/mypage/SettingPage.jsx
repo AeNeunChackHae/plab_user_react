@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './SettingPage.module.css';
+import { config } from '../../config';
 
 const generateOptions = (start, end) => {
   const options = [];
@@ -11,6 +12,7 @@ const generateOptions = (start, end) => {
 };
 
 const SettingPage = () => {
+  const api = config.aws.ec2_host_user
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [email, setEmail] = useState('');
   const [birthYear, setBirthYear] = useState('');
@@ -27,7 +29,7 @@ const SettingPage = () => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await fetch('http://127.0.0.1:8080/mypage/change/general', {
+        const response = await fetch(`${api}/mypage/change/general`, {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${localStorage.getItem('authToken')}`,
@@ -53,7 +55,7 @@ const SettingPage = () => {
     };
 
     fetchUserData();
-  }, []);
+  }, [api]);
 
   // 비밀번호 수정 버튼 핸들
   const handlePassWordChange = () => {
@@ -63,7 +65,7 @@ const SettingPage = () => {
   // 로그아웃 핸들러
   const handleLogout = async () => {
     try {
-      const response = await fetch('http://127.0.0.1:8080/auth/logout', {
+      const response = await fetch(`${api}/auth/logout`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -92,7 +94,7 @@ const SettingPage = () => {
     if (!confirmDelete) return;
 
     try {
-      const response = await fetch('http://127.0.0.1:8080/auth/delete', {
+      const response = await fetch(`${api}/auth/delete`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('authToken')}`,
@@ -130,7 +132,7 @@ const SettingPage = () => {
 
   const handleSave = async () => {
     try {
-      const response = await fetch('http://127.0.0.1:8080/mypage/change/general/birthdate', {
+      const response = await fetch(`${api}/mypage/change/general/birthdate`, {
         method: 'PUT',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('authToken')}`,

@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import styles from './StadiumRules.module.css';
+import { config } from '../../../../config.js';
 
 const StadiumRules = ({ stadiumId }) => {
+  const api = config.aws.ec2_host_user
   const [rules, setRules] = useState(null);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchRules = async () => {
       try {
-        const response = await fetch('http://localhost:8080/stadium/rules', {
+        const response = await fetch(`${api}/stadium/rules`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -29,7 +31,7 @@ const StadiumRules = ({ stadiumId }) => {
     };
 
     fetchRules();
-  }, [stadiumId]);
+  }, [stadiumId, api]);
 
   if (error) {
     return <div className={styles.error}>{error}</div>;

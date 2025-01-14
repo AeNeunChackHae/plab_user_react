@@ -5,8 +5,10 @@ import Feedback from "../../components/mypage/mylevel/Feedback";
 import ActivityInfo from "../../components/mypage/mylevel/ActivityInfo";
 import RecentReview from "../../components/mypage/mylevel/RecentReview";
 import "../mypage/MyLevelPage.css";
+import { config } from '../../config';
 
 const MyLevelPage = () => {
+  const api = config.aws.ec2_host_user
   const [userData, setUserData] = useState({
     levelImage: "path/to/image.png",
     pom: 0,
@@ -25,7 +27,7 @@ const MyLevelPage = () => {
         const authToken = localStorage.getItem('authToken');
         if (!authToken) throw new Error("Authorization token not found");
 
-        const response = await fetch('http://127.0.0.1:8080/mypage/mylevel', {
+        const response = await fetch(`${api}/mypage/mylevel`, {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${authToken}`,
@@ -61,7 +63,7 @@ const MyLevelPage = () => {
           kilocalorie: match.kilocalorie,
           heart_rate: match.heart_rate,
         }));
-        console.log("✅ [DEBUG] recentGames:", recentGames);
+        // console.log("[DEBUG] recentGames:", recentGames);
 
         setUserData({
           levelImage: "path/to/image.png",
@@ -80,7 +82,7 @@ const MyLevelPage = () => {
     };
 
     fetchUserProfile();
-  }, []);
+  }, [api]);
 
   // 피드백 텍스트 매핑
   const feedbackTextMapper = (feedback, type) => {

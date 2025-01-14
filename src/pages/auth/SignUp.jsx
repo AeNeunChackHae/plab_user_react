@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom"; // React Router 사용
 import "./SignUp.css";
+import { config } from '../../config';
 
 function SignUp() {
+  const api = config.aws.ec2_host_user
   const [formData, setFormData] = useState({
     email: "",
     login_password: "",
@@ -67,7 +69,7 @@ function SignUp() {
 
     // API 연결 시작 리턴 전까지 (fetch, {받을 방법})
     try {
-      const response = await fetch("http://localhost:8080/auth/signup", {
+      const response = await fetch(`${api}/auth/signup`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

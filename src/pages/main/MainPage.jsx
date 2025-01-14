@@ -6,8 +6,10 @@ import Filters from "../../components/main/Filters";
 import DateSelector from "../../components/main/DateSelector";
 import MatchList from "../../components/main/MatchList";
 import styles from './MainPage.module.css';
+import { config } from '../../config';
 
 const MainPage = () => {
+    const api = config.aws.ec2_host_user
     const [selectedDate, setSelectedDate] = useState(''); // 날짜 필터
     const [filters, setFilters] = useState({
         region: [],
@@ -27,9 +29,9 @@ const MainPage = () => {
     useEffect(() => {
         const fetchMatches = async () => {
             try {
-                console.log('Fetching matches with:', { selectedDate, filters });
+                // console.log('Fetching matches with:', { selectedDate, filters });
 
-                const response = await fetch('http://localhost:8080/', {
+                const response = await fetch(`${api}/`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -47,7 +49,8 @@ const MainPage = () => {
                 }
 
                 const data = await response.json();
-                console.log('Fetched Matches:', data);
+                // 디버깅
+                // console.log('Fetched Matches:', data);
                 setMatches(data.matches);
             } catch (error) {
                 console.error('Failed to fetch matches:', error);
@@ -57,7 +60,7 @@ const MainPage = () => {
         if (selectedDate) {
             fetchMatches();
         }
-    }, [selectedDate, filters]);
+    }, [selectedDate, filters, api]);
 
     return (
         <div className={styles.container}>

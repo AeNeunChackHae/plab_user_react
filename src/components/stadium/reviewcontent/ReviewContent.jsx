@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react";
 import styles from "./ReviewContent.module.css";
+import { config } from '../../../config.js';
 
 const ReviewContent = ({ stadiumId }) => {
+  const api = config.aws.ec2_host_user
   const [reviews, setReviews] = useState({ good: [], bad: [] });
   const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchReviews = async () => {
       try {
-        const response = await fetch("http://localhost:8080/stadium/feedback", {
+        const response = await fetch(`${api}/stadium/feedback`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ stadiumId }),
@@ -26,7 +28,7 @@ const ReviewContent = ({ stadiumId }) => {
     };
 
     fetchReviews();
-  }, [stadiumId]);
+  }, [stadiumId, api]);
 
   if (error) {
     return <div className={styles.error}>{error}</div>;

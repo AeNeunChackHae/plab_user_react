@@ -10,10 +10,10 @@ import Mypage from "./router/MyPage";
 import Manager from "./router/Manager";
 import Stadium from "./router/Stadium";
 import Match from "./router/Match";
-import Team from "./router/Team";
-import Rental from "./router/Rental";
+// import Team from "./router/Team";
+// import Rental from "./router/Rental";
 import Explore from "./router/Explore";
-import League from "./router/League";
+// import League from "./router/League";
 import Order from "./router/Order";
 import Term from "./router/Term";
 import Footer from "./components/footer/Footer";
@@ -27,10 +27,10 @@ function App() {
       <Routes>
         {/* pages element 리턴 */}
         <Route path="/" element={<Main />} />
-        <Route path="/cs/*" element={<Cs />} />
-        <Route path="/notice/*" element={<Notice />} />
-        <Route path="/about/*" element={<About />} />
-        <Route path="/form/*" element={<Form />} />
+        <Route path="/cs" element={<Cs />} />
+        <Route path="/notice" element={<Notice />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/form" element={<Form />} />
 
         {/* router element 리턴 */}
         <Route path="/auth/*" element={<Auth />} />
@@ -38,10 +38,10 @@ function App() {
         <Route path="/manager/*" element={<Manager />} />
         <Route path="/stadium/*" element={<Stadium />} />
         <Route path="/match/*" element={<Match />} />
-        <Route path="/team/*" element={<Team />} />
-        <Route path="/rental/*" element={<Rental />} />
+        {/* <Route path="/team/*" element={<Team />} /> */}
+        {/* <Route path="/rental/*" element={<Rental />} /> */}
         <Route path="/explore/*" element={<Explore />} />
-        <Route path="/league/*" element={<League />} />
+        {/* <Route path="/league/*" element={<League />} /> */}
         <Route path="/order/*" element={<Order />} />
         <Route path="/term/*" element={<Term />} />
 

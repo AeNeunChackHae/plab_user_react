@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import "./RecentReview.css";
+import { config } from '../../../config';
 
 const RecentReview = ({ recentGames }) => {
+  const api = config.aws.ec2_host_user
   const [showInputModal, setShowInputModal] = useState(false);
   const [showResultModal, setShowResultModal] = useState(false);
   const [selectedGame, setSelectedGame] = useState(null);
@@ -47,13 +49,13 @@ const RecentReview = ({ recentGames }) => {
 
   // 활동량 데이터 POST 요청
   const handleSave = async () => {
-    console.log("✅ [DEBUG] selectedGame.match_id:", selectedGame.match_id);
+    // console.log("[DEBUG] selectedGame.match_id:", selectedGame.match_id);
   
     try {
       const token = localStorage.getItem("authToken");
       if (!token) throw new Error("Authorization token not found");
   
-      const response = await fetch(`http://127.0.0.1:8080/mypage/mylevel/activity`, {
+      const response = await fetch(`${api}/mypage/mylevel/activity`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,
