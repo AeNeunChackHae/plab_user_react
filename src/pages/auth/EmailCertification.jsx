@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./FindEmailAndPassword.module.css"; // 회원가입 페이지와 유사한 스타일 적용
+import { config } from "../../config";
 
 const FindEmail = () => {
+  const api = config.aws.ec2_host_user
   const [formData, setFormData] = useState({
     username: "",
     phoneNumber: "",
@@ -22,7 +24,7 @@ const FindEmail = () => {
 
   const handleFindEmail = async () => {
     try {
-      const response = await fetch("http://localhost:8080/auth/find-email", {
+      const response = await fetch(`${api}/auth/find-email`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),

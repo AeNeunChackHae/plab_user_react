@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react";
 import styles from "./MatchData.module.css";
+import { config } from "../../../config";
 
 const MatchData = ({ match_id }) => {
+  const api = config.aws.ec2_host_user
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:8080/match/match-data", {
+        const response = await fetch(`${api}/match/match-data`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

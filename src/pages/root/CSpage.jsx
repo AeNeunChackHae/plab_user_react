@@ -2,8 +2,10 @@ import React, { useState, useEffect } from "react";
 import CSSearchBar from "../../components/root/CSSearchBar";
 import ContactFormModal from "./ContactFormModal";
 import "./CSpage.css";
+import { config } from "../../config";
 
 const CSPage = () => {
+    const api = config.aws.ec2_host_user
     const [faqData, setFaqData] = useState([]);
     const [filteredData, setFilteredData] = useState([]);
     const [searchQuery, setSearchQuery] = useState("");
@@ -13,7 +15,7 @@ const CSPage = () => {
 
     // 초기 데이터 가져오기
     useEffect(() => {
-        fetch("http://localhost:8080/api/cs/faq")
+        fetch(`${api}/api/cs/faq`)
             .then((res) => {
                 if (!res.ok) {
                     throw new Error("API 호출 실패");
@@ -55,7 +57,7 @@ const CSPage = () => {
         }
 
         try {
-            const response = await fetch("http://localhost:8080/api/cs/faq", {
+            const response = await fetch(`${api}/api/cs/faq`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

@@ -2,8 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation, useParams } from "react-router-dom";
 import styles from "./OrderPage.module.css";
 import fetchWithIsAuth from "../../components/utils/fetchWithIsAuth";
+import { config } from "../../config"
 
 const OrderPage = () => {
+  const api = config.aws.ec2_host_user
   const [isKakaoPayActive, setIsKakaoPayActive] = useState(true);
   const [isPaymentComplete, setIsPaymentComplete] = useState(false);
   const [paymentError, setPaymentError] = useState(""); // 결제 실패 메시지
@@ -20,7 +22,7 @@ const OrderPage = () => {
   useEffect(() => {
     const fetchBuyerInfo = async () => {
       try {
-        const data = await fetchWithIsAuth(`http://localhost:8080/payment/${user_id}`);
+        const data = await fetchWithIsAuth(`${api}/payment/${user_id}`);
         setBuyerInfo(data);
       } catch (err) {
         console.error(err);
@@ -61,7 +63,7 @@ const OrderPage = () => {
         if (response.success) {
           try {
             // 결제 성공 시 백엔드에 결제 정보 전달
-            await fetchWithIsAuth("http://localhost:8080/payment/complete", {
+            await fetchWithIsAuth(`${api}/payment/complete`, {
               method: "POST",
               body: JSON.stringify({
                 user_id,
@@ -74,7 +76,7 @@ const OrderPage = () => {
             console.log("결제 성공");
 
             // 2. apply-validation 호출
-            await fetchWithIsAuth("http://localhost:8080/payment/apply-validation", {
+            await fetchWithIsAuth(`${api}/payment/apply-validation`, {
               method: "POST",
               body: JSON.stringify({ match_id, user_id }),
             });

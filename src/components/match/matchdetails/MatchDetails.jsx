@@ -3,8 +3,11 @@ import styles from "./MatchDetails.module.css";
 import LocationProvider from "../../location/LocationProvider";
 import KakaoMap from "../../kakaomap/KakaoMap";
 import { Link, useNavigate, useLocation } from "react-router-dom";
+import { config } from "../../config";
+
 
 const MatchDetails = ({ match_id }) => {
+  const api = config.aws.ec2_host_user
   const stickyRef = useRef(null);
   const [isSticky, setIsSticky] = useState(false);
   const [showMap, setShowMap] = useState(false);
@@ -18,7 +21,7 @@ const MatchDetails = ({ match_id }) => {
   const location = useLocation();
 
   const fetchMatchDetails = useCallback(async () => {
-    const response = await fetch("http://localhost:8080/match/details", {
+    const response = await fetch(`${api}/match/details`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ match_id }),
@@ -28,7 +31,7 @@ const MatchDetails = ({ match_id }) => {
 }, [match_id]);
 
 const fetchMatchStatus = useCallback(async () => {
-    const response = await fetch("http://localhost:8080/match", {
+    const response = await fetch(`${api}/match`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ match_id }),
@@ -46,7 +49,7 @@ const checkApplicationStatus = useCallback(async () => {
       return { isApplied: false }; // 기본값
   }
 
-  const response = await fetch("http://localhost:8080/match/application-check", {
+  const response = await fetch(`${api}/match/application-check`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ match_id, user_id: userId }),
@@ -132,7 +135,7 @@ const checkApplicationStatus = useCallback(async () => {
     try {
       // 블랙리스트 확인 요청
       console.log("블랙리스트 확인 요청 시작");
-      const response = await fetch("http://localhost:8080/match/blacklist-check", {
+      const response = await fetch(`${api}/match/blacklist-check`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -159,7 +162,7 @@ const checkApplicationStatus = useCallback(async () => {
       // 팀 경기일 경우 팀장 확인 로직 추가
       if (matchDetails.match_type === 1) {
         console.log("팀경기임: 팀장 확인 요청 실행")
-        const teamResponse = await fetch("http://localhost:8080/match/team-check", {
+        const teamResponse = await fetch(`${api}/match/team-check`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
