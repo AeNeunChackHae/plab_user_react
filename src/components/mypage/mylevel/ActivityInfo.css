@@ -36,8 +36,9 @@
 }
 
 .info-container-info {
-  width: 350px;
+  width: 300px;
   background-color: #f3f3f3;
   border-radius: 15px;
   padding: 10px;
+  margin: 10px;
 }
