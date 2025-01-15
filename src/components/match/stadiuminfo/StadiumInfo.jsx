@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styles from "./StadiumInfo.module.css";
-import { config } from "../../config";
+import { config } from "../../../config";
 
 const StadiumInfo = ({ match_id }) => {
   const [stadiumData, setStadiumData] = useState(null);

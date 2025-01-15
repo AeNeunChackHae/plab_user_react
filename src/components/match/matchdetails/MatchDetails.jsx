@@ -3,7 +3,7 @@ import styles from "./MatchDetails.module.css";
 import LocationProvider from "../../location/LocationProvider";
 import KakaoMap from "../../kakaomap/KakaoMap";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { config } from "../../config";
+import { config } from "../../../config";
 
 
 const MatchDetails = ({ match_id }) => {
