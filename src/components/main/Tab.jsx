@@ -6,7 +6,7 @@ const Tab = () => {
     const navigate = useNavigate();
 
     const navItems = [
-        { imgSrc: "/images/explore_ball.svg", label: "남성매치", id: "1" },
+        { imgSrc: "/images/earlybird.png", label: "얼리버드", id: "1" },
         { imgSrc: "/images/gender.png", label: "남녀모두", id: "2" },
         { imgSrc: "/images/female_match.png", label: "여성매치", id: "3" },
         { imgSrc: "/images/amateur1.png", label: "아마추어1", id: "4" },
