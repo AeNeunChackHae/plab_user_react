@@ -73,12 +73,18 @@ const checkApplicationStatus = useCallback(async () => {
         ]);
 
         const now = new Date(); 
+        const startTime = new Date(details.match_start_time); // 매치 시작 시간
         const endTime = new Date(details.end_time); 
+        const earlyBirdStart = new Date(now.getTime() + 10 * 24 * 60 * 60 * 1000); 
 
         if (now > endTime) {
           console.log('now와 endTime',now,endTime)
           setStatus("past"); // 종료된 매치로 상태 설정
-        } else {
+        } else if (startTime >= earlyBirdStart) {
+          // 매치 시작 날짜가 오늘로부터 10일 이후라면 얼리버드 상태
+          setStatus("earlyBird");
+        }
+         else {
           switch (statusData.status_code) {
             case 0:
               setStatus(userId && application.isApplied ? "closed" : "recruiting");
@@ -126,11 +132,11 @@ const checkApplicationStatus = useCallback(async () => {
   };
 
   const handleApplyClick = async () => {
-    console.log("신청 버튼 클릭됨!"); 
+    // console.log("신청 버튼 클릭됨!"); 
     if (!checkLoginAndRedirect()) return;
   
     const userId = localStorage.getItem("id");
-    console.log("로그인된 사용자 ID:", userId); 
+    // console.log("로그인된 사용자 ID:", userId); 
   
     try {
       // 블랙리스트 확인 요청
@@ -148,7 +154,7 @@ const checkApplicationStatus = useCallback(async () => {
       }
 
       const data = await response.json();
-      console.log("블랙리스트 확인 응답:", data);
+      // console.log("블랙리스트 확인 응답:", data);
 
       if (data.isBlacklisted) {
         const proceed = window.confirm(
@@ -186,7 +192,10 @@ const checkApplicationStatus = useCallback(async () => {
       if (status === "earlyBird" || status === "regular" || status === "recruiting") {
         console.log("결제 페이지로 이동");
         navigate(`/order/${userId}`, {
-          state: { from: `/match/${match_id}`, match_id },
+          state: { 
+            from: `/match/${match_id}`,
+            match_id,
+            earlyBird: status === "earlyBird" },
         });
       }
     } catch (error) {
@@ -345,7 +354,7 @@ const checkApplicationStatus = useCallback(async () => {
           <span className={styles.money}>
             {pricing.discountPrice.toLocaleString()}원
           </span>
-          <div className={styles.discountText}>얼리버드 할인 적용 중</div>
+          <div className={styles.discountText}>얼리버드 할인 적용 중! 20% 할인 혜택</div>
         </div>
         <button className={styles.applyButton} onClick={handleApplyClick}>
           신청하기

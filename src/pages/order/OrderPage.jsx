@@ -17,6 +17,12 @@ const OrderPage = () => {
   const { user_id } = useParams(); // URL 파라미터에서 user_id 가져오기
   const from = location.state?.from || "/"; // 이전 경로가 없으면 홈으로 돌아감
   const match_id = location.state?.match_id; // match_id는 location.state에서 가져옴
+  const earlyBird = location.state?.earlyBird || false; 
+
+  const regularPrice = 10000;
+  const discountPrice = Math.floor(regularPrice * 0.8);
+
+  const finalAmount = earlyBird ? discountPrice : regularPrice; 
 
   // 사용자 정보 가져오기
   useEffect(() => {
@@ -52,7 +58,7 @@ const OrderPage = () => {
         pay_method: "card", // 결제 방식
         merchant_uid: `ORD-${new Date().getTime()}`, // 주문 고유번호
         name: "매치 결제", // 결제 상품명
-        amount: 10000, // 결제 금액
+        amount: finalAmount, // 결제 금액
         buyer_email: buyerInfo.email, // 구매자 이메일
         buyer_name: buyerInfo.username, // 구매자 이름
         buyer_tel: buyerInfo.phone_number, // 구매자 전화번호
@@ -119,11 +125,17 @@ const OrderPage = () => {
         <div className={styles.orderAmountSection}>
           <div className={styles.orderAmountRow}>
             <span>이용 금액</span>
-            <span>10,000원</span>
+            <span>{regularPrice.toLocaleString()}원</span>
           </div>
+          {earlyBird && (
+            <div className={styles.orderAmountRow}>
+              <span>얼리버드 할인</span>
+              <span>-{(regularPrice - discountPrice).toLocaleString()}원</span>
+            </div>
+          )}
           <div className={styles.orderAmountRow}>
             <span>결제 금액</span>
-            <span>10,000원</span>
+            <span>{finalAmount.toLocaleString()}원</span>
           </div>
         </div>
 
@@ -152,7 +164,8 @@ const OrderPage = () => {
         </div>
 
         <div className={styles.orderButton}>
-          <button onClick={handleApplyAndPaymentClick}>10,000원 결제하기</button>
+          <button onClick={handleApplyAndPaymentClick}>
+          {finalAmount.toLocaleString()}원 결제하기</button>
         </div>
       </div>
 
