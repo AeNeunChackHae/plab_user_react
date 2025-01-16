@@ -274,10 +274,25 @@ const checkApplicationStatus = useCallback(async () => {
           <span className={styles.address}>{full_address}</span>
           <span
             className={styles.copy}
-            onClick={() => navigator.clipboard.writeText(full_address)}
+            onClick={() => {
+              if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(full_address)
+                  .then(() => {
+                    alert("주소가 복사되었습니다!");
+                  })
+                  .catch((err) => {
+                    console.error("주소 복사 실패:", err);
+                    alert("주소 복사 중 오류가 발생했습니다.");
+                  });
+              } else {
+                // 호환되지 않는 브라우저의 경우
+                prompt("주소 복사가 지원되지 않는 환경입니다. 아래 텍스트를 복사하세요:", full_address);
+              }
+            }}
           >
             주소 복사
           </span>
+
           <span id="toggleMap" onClick={handleToggleMap} className={styles.map}>
             {showMap ? "지도 닫기" : "지도 보기"}
           </span>
