@@ -89,7 +89,8 @@
 }
 
 .noticeContent {
-  font-size: 13px;
+  font-size: 14px;
+  font-family: 'Arial', sans-serif;
   color: #555;
   white-space: pre-wrap;
   word-wrap: break-word; /* 긴 단어 줄바꿈 */

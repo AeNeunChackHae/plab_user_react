@@ -54,7 +54,7 @@
 }
 
 .stadiumNotice pre {
-  font-size: 12px;
+  font-size: 14px;
   line-height: 1.5;
   color: #333;
   white-space: pre-wrap;
@@ -64,4 +64,8 @@
   margin: 20px 0;
   border: none;
   border-top: 1px solid #ddd;
+}
+
+.notice{
+  font-family: 'Arial', sans-serif;
 }

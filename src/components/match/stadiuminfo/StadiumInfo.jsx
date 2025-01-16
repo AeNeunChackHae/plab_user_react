@@ -81,7 +81,7 @@ const StadiumInfo = ({ match_id }) => {
         <hr className={styles.divider} />
         <div className={styles.stadiumNotice}>
           <h4>구장 특이사항</h4>
-          <pre>{notice}</pre>
+          <pre className={styles.notice}>{notice}</pre>
         </div>
       </div>
     </section>
