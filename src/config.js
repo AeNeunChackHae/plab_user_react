@@ -24,6 +24,7 @@ export const config = {
     // ec2_host_manager: `http://${process.env.REACT_APP_HOST_IP}:${process.env.REACT_APP_MANAGER_BACK}`,
     ec2_host_user: `http://${getEnvValue("HOST_IP")}:${getEnvValue("USER_BACK")}`,
     ec2_host_manager: `http://${getEnvValue("HOST_IP")}:${getEnvValue("MANAGER_BACK")}`,
+    ec2_host_nav: `http://${getEnvValue("HOST_IP")}:${getEnvValue("MANAGER_FRONT")}`,
     bucket_name: getEnvValue("AWS_BUCKET_NAME"),
     bucket_region: getEnvValue("AWS_BUCKET_REGION"),
     access_key: getEnvValue("AWS_ACCESS_KEY"),

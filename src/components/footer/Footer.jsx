@@ -1,7 +1,11 @@
 import React from "react";
 import styles from "./Footer.module.css";
+import { config } from "../../config.js"
 
 const Footer = () => {
+  const manager = `${config.aws.ec2_host_nav}/manager/plabfootball`
+  console.log(manager)
+
   return (
     <div className={styles.footer} id="footer">
       <div className={styles.footerWrap}>
@@ -28,47 +32,6 @@ const Footer = () => {
             </li>
           </ul>
 
-          {/* 서비스 지역 섹션 */}
-          <ul className={styles.footerDul}>
-            <h3>서비스 지역</h3>
-            <li>
-              <a href="/region/1/matches/">서울</a>
-            </li>
-            <li>
-              <a href="/region/2/matches/">경기</a>
-            </li>
-            <li>
-              <a href="/region/3/matches/">인천</a>
-            </li>
-            <li>
-              <a href="/region/9/matches/">강원</a>
-            </li>
-            <li>
-              <a href="/region/4/matches/">대전/세종</a>
-            </li>
-            {/* <li><a href="/region/10/matches/">충남</a></li>
-            <li><a href="/region/11/matches/">충북</a></li> */}
-            <li>
-              <a href="/region/5/matches/">대구</a>
-            </li>
-            {/* <li><a href="/region/12/matches/">경북</a></li> */}
-            <li>
-              <a href="/region/6/matches/">부산</a>
-            </li>
-            <li>
-              <a href="/region/13/matches/">울산</a>
-            </li>
-            {/* <li><a href="/region/14/matches/">경남</a></li> */}
-            <li>
-              <a href="/region/7/matches/">광주</a>
-            </li>
-            {/* <li><a href="/region/15/matches/">전남</a></li>
-            <li><a href="/region/16/matches/">전북</a></li> */}
-            <li>
-              <a href="/region/8/matches/">제주</a>
-            </li>
-          </ul>
-
           {/* 플랩풋볼 섹션 */}
           <ul>
             <h3>플랩풋볼</h3>
@@ -80,7 +43,7 @@ const Footer = () => {
             </li> */}
             <li>
               <a 
-                href="http://localhost:3001/manager/plabfootball" 
+                href={manager}
                 target="_blank" 
                 rel="noopener noreferrer"
               >
