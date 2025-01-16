@@ -89,6 +89,7 @@
 }
 
 .noticeContent {
+  width: 100%;
   font-size: 14px;
   font-family: 'Arial', sans-serif;
   color: #555;
@@ -166,4 +167,24 @@
   margin: 20px 0;
   border-top: 20px solid #f9fbfc;
   padding: 10px 0;
+}
+@media screen and (max-width: 1024px) {
+
+  .dateContainer {
+    padding: 0 20px; /* ✅ 태블릿에서는 좌우 패딩 줄이기 */
+  }
+  .tabContent{
+    padding-right: 40px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+
+  .dateContainer {
+    padding: 0 15px; /* ✅ 모바일에서는 더 작은 패딩 */
+  }
+  .tabContent{
+    padding-right: 60px;
+    padding-left:0;
+  }
 }

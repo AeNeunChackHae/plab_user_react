@@ -23,6 +23,8 @@
 
 .leftSection {
   flex: 3;
+  display: flex;
+  flex-direction: column;
 }
 
 .rightSection {
@@ -36,4 +38,41 @@
   width: 100%;
   height: auto;
   border-radius: 5px;
+}
+
+.displayonoff{
+  display: none;
+}
+
+.matchDetails {
+  max-width: 100%;
+  width: 100%;
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  transition: width 0.3s ease-in-out; 
+}
+
+@media screen and (max-width: 1024px) {
+  .mainContent {
+    flex-direction: column;
+    align-items: center;
+  }
+  .displayonoff{
+    display: block;
+    width: 100%;
+    /* max-width: 90%;  */
+  }
+
+  .rightSection {
+    display: none;
+  }
+}
+
+/* 반응형: 모바일 (480px 이하) */
+@media screen and (max-width: 767px) {
+  .mainContent {
+    flex-direction: column;
+    gap: 10px;
+  }
 }

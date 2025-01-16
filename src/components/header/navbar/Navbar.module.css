@@ -12,6 +12,7 @@
   max-width: 1024px;
   margin: 0 auto;
   padding: 10px 10px;
+  margin: 0 auto;
 }
 
 .leftSection {
@@ -52,13 +53,16 @@
   border-radius: 5px;
   padding: 0px 10px;
   width: 400px;
+  transition: all 0.3s ease-in-out;
 }
 
 .searchIcon {
-  width: 20px;
-  margin-right: 8px;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  margin-right: 10px; 
+  z-index: 2; 
 }
-
 .searchInput {
   border: none;
   outline: none;
@@ -70,9 +74,9 @@
 
 .searchDropdown {
   position: absolute;
-  top: 100%;
+  top: calc(100%);
   left: 0;
-  width: 400px;
+  width: 100%;
   background: #fff;
   border: 1px solid #ddd;
   border-radius: 5px;
@@ -193,4 +197,74 @@
   text-align: center;
   padding: 10px 0;
   font-size: 14px;
+}
+
+@media screen and (max-width: 1023px) {
+  .navContainer {
+    padding: 10px 20px;
+  }
+
+  .searchBar {
+    width: 300px;
+  }
+
+  .rightSection {
+    gap: 15px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .rightSection {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+    width: 100%;
+    position: relative;
+  }
+
+  .searchWrapper {
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+
+  .searchIcon {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+    position: relative;
+    z-index: 10; 
+    margin-right: 8px; 
+  }
+
+  .searchBar {
+    position: absolute;
+    right: 30px; /* ✅ 검색창 위치 조정 */
+    width: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease-in-out;
+    white-space: nowrap;
+  }
+
+  .searchWrapper.active .searchIcon {
+    transform: translateX(-220px);
+  }
+
+  .searchWrapper.active .searchBar {
+    width: 200px;
+    opacity: 1;
+    visibility: visible;
+    right: 30px; /* ✅ 검색창이 열릴 때 위치 유지 */
+  }
+
+  /* ✅ 드롭다운 위치 수정 */
+  .searchDropdown {
+    margin-top: 5px;
+    width: 200px; /* ✅ 검색창 크기와 동일하게 설정 */
+    right: 30px; /* ✅ 검색창과 일치 */
+    left: auto; /* ✅ `right` 기준으로 위치 조정 */
+  }
 }

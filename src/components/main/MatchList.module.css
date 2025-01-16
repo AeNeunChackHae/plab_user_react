@@ -17,6 +17,7 @@
   font-size: 18px;
   color: #000;
   margin-right: 10px;
+  align-items: center;
   text-align: center;
 }
 
@@ -45,6 +46,7 @@
   height: 6px;
   border-radius: 50%;
   display: inline-block;
+  margin-right: 4px;
 }
 
 /* gender별 동그라미 점 색상 */
@@ -92,6 +94,7 @@
   padding: 10px;
   text-align: center;
   cursor: pointer;
+  transition: all 0.3s ease-in-out;
 }
 
 /* 상태별 스타일 */
@@ -109,4 +112,60 @@
   text-align: center;
   font-size: 15px;
   color: #888;
+  padding: 20px 0;
+}
+@media (max-width: 1024px) {
+  .matchItem {
+    flex-direction: row;
+    justify-items: center;
+    padding: 8px 0;
+  }
+
+  .time {
+    font-size: 16px;
+    width: 5em;
+  }
+
+  .details {
+    font-size: 14px;
+  }
+
+  .status {
+    font-size: 13px;
+    padding: 8px;
+    width: 7em;
+  }
+}
+
+@media (max-width: 767px) {
+  .matchItem {
+    align-items: center;
+    text-align: center;
+    padding: 12px 0;
+    gap: 8px;
+  }
+
+  .time {
+    font-size: 14px;
+    width: auto;
+  }
+
+  .details {
+    align-items: center;
+    font-size: 13px;
+  }
+
+  .location {
+    font-size: 14px;
+  }
+
+  .gender {
+    font-size: 11px;
+  }
+
+  .status {
+    font-size: 12px;
+    padding: 6px;
+    width: 6em;
+  }
 }

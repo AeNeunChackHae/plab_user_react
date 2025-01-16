@@ -53,3 +53,36 @@
   margin-right: 8px;
   font-size: 0.8rem;
 }
+
+
+@media (max-width: 1024px) {
+  .main-menu {
+    width: 500px; 
+    height: auto; 
+  }
+}
+
+@media (max-width: 767px) {
+  .main-menu {
+    width: 100%; 
+    height: auto; 
+    border-radius: 10px; 
+  }
+
+  .menu-category {
+    padding: 15px; 
+  }
+
+  .menu-header h3 {
+    font-size: 0.85rem; 
+  }
+
+  .menu-link {
+    font-size: 0.85rem;
+  }
+
+  .menu-link .icon {
+    font-size: 0.7rem; 
+    margin-right: 6px;
+  }
+}

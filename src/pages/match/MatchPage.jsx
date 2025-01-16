@@ -108,6 +108,10 @@ const MatchPage = () => {
       <ContentHeader stadiumId={match.stadium_id || null}/>
       <div className={styles.mainContent}>
         <div className={styles.leftSection}>
+        <div className={styles.displayonoff}>
+
+        <MatchDetails match_id={match_id} stadiumId={match.stadium_id} />
+        </div>
           {match.match_type === 0 ? (
             <>
               <MatchPoints match_id={match_id} />
@@ -136,7 +140,7 @@ const MatchPage = () => {
         </div>
         <div className={styles.rightSection}>
         {/* {console.log("매치스테이터스랑 타입", match.status_code,match.match_type)}  */}
-          <MatchDetails match_id={match_id} stadiumId={match.stadium_id} /*statusCode={match.match_type}*/
+          <MatchDetails match_id={match_id} stadiumId={match.stadium_id}
           />
         </div>
       </div>
