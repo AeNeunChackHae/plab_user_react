@@ -1,8 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./MainMenu.css";
+import { config } from "../../config";
 
 const MainMenu = () => {
+  const manager = `${config.aws.ec2_host_nav}/manager/plabfootball`
 
   return (
     <div className="main-menu">
@@ -57,7 +59,7 @@ const MainMenu = () => {
           </Link>
 
           <a 
-            href="http://localhost:3001/manager/plabfootball" 
+            href={manager}
             target="_blank" 
             rel="noopener noreferrer" 
             className="menu-link"
