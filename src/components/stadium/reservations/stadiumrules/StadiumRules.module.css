@@ -77,3 +77,8 @@
 .ruleList li {
   margin-bottom: 5px;
 }
+
+.notice{
+  font-size: 14px;
+  font-family: 'Arial', sans-serif;
+}
