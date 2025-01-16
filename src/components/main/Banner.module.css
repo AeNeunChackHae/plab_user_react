@@ -1,8 +1,27 @@
 .bannerImage {
-    width: 950px;
+    width: 100%;
+    max-width: 950px;
     height: auto;
     border-radius: 30px;
     margin: auto;
     padding: 1rem;
     background-color: #fff;
+    transition: all 0.3s ease-in-out;
+    object-fit: cover;
 }
+@media (max-width: 1024px) {
+    .bannerImage {
+      width: 80%;
+      border-radius: 25px;
+      padding: 0.8rem;
+    }
+  }
+  
+  /* ✅ 모바일 (767px 이하) */
+  @media (max-width: 767px) {
+    .bannerImage {
+      width: 90%;
+      border-radius: 20px;
+      padding: 0.5rem;
+    }
+  }

@@ -149,6 +149,7 @@
   .modalWrapper {
     width: 90%;
     height: 80%;
+    padding: 15px;
   }
 
   .serviceList {
@@ -156,7 +157,44 @@
     gap: 10px;
   }
 
+  .serviceItem p {
+    font-size: 14px;
+  }
+
+  .serviceImage {
+    width: 30px;
+    height: 30px;
+  }
+
   .serviceList.vertical {
     gap: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .modalWrapper {
+    width: 90%;
+    height: auto;
+    max-height: 80%;
+    padding: 15px;
+  }
+
+  .serviceList {
+    grid-template-columns: repeat(1, 1fr);
+    gap: 5px;
+  }
+
+  .serviceItem {
+    flex-direction: row;
+    gap: 8px;
+  }
+
+  .serviceImage {
+    width: 28px;
+    height: 28px;
+  }
+
+  .serviceItem p {
+    font-size: 13px;
   }
 }

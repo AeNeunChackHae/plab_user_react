@@ -49,13 +49,15 @@ const FacilitiesContent = ({ onDateChange }) => {
 
   return (
     <div className={styles.facilitiesContent}>
-      <button
-        className={`${styles.arrowButton} ${styles.arrowLeft}`}
-        onClick={() => sliderRef.current.slickPrev()}
-      >
-        &#x276E;
-      </button>
       <div className={styles.dateContainer}>
+        {/* ✅ 화살표 버튼을 dateContainer 내부로 이동 */}
+        <button
+          className={`${styles.arrowButton} ${styles.arrowLeft}`}
+          onClick={() => sliderRef.current.slickPrev()}
+        >
+          &#x276E;
+        </button>
+
         <Slider ref={sliderRef} {...settings}>
           {dates.map((date) => (
             <div
@@ -70,13 +72,14 @@ const FacilitiesContent = ({ onDateChange }) => {
             </div>
           ))}
         </Slider>
+
+        <button
+          className={`${styles.arrowButton} ${styles.arrowRight}`}
+          onClick={() => sliderRef.current.slickNext()}
+        >
+          &#x276F;
+        </button>
       </div>
-      <button
-        className={`${styles.arrowButton} ${styles.arrowRight}`}
-        onClick={() => sliderRef.current.slickNext()}
-      >
-        &#x276F;
-      </button>
     </div>
   );
 };

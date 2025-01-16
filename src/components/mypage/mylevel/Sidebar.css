@@ -19,10 +19,56 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  max-height: 780px;
 }
 
 .long-image-area {
   width: 30%;
   background-color: #e0e0e0;
   margin-top: 10px;
+}
+
+/* ✅ 태블릿 (1024px 이하) */
+@media (max-width: 1024px) {
+  .sidebar {
+    height: auto; /* 높이 자동 조정 */
+    padding: 15px;
+    gap: 15px;
+  }
+
+  .sidebar-image-div {
+    flex-direction: column-reverse; 
+    max-width: 250px; /* 이미지 크기 조정 */
+  }
+
+  .long-image-area {
+    width: 40%; /* 너비 조정 */
+  }
+}
+
+/* ✅ 모바일 (767px 이하) */
+@media (max-width: 767px) {
+  .sidebar {
+    /* width: 100%;  */
+    height: auto;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    gap: 10px;
+  }
+
+  .sidebar-image-div {
+    flex-direction: column-reverse; 
+    max-width: 90%; /* 너비를 90%로 설정하여 중앙 정렬 */
+  }
+
+  .sidebar-image {
+    width: 100%;
+    height: auto;
+    object-fit: contain; /* 이미지 비율 유지 */
+  }
+
+  .long-image-area {
+    width: 90%; /* 모바일에서 전체 너비로 조정 */
+  }
 }

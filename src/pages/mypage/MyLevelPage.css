@@ -20,3 +20,39 @@
 .top-section {
   margin-bottom: 20px;
 }
+@media (max-width: 1024px) {
+  .my-level-page {
+    gap: 15px; 
+  }
+
+  .section-mylevel {
+    width: 500px; 
+    padding-top: 40px; 
+  }
+
+  .section-sidebar {
+    padding-top: 25px; 
+  }
+}
+
+@media (max-width: 767px) {
+  .my-level-page {
+    flex-direction: column; 
+    align-items: center; 
+    height: auto; 
+  }
+
+  .section-mylevel {
+    width: 90%; 
+    padding-top: 30px; 
+    overflow-y: visible; 
+  }
+
+  .section-sidebar {
+    padding-top: 20px; 
+  }
+
+  .top-section {
+    margin-bottom: 15px; 
+  }
+}

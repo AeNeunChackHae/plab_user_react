@@ -5,14 +5,16 @@
     align-items: center; /* 수직 중앙 정렬 */
     padding: 20px 0;
     background-color: #fff;
+    width: 100%;
+    overflow-x: hidden; 
   }
   
   .dateContainer {
     position: relative;
-    width: 85%;
+    width: 100%;
     max-width: 900px; /* 슬라이더 최대 너비 */
     margin: 0 auto;
-    overflow: hidden; /* 넘치는 부분 숨김 */
+    padding: 0 50px; 
   }
   
   .slick-track {
@@ -20,15 +22,19 @@
     align-items: center; /* 슬라이더 내부 요소 수직 중앙 정렬 */
   }
   
+  .slick-list {
+    overflow: hidden; 
+    width: 100%;
+  }
   .slick-slide {
     display: flex !important;
     justify-content: center;
     align-items: center; /* 슬라이드 내용 수직 중앙 정렬 */
+    width: auto !important; 
     height: 120px; /* 슬라이드의 높이를 고정 */
   }
   
   .dateWrap {
-    width: 100px; /* 날짜 요소 너비 */
     height: 50px; /* 날짜 요소 높이 */
     display: flex;
     flex-direction: column;
@@ -77,7 +83,7 @@
   
   .arrowButton {
     position: absolute;
-    top: 40%;
+    top: 35%;
     transform: translateY(-50%); /* 수직 중앙 정렬 */
     background: none;
     border: none;
@@ -88,14 +94,49 @@
   }
   
   .arrowLeft {
-    left: 10px;
+    left: 2%;
   }
   
   .arrowRight {
-    right: 10px;
+    right: 2%;
   }
   
   .arrowButton:hover {
     color: #007bff;
   }
+
+  @media screen and (max-width: 1024px) {
+    .dateContainer {
+      width: 100%;
+      padding: 0; /* ✅ 좌우 패딩 조정 */
+    }
+    .arrowButton{
+      top: 35%;
+    }
   
+    .arrowLeft {
+      left: 2%;
+    }
+    
+    .arrowRight {
+      right: 2%;
+    }
+  }
+  
+  @media screen and (max-width: 768px) {
+    .dateContainer {
+      width: 100%;
+      padding: 0 30px; /* ✅ 모바일에서 좌우 패딩 조정 */
+    }
+    .arrowButton{
+      top: 30%;
+    }
+    .arrowLeft {
+      left: 5%;
+    }
+    
+    .arrowRight {
+      right: 5%;
+    }
+  
+  }

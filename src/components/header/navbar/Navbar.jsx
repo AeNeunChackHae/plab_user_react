@@ -8,6 +8,7 @@ const Navbar = () => {
   const api = config.aws.ec2_host_user
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchDropdownOpen, setIsSearchDropdownOpen] = useState(false);
+  const [isSearchVisible, setIsSearchVisible] = useState(false);
   const [searchValue, setSearchValue] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [recentSearches, setRecentSearches] = useState([]);
@@ -50,6 +51,10 @@ const Navbar = () => {
 
   const openMenu = () => setIsMenuOpen(true);
   const closeMenu = () => setIsMenuOpen(false);
+
+  const toggleSearchBar = () => {
+    setIsSearchVisible((prev) => !prev);
+  };
 
   const fetchSearchResults = async (value) => {
     try {
@@ -152,13 +157,14 @@ const Navbar = () => {
           />
         </div>
         <div className={styles.rightSection}>
-          <div className={styles.searchWrapper}>
-            <div className={styles.searchBar}>
-              <img
-                src="https://d31wz4d3hgve8q.cloudfront.net/static/img/ic_search.svg"
-                alt="Search"
-                className={styles.searchIcon}
-              />
+          <div className={`${styles.searchWrapper} ${isSearchVisible ? styles.active : ""}`}>
+            <img
+              src="https://d31wz4d3hgve8q.cloudfront.net/static/img/ic_search.svg"
+              alt="Search"
+              className={styles.searchIcon}
+              onClick={toggleSearchBar} 
+            />
+            <div className={`${styles.searchBar} ${isSearchVisible ? styles.active : ""}`}>
               <input
                 type="text"
                 placeholder="지역, 구장, 팀 이름으로 찾기"
