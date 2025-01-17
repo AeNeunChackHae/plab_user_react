@@ -116,21 +116,24 @@
     }
     
     .time {
-        font-size: 16px;
+        font-size: 14px;
         width: 5em;
     }
 
     .location {
-        font-size: 16px;
+        font-size: 14px;
     }
 
     .gender {
-        font-size: 14px;
+        font-size: 12px;
     }
 
     .status {
         width: 7em;
-        font-size: 13px;
+        font-size: 12px;
+    }
+    .level {
+        font-size: 12px;
     }
 }
 
@@ -143,20 +146,23 @@
     }
     
     .time {
-        font-size: 16px;
+        font-size: 12px;
         width: 5em;
     }
 
     .location {
-        font-size: 16px;
+        font-size: 12px;
     }
 
     .gender {
-        font-size: 14px;
+        font-size: 10px;
     }
 
     .status {
         width: 7em;
-        font-size: 13px;
+        font-size: 10px;
+    }
+    .level {
+        font-size: 10px;
     }
 }
