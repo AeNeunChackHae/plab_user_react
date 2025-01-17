@@ -94,13 +94,15 @@ const SocialmatchPage = () => {
   return (
     <div className={styles.matchPage}>
       {/* 배너 영역 */}
-      <div
-        className={styles.banner}
-        style={{ backgroundImage: `url(${banner})` }}
-      >
-        <div className={styles.breadcrumb}>홈 &gt; {matchType}</div>
-        <h1>{matchType}</h1>
-        <p>{description}</p>
+      <div className={styles.bannersection}>
+        <div
+          className={styles.banner}
+          style={{ backgroundImage: `url(${banner})` }}
+          >
+          <div className={styles.breadcrumb}>홈 &gt; {matchType}</div>
+          <h1>{matchType}</h1>
+          <p>{description}</p>
+        </div>
       </div>
 
       {/* 매치가 없는 경우 표시 */}

@@ -15,4 +15,6 @@ html, body {
   overflow-x: hidden; /* 가로 스크롤 제거 */
   width: 100%;
   max-width: 100%;
+  margin: 0;
+  padding: 0;
 }

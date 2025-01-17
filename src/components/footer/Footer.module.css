@@ -147,7 +147,7 @@
 
   .footerNav {
     flex-wrap: nowrap;
-    justify-content: center; /* ✅ 모바일에서도 한 줄 유지 */
+    justify-content: center; 
     width: 100%;
     max-width: 500px;
   }
@@ -163,10 +163,10 @@
   }
 
   .company h2 {
-    font-size: 1.2rem;
+    font-size: 1.0rem;
   }
 
   .company p {
-    font-size: 0.75rem;
+    font-size: 0.6rem;
   }
 }
