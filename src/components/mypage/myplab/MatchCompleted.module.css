@@ -18,6 +18,7 @@
 
 /* 완료 상태 아이콘 */
 .statusCircle {
+  min-width: 65px;;
   width: 65px;
   height: 65px;
   border-radius: 50%;
@@ -86,4 +87,33 @@
   color: #999;
   text-align: center;
   margin-top: 20px;
+}
+
+@media (max-width: 1024px) {
+  .matchButtons {
+    flex-direction: row;
+  }
+}
+
+/* 모바일에서는 버튼을 아래로 배치 */
+  @media (max-width: 768px) {
+    .matchItem {
+      flex-wrap: wrap; /* 내용이 가득 차면 버튼이 아래로 이동 */
+      align-items: flex-start; /* 왼쪽 정렬 */
+    }
+  
+    .matchInfo {
+      flex: 1; /* 내용이 차지할 공간 확보 */
+    }
+  
+    .matchButtons {
+      width: 100%; /* 버튼이 전체 너비를 차지 */
+      justify-content: flex-start; /* 왼쪽 정렬 */
+    }
+  
+    .button {
+      flex: 1; /* 버튼 크기를 동일하게 */
+      min-width: 100px; /* 최소 너비 유지 */
+      text-align: center;
+    }
 }

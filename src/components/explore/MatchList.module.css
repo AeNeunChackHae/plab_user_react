@@ -14,8 +14,8 @@
 }
 
 .time {
-    min-width: 6em;
-    max-width: 6em;
+    /* min-width: 6em; */
+    /* max-width: 6em; */
     font-weight: bold;
     font-size: 18px;
     color: #000;
@@ -110,59 +110,59 @@
 
 @media screen and (max-width: 1024px) {
     .matchItem {
-        width: 95%;
+        width: auto;
         margin: 0 auto;
         padding: 12px;
     }
     
     .time {
-        font-size: 14px;
+        font-size: 18px;
         width: 5em;
     }
 
     .location {
-        font-size: 14px;
+        font-size: 18px;
     }
 
     .gender {
-        font-size: 12px;
+        font-size: 16px;
     }
 
     .status {
         width: 7em;
-        font-size: 12px;
+        font-size: 16px;
     }
     .level {
-        font-size: 12px;
+        font-size: 16px;
     }
 }
 
 /* ✅ 📌 반응형 (모바일 768px 이하) */
 @media screen and (max-width: 768px) {
     .matchItem {
-        width: 95%;
+        width: auto;
         margin: 0 auto;
         padding: 12px;
     }
     
     .time {
-        font-size: 12px;
+        font-size: 16px;
         width: 5em;
     }
 
     .location {
-        font-size: 12px;
+        font-size: 14px;
     }
 
     .gender {
-        font-size: 10px;
+        font-size: 12px;
     }
 
     .status {
         width: 7em;
-        font-size: 10px;
+        font-size: 12px;
     }
     .level {
-        font-size: 10px;
+        font-size: 12px;
     }
 }

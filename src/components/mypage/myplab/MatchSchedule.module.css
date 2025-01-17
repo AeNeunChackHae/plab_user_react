@@ -64,12 +64,14 @@
 
 /* 진행 예정 매치 정보 스타일 */
 .leftContainer {
+  width: 100%;
   display: flex;
   gap: 20px;
   align-items: center;
 }
 
 .statusCircle_upcoming {
+  min-width: 65px;
   display: flex;
   justify-content: center;
   align-items: center;
