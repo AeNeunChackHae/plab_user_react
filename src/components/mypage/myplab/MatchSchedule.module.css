@@ -18,6 +18,8 @@
 }
 
 .statusCircle_cancle {
+  min-width: 65px;
+  min-height: 65px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -72,6 +74,7 @@
 
 .statusCircle_upcoming {
   min-width: 65px;
+  min-height: 65px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -135,4 +138,59 @@
   color: #999;
   text-align: center;
   margin-top: 20px;
+}
+
+@media (max-width: 1024px) {
+  .matchItem {
+    padding: 12px;
+    gap: 6px;
+  }
+
+  .matchDate,
+  .matchStadium {
+    font-size: 16px;
+  }
+
+  .matchButtonsContainer {
+    gap: 6px;
+  }
+
+  .matchButton {
+    width: 90px;
+    height: 45px;
+    font-size: 13px;
+  }
+}
+
+/* 모바일 (768px 이하) */
+@media (max-width: 768px) {
+  .matchItem {
+    gap: 12px;
+  }
+
+  
+  .matchDate,
+  .matchStadium {
+    font-size: 14px;
+  }
+
+
+  .cancelContent,
+  .leftContainer {
+    width: 100%;
+  }
+
+  .statusCircle_cancle,
+  .statusCircle_upcoming {
+    width: 50px;
+    height: 50px;
+  }
+
+  .matchContent {
+    gap: 12px;
+  }
+  .matchButton {
+    height: 45px;
+    font-size: 12px;
+  }
 }

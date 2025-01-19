@@ -19,6 +19,7 @@
 /* 완료 상태 아이콘 */
 .statusCircle {
   min-width: 65px;;
+  min-height: 65px;;
   width: 65px;
   height: 65px;
   border-radius: 50%;
@@ -93,6 +94,20 @@
   .matchButtons {
     flex-direction: row;
   }
+  .matchItem {
+    padding: 12px;
+    gap: 6px;
+  }
+
+  .matchDate,
+  .matchStadium {
+    font-size: 16px;
+  }
+
+  .matchButtonsContainer {
+    gap: 6px;
+  }
+
 }
 
 /* 모바일에서는 버튼을 아래로 배치 */
@@ -115,5 +130,35 @@
       flex: 1; /* 버튼 크기를 동일하게 */
       min-width: 100px; /* 최소 너비 유지 */
       text-align: center;
+    }
+
+    .matchItem {
+      gap: 12px;
+    }
+  
+    
+    .matchDate,
+    .matchStadium {
+      font-size: 14px;
+    }
+  
+  
+    .cancelContent,
+    .leftContainer {
+      width: 100%;
+    }
+  
+    .statusCircle_cancle,
+    .statusCircle_upcoming {
+      width: 50px;
+      height: 50px;
+    }
+  
+    .matchContent {
+      gap: 12px;
+    }
+    .matchButton {
+      height: 45px;
+      font-size: 12px;
     }
 }

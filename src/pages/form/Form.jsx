@@ -231,6 +231,8 @@ const AboutPage = () => {
             <option value="24">중랑구</option>
           </select>
         </div>
+
+      <div className={styles.radio_section}>
         <div className={styles.row}>
           <p className={styles.label_text}>샤워실</p>
           <div className={styles.row}>
@@ -243,6 +245,9 @@ const AboutPage = () => {
               <span class="checkmark"></span>N
             </label>
           </div>
+        </div>
+            
+        <div className={styles.row}>
           <p className={styles.label_text}>음료 판매</p>
           <div className={styles.row}>
             <label className={styles.radio_option}>
@@ -255,6 +260,7 @@ const AboutPage = () => {
             </label>
           </div>
         </div>
+
         <div className={styles.row}>
           <p className={styles.label_text}>풋살화 대여</p>
           <div className={styles.row}>
@@ -267,6 +273,9 @@ const AboutPage = () => {
               <span class="checkmark"></span>N
             </label>
           </div>
+        </div>
+        <div className={styles.row}>
+            
           <p className={styles.label_text}>화장실</p>
           <div className={styles.row}>
             <label className={styles.radio_option}>
@@ -292,6 +301,7 @@ const AboutPage = () => {
             </label>
           </div>
         </div>
+      </div>
         <div className={styles.row}>
           <p className={styles.label_text}>구장 특이사항</p>
           <textarea name="notice" id={styles.notice}></textarea>
@@ -305,8 +315,8 @@ const AboutPage = () => {
         <div className={`${styles.column} ${styles.justify_end}  ${styles.margin_x_10}`}>
           {match_time_arr.map((time_value, index) => (
             <div
-              id={`match_time_arr_container_${index}`}
-              className={`${styles.row} ${styles.margin_x_10}`}
+            id={`match_time_arr_container_${index}`}
+            className={`${styles.row} ${styles.margin_x_10}`}
             >
               <div
                 className={`${styles.flex_child_quartern} ${styles.row} ${styles.justify_center}  ${styles.margin_x_10}`}
