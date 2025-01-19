@@ -1,6 +1,6 @@
 /* 전체 컨테이너 */
 .container {
-  width: 800px;
+  max-width: 1024px;
   margin: 0 auto;
   padding: 30px;
   background-color: #f9fafc;

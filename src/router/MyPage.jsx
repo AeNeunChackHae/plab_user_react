@@ -16,10 +16,10 @@ function Mypage() {
     <Routes>
       <Route path="/" element={<PersonalSettingsPage />} />
       <Route path="/myplab" element={<MyPlabPage />} />
-      <Route path="/change/profile" element={<ProfilePage />} />
       <Route path="/blacklist" element={<BlacklistManager />} />
       <Route path="/change/pw" element={<PasswordChange />} />
       <Route path="/change/general" element={<SettingsPage />} />
+      <Route path="/change/profile" element={<ProfilePage />} />
       <Route path="/mylevel" element={<MyLevelPage />} />
       <Route path="/feedback/:matchId/user" element={<UserFeedbackPage />} />
       <Route path="/feedback/:matchId/stadium" element={<StadiumFeedbackPage />} />

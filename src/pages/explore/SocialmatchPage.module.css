@@ -17,6 +17,7 @@
     background-position: center;
     color: white;
     display: flex;
+    width: 100%;
     flex-direction: column;
     justify-content: center;
     padding: 30px;

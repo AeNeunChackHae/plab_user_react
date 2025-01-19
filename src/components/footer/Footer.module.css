@@ -62,7 +62,7 @@
 /* 회사 섹션 중앙 정렬 */
 .company {
   flex: 1;
-  width: 450px;
+  width: 100%;
   margin-top: 0;
 }
 
@@ -103,11 +103,19 @@
 
 /* 반응형 설정 */
 @media (max-width: 1024px) {
+  
+  .footer {
+    padding: 30px 15px;
+    display: flex;
+    justify-content: center;
+  }
+
   .footerWrap {
     flex-direction: column;
     text-align: left;
-    gap: 50px;
+    gap: 30px;
     align-items: center;
+    width: 100%;
   }
 
   .footerNav {
@@ -115,12 +123,12 @@
     justify-content:center ;
     flex-wrap: wrap;
     gap: 30px;
-    max-width: 600px; /* ✅ 태블릿에서 좀 더 줄이기 */
+    width: 100%;
   }
 
   .footerNav ul {
     flex: 1;
-    min-width: 120px;
+    padding-left: 20px;
   }
 
   .footerNav h3,
@@ -130,26 +138,16 @@
 
   .company {
     text-align: left;
-    max-width: 100%;
+    width: 100%;
+    padding-left: 20px;
   }
 }
 
 @media (max-width: 767px) {
-  .footer {
-    padding: 30px 15px;
-    display: flex;
-    justify-content: center;
-  }
-
-  .footerWrap {
-    gap: 30px;
-  }
-
   .footerNav {
     flex-wrap: nowrap;
     justify-content: center; 
     width: 100%;
-    max-width: 500px;
   }
 
   .footerNav ul {
@@ -163,10 +161,10 @@
   }
 
   .company h2 {
-    font-size: 1.0rem;
+    font-size: 1.2rem;
   }
 
   .company p {
-    font-size: 0.6rem;
+    font-size: 0.8rem;
   }
 }
