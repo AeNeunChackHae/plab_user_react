@@ -37,7 +37,7 @@ const Footer = () => {
             <h3>플랩풋볼</h3>
             <li><a href="/about/">플랩풋볼 소개</a></li>
             <li><a href="/notice/">공지사항</a></li>
-            <li><a href="/cs/">자주 묻는 질문</a></li>
+            <li><a href="/cs/">문의</a></li>
             {/* <li>
               <a href="/magazine/">플랩 매거진</a>
             </li> */}
