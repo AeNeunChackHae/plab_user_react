@@ -264,7 +264,14 @@ const checkApplicationStatus = useCallback(async () => {
   return (
     <div ref={stickyRef} className={`${styles.matchDetails} ${isSticky ? styles.sticky : ""}`}>
       <div className={styles.matchTime}>
-        {new Date(match_start_time).toLocaleString("ko-KR", { timeZone: "Asia/Seoul" })}
+        {new Date(match_start_time).toLocaleString("ko-KR", {
+                      month: "long",
+                      day: "numeric",
+                      weekday: "long",
+                      hour: "2-digit",
+                      minute: "2-digit",
+                      hour12: false,
+                    })}
       </div>
       <div className={styles.matchPlace}>
         <h1 className={styles.title}>
