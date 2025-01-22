@@ -20,6 +20,7 @@ const TeamDisplay = ({ players, blacklist, currentUserId }) => {
           {/* 팀별 플레이어 리스트 */}
           {players
             .filter((player) => player.user_team === teamIndex) // 해당 팀의 플레이어 필터링
+            .sort((a, b) => a.user_number - b.user_number) // 등번호 순서대로 정렬
             .map((player) => {
               const displayText =
                 blacklist.includes(player.user_id)

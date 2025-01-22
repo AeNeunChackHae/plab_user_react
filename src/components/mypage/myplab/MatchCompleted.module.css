@@ -65,6 +65,7 @@
   color: #333;
   cursor: pointer;
   transition: background-color 0.2s;
+  min-width: 80px;
 }
 
 .button:hover {
@@ -80,6 +81,7 @@
   background-color: #e0e0e0;
   color: #999;
   cursor: not-allowed;
+  min-width: 80px;
 }
 
 /* 매치 없음 메시지 */
