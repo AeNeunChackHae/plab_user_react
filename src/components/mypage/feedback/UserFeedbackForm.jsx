@@ -323,6 +323,7 @@ const FeedbackForm = ({ players, currentUserId, matchId }) => {
                 <option value="">선택 없음</option>
                 {players
                   .filter((player) => player.user_team === Number(positiveTeam))
+                  .sort((a, b) => a.user_number - b.user_number) // 등번호 순으로 정렬
                   .map((player) => (
                     <option key={player.user_id} value={player.user_number}>
                       {getDisplayText(player)}
@@ -394,6 +395,7 @@ const FeedbackForm = ({ players, currentUserId, matchId }) => {
                 <option value="">선택 없음</option>
                 {players
                   .filter((player) => player.user_team === Number(negativeTeam))
+                  .sort((a, b) => a.user_number - b.user_number) // 등번호 순으로 정렬
                   .map((player) => (
                     <option key={player.user_id} value={player.user_number}>
                       {getDisplayText(player)}
@@ -465,10 +467,8 @@ const FeedbackForm = ({ players, currentUserId, matchId }) => {
               >
                 <option value="">선택 없음</option>
                 {players
-                  .filter(
-                    (player) =>
-                      player.user_team === Number(selectedBlacklistTeam)
-                  )
+                  .filter((player) => player.user_team === Number(selectedBlacklistTeam))
+                  .sort((a, b) => a.user_number - b.user_number) // 등번호 순으로 정렬
                   .map((player) => (
                     <option key={player.user_id} value={player.user_number}>
                       {getDisplayText(player)}
